@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.jsphomme.member.service.MemberService;
 
@@ -17,8 +18,15 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	// 회원 목록 조회 화면으로
-//	@RequestMapping
+	// 관리자가 회원 목록 조회 화면으로
+	@RequestMapping(value =  , method = {RequestMethod.GET})
+	
+	public String memberListView() {
+		
+		return "member/memberlistView";
+	}
+	
+	
 	
 	
 	
