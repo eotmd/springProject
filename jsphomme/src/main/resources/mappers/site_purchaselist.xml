@@ -3,5 +3,26 @@
 
 <mapper namespace="kr.co.jsphomme">
 
-
+	<resultMap type="purchaseListVo" id="purchaseListResultMap">
+		<id column="PURCHASE_LIST_NO" property="purchaseListNo" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="PRODUCT_NO" property="productNo" />
+		<result column="PRODUCT_SIZE" property="productSize" />
+		<result column="PURCHASE_DATE" property="purchaseDate"
+			javaType="java.util.Date" />
+		<result column="REQUESTS" property="requests"/>
+		<result column="ADRESS" property="adress"/>
+	</resultMap>
+	
+	<select id="purchaseListView" parameterType="map" resultMap="purchaseListResultMap">
+			SELECT  P.PRODUCT_NO, P.NAME, P.PRICE, 
+            PL.PRODUCT_SIZE, PL.ADRESS, PL.PURCHASE_DATE,
+            REQUESTS
+			FROM PURCHASE_LIST PL, MEMBER M, PRODUCT P
+			WHERE M.MEMBER_NO = PL.MEMBER_NO
+			AND P.PRODUCT_NO = PL.PRODUCT_NO
+			AND M.MEMBER_NO = 1;
+	</select>
+	
+	
 </mapper>
