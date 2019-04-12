@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
    <typeAliases>
   	<typeAlias type="kr.co.jsphomme.member.vo.MemberVo" alias="memberVo"/>
   	<typeAlias type="kr.co.jsphomme.product.vo.ProductVo" alias="productVo"/>
