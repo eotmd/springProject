@@ -32,6 +32,8 @@
             MOD_DATE    AS "수정 날짜"
 			FROM MEMBER;
 	</select>
+	
+	
 
 
 </mapper>

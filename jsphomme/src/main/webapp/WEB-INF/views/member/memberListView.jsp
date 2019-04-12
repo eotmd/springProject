@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	memberListView 잘뜨나?
 </body>
 </html>

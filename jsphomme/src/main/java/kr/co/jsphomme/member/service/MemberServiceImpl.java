@@ -1,5 +1,7 @@
 package kr.co.jsphomme.member.service;
 
+import java.util.List;
+
 import kr.co.jsphomme.member.vo.MemberVo;
 
 public class MemberServiceImpl implements MemberService{
@@ -11,7 +13,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVo memberListView() {
+	public List<MemberVo> memberListView() {
 		// TODO Auto-generated method stub
 		return null;
 	}
