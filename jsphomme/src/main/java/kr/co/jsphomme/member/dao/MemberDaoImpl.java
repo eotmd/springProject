@@ -1,8 +1,12 @@
 package kr.co.jsphomme.member.dao;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 
 import kr.co.jsphomme.member.vo.MemberVo;
 
@@ -20,7 +24,7 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public MemberVo memberListView() {
+	public List<MemberVo> memberListView() {
 		// TODO Auto-generated method stub
 		return null;
 	}

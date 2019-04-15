@@ -1,10 +1,12 @@
 package kr.co.jsphomme.member.dao;
 
+import java.util.List;
+
 import kr.co.jsphomme.member.vo.MemberVo;
 
 public interface MemberDao {
 	public MemberVo memberInsert();			//회원 가입
-	public MemberVo memberListView();		//회원 리스트
+	public List<MemberVo> memberListView();		//회원 리스트
 	public MemberVo memberOneDeteilView();	//회원 상세 정보
 	public MemberVo memberLogin();			//회원로그인
 	public MemberVo memberLogout();			//회원 로그아웃

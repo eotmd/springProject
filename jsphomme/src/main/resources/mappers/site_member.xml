@@ -32,6 +32,8 @@
             MOD_DATE    
 			FROM MEMBER
 	</select>
+	
+	
 
 
 </mapper>
