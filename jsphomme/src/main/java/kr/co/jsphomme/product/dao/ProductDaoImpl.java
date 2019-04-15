@@ -5,9 +5,10 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import kr.co.jsphomme.product.vo.ProductVo;
-
+@Repository
 public class ProductDaoImpl implements ProductDao{
 
 	@Autowired

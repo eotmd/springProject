@@ -1,9 +1,18 @@
 package kr.co.jsphomme.product.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import kr.co.jsphomme.product.dao.ProductDao;
 import kr.co.jsphomme.product.vo.ProductVo;
 
-public class ProductServiceImpl implements ProductService{
 
+@Service
+public class ProductServiceImpl implements ProductService{
+	
+	@Autowired
+	public ProductDao productDao;
 	@Override
 	public ProductVo productInsert() {
 		// TODO Auto-generated method stub

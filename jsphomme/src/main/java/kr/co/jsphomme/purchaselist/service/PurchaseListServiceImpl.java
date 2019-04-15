@@ -1,21 +1,20 @@
-package kr.co.jsphomme.purchaselist.dao;
+package kr.co.jsphomme.purchaselist.service;
 
 import java.util.Map;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import kr.co.jsphomme.member.vo.MemberVo;
+import kr.co.jsphomme.purchaselist.dao.PurchaseListDao;
 import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
 
-@Repository
-public class PurchaseListDaoImpl implements PurchaseListDao{
+
+@Service
+public class PurchaseListServiceImpl implements PurchaseListService{
 	
 	@Autowired
-	SqlSessionTemplate sqlSession;
-	
-	String namespace = "kr.co.jsphomme.member.";
+	public PurchaseListDao purchaseListDao; 
 	
 	@Override
 	public PurchaseListVo purchaseListInsert(PurchaseListVo purchaseListVo) {
@@ -26,7 +25,7 @@ public class PurchaseListDaoImpl implements PurchaseListDao{
 	@Override
 	public MemberVo purchaseListView() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"memberListView");
+		return purchaseListDao.purchaseListView();
 	}
 
 	@Override
@@ -36,5 +35,4 @@ public class PurchaseListDaoImpl implements PurchaseListDao{
 	}
 
 	
-
 }

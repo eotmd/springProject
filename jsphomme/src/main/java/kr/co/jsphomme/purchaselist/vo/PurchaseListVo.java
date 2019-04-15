@@ -3,14 +3,19 @@ package kr.co.jsphomme.purchaselist.vo;
 import java.util.Date;
 
 public class PurchaseListVo {
+	
 	private String purchaseListNo = "";
 	private int memberNo = 0;
 	private int productNo = 0;
+	private String productName = "";
+	private int productPrice = 0;
 	private int productSize = 0;
 	private Date purchaseDate = null;
 	private String requests = "";
 	private String adress = "";
-
+	
+	
+	
 	public PurchaseListVo() {
 		super();
 	}
@@ -38,6 +43,24 @@ public class PurchaseListVo {
 		this.purchaseListNo = purchaseListNo;
 		this.memberNo = memberNo;
 		this.productNo = productNo;
+		this.productSize = productSize;
+		this.purchaseDate = purchaseDate;
+		this.requests = requests;
+		this.adress = adress;
+	}
+	
+	
+	
+	
+
+	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, String productName, int productPrice,
+			int productSize, Date purchaseDate, String requests, String adress) {
+		super();
+		this.purchaseListNo = purchaseListNo;
+		this.memberNo = memberNo;
+		this.productNo = productNo;
+		this.productName = productName;
+		this.productPrice = productPrice;
 		this.productSize = productSize;
 		this.purchaseDate = purchaseDate;
 		this.requests = requests;
@@ -114,13 +137,40 @@ public class PurchaseListVo {
 		this.adress = adress;
 	}
 
+	
+	public String getProductName() {
+		return productName;
+	}
 
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "PurchaseListVo [purchaseListNo=" + purchaseListNo + ", memberNo=" + memberNo + ", productNo="
-				+ productNo + ", productSize=" + productSize + ", purchaseDate=" + purchaseDate + ", requests="
-				+ requests + ", adress=" + adress + "]";
+				+ productNo + ", productName=" + productName + ", productPrice=" + productPrice + ", productSize="
+				+ productSize + ", purchaseDate=" + purchaseDate + ", requests=" + requests + ", adress=" + adress
+				+ "]";
 	}
+
+
+	
 	
 	
 	

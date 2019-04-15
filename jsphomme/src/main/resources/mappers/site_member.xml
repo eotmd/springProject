@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kr.co.jsphomme">
+<mapper namespace="kr.co.jsphomme.member">
 
 	<resultMap type="kr.co.jsphomme.member.vo.MemberVo" 
 			id="memberResultMap">
@@ -19,18 +19,18 @@
 			javaType="java.util.Date" />
 	</resultMap>
 
-	<select id="memberListView" parameterType="map"
+	<select id="memberListView" 
 		resultMap="memberResultMap">
-		SELECT MEMBER_NO        AS "회원 번호",
-            STATUS                  AS "활성화 상태", 
-            AUTHORITY            AS 권한, 
-            NAME             AS 이름,
-            ID                   AS 아이디,
-            ADRESS          AS 주소,
-            HP                   AS 연락처,
-            CRE_DATE    AS "가입 날짜",
-            MOD_DATE    AS "수정 날짜"
-			FROM MEMBER;
+		SELECT MEMBER_NO        ,
+            STATUS                 , 
+            AUTHORITY          , 
+            NAME            ,
+            ID                  ,
+            ADRESS          ,
+            HP                   ,
+            CRE_DATE    ,
+            MOD_DATE    
+			FROM MEMBER
 	</select>
 
 

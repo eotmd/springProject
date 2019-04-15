@@ -1,9 +1,19 @@
 package kr.co.jsphomme.member.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kr.co.jsphomme.member.dao.MemberDao;
 import kr.co.jsphomme.member.vo.MemberVo;
 
-public class MemberServiceImpl implements MemberService{
 
+@Service
+public class MemberServiceImpl implements MemberService{
+	
+	
+	@Autowired
+	public MemberDao MemberDao;
+	
 	@Override
 	public MemberVo memberInsert() {
 		// TODO Auto-generated method stub

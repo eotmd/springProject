@@ -18,13 +18,9 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	// 관리자가 회원 목록 조회 화면으로
-	@RequestMapping(value =  , method = {RequestMethod.GET})
 	
-	public String memberListView() {
-		
-		return "member/memberlistView";
-	}
+	
+	
 	
 	
 	

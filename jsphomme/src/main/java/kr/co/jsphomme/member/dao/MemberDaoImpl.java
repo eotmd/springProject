@@ -1,9 +1,18 @@
 package kr.co.jsphomme.member.dao;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import kr.co.jsphomme.member.vo.MemberVo;
 
-public class MemberDaoImpl implements MemberDao{
 
+@Repository
+public class MemberDaoImpl implements MemberDao{
+	
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	
 	@Override
 	public MemberVo memberInsert() {
 		// TODO Auto-generated method stub
