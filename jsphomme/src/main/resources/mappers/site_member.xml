@@ -11,7 +11,7 @@
 		<result column="NAME" property="name"/>
 		<result column="ID" property="id"/>
 		<result column="PASSWORD" property="password"/>
-		<result column="ADRESS" property="adress"/>
+		<result column="ADDRESS" property="address"/>
 		<result column="HP" property="hp"/>
 		<result column="CRE_DATE" property="creDate"
 			javaType="java.util.Date" />
@@ -19,21 +19,69 @@
 			javaType="java.util.Date" />
 	</resultMap>
 
-	<select id="memberListView" 
+	<select id="memberListView" parameterType="map"
 		resultMap="memberResultMap">
 		SELECT MEMBER_NO        ,
             STATUS                 , 
             AUTHORITY          , 
             NAME            ,
             ID                  ,
-            ADRESS          ,
+            ADDRESS          ,
             HP                   ,
             CRE_DATE    ,
             MOD_DATE    
 			FROM MEMBER
 	</select>
 	
+	<select id="memberSelectOne" parameterType="int"
+			resultMap="memberResultMap">
+		SELECT  MEMBER_NO    
+            	  ,NAME            
+         		  , PASSWORD
+        		  , ID                  
+        		   , ADDRESS          
+        		   , HP                 
+		FROM MEMBER
+		WHERE MEMBER_NO = #{memberNo}
 	
-
-
+	</select>
+	
+	<insert id="memberInsertOne"
+		parameterType="kr.co.jsphomme.member.vo.MemberVo"
+		useGeneratedKeys="true" keyProperty="no">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT MEMBER_MEMBER_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+			
+		INSERT INTO MEMBER(
+	    MEMBER_NO,
+	    STATUS,
+	    AUTHORITY,
+	    NAME,
+	    ID,
+	    PASSWORD,
+	    ADDRESS,
+	    HP,
+	    CRE_DATE,
+	    MOD_DATE
+	)
+	values(
+	    MEMBER_NO_SEQ.nextval,
+	    #{memberNO},	#{status},
+	    #{authority},	#{name},
+	    #{id},			#{password},
+	    #{address},
+	    SYSDATE,
+	    SYSDATE
+		)
+		
+	</insert>
+	
+	<select id="memberExist" parameterType="map"
+		resultMap="memberResultMap">
+		SELECT  MEMBER_NO , ID, PASSWORD
+		FROM MEMBER
+		WHERE ID = #{id} AND PASSWORD = #{password}
+		
+	</select>
 </mapper>

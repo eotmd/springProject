@@ -113,6 +113,7 @@
 	
 	
 	<div class="fncButton">	
+		<span> 관리자님 </span>
 		<input class="productRegiBtn" type="button" value="제품등록">
 		<input class="myPageBtn" type="button" value="마이페이지">
 		<input class="purchseListBtn" type="button" value="구매목록">
