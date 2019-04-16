@@ -23,8 +23,9 @@ public class PurchaseListController {
 	
 	@RequestMapping(value="/purchaseList.do")
 	public String PurchaseListView(Model model) {
-		purchaseListService.purchaseListView();
-		model.addAttribute("asd", purchaseListService.purchaseListView());
+		
+		
+		model.addAttribute("purchaseList", purchaseListService.purchaseListView());
 		
 		return "purchaseList/purchaseListViewForm";
 	}

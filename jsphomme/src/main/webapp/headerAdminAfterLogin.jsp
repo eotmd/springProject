@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
+
+
 <style type="text/css">
 
 	#headerContainer {
@@ -41,6 +40,8 @@
 	.headerLine {
 		clear: both;
 		margin-top: 50px;
+		
+		
 	}
 	
 	.headerLine hr {
@@ -98,10 +99,27 @@
 		font-family: "Lucida Console", Monaco, monospace;
 		border-radius: 5px;
 	}
+	
+	.menu {
+		background-color: #636363; 
+		text-align: center; 
+		width: 250px; 
+		height: 23px;
+		color: #FFFFFF;
+		font-size: 20px; 
+		font-weight: bolder;
+		font-style: normal;
+		font-family: "Lucida Console", Monaco, monospace;
+		margin-left: 340px;
+		margin-top: 20px;
+		margin-bottom: 5px;
+		border-radius: 7px;
+		
+	}
 </style>
 
-<title>JSP Homme</title>
-</head>
+
+
 <body>
 
 <div id="headerContainer" >   
@@ -120,11 +138,14 @@
 	</div>
 	
 	<div class="headerLine">
-	<hr>
-	<br>
+	<hr style="width: 1800px;">
+	
 	
 	</div>
 	
-</div>
-</body>
-</html>
+	<div>
+		<input class="menu" type="button" value="Menswear">
+		<input class="menu" style=" text-align: left; margin-left: 680px; height:20px; vertical-align: bottom; font-size: 17px;" type="text" value="" placeholder="search">
+	</div>
+	</div>
+

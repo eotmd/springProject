@@ -2,16 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.jsphomme.purchaselist">
-
+	<resultMap type="purchaseListVo" id="purchaseListResultMap">
+		<id column="PURCHASE_LIST_NO" property="purchaseListNo"/>
+		<id column="PRODUCT_NO" property="productNo"/>
+		<id column="NAME" property="productName"/>
+		<id column="PRICE" property="productPrice"/>
+		<id column="PRODUCT_SIZE" property="productSize"/>
+		<id column="ADDRESS" property="address"/>
+		<id column="PURCHASE_DATE" property="purchaseDate" javaType="java.util.Date"/>
+		<id column="REQUESTS" property="requests"/>
+		<id column="PURCHASE_LIST_QUANTITY" property="purchaseQuantity"/>
+	</resultMap>
 		
-	<select id="purchaseListView" parameterType="int" resultType="map">
-			SELECT  P.PRODUCT_NO, P.NAME, P.PRICE, 
-            PL.PRODUCT_SIZE, PL.ADRESS, PL.PURCHASE_DATE,
-            REQUESTS
+	<select id="purchaseListView" resultMap="purchaseListResultMap">
+			SELECT  PURCHASE_LIST_NO,
+			P.PRODUCT_NO, 
+			P.NAME, 
+			P.PRICE, 
+            PL.PRODUCT_SIZE, 
+            PL.ADDRESS, 
+            PL.PURCHASE_DATE,
+            REQUESTS,
+            PURCHASE_LIST_QUANTITY
 			FROM PURCHASE_LIST PL, MEMBER M, PRODUCT P
 			WHERE M.MEMBER_NO = PL.MEMBER_NO
 			AND P.PRODUCT_NO = PL.PRODUCT_NO
-			AND M.MEMBER_NO = #{no}
+			AND M.MEMBER_NO = 1
 	</select>
 	
 	
