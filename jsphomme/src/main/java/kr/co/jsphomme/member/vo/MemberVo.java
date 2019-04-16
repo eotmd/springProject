@@ -10,7 +10,7 @@ public class MemberVo {
 	private String name;
 	private String id;
 	private String password;
-	private String adress;
+	private String address;
 	private String hp;
 	private Date creDate;
 	private Date modDate;
@@ -23,7 +23,7 @@ public class MemberVo {
 
 
 
-	public MemberVo(int memberNo, int status, String authority, String name, String id, String password, String adress,
+	public MemberVo(int memberNo, int status, String authority, String name, String id, String password, String address,
 			String hp, Date creDate, Date modDate) {
 		super();
 		this.memberNo = memberNo;
@@ -32,7 +32,7 @@ public class MemberVo {
 		this.name = name;
 		this.id = id;
 		this.password = password;
-		this.adress = adress;
+		this.address = address;
 		this.hp = hp;
 		this.creDate = creDate;
 		this.modDate = modDate;
@@ -112,14 +112,14 @@ public class MemberVo {
 
 
 
-	public String getAdress() {
-		return adress;
+	public String getaddress() {
+		return address;
 	}
 
 
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setaddress(String address) {
+		this.address = address;
 	}
 
 
@@ -163,7 +163,7 @@ public class MemberVo {
 	@Override
 	public String toString() {
 		return "MemberVo [memberNo=" + memberNo + ", status=" + status + ", authority=" + authority + ", name=" + name
-				+ ", id=" + id + ", password=" + password + ", adress=" + adress + ", hp=" + hp + ", creDate=" + creDate
+				+ ", id=" + id + ", password=" + password + ", address=" + address + ", hp=" + hp + ", creDate=" + creDate
 				+ ", modDate=" + modDate + "]";
 	}
 	

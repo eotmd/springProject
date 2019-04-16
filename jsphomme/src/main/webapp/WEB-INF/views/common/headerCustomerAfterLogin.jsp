@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -101,7 +103,24 @@
 	<div class="fncButton">
 		<input class="myPageBtn" type="button" value="마이페이지">
 		<input class="purchseListBtn" type="button" value="구매목록">
-		<input class="logoutBtn" type="button" value="로그아웃">
+		
+<!-- 	관리자일 경우 보일 버튼 -->
+		<c:if test="${session.status == 0}">
+			
+		</c:if>
+		
+<!-- 	일반 회원일 경우 보일 버튼 -->
+		<c:if test="${session.status == 1}">
+			
+		</c:if>
+		
+		<c:if test="${session == null}">
+			<input class="loginBtn" type="button" value="로그인">
+		</c:if>
+		
+		<c:if test="${session != null}">
+			<input class="logoutBtn" type="button" value="로그아웃">
+		</c:if>
 	</div>
 	
 	<div class="headerLine">

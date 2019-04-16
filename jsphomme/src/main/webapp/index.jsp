@@ -5,11 +5,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Welcome JSP HOMME</title>
+<script type="text/javascript">
+	function loginMoveFnc(){
+		var formObj = document.getElementById('indexForm');
+		
+		formObj.submit();
+	}
+	
+</script>
+
 </head>
 <body>
-dd
-
+	
+	<form action="auth/login.do"id='indexForm' method="get">
+		<input type="button"  
+			value="JSP HOMME 로그인 화면으로 이동" onclick="loginMoveFnc();">
+	
+	</form>
 
 
 </body>

@@ -25,15 +25,21 @@ public class PurchaseListDaoImpl implements PurchaseListDao{
 	}
 
 	@Override
-	public List<PurchaseListVo> purchaseListView() {
+	public List<PurchaseListVo> purchaseListView(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"purchaseListView");
+		return sqlSession.selectList(namespace+"purchaseListView", map);
 	}
 
 	@Override
 	public int purchaseListDelete(int no) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int purchaseListCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"purchaseListCount");
 	}
 
 	

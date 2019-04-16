@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 
 
-
-
 <style type="text/css">
 
 	#headerContainer {
@@ -29,6 +27,9 @@
 		font-family: "Lucida Console", Monaco, monospace;
 		border-radius: 7px;
 				
+	}
+	.shopName input:hover{
+		background-color:#515151;
 	}
 	
 	.fncButton {
@@ -111,9 +112,10 @@
 		font-style: normal;
 		font-family: "Lucida Console", Monaco, monospace;
 		margin-left: 340px;
-		margin-top: 20px;
-		margin-bottom: 5px;
+		margin-top: 17px;
+		margin-bottom: 20px;
 		border-radius: 7px;
+		border: 0px;
 		
 	}
 </style>
@@ -145,7 +147,7 @@
 	
 	<div>
 		<input class="menu" type="button" value="Menswear">
-		<input class="menu" style=" text-align: left; margin-left: 680px; height:20px; vertical-align: bottom; font-size: 17px;" type="text" value="" placeholder="search">
+		<input class="menu" style=" text-align: left; margin-left: 680px; height:21px; vertical-align: bottom; font-size: 17px;" type="text" value="" placeholder="search">
 	</div>
 	</div>
 
