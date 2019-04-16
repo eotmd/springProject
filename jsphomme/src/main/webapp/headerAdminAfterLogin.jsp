@@ -138,7 +138,7 @@
 	</div>
 	
 	<div class="headerLine">
-	<hr style="width: 1800px;">
+	<hr style="width: 1800px; margin: auto;">
 	
 	
 	</div>

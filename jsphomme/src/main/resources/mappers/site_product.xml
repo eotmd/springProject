@@ -3,5 +3,28 @@
 
 <mapper namespace="kr.co.jsphomme.product">
 
+	<resultMap type="productVo" id="productResultMap">
+		<id column="PRODUCT_NO" property="productNo" />
+		<result column="NAME" property="name" />
+		<result column="QUANTITY" property="quantity" />
+		<result column="PRICE" property="price" />
+		<result column="DETAIL" property="detail" />
+		<result column="ORIGINAL_FILE_NAME" property="originalFileName" />
+		<result column="STORED_FILE_NAME" property="storedFileName" />
+		<result column="FILE_SIZE" property="fileSize" />
+		<result column="ENROLLMENT_DATE" property="enrollmentDate"
+			javaType="java.util.Date" />
+	</resultMap>
+	
+	<select id="productListView" resultMap="productResultMap">
+		SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME
+		FROM PRODUCT
+	</select>
+	
+	<select id="productOneDeteilView" resultMap="productResultMap" parameterType="int">
+		SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, DETAIL, STORED_FILE_NAME
+		FROM PRODUCT
+		WHERE PRODUCT_NO = #{productNo}
+	</select>
 
 </mapper>

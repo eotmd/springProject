@@ -1,6 +1,14 @@
 package kr.co.jsphomme.product.vo;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class ProductVo {
 
@@ -13,6 +21,8 @@ public class ProductVo {
 	private String storedFileName = "";
 	private int fileSize = 0;
 	private Date enrollmentDate = null;
+	
+	private static final String filePath = "C:\\upload";
 
 	public ProductVo() {
 		super();
@@ -30,6 +40,29 @@ public class ProductVo {
 		this.storedFileName = storedFileName;
 		this.fileSize = fileSize;
 		this.enrollmentDate = enrollmentDate;
+	}
+	
+	// 파일 입출력 다시 살펴보자...
+	public List<Map<String, Object>> parseInsertFileInfo(int parentSeq,
+			MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+		
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		MultipartFile multipartFile = null;
+		
+		List<Map<String, Object>> fileList = new ArrayList<Map<String,Object>>();
+		Map<String, Object> fileInfoMap = null;
+		
+		File file = new File(filePath);
+		
+		if (file.exists() == false) {
+			file.mkdirs();
+		}
+		
+		while (iterator.hasNext()) {
+			
+		}
+		
+		return null;
 	}
 
 	public int getProductNo() {
