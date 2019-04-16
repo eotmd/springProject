@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kr.co.jsphomme">
+<mapper namespace="kr.co.jsphomme.purchaselist">
 
-
+		
+	<select id="purchaseListView" parameterType="int" resultType="map">
+			SELECT  P.PRODUCT_NO, P.NAME, P.PRICE, 
+            PL.PRODUCT_SIZE, PL.ADRESS, PL.PURCHASE_DATE,
+            REQUESTS
+			FROM PURCHASE_LIST PL, MEMBER M, PRODUCT P
+			WHERE M.MEMBER_NO = PL.MEMBER_NO
+			AND P.PRODUCT_NO = PL.PRODUCT_NO
+			AND M.MEMBER_NO = #{no}
+	</select>
+	
+	
 </mapper>

@@ -1,5 +1,6 @@
 package kr.co.jsphomme.purchaselist.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,11 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 	}
 
 	@Override
-	public MemberVo purchaseListView() {
-		// TODO Auto-generated method stub
-		return purchaseListDao.purchaseListView();
+	public List<PurchaseListVo> purchaseListView() {
+		List<PurchaseListVo> purchaseList = purchaseListDao.purchaseListView();
+		
+		
+		return purchaseList;
 	}
 
 	@Override

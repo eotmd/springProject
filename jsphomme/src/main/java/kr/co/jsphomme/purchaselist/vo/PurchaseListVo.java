@@ -9,10 +9,11 @@ public class PurchaseListVo {
 	private int productNo = 0;
 	private String productName = "";
 	private int productPrice = 0;
-	private int productSize = 0;
+	private String productSize = "";
 	private Date purchaseDate = null;
 	private String requests = "";
-	private String adress = "";
+	private String address = "";
+	private int purchaseQuantity = 0;
 	
 	
 	
@@ -21,15 +22,15 @@ public class PurchaseListVo {
 	}
 	
 	
-	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, int productSize, String requests,
-			String adress) {
+	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, String productSize, String requests,
+			String address) {
 		super();
 		this.purchaseListNo = purchaseListNo;
 		this.memberNo = memberNo;
 		this.productNo = productNo;
 		this.productSize = productSize;
 		this.requests = requests;
-		this.adress = adress;
+		this.address = address;
 	}
 
 
@@ -37,8 +38,8 @@ public class PurchaseListVo {
 
 
 
-	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, int productSize, Date purchaseDate,
-			String requests, String adress) {
+	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, String productSize, Date purchaseDate,
+			String requests, String address) {
 		super();
 		this.purchaseListNo = purchaseListNo;
 		this.memberNo = memberNo;
@@ -46,7 +47,7 @@ public class PurchaseListVo {
 		this.productSize = productSize;
 		this.purchaseDate = purchaseDate;
 		this.requests = requests;
-		this.adress = adress;
+		this.address = address;
 	}
 	
 	
@@ -54,7 +55,7 @@ public class PurchaseListVo {
 	
 
 	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, String productName, int productPrice,
-			int productSize, Date purchaseDate, String requests, String adress) {
+			String productSize, Date purchaseDate, String requests, String address) {
 		super();
 		this.purchaseListNo = purchaseListNo;
 		this.memberNo = memberNo;
@@ -64,7 +65,7 @@ public class PurchaseListVo {
 		this.productSize = productSize;
 		this.purchaseDate = purchaseDate;
 		this.requests = requests;
-		this.adress = adress;
+		this.address = address;
 	}
 
 
@@ -98,12 +99,12 @@ public class PurchaseListVo {
 	}
 
 
-	public int getProductSize() {
+	public String getProductSize() {
 		return productSize;
 	}
 
 
-	public void setProductSize(int productSize) {
+	public void setProductSize(String productSize) {
 		this.productSize = productSize;
 	}
 
@@ -128,13 +129,13 @@ public class PurchaseListVo {
 	}
 
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	
@@ -158,22 +159,27 @@ public class PurchaseListVo {
 	}
 
 	
-	
-	
-	
+	public int getPurchaseQuantity() {
+		return purchaseQuantity;
+	}
+
+
+	public void setPurchaseQuantity(int purchaseQuantity) {
+		this.purchaseQuantity = purchaseQuantity;
+	}
+
+
 	@Override
 	public String toString() {
 		return "PurchaseListVo [purchaseListNo=" + purchaseListNo + ", memberNo=" + memberNo + ", productNo="
 				+ productNo + ", productName=" + productName + ", productPrice=" + productPrice + ", productSize="
-				+ productSize + ", purchaseDate=" + purchaseDate + ", requests=" + requests + ", adress=" + adress
-				+ "]";
+				+ productSize + ", purchaseDate=" + purchaseDate + ", requests=" + requests + ", address=" + address
+				+ ", purchaseQuantity=" + purchaseQuantity + "]";
 	}
 
+	
+	
 
-	
-	
-	
-	
 	
 	
 }
