@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
 <style type="text/css">
 
 	#headerContainer {
 		width: 1904px;
 	}
-	
 	
 	.shopName {
 		float: left;
@@ -28,11 +30,8 @@
 		border-radius: 7px;
 				
 	}
-	.shopName input:hover{
-		background-color:#515151;
-	}
-	
-	.fncButton {
+
+.fncButton {
 		float: right;
 		margin-top: 13px;
 		margin-right: 50px;
@@ -41,28 +40,13 @@
 	.headerLine {
 		clear: both;
 		margin-top: 50px;
-		
-		
 	}
 	
 	.headerLine hr {
 		border: solid 1.5px #ABABAB;
 	}
-	
-	.productRegiBtn {
-		background-color: #DBDBDB; 
-		text-align: center; 
-		width:70px; 
-		height: 25px;
-		color: #939393;
-		font-size: 11px; 
-		font-weight: bolder;
-		font-style: normal;
-		font-family: "Lucida Console", Monaco, monospace;
-		border-radius: 5px;
-	}
-	
-	.myPageBtn {
+
+.myPageBtn {
 		background-color: #DBDBDB; 
 		text-align: center; 
 		width:70px; 
@@ -100,54 +84,30 @@
 		font-family: "Lucida Console", Monaco, monospace;
 		border-radius: 5px;
 	}
-	
-	.menu {
-		background-color: #636363; 
-		text-align: center; 
-		width: 250px; 
-		height: 23px;
-		color: #FFFFFF;
-		font-size: 20px; 
-		font-weight: bolder;
-		font-style: normal;
-		font-family: "Lucida Console", Monaco, monospace;
-		margin-left: 340px;
-		margin-top: 17px;
-		margin-bottom: 20px;
-		border-radius: 7px;
-		border: 0px;
-		
-	}
 </style>
 
+<title>JSP Homme</title>
 
-
+</head>
 <body>
 
-<div id="headerContainer" >   
+<div id="headerContainer">
 
 	<div class="shopName">
 		<input type="button" value="JSP Homme">
 		
 	</div>
 	
-	
-	<div class="fncButton">	
-		<input class="productRegiBtn" type="button" value="제품등록">
+	<div class="fncButton">
 		<input class="myPageBtn" type="button" value="마이페이지">
 		<input class="purchseListBtn" type="button" value="구매목록">
 		<input class="logoutBtn" type="button" value="로그아웃">
 	</div>
 	
 	<div class="headerLine">
-	<hr style="width: 1800px; margin: auto;">
+	<hr>
+	<br>
 	
-	
-	</div>
-	
-	<div>
-		<input class="menu" type="button" value="Menswear">
-		<input class="menu" style=" text-align: left; margin-left: 680px; height:21px; vertical-align: bottom; font-size: 17px;" type="text" value="" placeholder="search">
-	</div>
-	</div>
-
+</div>
+</body>
+</html>
