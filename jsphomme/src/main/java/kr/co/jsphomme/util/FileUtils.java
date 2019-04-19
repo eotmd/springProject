@@ -11,53 +11,50 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.co.jsphomme.product.vo.ProductVo;
+
 @Component("fileUtils")
 public class FileUtils {
 
 	private static final String filePath = "C:\\upload";
 
 //	int parentSeq는 파일이 담겨진 테이블의 기본키값이다
-	public List<Map<String, Object>> parseInsertFileInfo(int parentSeq,
+	public void parseInsertFileInfo(ProductVo productVo,
 			MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
-
+		
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = null;
-		String originalFileName = null;
 		String originalFileExtension = null;
-		String storedFileName = null;
+		String originalFileName = "";
+		String storedFileName = "";
+		double fileSize = 0;
 		
-
-		List<Map<String, Object>> fileList = new ArrayList<Map<String, Object>>();
-		Map<String, Object> fileInfoMap = null;
-
 		File file = new File(filePath);
 		
-		if(file.exists() == false) {
+		if (file.exists() == false) {
 			file.mkdirs();
 		}
 		
 		while (iterator.hasNext()) {
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-
+			
 			if (multipartFile.isEmpty() == false) {
+				
 				originalFileName = multipartFile.getOriginalFilename();
-				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-				storedFileName = CommonUtils.getRandomString() + originalFileExtension;
+				originalFileExtension = 
+						originalFileName.substring(originalFileName.lastIndexOf("."));
+				storedFileName =  CommonUtils.getRandomString() + originalFileExtension;
 				
 				file = new File(filePath, storedFileName);
 				multipartFile.transferTo(file);
 				
-				fileInfoMap = new HashMap<String, Object>();
-				fileInfoMap.put("parentSeq", parentSeq);
-				fileInfoMap.put("original_file_name", originalFileName);
-				fileInfoMap.put("stored_file_name", storedFileName);
-				fileInfoMap.put("file_size", multipartFile.getSize());
+				fileSize = multipartFile.getSize();
 				
-				fileList.add(fileInfoMap);
+				productVo.setOriginalFileName(originalFileName);
+				productVo.setStoredFileName(storedFileName);
+				productVo.setFileSize(fileSize);
 			}
 		}
-
-		return fileList;
 	}
 
 	
