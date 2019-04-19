@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,12 +51,26 @@ public class PurchaseListController {
 	}
 	
 	@RequestMapping(value="/purchaseView.do", method = RequestMethod.GET)
-	public String PurchaseView(int memberNo, int productNo ,String productSize, int quantity ,  Model model) {
+	public String PurchaseView(HttpServletRequest req, Model model) {
 		
 		
-		model.addAttribute("purchaseView", purchaseListService.purchaseView());
 		
-		return "purchaseList/purchaseViewForm";
+		
+		return "";
 	}
 	
+//	@RequestMapping(value="/purchaseListInsert.do", method = RequestMethod.GET)
+//	public String PurchaseListInsert(HttpServletRequest req, Model model) {
+//		
+//		
+//		req.getAttribute("")
+//		
+//		
+//		
+//		
+//		
+//		
+//		return "";
+//	}
+//	
 }
