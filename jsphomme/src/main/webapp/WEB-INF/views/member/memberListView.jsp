@@ -6,12 +6,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+table , tr, td {
+	border: solid 1px black;
+	border-collapse: collapse;
+	
+}
+
+</style>
 <title>회원 목록</title>
+<script type="text/javascript">
+
+
+</script>
 </head>
 <body>
 
+<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
+
 	<h1>회원목록</h1>
-	memberListView 잘뜨나?
+	
 	
 	
 	<table>
@@ -34,13 +48,17 @@
 				<td>${memberVo.authority}</td>
 				<td>${memberVo.name}</td>
 				<td>${memberVo.id}</td>
-				<td>${memberVo.adress}</td>
+				<td>${memberVo.address}</td>
+				<td>${memberVo.hp}</td>
 				<td><fmt:formatDate value="${memberVo.creDate}"
-						pattern="yyyy년MM월dd일 hh시mm분"/></td>
+						pattern="yyyy년MM월dd일 hh시mm분"/>
+				</td>
 				<td><fmt:formatDate value="${memberVo.modDate}"
-						pattern="yyyy년MM월dd일 hh시mm분"/></td>
+						pattern="yyyy년MM월dd일 hh시mm분"/>
+				</td>
 				<td>
-					<input type="button" value="삭제" onclick="deleteMemberFnc();">
+				<a href='./deleteCtr.do?no=${memberVo.memberNo}'>[삭제]</a>
+<%-- 					<input type="button" value="삭제" onclick="deleteMemberFnc(${memberVo.memberNo});"> --%>
 				</td>		
 			</tr>
 				

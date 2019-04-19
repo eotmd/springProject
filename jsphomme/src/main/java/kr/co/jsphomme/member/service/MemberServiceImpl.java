@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.jsphomme.member.dao.MemberDao;
@@ -38,14 +39,14 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVo memberOneDeteilView(int memberNo) {
+	public MemberVo memberOneDeteilView(int no) {
 		// TODO Auto-generated method stub
-		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		MemberVo memberVo = memberDao.memberOneDeteilView(memberNo);
-		resultMap.put("memberVo", memberVo);
 		
-		return null;
+		MemberVo memberVo = (MemberVo)memberDao.memberOneDeteilView(no);
+		
+		
+		return memberVo;
 	}
 
 	@Override
@@ -57,16 +58,19 @@ public class MemberServiceImpl implements MemberService{
 	
 
 	@Override
-	public int memberUpdate() {
+	public int memberUpdateOne(MemberVo memberVo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	
 	@Override
-	public int memberDelete() {
+	public int memberDelete(int no)  {
 		// TODO Auto-generated method stub
-		return 0;
+				
+		return memberDao.memberDelete(no);
 	}
+
 
 	
 	@Override

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/views/common/headerAdminAfterLogin.jsp" />
+<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
 
 
 <jsp:include page="/WEB-INF/views/common/tail.jsp" />

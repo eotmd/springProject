@@ -18,7 +18,7 @@
 	<h1>회원 정보 상세페이지</h1>
 	
 	<form action="./update.do" method="get">
-			<input type="hidden" name='no' value='${memberVo.no}'>
+			<input type="hidden" name='no' value='${memberVo.memberNo}'>
 		이름: <input type="text" name='name' id='memberName' value='${memberVo.name}' 
 				readonly="readonly"><br>
 		아이디: <input type="text" name="id" value="${memberVo.id}"

@@ -3,7 +3,7 @@
 
 <mapper namespace="kr.co.jsphomme.member">
 
-	<resultMap type="kr.co.jsphomme.member.vo.MemberVo" 
+	<resultMap type="memberVo" 
 			id="memberResultMap">
 		<id column="MEMBER_NO" property="memberNo"/>		
 		<result column="STATUS" property="status"/>
@@ -21,16 +21,16 @@
 
 	<select id="memberListView" parameterType="map"
 		resultMap="memberResultMap">
-		SELECT MEMBER_NO        ,
-            STATUS                 , 
-            AUTHORITY          , 
-            NAME            ,
-            ID                  ,
-            ADDRESS          ,
-            HP                   ,
-            CRE_DATE    ,
-            MOD_DATE    
-			FROM MEMBER
+		SELECT MEMBER_NO, STATUS, AUTHORITY, NAME, ID, ADDRESS, HP, CRE_DATE, MOD_DATE
+			FROM (
+			SELECT ROWNUM RNUM, M.MEMBER_NO, M.STATUS, M.AUTHORITY, M.NAME
+				, M.ID, M.ADDRESS, M.HP, M.CRE_DATE, M.MOD_DATE
+				FROM (
+					SELECT MEMBER_NO, STATUS, AUTHORITY, NAME, ID, ADDRESS, HP, CRE_DATE, MOD_DATE
+					FROM MEMBER
+					ORDER BY MEMBER_NO DESC) M
+		) MEMBER
+		WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="memberSelectOne" parameterType="int"
@@ -42,7 +42,7 @@
         		   , ADDRESS          
         		   , HP                 
 		FROM MEMBER
-		WHERE MEMBER_NO = #{memberNo}
+		WHERE MEMBER_NO = #{no}
 	
 	</select>
 	
@@ -79,9 +79,38 @@
 	
 	<select id="memberExist" parameterType="map"
 		resultMap="memberResultMap">
-		SELECT  MEMBER_NO , ID, PASSWORD
+		SELECT  MEMBER_NO, STATUS, AUTHORITY, NAME, ID
 		FROM MEMBER
 		WHERE ID = #{id} AND PASSWORD = #{password}
 		
+	</select>
+	
+	<update id="memberUpdate" parameterType="memberVo">
+	
+	UPDATE MEMBER
+    SET
+        NAME = '지원',
+        ID = 'zx',
+        PASSWORD = 'zx',
+        ADDRESS = '계양구',
+        HP = '0202',
+        MOD_DATE = sysdate
+	WHERE member_NO = 1;
+	
+	</update>
+	
+	
+	<delete id="memberDelete" parameterType="int">
+		DELETE FROM MEMBER
+		WHERE MEMBER_NO = #{memberNo}
+	</delete>
+	
+	
+	<select id="memberSelectTotalCount" parameterType="map"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		
+	
 	</select>
 </mapper>
