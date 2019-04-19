@@ -9,7 +9,7 @@
 <body>
 	
 	
-	<jsp:include page="/headerAdminAfterLogin.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"/>
 	
 	<ul style="float: left; margin: auto;">
 		<li><img style="width: 300px; height: 300px;" alt="dkdkdk" src="/jsphomme/test.jpg"></li>
@@ -21,7 +21,7 @@
 	
 	
 	
-	<jsp:include page="/tail.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/tail.jsp"></jsp:include>
 	
 	
 	

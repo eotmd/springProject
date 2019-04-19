@@ -39,7 +39,7 @@
 
 </head>
 <body>
-	<jsp:include page="/headerAdminAfterLogin.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"/>
 	<div id="imageCon">
 		<img style="height: 200px; width: 1800px; margin-bottom: 80px;" alt="asd" src="/jsphomme/test.jpg">
 	</div>
@@ -80,6 +80,6 @@
 	<form action="./purchaseList.do" id="pagingForm" method="post">
 		<input type="hidden" id="curPage" name="curPage" value="${pagingMap.paging.curPage}">
 	</form>
-	<jsp:include page="/tail.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/tail.jsp"></jsp:include>
 </body>
 </html>
