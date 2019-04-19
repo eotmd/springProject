@@ -50,6 +50,11 @@
 		height: 300px;
 	}
 	
+	a{
+		text-decoration: none;
+		color: black;
+	}
+	
 </style>
 
 </head>

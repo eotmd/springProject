@@ -13,14 +13,6 @@
 
 <script type="text/javascript">
 
-function goBuyFnc() {
-	location.href = "#";
-}
-
-function deleteFnc() {
-	location.href = "#";
-}
-
 </script>
 
 <style type="text/css">
@@ -67,56 +59,60 @@ function deleteFnc() {
 	
 	<h1>${productVo.name}</h1>
 	<div class="detailView">
-		<span>
-			<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
-		</span>
-
-		<table class="explanation">
-			<tr>
-				<td style="width: 150px;">번호</td>
-				<td>${productVo.productNo}</td>
-			</tr>
-			<tr>
-				<td style="width: 150px;">상품명</td>
-				<td>${productVo.name}</td>
-			</tr>
-			<tr>
-				<td style="width: 150px;">가격</td>
-				<td>${productVo.price}</td>
-			</tr>
-			<c:if test="${productVo.quantity > 0}">
+		
+		<form action="">
+			<span>
+				<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
+			</span>
+	
+			<table class="explanation">
 				<tr>
-					<td style="width: 150px;">사이즈</td>
-					<td><select>
-						<option>S</option>
-						<option>M</option>
-						<option>L</option>
-						<option>XL</option>
-						<option>XXL</option>
-						<option>XXXL</option>
-					</select></td>
+					<td style="width: 150px;">번호</td>
+					<td>${productVo.productNo}</td>
 				</tr>
 				<tr>
-					<td style="width: 150px;">수량</td>
-						<td><input type="number" max="${productVo.quantity}"></td>
+					<td style="width: 150px;">상품명</td>
+					<td>${productVo.name}</td>
 				</tr>
-			</c:if>
-			<c:if test="${productVo.quantity == 0}">
-				<tr>			
-					<td colspan="2">품절</td>
-				</tr>
-			</c:if>
-			<tr>
-				<td colspan="2"><input type="button" value="즉시 구매" onclick="goBuyFnc();"></td>
-			</tr>
-			<c:if test="${_memberVo_.authority == '0'}">
 				<tr>
-					<td colspan="2"><input type="button" value="제품 삭제" onclick="deleteFnc();"></td>
+					<td style="width: 150px;">가격</td>
+					<td>${productVo.price}</td>
 				</tr>
-			</c:if>
-		</table>
+				<c:if test="${productVo.quantity > 0}">
+					<tr>
+						<td style="width: 150px;">사이즈</td>
+						<td><select>
+							<option>S</option>
+							<option>M</option>
+							<option>L</option>
+							<option>XL</option>
+							<option>XXL</option>
+							<option>XXXL</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td style="width: 150px;">수량</td>
+							<td><input type="number" value="1" max="${productVo.quantity}" min="1"></td>
+					</tr>
+				</c:if>
+				<c:if test="${productVo.quantity == 0}">
+					<tr>			
+						<td colspan="2">품절</td>
+					</tr>
+				</c:if>
+				<tr>
+					<td colspan="2"><input type="submit" value="즉시 구매"></td>
+				</tr>
+	<%-- 			<c:if test="${_memberVo_.authority == '0'}"> --%>
+	<!-- 				<tr> -->
+	<!-- 					<td colspan="2"><input type="button" value="제품 삭제" onclick="deleteFnc();"></td> -->
+	<!-- 				</tr> -->
+	<%-- 			</c:if> --%>
+			</table>
+		</form>
+		
 		<div style="clear: both;">			
-			<textarea></textarea>
+			${productVo.detail}
 		</div>
 		
 	</div>

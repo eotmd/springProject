@@ -69,9 +69,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public int productUpdate() {
+	public int productUpdate(
+			ProductVo productVo, MultipartHttpServletRequest multipartHttpServletRequest) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		return productDao.productUpdate(productVo);
 	}
 
 	@Override

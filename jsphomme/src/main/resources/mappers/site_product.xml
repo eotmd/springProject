@@ -53,7 +53,19 @@
 		VALUES(
 		    #{productNo}, #{name}, #{quantity}, #{price}, #{detail}, 
 		    #{originalFileName}, #{storedFileName}, #{fileSize}, SYSDATE)
-		    
 	</insert>
+	
+	<update id="productUpdate" parameterType="productVo">
+		UPDATE PRODUCT
+		    SET
+				NAME = #{name},
+		        QUANTITY = #{quantity},
+		        PRICE = #{price},
+		        DETAIL = #{detail},
+		        ORIGINAL_FILE_NAME = #{originalFileName},
+		        STORED_FILE_NAME = #{storedFileName},
+		        FILE_SIZE = #{fileSize}
+		WHERE PRODUCT_NO = #{productNo};
+	</update>
 
 </mapper>
