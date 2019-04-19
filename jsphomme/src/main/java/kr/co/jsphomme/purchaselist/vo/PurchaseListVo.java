@@ -14,7 +14,7 @@ public class PurchaseListVo {
 	private String requests = "";
 	private String address = "";
 	private int purchaseQuantity = 0;
-	
+	private String storedFileName = "";
 	
 	
 	public PurchaseListVo() {
@@ -22,40 +22,11 @@ public class PurchaseListVo {
 	}
 	
 	
-	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, String productSize, String requests,
-			String address) {
-		super();
-		this.purchaseListNo = purchaseListNo;
-		this.memberNo = memberNo;
-		this.productNo = productNo;
-		this.productSize = productSize;
-		this.requests = requests;
-		this.address = address;
-	}
-
-
-
-
-
-
-	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, String productSize, Date purchaseDate,
-			String requests, String address) {
-		super();
-		this.purchaseListNo = purchaseListNo;
-		this.memberNo = memberNo;
-		this.productNo = productNo;
-		this.productSize = productSize;
-		this.purchaseDate = purchaseDate;
-		this.requests = requests;
-		this.address = address;
-	}
-	
-	
-	
 	
 
 	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, String productName, int productPrice,
-			String productSize, Date purchaseDate, String requests, String address) {
+			String productSize, Date purchaseDate, String requests, String address, int purchaseQuantity,
+			String storedFileName) {
 		super();
 		this.purchaseListNo = purchaseListNo;
 		this.memberNo = memberNo;
@@ -66,7 +37,11 @@ public class PurchaseListVo {
 		this.purchaseDate = purchaseDate;
 		this.requests = requests;
 		this.address = address;
+		this.purchaseQuantity = purchaseQuantity;
+		this.storedFileName = storedFileName;
 	}
+
+
 
 
 	public String getPurchaseListNo() {
@@ -167,6 +142,22 @@ public class PurchaseListVo {
 	public void setPurchaseQuantity(int purchaseQuantity) {
 		this.purchaseQuantity = purchaseQuantity;
 	}
+
+	
+	
+
+	public String getStoredFileName() {
+		return storedFileName;
+	}
+
+
+
+
+	public void setStoredFileName(String storedFileName) {
+		this.storedFileName = storedFileName;
+	}
+
+
 
 
 	@Override

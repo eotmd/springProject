@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.jsphomme.product.vo.ProductVo;
 import kr.co.jsphomme.purchaselist.service.PurchaseListService;
 import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
 import kr.co.jsphomme.util.Paging;
@@ -47,8 +48,8 @@ public class PurchaseListController {
 		return "purchaseList/purchaseListViewForm";
 	}
 	
-	@RequestMapping(value="/purchaseView.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String PurchaseView(Model model) {
+	@RequestMapping(value="/purchaseView.do", method = RequestMethod.GET)
+	public String PurchaseView(int memberNo, int productNo ,String productSize, int quantity ,  Model model) {
 		
 		
 		model.addAttribute("purchaseView", purchaseListService.purchaseView());

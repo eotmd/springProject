@@ -60,7 +60,10 @@
 	<h1>${productVo.name}</h1>
 	<div class="detailView">
 		
-		<form action="">
+		<form action="/jsphomme/purchaseView.do">
+			<input type="hidden" name = "productName" value="${productVo.name}">
+			<input type="hidden" name = "storedFileName" value="${productVo.storedFileName}">
+			<input type="hidden" name = "price" value="${productVo.price}">
 			<span>
 				<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
 			</span>
@@ -68,7 +71,8 @@
 			<table class="explanation">
 				<tr>
 					<td style="width: 150px;">번호</td>
-					<td>${productVo.productNo}</td>
+					<td>${productVo.productNo}<input type="hidden" name="productNo" value="${productVo.productNo}">
+					</td>
 				</tr>
 				<tr>
 					<td style="width: 150px;">상품명</td>
@@ -81,18 +85,18 @@
 				<c:if test="${productVo.quantity > 0}">
 					<tr>
 						<td style="width: 150px;">사이즈</td>
-						<td><select>
-							<option>S</option>
-							<option>M</option>
-							<option>L</option>
-							<option>XL</option>
-							<option>XXL</option>
-							<option>XXXL</option>
+						<td><select name="productSize">
+							<option value="S">S</option>
+							<option value="M">M</option>
+							<option value="L">L</option>
+							<option value="XL">XL</option>
+							<option value="XXL">XXL</option>
+							<option value="XXXL">XXXL</option>
 						</select></td>
 					</tr>
 					<tr>
 						<td style="width: 150px;">수량</td>
-							<td><input type="number" value="1" max="${productVo.quantity}" min="1"></td>
+							<td><input type="number" name="productQuantity" value="1" max="${productVo.quantity}" min="1"></td>
 					</tr>
 				</c:if>
 				<c:if test="${productVo.quantity == 0}">
