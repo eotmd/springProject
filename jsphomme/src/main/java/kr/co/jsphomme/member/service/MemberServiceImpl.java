@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.jsphomme.member.dao.MemberDao;
@@ -39,15 +38,16 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVo memberOneDeteilView(int memberNo) {
+	public Map<String, Object> memberOneDeteilView(int memberNo) {
 		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		MemberVo memberVo = memberDao.memberOneDeteilView(memberNo);
+		resultMap.put("memberVo", memberVo);
 		
-		
-		MemberVo memberVo = (MemberVo)memberDao.memberOneDeteilView(memberNo);
-		
-		
-		return memberVo;
-	}
+		return resultMap;
+
+			}
 
 	@Override
 	public MemberVo memberExist(Map<String, Object> paramMap) {

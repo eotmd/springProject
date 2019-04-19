@@ -21,221 +21,190 @@ import kr.co.jsphomme.member.service.MemberService;
 import kr.co.jsphomme.member.vo.MemberVo;
 import kr.co.jsphomme.util.Paging;
 
-
 @Controller
 public class MemberController {
 
 	private final Logger log = LoggerFactory.getLogger(MemberController.class);
-	
+
 	@Autowired
 	private MemberService memberService;
-	
 
 	// 관리자가 회원 목록 조회 화면으로
-		@RequestMapping(value ="/member/list.do" 
-				, method = {RequestMethod.GET})
+	@RequestMapping(value = "/member/list.do", method = { RequestMethod.GET })
+
+	public String memberListView(@RequestParam(defaultValue = "1") int curPage,
+			@RequestParam(defaultValue = "title") String searchOption, @RequestParam(defaultValue = "") String keyword,
+			Model model) {
+
+		log.info("memberListView enter! -{}", curPage);
+
+		log.debug(": {}", searchOption);
+		log.debug(": {}", keyword);
+
+		int totalCount = memberService.memberSelectTotalCount(searchOption, keyword);
+
+		Paging memberPaging = new Paging(totalCount, curPage);
+		int start = memberPaging.getPageBegin();
+		int end = memberPaging.getPageEnd();
+
+		List<MemberVo> memberList = memberService.memberListView(searchOption, keyword, start, end);
+
+		Map<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("paging", memberPaging);
+
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("pagingMap", pagingMap);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("searchOption", searchOption);
+
+		return "member/memberListView";
+	}
+
+	@RequestMapping(value = "/member/detail.do")
+	public String memberOneDeteilView(int memberNo, Model model) {
+		log.debug("Welcome memberOneDeteilView enter! - {}", memberNo);
+
+		Map<String, Object> map = memberService.memberOneDeteilView(memberNo);
+
+		MemberVo memberVo = (MemberVo) map.get("memberVo");
+
+		model.addAttribute("memberVo", memberVo);
+
+		return "member/memberListOneView";
+	}
+
+	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
+	public String memberAdd(Model model) {
+		log.debug("Welcome MemberController memberAdd 페이지 이동! ");
+
+		return "member/memberRegisterForm";
+	}
+
+	@RequestMapping(value = "/member/addCtr.do", method = RequestMethod.POST)
+	public String memberAdd(MemberVo memberVo, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
+		log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);
+
+		try {
+			memberService.memberInsert(memberVo, multipartHttpServletRequest);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+		}
+
+		return "redirect:/member/detail.do";
+	}
+
+	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
+	public String login(HttpSession session, Model model) {
+		log.debug("Welcome MemberController login 페이지 이동! ");
+
+		return "auth/loginForm";
+	}
+
+	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
+	public String loginCtr(String id, String password, String authority, HttpSession session, Model model) {
+		log.debug("Welcome MemberController loginCtr! " + id + ", " + password + authority);
+
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("id", id);
+		paramMap.put("password", password);
+		paramMap.put("authority", authority);
+		MemberVo memberVo = memberService.memberExist(paramMap);
+
+		String viewUrl = "";
+		if (memberVo != null) {
+			// 회원이 존재한다면 세션에 담고
+			// 사이트 메인페이지로 이동
+			session.setAttribute("_memberVo_", memberVo);
+
+			viewUrl = "/common/siteMainPage";
+		} else {
+			viewUrl = "/auth/loginFail";
+		}
+
+		return viewUrl;
+	}
+
+	@RequestMapping(value = "/auth/logout.do", method = RequestMethod.GET)
+	public String logout(HttpSession session, Model model) {
+		log.debug("Welcome MemberController logout 페이지 이동! ");
+
+		// 세션의 객체들 파기
+		session.invalidate();
+
+		return "redirect:/auth/login.do";
+	}
+
+	@RequestMapping(value = "/member/update.do")
+	public String memberUpdateOne(int memberNo, Model model) {
+		log.debug("Welcome memberUpdate enter! - {}", memberNo);
+
+		Map<String, Object> map = memberService.memberOneDeteilView(memberNo);
+
+		MemberVo memberVo = (MemberVo) map.get("memberVo");
+
+		model.addAttribute("memberVo", memberVo);
+
+		return "member/memberUpdateForm";
+	}
+
+	@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)
+	public String memberUpdateCtr(HttpSession session, MemberVo memberVo, Model model) {
 		
-		public String memberListView(
-				@RequestParam(defaultValue ="1") int curPage, 
-				@RequestParam(defaultValue ="title") String searchOption,
-				@RequestParam(defaultValue ="") String keyword,
-				Model model) {
-			
-			log.info("memberListView enter! -{}", curPage);
-			
-			log.debug(": {}", searchOption);
-			log.debug(": {}", keyword);
-			
-			int totalCount = 
-					memberService.memberSelectTotalCount(searchOption, keyword);
-			
-			Paging memberPaging = new Paging(totalCount, curPage);
-			int start = memberPaging.getPageBegin();
-			int end = memberPaging.getPageEnd();
+		log.debug("Welcome MemberController memberUpdateCtr {} ", memberVo);
 
-			List<MemberVo> memberList = 
-					memberService.memberListView(
-							searchOption, keyword, start, end);
-			
-			Map<String, Object> pagingMap = new HashMap<>();
-			pagingMap.put("totalCount", totalCount);
-			pagingMap.put("paging", memberPaging);
-
-			model.addAttribute("memberList", memberList);
-			model.addAttribute("pagingMap", pagingMap);
-			model.addAttribute("keyword", keyword);
-			model.addAttribute("searchOption", searchOption);
-			
-			return "member/memberListView";
-		}
-	
-		@RequestMapping(value = "/member/detail.do")
-		public String  memberOneDeteilView(int memberNo, Model model) {
-			log.debug("Welcome memberOneDeteilView enter! - {}", memberNo);
-
-			
-
-			
-
-			model.addAttribute("memberVo", memberService.memberOneDeteilView(memberNo));
-			
-			return "member/memberListOneView";
-		}
-	
-		@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
-		public String memberAdd(Model model) {
-			log.debug("Welcome MemberController memberAdd 페이지 이동! ");
-
-			return "member/memberRegisterForm";
+		
+		try {
+			memberService.memberUpdateOne(memberVo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		@RequestMapping(value = "/member/addCtr.do", method = RequestMethod.POST)
-		public String memberAdd(MemberVo memberVo, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
-			log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);
+		
+		MemberVo sessionMemberVo = (MemberVo) session.getAttribute("_memberVo_");
+		// 세션에 객체가 존재하는지 여부
+		if (sessionMemberVo != null) {
+			// 세션의 값과 새로운 값이 일치하는지 여부
+			// 홍길동 ㄴㅇㄹㄴㅇ
+			// s1@test.com ㄴㅇㄹ33@
+			// 1111 2222
+			if (sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
+				MemberVo newMemberVo = new MemberVo();
 
-			try {
-				memberService.memberInsert(memberVo, multipartHttpServletRequest);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				  newMemberVo.setMemberNo(memberVo.getMemberNo());
+				  newMemberVo.setStatus(memberVo.getStatus());
+				  newMemberVo.setAuthority(memberVo.getAuthority());
+				  newMemberVo.setName(memberVo.getName());
+				  newMemberVo.setId(memberVo.getId());
+		
+				  newMemberVo.setAddress(memberVo.getAddress());
+				  newMemberVo.setHp(memberVo.getHp());
 				
-				e.printStackTrace();
+				session.removeAttribute("_memberVo_");
+
+				session.setAttribute("_memberVo_", newMemberVo);
 			}
+		}  
+		 
+		return "member/memberListOneView";
+	}
 
-			return "redirect:/member/detail.do";
-		}
-		
-		@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
-		public String login(HttpSession session, Model model) {
-			log.debug("Welcome MemberController login 페이지 이동! ");
+	@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
+	public String memberDelete(int memberNo, Model model) {
+		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", memberNo);
 
-			return "auth/loginForm";
-		}
-	
-		
-		@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
-		public String loginCtr(String id, String password, HttpSession session, Model model) {
-			log.debug("Welcome MemberController loginCtr! " + id + ", " + password);
+		try {
+			memberService.memberDelete(memberNo);
 
-			Map<String, Object> paramMap = new HashMap<>();
-			paramMap.put("id", id);
-			paramMap.put("password", password);
-
-			MemberVo memberVo = memberService.memberExist(paramMap);
-
-			String viewUrl = "";
-			if (memberVo != null) {
-				// 회원이 존재한다면 세션에 담고
-				// 사이트 메인페이지로 이동
-				session.setAttribute("_memberVo_", memberVo);
-
-				viewUrl = "/common/siteMainPage";
-			} else {
-				viewUrl = "/auth/loginFail";
-			}
-
-			return viewUrl;
-		}
-	
-		
-		@RequestMapping(value = "/auth/logout.do", method = RequestMethod.GET)
-		public String logout(HttpSession session, Model model) {
-			log.debug("Welcome MemberController logout 페이지 이동! ");
-
-			// 세션의 객체들 파기
-			session.invalidate();
-
-			return "redirect:/auth/login.do";
-		}
-		
-		@SuppressWarnings("unchecked")
-		@RequestMapping(value = "/member/update.do")
-		public String memberUpdateOne(int memberNo, Model model) {
-			log.debug("Welcome memberUpdate enter! - {}", memberNo);
-
-			Map<String, Object> map = (Map<String, Object>) memberService.memberOneDeteilView(memberNo);
-
-			MemberVo memberVo = (MemberVo) map.get("memberVo");
-			
-
-			model.addAttribute("memberVo", memberVo);
-			
-
-			return "member/memberUpdateForm";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		
-		
-		@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)
-		public String memberUpdateCtr(HttpSession session, MemberVo memberVo
-				, @RequestParam(value="fileIdx", defaultValue="-1") int fileIdx
-				, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
-			log.debug("Welcome MemberController memberUpdateCtr {} :: {}", memberVo, fileIdx);
+		return "redirect:/member/list.do";
+	}
 
-			int resultNum = 0;
-			
-			try {
-				resultNum = memberService.memberUpdateOne(memberVo);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			
-			
-			// 데이터베이스에서 회원정보가 수정이 됬는지 여부
-			if (resultNum > 0) {
-
-				MemberVo sessionMemberVo = (MemberVo) session.getAttribute("_memberVo_");
-				// 세션에 객체가 존재하는지 여부
-				if (sessionMemberVo != null) {
-					// 세션의 값과 새로운 값이 일치하는지 여부
-					// 홍길동 ㄴㅇㄹㄴㅇ
-					// s1@test.com ㄴㅇㄹ33@
-					// 1111 2222
-					if (sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
-						MemberVo newMemberVo = new MemberVo();
-
-						newMemberVo.setMemberNo(memberVo.getMemberNo());
-						newMemberVo.setName(memberVo.getName());
-						newMemberVo.setPassword(memberVo.getPassword());;
-						newMemberVo.setAddress(memberVo.getAddress());
-						newMemberVo.setHp(memberVo.getHp());
-
-						session.removeAttribute("_memberVo_");
-
-						session.setAttribute("_memberVo_", newMemberVo);
-					}
-				}
-			}
-
-			return "member/memberListOneView";
-		}
-		
-		
-		
-		@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
-		public String memberDelete(int memberNo, Model model) {
-			log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", memberNo);
-
-			try {
-				memberService.memberDelete(memberNo);
-
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			return "redirect:/member/list.do";
-		}
-	
-		
-		
 }
-	
-	
-	
-	
-	
-	
-	
-

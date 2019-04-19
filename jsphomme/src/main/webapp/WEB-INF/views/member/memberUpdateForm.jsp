@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 정보</title>
+<title>마이페이지 수정</title>
 <script type="text/javascript">
+	
+
 
 	function pageMoveBeforeFnc(memberNo){
 		
@@ -21,22 +23,21 @@
 
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
 	
-	<h1>회원 정보 상세페이지</h1>
+	<h1>회원 정보 수정페이지</h1>
 	
-	<form action="./updateCtr.do" method="post" enctype="multipart/form-data">
+	<form action="./updateCtr.do" method="post">
 			<input type="hidden" name='memberNo' value='${memberVo.memberNo}'>
+			<input type="hidden" name="status" value="${memberVo.status}">
+			<input type="hidden" name="authority" value="${memberVo.authority}">
+			
 		이름: <input type="text" name='name' id='memberName' value='${memberVo.name}'><br>
-		아이디: <input type="text" name="id" value="${memberVo.id}" >
-		비밀번호:	<input type="password" name="password" value="${memberVo.password}">
-		주소: <input type="text" name="address" value="${memberVo.address}">
-		연락처: <input type="number" name="hp" value="${memberVo.hp}">
-		가입일: <fmt:formatDate value="${memberVo.creDate}" 
-				pattern="yyyy-MM-dd"/><br>
-		수정일: <fmt:formatDate value="${memberVo.modDate}" 
-				pattern="yyyy-MM-dd"/><br>
+		아이디: <input type="text" name="id" value="${memberVo.id}" readonly="readonly"><br>
+		비밀번호:	<input type="password" name="password" value="${memberVo.password}"><br>
+		주소: <input type="text" name="address" value="${memberVo.address}"><br>
+		연락처: <input type="number" name="hp" value="${memberVo.hp}"><br>
 		
 		
-		<input type="submit" value="수정하기">
+		<input type="submit" value="수정완료">
 		<input type="button" value="이전페이지" 
 				onclick="pageMoveBeforeFnc(${memberVo.memberNo});">
 

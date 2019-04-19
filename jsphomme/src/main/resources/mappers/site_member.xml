@@ -36,11 +36,12 @@
 	<select id="memberSelectOne" parameterType="int"
 			resultMap="memberResultMap">
 		SELECT  MEMBER_NO    
-            	  ,NAME            
+            	  , NAME            
          		  , PASSWORD
+         		  , AUTHORITY
         		  , ID                  
-        		   , ADDRESS          
-        		   , HP                 
+        		  , ADDRESS          
+        		  , HP                 
 		FROM MEMBER
 		WHERE MEMBER_NO = #{memberNo}
 	
@@ -79,7 +80,7 @@
 	
 	<select id="memberExist" parameterType="map"
 		resultMap="memberResultMap">
-		SELECT  MEMBER_NO, STATUS, AUTHORITY, NAME, ID
+		SELECT  MEMBER_NO, STATUS, AUTHORITY, NAME, ID, ADDRESS, HP
 		FROM MEMBER
 		WHERE ID = #{id} AND PASSWORD = #{password}
 		
@@ -88,16 +89,21 @@
 	<update id="memberUpdateOne" parameterType="memberVo">
 	
 	UPDATE MEMBER
-    SET
+    
     	<set>
+    	
+	        <if test="memberNo != ''">MEMBER_NO = #{memberNo},</if>
+	        <if test="status != ''">STATUS = #{status},</if>
+	        <if test="authority != ''">AUTHORITY = #{authority},</if>
 	        <if test="name != ''">NAME = #{name},</if>
-	       
+	        <if test="id != ''">ID = #{id},</if>
 	        <if test="password != ''">PASSWORD = #{password},</if>
 	        <if test="address != ''">ADDRESS = #{address},</if>
 	        <if test="hp != ''">HP = #{hp},</if>
+	       
 	        MOD_DATE = SYSDATE
 		</set>
-	WHERE member_NO = #{memberNo}
+	WHERE MEMBER_NO = #{memberNo}
 	
 	</update>
 	

@@ -4,8 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 정보</title>
+<title>마이페이지 보기</title>
 <script type="text/javascript">
+	window.onload = function(){
+		var memberNameInputObj = 
+			document.getElementById('memberName');
+		
+		memberNameInputObj.style.backgroundColor = '#E7E7E7';
+	}
+
+
 
 	function pageMoveListFnc(){
 		location.href = "list.do";
@@ -21,7 +29,7 @@
 	<h1>회원 정보 상세페이지</h1>
 	
 	<form action="./update.do" method="get">
-			<input type="hidden" name='no' value='${memberVo.memberNo}'>
+			<input type="hidden" name='memberNo' value='${memberVo.memberNo}'>
 		이름: <input type="text" name='name' id='memberName' value='${memberVo.name}' 
 				readonly="readonly"><br>
 		아이디: <input type="text" name="id" value="${memberVo.id}"

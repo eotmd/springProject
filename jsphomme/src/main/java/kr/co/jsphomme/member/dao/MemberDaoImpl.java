@@ -28,7 +28,7 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public List<MemberVo> memberListView(Map map) {
+	public List<MemberVo> memberListView(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace + "memberListView", map);
 	}
