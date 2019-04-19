@@ -31,7 +31,7 @@
 		
 	}
 	
-	ul{
+	.productList ul{
 		float: left;
 		width: 300px;
 		margin: 50px;
@@ -41,11 +41,11 @@
 		list-style-type: none;
 	}
 	
-	ul li{
+	.productList ul li{
 		text-align: center;
 	}
 	
-	img{
+	.productList img{
 		width: 300px;
 		height: 300px;
 	}
@@ -65,12 +65,12 @@
 					<li>
 						<span>
 							<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
-								<img alt="미남" src="/jsphomme/resources/images/1400716.png">
+								<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
 							</a>
 						</span>
 					</li>
 					<li>
-						<a href="#">
+						<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
 							<span>${productVo.name}</span>
 						</a>
 					</li>
@@ -83,27 +83,17 @@
 					</li> --%>
 				</ul>
 			</c:forEach>
-				<ul>
-					<li>
-						<span>
-							<img alt="뽀글" src="/jsphomme/resources/images/2114068.png">
-						</span>
-					</li>
-					<li><span>david luiz</span></li>
-				</ul>
-				<ul>
-					<li>
-						<span>
-							<img alt="민호우" src="/jsphomme/resources/images/19068857.png">
-						</span>
-					</li>
-					<li><span>roberto firmino</span></li>
-				</ul>
-			
-			
-			
 		</nav>
 	</div>
+	
+	<jsp:include page="/WEB-INF/views/common/paging.jsp">
+		<jsp:param value="${pagingMap}" name="pagingMap"/>
+	</jsp:include>
+	
+	<form action="./list.do" id="pagingForm" method="get">
+		<input type="hidden" id="curPage" name="curPage" 
+			value="${pagingMap.paging.curPage}">
+	</form>
 	
 	<jsp:include page="/tail.jsp"></jsp:include>
 	

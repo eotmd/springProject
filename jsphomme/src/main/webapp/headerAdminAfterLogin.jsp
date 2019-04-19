@@ -7,7 +7,7 @@
 <style type="text/css">
 
 	#headerContainer {
-		width: 1904px;
+		width: 1850px;
 	}
 	
 	

@@ -41,7 +41,7 @@ nav > ul > li > a:hover{
 </style>
 
 <script type="text/javascript" 
-	src="/springHome/resources/js/jquery-3.3.1.js"></script>
+	src="/jsphomme/resources/js/jquery-3.3.1.js"></script>
 
 <script type="text/javascript">
 
@@ -65,13 +65,13 @@ nav > ul > li > a:hover{
 		<!--ㄷ 한자 적용  -->
 			<li>
 				<a href="#" 
-				onclick="goPage(${pagingMap.memberPaging.prevPage});">
+				onclick="goPage(${pagingMap.paging.prevPage});">
 				<span>≪</span>
 				</a>
 			</li>
 			
-			<c:forEach var="num" begin="${pagingMap.memberPaging.blockBegin}"
-				end="${pagingMap.memberPaging.blockEnd}">
+			<c:forEach var="num" begin="${pagingMap.paging.blockBegin}"
+				end="${pagingMap.paging.blockEnd}">
 				
 				<li id="pageButton${num}">
 					<a href="#" onclick="goPage(${num});">
@@ -82,7 +82,7 @@ nav > ul > li > a:hover{
 			</c:forEach>
 
 			<li><a href="#" 
-				onclick="goPage(${pagingMap.memberPaging.nextPage});">
+				onclick="goPage(${pagingMap.paging.nextPage});">
 				<span>≫</span></a>
 			</li>
 		</ul>

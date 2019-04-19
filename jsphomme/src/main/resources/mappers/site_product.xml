@@ -18,13 +18,42 @@
 	
 	<select id="productListView" resultMap="productResultMap">
 		SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME
-		FROM PRODUCT
+			FROM (
+			SELECT ROWNUM RNUM, P.PRODUCT_NO, P.NAME, P.QUANTITY, P.PRICE, P.STORED_FILE_NAME
+				FROM (
+					SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME
+					FROM PRODUCT
+<!-- 					WHERE NAME LIKE '%%' -->
+                    ORDER BY PRODUCT_NO DESC) P
+            )PRODUCT
+		WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="productOneDeteilView" resultMap="productResultMap" parameterType="int">
-		SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, DETAIL, STORED_FILE_NAME
+		SELECT PRODUCT_NO, NAME, QUANTITY, ORIGINAL_FILE_NAME, PRICE, STORED_FILE_NAME, FILE_SIZE, enrollment_Date
 		FROM PRODUCT
 		WHERE PRODUCT_NO = #{productNo}
 	</select>
+	
+	<select id="productSelectTotalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM PRODUCT
+	</select>
+	
+	<insert id="productInsert" parameterType="memberVo" 
+		useGeneratedKeys="true" keyProperty="productNo">
+		<selectKey keyProperty="productNo" resultType="int" order="BEFORE">
+			SELECT PRODUCT_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO PRODUCT(
+		    PRODUCT_NO, NAME, QUANTITY, PRICE, DETAIL, 
+		    ORIGINAL_FILE_NAME, STORED_FILE_NAME, FILE_SIZE, ENROLLMENT_DATE
+		)
+		VALUES(
+		    #{productNo}, #{name}, #{quantity}, #{price}, #{detail}, 
+		    #{originalFileName}, #{storedFileName}, #{fileSize}, SYSDATE)
+		    
+	</insert>
 
 </mapper>

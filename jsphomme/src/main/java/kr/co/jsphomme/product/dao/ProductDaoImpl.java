@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.jsphomme.product.vo.ProductVo;
 
@@ -19,29 +20,26 @@ public class ProductDaoImpl implements ProductDao{
 	String namespace = "kr.co.jsphomme.product.";
 	
 	@Override
-	public ProductVo productInsert() {
+	public int productInsert(ProductVo productVo) {
 		// TODO Auto-generated method stub
 		
-		
-		
-		return null;
+		return sqlSession.insert(namespace + "productInsert", productVo);
 	}
 
 	@Override
-	public List<ProductVo> productListView(){
-//			String searchOption, String keyword, int start, int end) {
+	public List<ProductVo> productListView(
+			/* String searchOption, String keyword, */ int start, int end) {
 		// TODO Auto-generated method stub
 		
-//		Map<String, Object> map = new HashMap();
+		Map<String, Object> map = new HashMap();
 		
 //		map.put("searchOption", searchOption);
 //		map.put("keyword", keyword);
-//		map.put("start", start);
-//		map.put("end", end);
+		map.put("start", start);
+		map.put("end", end);
 		
 		
-//		return sqlSession.selectList(namespace + "productListView", map);
-		return sqlSession.selectList(namespace + "productListView");
+		return sqlSession.selectList(namespace + "productListView", map);
 	}
 
 	@Override
@@ -64,10 +62,10 @@ public class ProductDaoImpl implements ProductDao{
 		return 0;
 	}
 
-//	@Override
-//	public int productSelectTotalCount(String searchOption, String keyword) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
+	@Override
+	public int productSelectTotalCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "productSelectTotalCount");
+	}
 
 }
