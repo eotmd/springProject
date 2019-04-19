@@ -42,7 +42,7 @@
         		   , ADDRESS          
         		   , HP                 
 		FROM MEMBER
-		WHERE MEMBER_NO = #{no}
+		WHERE MEMBER_NO = #{memberNo}
 	
 	</select>
 	

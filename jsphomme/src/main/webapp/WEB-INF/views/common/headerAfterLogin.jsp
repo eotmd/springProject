@@ -16,8 +16,8 @@ function productRegiFnc() {
 	
 }
 
-function myPageFnc(no) {
-	location.href ="/jsphomme/member/detail.do?no=" + no;
+function myPageFnc(memberNo) {
+	location.href ="/jsphomme/member/detail.do?memberNo=" + memberNo;
 	
 // 	var url = '/deltail.do?no=' + memberNo;
 // 	location.href = url;

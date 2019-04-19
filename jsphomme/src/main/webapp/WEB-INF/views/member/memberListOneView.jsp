@@ -25,7 +25,7 @@
 				readonly="readonly"><br>
 		비밀번호:	<input type="password" name="password" value="${memberVo.password}"
 				readonly="readonly"><br>
-		주소: <input type="text" name="adress" value="${memberVo.adress}"
+		주소: <input type="text" name="address" value="${memberVo.address}"
 			readonly="readonly"><br>
 		연락처: <input type="number" name="hp" value="${memberVo.hp}"
 			readonly="readonly"><br>

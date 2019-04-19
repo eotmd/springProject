@@ -57,7 +57,7 @@
 </head>
 <body>
 
-	<jsp:include page="/headerAdminAfterLogin.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"></jsp:include>
 	
 	<h1>${productVo.name}</h1>
 	<div class="detailView">
@@ -130,7 +130,7 @@
 	</div>
 		
 	
-	<jsp:include page="/tail.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/common/tail.jsp"></jsp:include>
 	
 </body>
 </html>
