@@ -50,5 +50,11 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 		return purchaseListDao.purchaseListCount();
 	}
 
+	@Override
+	public PurchaseListVo purchaseView() {
+		
+		return purchaseListDao.purchaseView();
+	}
+
 	
 }

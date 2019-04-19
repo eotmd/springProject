@@ -47,12 +47,13 @@ public class PurchaseListController {
 		return "purchaseList/purchaseListViewForm";
 	}
 	
-	@RequestMapping(value="/purchase.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String Purchase(Model model) {
+	@RequestMapping(value="/purchaseView.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String PurchaseView(Model model) {
 		
 		
+		model.addAttribute("purchaseView", purchaseListService.purchaseView());
 		
-		return "purchaseList/purchaseForm";
+		return "purchaseList/purchaseViewForm";
 	}
 	
 }

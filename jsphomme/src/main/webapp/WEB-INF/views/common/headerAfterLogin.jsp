@@ -13,7 +13,7 @@
 
 <script type="text/javascript">
 function productRegiFnc() {
-	
+	location.href ="/jsphomme/product/insertMove.do";
 }
 
 function myPageFnc(memberNo) {

@@ -42,6 +42,12 @@ public class PurchaseListDaoImpl implements PurchaseListDao{
 		return sqlSession.selectOne(namespace+"purchaseListCount");
 	}
 
+	@Override
+	public PurchaseListVo purchaseView() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"purchaseView");
+	}
+
 	
 
 }

@@ -63,6 +63,15 @@
 		AND P.PRODUCT_NO = PL.PRODUCT_NO
 		AND M.MEMBER_NO = 1
 	</select>
-
+	
+	
+	<select id="purchaseView" resultMap="purchaseListResultMap">
+		SELECT P.NAME,P.PRICE ,PL.PRODUCT_SIZE , PL.PURCHASE_LIST_QUANTITY
+		FROM PRODUCT P, PURCHASE_LIST PL, MEMBER M
+		WHERE P.PRODUCT_NO = PL.PRODUCT_NO
+		AND M.MEMBER_NO = PL.MEMBER_NO
+		AND M.MEMBER_NO = 1
+		AND P.PRODUCT_NO = 21
+	</select>
 
 </mapper>

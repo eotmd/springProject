@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#tableCon{
-		display: flex; 
-		justify-content: center;
+		width: 1805px;
+		margin: auto;
 	}
 	#tableCon > table, td{
 		border: 1px solid;
@@ -18,14 +18,19 @@
 		padding: 5px;
 	}
 	#tableCon > table{
-		width: 1790px;
+		
+		width: 1800px;
 	}
 	#tableCon > td{
 		height: 32px;
 	}
 	#imageCon{
-		display: flex; 
-		justify-content: center;
+		width: 1805;
+		margin: auto;
+	}
+	#imageCon > img{
+		display:block;
+		margin: auto;
 	}
 	.tableTop{
 		text-align: center;
@@ -39,11 +44,16 @@
 
 </head>
 <body>
-	<jsp:include page="/headerAdminAfterLogin.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"/>
+	
+<div style="margin: auto;">	
+
 	<div id="imageCon">
 		<img style="height: 200px; width: 1800px; margin-bottom: 80px;" alt="asd" src="/jsphomme/test.jpg">
 	</div>
-	<div id="tableCon" style="display:flex; justify-content: center; margin-top: 10px;">
+	
+	<div id="tableCon">
+	
 	<table>
 		<tr>
 			<td class="tableTop">상품 번호</td>
@@ -80,6 +90,7 @@
 	<form action="./purchaseList.do" id="pagingForm" method="post">
 		<input type="hidden" id="curPage" name="curPage" value="${pagingMap.paging.curPage}">
 	</form>
-	<jsp:include page="/tail.jsp"/>
+</div>
+	<jsp:include page="/WEB-INF/views/common/tail.jsp"/>
 </body>
 </html>

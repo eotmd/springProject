@@ -11,5 +11,5 @@ public interface PurchaseListService {
 	public int purchaseListCount();
 	public List<PurchaseListVo> purchaseListView(int start, int end);			//구매목록 보여주기
 	public int purchaseListDelete(int no);					//구매 취소
-	
+	public PurchaseListVo purchaseView();
 }
