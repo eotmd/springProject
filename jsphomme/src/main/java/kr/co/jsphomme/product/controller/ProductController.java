@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +107,20 @@ public class ProductController {
 		return "product/productInsert";
 	}
 	
-	
+	@RequestMapping(value = "/product/update.do")
+	public String productUpdate(
+			ProductVo productVo, 
+			MultipartHttpServletRequest multipartHttpServletRequest,
+			Model model) {
+
+		log.debug("Welcome productUpdate enter!");
+		
+		productService.productUpdate(productVo, multipartHttpServletRequest);
+		
+		log.debug("Welcome productInsertMove enter! - {}", productVo);
+		
+		return "product/productUpdate";
+	}
 	
 	
 	

@@ -14,7 +14,8 @@ public interface ProductService {
 	public List<ProductVo> productListView(
 			/* String searchOption, String keyword, */int start, int end);			//물품 리스트
 	public ProductVo productOneDeteilView(int productNo);	//물품 상세 정보
-	public int productUpdate();					//물품 수정
+	public int productUpdate(
+			ProductVo productVo, MultipartHttpServletRequest multipartHttpServletRequest);					//물품 수정
 	public int productDelete();					//물품 삭제
 	public int productSelectTotalCount();
 	

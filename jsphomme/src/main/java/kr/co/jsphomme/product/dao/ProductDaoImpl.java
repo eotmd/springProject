@@ -51,8 +51,9 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public int productUpdate() {
+	public int productUpdate(ProductVo productVo) {
 		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

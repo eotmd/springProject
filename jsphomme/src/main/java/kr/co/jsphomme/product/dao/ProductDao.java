@@ -12,7 +12,7 @@ public interface ProductDao {
 	public List<ProductVo> productListView(
 			/* String searchOption, String keyword, */ int start, int end);			//물품 리스트
 	public ProductVo productOneDeteilView(int productNo);	//물품 상세 정보
-	public int productUpdate();			//물품 수정
+	public int productUpdate(ProductVo productVo);			//물품 수정
 	public int productDelete();
 	public int productSelectTotalCount();
 }

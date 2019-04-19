@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.jsphomme.product.vo.ProductVo;
 import kr.co.jsphomme.purchaselist.service.PurchaseListService;
 import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
 import kr.co.jsphomme.util.Paging;
@@ -47,13 +50,27 @@ public class PurchaseListController {
 		return "purchaseList/purchaseListViewForm";
 	}
 	
-	@RequestMapping(value="/purchaseView.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String PurchaseView(Model model) {
+	@RequestMapping(value="/purchaseView.do", method = RequestMethod.GET)
+	public String PurchaseView(HttpServletRequest req, Model model) {
 		
 		
-		model.addAttribute("purchaseView", purchaseListService.purchaseView());
 		
-		return "purchaseList/purchaseViewForm";
+		
+		return "";
 	}
 	
+//	@RequestMapping(value="/purchaseListInsert.do", method = RequestMethod.GET)
+//	public String PurchaseListInsert(HttpServletRequest req, Model model) {
+//		
+//		
+//		req.getAttribute("")
+//		
+//		
+//		
+//		
+//		
+//		
+//		return "";
+//	}
+//	
 }
