@@ -39,11 +39,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVo memberOneDeteilView(int no) {
+	public MemberVo memberOneDeteilView(int memberNo) {
 		// TODO Auto-generated method stub
 		
 		
-		MemberVo memberVo = (MemberVo)memberDao.memberOneDeteilView(no);
+		MemberVo memberVo = (MemberVo)memberDao.memberOneDeteilView(memberNo);
 		
 		
 		return memberVo;
@@ -65,10 +65,10 @@ public class MemberServiceImpl implements MemberService{
 
 	
 	@Override
-	public int memberDelete(int no)  {
+	public int memberDelete(int memberNo)  {
 		// TODO Auto-generated method stub
 				
-		return memberDao.memberDelete(no);
+		return memberDao.memberDelete(memberNo);
 	}
 
 

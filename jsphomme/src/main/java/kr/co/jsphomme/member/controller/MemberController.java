@@ -70,14 +70,14 @@ public class MemberController {
 		}
 	
 		@RequestMapping(value = "/member/detail.do")
-		public String  memberOneDeteilView(int no, Model model) {
-			log.debug("Welcome memberOneDeteilView enter! - {}", no);
+		public String  memberOneDeteilView(int memberNo, Model model) {
+			log.debug("Welcome memberOneDeteilView enter! - {}", memberNo);
 
 			
 
 			
 
-			model.addAttribute("memberVo", memberService.memberOneDeteilView(no));
+			model.addAttribute("memberVo", memberService.memberOneDeteilView(memberNo));
 			
 			return "member/memberListOneView";
 		}
@@ -149,10 +149,10 @@ public class MemberController {
 		
 		
 		@RequestMapping(value = "/member/update.do")
-		public String memberUpdateOne(int no, Model model) {
-			log.debug("Welcome memberUpdate enter! - {}", no);
+		public String memberUpdateOne(int memberNo, Model model) {
+			log.debug("Welcome memberUpdate enter! - {}", memberNo);
 
-			Map<String, Object> map = (Map<String, Object>) memberService.memberOneDeteilView(no);
+			Map<String, Object> map = (Map<String, Object>) memberService.memberOneDeteilView(memberNo);
 
 			MemberVo memberVo = (MemberVo) map.get("memberVo");
 			
@@ -167,11 +167,11 @@ public class MemberController {
 		
 		
 		@RequestMapping(value = "/member/deleteCtr.do", method = RequestMethod.GET)
-		public String memberDelete(int no, Model model) {
-			log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", no);
+		public String memberDelete(int memberNo, Model model) {
+			log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", memberNo);
 
 			try {
-				memberService.memberDelete(no);
+				memberService.memberDelete(memberNo);
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

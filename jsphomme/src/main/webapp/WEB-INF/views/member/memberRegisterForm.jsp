@@ -22,7 +22,7 @@
 		이름: <input type="text" name='name' id='memberName'><br>
 		아이디: <input type="text" name="id" value="${memberVo.id}"><br>
 		비밀번호:	<input type="password" name="password" ><br>
-		주소: <input type="text" name="adress" ><br>
+		주소: <input type="text" name="address" ><br>
 		연락처: <input type="number" name="hp" ><br>
 		
 		<input type="submit" value="가입하기">
