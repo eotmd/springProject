@@ -85,17 +85,19 @@
 		
 	</select>
 	
-	<update id="memberUpdate" parameterType="memberVo">
+	<update id="memberUpdateOne" parameterType="memberVo">
 	
 	UPDATE MEMBER
     SET
-        NAME = '지원',
-        ID = 'zx',
-        PASSWORD = 'zx',
-        ADDRESS = '계양구',
-        HP = '0202',
-        MOD_DATE = sysdate
-	WHERE member_NO = 1;
+    	<set>
+	        <if test="name != ''">NAME = #{name},</if>
+	       
+	        <if test="password != ''">PASSWORD = #{password},</if>
+	        <if test="address != ''">ADDRESS = #{address},</if>
+	        <if test="hp != ''">HP = #{hp},</if>
+	        MOD_DATE = SYSDATE
+		</set>
+	WHERE member_NO = #{memberNo}
 	
 	</update>
 	

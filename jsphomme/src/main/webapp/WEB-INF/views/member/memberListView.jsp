@@ -68,6 +68,6 @@ table , tr, td {
 	
 	</table>
 	
-	
+<jsp:include page="/WEB-INF/views/common/tail.jsp" />
 </body>
 </html>

@@ -147,7 +147,7 @@ public class MemberController {
 			return "redirect:/auth/login.do";
 		}
 		
-		
+		@SuppressWarnings("unchecked")
 		@RequestMapping(value = "/member/update.do")
 		public String memberUpdateOne(int memberNo, Model model) {
 			log.debug("Welcome memberUpdate enter! - {}", memberNo);
@@ -163,6 +163,53 @@ public class MemberController {
 			return "member/memberUpdateForm";
 		}
 
+		
+		
+		@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)
+		public String memberUpdateCtr(HttpSession session, MemberVo memberVo
+				, @RequestParam(value="fileIdx", defaultValue="-1") int fileIdx
+				, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
+			log.debug("Welcome MemberController memberUpdateCtr {} :: {}", memberVo, fileIdx);
+
+			int resultNum = 0;
+			
+			try {
+				resultNum = memberService.memberUpdateOne(memberVo);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+			
+			// 데이터베이스에서 회원정보가 수정이 됬는지 여부
+			if (resultNum > 0) {
+
+				MemberVo sessionMemberVo = (MemberVo) session.getAttribute("_memberVo_");
+				// 세션에 객체가 존재하는지 여부
+				if (sessionMemberVo != null) {
+					// 세션의 값과 새로운 값이 일치하는지 여부
+					// 홍길동 ㄴㅇㄹㄴㅇ
+					// s1@test.com ㄴㅇㄹ33@
+					// 1111 2222
+					if (sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
+						MemberVo newMemberVo = new MemberVo();
+
+						newMemberVo.setMemberNo(memberVo.getMemberNo());
+						newMemberVo.setName(memberVo.getName());
+						newMemberVo.setPassword(memberVo.getPassword());;
+						newMemberVo.setAddress(memberVo.getAddress());
+						newMemberVo.setHp(memberVo.getHp());
+
+						session.removeAttribute("_memberVo_");
+
+						session.setAttribute("_memberVo_", newMemberVo);
+					}
+				}
+			}
+
+			return "member/memberListOneView";
+		}
 		
 		
 		

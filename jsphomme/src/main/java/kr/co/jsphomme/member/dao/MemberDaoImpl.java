@@ -50,7 +50,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public int memberUpdateOne(MemberVo memberVo) {
 		// TODO Auto-generated method stub
-		return sqlSession.update(namespace + "memberUpdate", memberVo);
+		return sqlSession.update(namespace + "memberUpdateOne", memberVo);
 	}
 
 	@Override

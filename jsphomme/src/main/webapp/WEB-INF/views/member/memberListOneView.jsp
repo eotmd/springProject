@@ -10,11 +10,14 @@
 	function pageMoveListFnc(){
 		location.href = "list.do";
 	}
+	
+	
 </script>
 
 </head>
 <body>
-	
+
+<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />	
 	<h1>회원 정보 상세페이지</h1>
 	
 	<form action="./update.do" method="get">
@@ -30,10 +33,12 @@
 		연락처: <input type="number" name="hp" value="${memberVo.hp}"
 			readonly="readonly"><br>
 		
-		<input type="submit" value="수정하기">
+		<input type="submit" value="수정하기" >
 		<input type="button" value="이전페이지" 
 				onclick="pageMoveListFnc();">
 
 	</form>
+	
+<jsp:include page="/WEB-INF/views/common/tail.jsp" />
 </body>
 </html>

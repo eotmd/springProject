@@ -19,7 +19,7 @@ function productRegiFnc() {
 function myPageFnc(memberNo) {
 	location.href ="/jsphomme/member/detail.do?memberNo=" + memberNo;
 	
-// 	var url = '/deltail.do?no=' + memberNo;
+// 	var url = '/detail.do?no=' + memberNo;
 // 	location.href = url;
 }
 

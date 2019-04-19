@@ -31,7 +31,7 @@
 </script>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
 
 	<h2>사용자 로그인</h2>
 	<div>
@@ -53,5 +53,8 @@
 			</table>
 		</form>
 	</div>
+
+<jsp:include page="/WEB-INF/views/common/tail.jsp" />
+
 </body>
 </html>

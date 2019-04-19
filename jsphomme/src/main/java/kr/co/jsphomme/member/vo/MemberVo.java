@@ -112,13 +112,13 @@ public class MemberVo {
 
 
 
-	public String getaddress() {
+	public String getAddress() {
 		return address;
 	}
 
 
 
-	public void setaddress(String address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 

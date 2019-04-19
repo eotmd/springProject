@@ -13,7 +13,7 @@
 <title>회원 가입</title>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
 	<h1>회원 가입</h1>
 
 	<form action="./addCtr.do" method="post" 
@@ -29,5 +29,7 @@
 		<input type="button" value="메인화면으로 이동" 
 				onclick="pageMoveMainFnc();">
 	</form>
+	
+	<jsp:include page="/WEB-INF/views/common/tail.jsp" />
 </body>
 </html>

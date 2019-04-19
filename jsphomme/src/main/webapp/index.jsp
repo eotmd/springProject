@@ -18,12 +18,15 @@
 </head>
 <body>
 	
+<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
+	
 	<form action="auth/login.do"id='indexForm' method="get">
 		<input type="button"  
 			value="JSP HOMME 로그인 화면으로 이동" onclick="loginMoveFnc();">
 	
 	</form>
 
+<jsp:include page="/WEB-INF/views/common/tail.jsp" />
 
 </body>
 </html>

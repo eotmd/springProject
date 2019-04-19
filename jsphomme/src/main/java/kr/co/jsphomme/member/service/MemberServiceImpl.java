@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int memberUpdateOne(MemberVo memberVo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.memberUpdateOne(memberVo);
 	}
 
 	
