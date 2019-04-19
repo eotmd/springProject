@@ -11,4 +11,5 @@ public interface PurchaseListDao {
 	public List<PurchaseListVo> purchaseListView(Map<String, Object> map);			//구매목록 보여주기
 	public int purchaseListCount();
 	public int purchaseListDelete(int no);						//구매 취소
+	public PurchaseListVo purchaseView();
 }
