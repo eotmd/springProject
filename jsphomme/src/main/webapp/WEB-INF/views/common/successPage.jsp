@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	alert('성공적으로 처리했습니다');
 	
-	location.href = './product/list.do';
+	location.href = './list.do';
 </script>
 
 </head>
