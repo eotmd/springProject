@@ -1,5 +1,6 @@
 package kr.co.jsphomme.purchaselist.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +25,14 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 	}
 
 	@Override
-	public List<PurchaseListVo> purchaseListView() {
-		List<PurchaseListVo> purchaseList = purchaseListDao.purchaseListView();
+	public List<PurchaseListVo> purchaseListView(int start, int end) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<PurchaseListVo> purchaseList = purchaseListDao.purchaseListView(map);
 		
 		
 		return purchaseList;
@@ -35,6 +42,12 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 	public int purchaseListDelete(int no) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int purchaseListCount() {
+		
+		return purchaseListDao.purchaseListCount();
 	}
 
 	

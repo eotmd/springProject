@@ -45,7 +45,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<div style="clear: both;"></div>
 	<div id="tailContainer">
 		<div id="tailLine">
 		<hr>
