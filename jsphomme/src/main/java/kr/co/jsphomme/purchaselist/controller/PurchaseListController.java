@@ -51,12 +51,12 @@ public class PurchaseListController {
 	}
 	
 	@RequestMapping(value="/purchaseView.do", method = RequestMethod.GET)
-	public String PurchaseView(HttpServletRequest req, Model model) {
+	public String PurchaseView(PurchaseListVo purchaseListVo, Model model) {
 		
 		
+		model.addAttribute("purchaseListVo", purchaseListVo);
 		
-		
-		return "";
+		return "purchaseList/purchaseViewForm";
 	}
 	
 //	@RequestMapping(value="/purchaseListInsert.do", method = RequestMethod.GET)

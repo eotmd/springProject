@@ -84,6 +84,11 @@ function logoutFnc() {
 	
 	</div>
 	
+	 <div>
+      <input class="menu" type="button" value="Menswear">
+      <input class="menu" style=" text-align: left; margin-left: 680px; height:21px; vertical-align: bottom; font-size: 17px;" type="text" value="" placeholder="search">
+   	</div>
+	
 </div>
 </body>
 </html>

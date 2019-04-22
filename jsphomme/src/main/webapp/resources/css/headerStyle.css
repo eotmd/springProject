@@ -108,3 +108,21 @@
 		font-family: "Lucida Console", Monaco, monospace;
 		border-radius: 5px;
 	}
+	 .menu {
+      background-color: #636363; 
+      text-align: center; 
+      width: 250px; 
+      height: 23px;
+      color: #FFFFFF;
+      font-size: 20px; 
+      font-weight: bolder;
+      font-style: normal;
+      font-family: "Lucida Console", Monaco, monospace;
+      margin-left: 340px;
+      margin-top: 17px;
+      margin-bottom: 20px;
+      border-radius: 7px;
+      border: 0px;
+      
+   }
+	

@@ -60,10 +60,10 @@
 	<h1>${productVo.name}</h1>
 	<div class="detailView">
 		
-		<form action="/jsphomme/purchaseView.do">
+		<form action="../purchaseView.do">
 			<input type="hidden" name = "productName" value="${productVo.name}">
 			<input type="hidden" name = "storedFileName" value="${productVo.storedFileName}">
-			<input type="hidden" name = "price" value="${productVo.price}">
+			<input type="hidden" name = "productPrice" value="${productVo.price}">
 			<span>
 				<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
 			</span>
@@ -96,7 +96,7 @@
 					</tr>
 					<tr>
 						<td style="width: 150px;">수량</td>
-							<td><input type="number" name="productQuantity" value="1" max="${productVo.quantity}" min="1"></td>
+							<td><input type="number" name="purchaseQuantity" value="1" max="${productVo.quantity}" min="1"></td>
 					</tr>
 				</c:if>
 				<c:if test="${productVo.quantity == 0}">

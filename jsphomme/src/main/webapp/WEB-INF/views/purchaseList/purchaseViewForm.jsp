@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,20 +13,23 @@
 		margin: auto;
 		
 	}
-	#tableId table{
+	.tableId table{
 		width: 1400px;
 		margin: auto;
 		border: 1px solid;
 		border-collapse: collapse;
 		
 	}
-	#tableId > tr > td{
+	.tableId td{
 		border: 1px solid;
 		border-collapse: collapse;
 	}
 	.tableTop{
 		font-weight: bold;
 		text-align: center;
+	}
+	.tableBt{
+		vertical-align: top;
 	}
 </style>
 </head>
@@ -36,7 +40,7 @@
 	
 	
 	<div id="tableCon">	
-		<table id="tableId">
+		<table class="tableId">
 			<tr>
 				
 					<td class="tableTop" colspan="1">상품 이름</td>
@@ -47,15 +51,18 @@
 				
 			</tr>
 		</table>
-		<table>
+		<table class="tableId">
 			<tr>
 			
-				<td class="tableBt"><img style="width: 300px; height: 150px;" alt="dkdkdk" src="/jsphomme/test.jpg"></td>
-				<td class="tableBt" style="font-weight: bold; vertical-align: top; width: 300px;">${purchaseView.productName}</td>
-				<td class="tableBt" style="vertical-align: top;">${purchaseView.productPrice}</td>
-				<td class="tableBt">${purchaseView.productSize}</td>
-				<td class="tableBt">${purchaseView.purchaseQuantity}</td>
-				<td class="tableBt">${purchaseView.productPrice * purchaseView.purchaseQuantity}</td>
+				<td class="tableBt"><img style="width: 300px; height: 150px;" alt="${purchaseListVo.storedFileName}" src="<c:url value='/img/${purchaseListVo.storedFileName}'/>"></td>
+				
+				
+				
+				<td class="tableBt" style="font-weight: bold; width: 300px;">${purchaseListVo.productName}</td>
+				<td class="tableBt" style="vertical-align: top;">${purchaseListVo.productPrice}</td>
+				<td class="tableBt">${purchaseListVo.productSize}</td>
+				<td class="tableBt">${purchaseListVo.purchaseQuantity}</td>
+				<td class="tableBt">${purchaseListVo.productPrice * purchaseListVo.purchaseQuantity}</td>
 				
 				<ins><hr></ins>
 			</tr>
