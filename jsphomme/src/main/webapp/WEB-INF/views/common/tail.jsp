@@ -8,6 +8,7 @@
 
 	
 	#tailContainer {
+		clear:both;
 		width: 1904px;
 		background-color: #EEEEEE;
 	}

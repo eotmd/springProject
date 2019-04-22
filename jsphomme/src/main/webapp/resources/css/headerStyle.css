@@ -125,4 +125,21 @@
       border: 0px;
       
    }
+	 .search {
+      background-color: #636363; 
+      text-align: left; 
+      width: 250px; 
+      height:21px;
+      color: #FFFFFF;
+      font-size: 17px; 
+      font-weight: bolder;
+      font-style: normal;
+      font-family: "Lucida Console", Monaco, monospace;
+      margin-left: 680px;
+      margin-top: 17px;
+      margin-bottom: 20px;
+      border-radius: 7px;
+      border: 0px;
+      vertical-align: bottom;
+   }
 	
