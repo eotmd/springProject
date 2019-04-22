@@ -57,7 +57,7 @@ table , tr, td {
 						pattern="yyyy년MM월dd일 hh시mm분"/>
 				</td>
 				<td>
-				<a href='./deleteCtr.do?no=${memberVo.memberNo}'>[삭제]</a>
+				<a href='./deleteCtr.do?memberNo=${memberVo.memberNo}'>[삭제]</a>
 <%-- 					<input type="button" value="삭제" onclick="deleteMemberFnc(${memberVo.memberNo});"> --%>
 				</td>		
 			</tr>

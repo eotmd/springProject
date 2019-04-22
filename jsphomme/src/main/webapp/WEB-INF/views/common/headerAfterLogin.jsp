@@ -32,7 +32,7 @@ function purchaseListFnc() {
 }
 
 function logoutFnc() {
-	location.href = "/auth/logout.do";
+	location.href = "/jsphomme/auth/logout.do";
 }
 </script>
 </head>
