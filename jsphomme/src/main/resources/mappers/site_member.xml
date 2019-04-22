@@ -48,11 +48,7 @@
 	</select>
 	
 	<insert id="memberInsertOne"
-		parameterType="kr.co.jsphomme.member.vo.MemberVo"
-		useGeneratedKeys="true" keyProperty="no">
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-			SELECT MEMBER_MEMBER_NO_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
+		parameterType="MemberVo">
 			
 		INSERT INTO MEMBER(
 	    MEMBER_NO,
@@ -65,10 +61,10 @@
 	    MOD_DATE
 	)
 	values(
-	    MEMBER_NO_SEQ.nextval,
-	    #{memberNO},	#{name},
-	    #{id},			#{password},
-	    #{address},
+	    MEMBER_NO_SEQ.NEXTVAL,
+		#{name},		#{id},
+		#{password},	#{address},
+		#{hp},
 	    SYSDATE,
 	    SYSDATE
 		)

@@ -29,6 +29,16 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
+	
+	@RequestMapping(value = "/common/main.do")
+
+	public String mainSiteView(Model model) {
+
+		log.debug("Welcome  siteMainPage로 이동! ");
+
+		return "common/siteMainPage";
+	}
+
 	// 관리자가 회원 목록 조회 화면으로
 	@RequestMapping(value = "/member/list.do", method = { RequestMethod.GET })
 
@@ -86,14 +96,14 @@ public class MemberController {
 		log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);
 
 		try {
-//			memberService.memberInsert(memberVo);;
+			memberService.memberInsertOne(memberVo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 
 			e.printStackTrace();
 		}
 
-		return "auth/login";
+		return "redirect:/auth/login.do";
 	}
 
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
@@ -104,13 +114,15 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
-	public String loginCtr(String id, String password, String authority, String address, HttpSession session, Model model) {
+	public String loginCtr(String id, String password, String authority, String name, String address, HttpSession session,
+			Model model) {
 		log.debug("Welcome MemberController loginCtr! " + id + ", " + password + authority);
 
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("id", id);
 		paramMap.put("password", password);
 		paramMap.put("authority", authority);
+		paramMap.put("name", name);
 		paramMap.put("address", address);
 		MemberVo memberVo = memberService.memberExist(paramMap);
 
@@ -120,7 +132,9 @@ public class MemberController {
 			// 사이트 메인페이지로 이동
 			session.setAttribute("_memberVo_", memberVo);
 
-			viewUrl = "/common/siteMainPage";
+			// 이후 조회수 기능 구현을 하게되면 미완성된 메인페이지를 상품리스트형식과 유사하게 만든후  주석처리한 아래의 것을 사용하자!!!
+//			viewUrl = "/common/siteMainPage"; 
+			viewUrl = "product/productListView";  // 일단 조회수 기능 구현전이라 상품리스트 페이지가 메인페이지의 역할을 대신하고 있다
 		} else {
 			viewUrl = "/auth/loginFail";
 		}
@@ -153,18 +167,16 @@ public class MemberController {
 
 	@RequestMapping(value = "/member/updateCtr.do", method = RequestMethod.POST)
 	public String memberUpdateCtr(HttpSession session, MemberVo memberVo, Model model) {
-		
+
 		log.debug("Welcome MemberController memberUpdateCtr {} ", memberVo);
 
-		
 		try {
 			memberService.memberUpdateOne(memberVo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		MemberVo sessionMemberVo = (MemberVo) session.getAttribute("_memberVo_");
 		// 세션에 객체가 존재하는지 여부
 		if (sessionMemberVo != null) {
@@ -175,21 +187,21 @@ public class MemberController {
 			if (sessionMemberVo.getMemberNo() == memberVo.getMemberNo()) {
 				MemberVo newMemberVo = new MemberVo();
 
-				  newMemberVo.setMemberNo(memberVo.getMemberNo());
-				  newMemberVo.setStatus(memberVo.getStatus());
-				  newMemberVo.setAuthority(memberVo.getAuthority());
-				  newMemberVo.setName(memberVo.getName());
-				  newMemberVo.setId(memberVo.getId());
-		
-				  newMemberVo.setAddress(memberVo.getAddress());
-				  newMemberVo.setHp(memberVo.getHp());
-				
+				newMemberVo.setMemberNo(memberVo.getMemberNo());
+				newMemberVo.setStatus(memberVo.getStatus());
+				newMemberVo.setAuthority(memberVo.getAuthority());
+				newMemberVo.setName(memberVo.getName());
+				newMemberVo.setId(memberVo.getId());
+
+				newMemberVo.setAddress(memberVo.getAddress());
+				newMemberVo.setHp(memberVo.getHp());
+
 				session.removeAttribute("_memberVo_");
 
 				session.setAttribute("_memberVo_", newMemberVo);
 			}
-		}  
-		 
+		}
+
 		return "member/memberListOneView";
 	}
 
@@ -207,7 +219,7 @@ public class MemberController {
 
 		return "redirect:/member/list.do";
 	}
-	
+
 	@RequestMapping(value = "/member/leaveCtr.do", method = RequestMethod.GET)
 	public String memberLeave(HttpSession session, int memberNo, Model model) {
 		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", memberNo);
@@ -219,7 +231,7 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		session.invalidate();
 
 		return "redirect:/auth/login.do";
