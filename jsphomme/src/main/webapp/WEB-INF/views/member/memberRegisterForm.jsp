@@ -16,11 +16,10 @@
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
 	<h1>회원 가입</h1>
 
-	<form action="./addCtr.do" method="post" 
-		enctype="multipart/form-data">
+	<form action="./addCtr.do" method="post">
 		
 		이름: <input type="text" name='name' id='memberName'><br>
-		아이디: <input type="text" name="id" value="${memberVo.id}"><br>
+		아이디: <input type="text" name="id" ><br>
 		비밀번호:	<input type="password" name="password" ><br>
 		주소: <input type="text" name="address" ><br>
 		연락처: <input type="number" name="hp" ><br>

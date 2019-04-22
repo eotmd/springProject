@@ -23,10 +23,10 @@ public class MemberDaoImpl implements MemberDao{
 	String namespace = "kr.co.jsphomme.member.";
 	
 	@Override
-	public MemberVo memberInsert(MemberVo memberVo ) {
+	public int memberInsertOne(MemberVo memberVo) {
 		// TODO Auto-generated method stub
-//		return sqlSession.insert(namespace + "memberInsertOne", memberVo);	
-		return null;
+		return sqlSession.insert(namespace + "memberInsertOne", memberVo);
+		
 	}
 
 	@Override
