@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="productOneDeteilView" resultMap="productResultMap" parameterType="int">
-		SELECT PRODUCT_NO, NAME, QUANTITY, ORIGINAL_FILE_NAME, PRICE, STORED_FILE_NAME, FILE_SIZE, enrollment_Date
+		SELECT PRODUCT_NO, NAME, QUANTITY, ORIGINAL_FILE_NAME, PRICE, DETAIL, STORED_FILE_NAME, FILE_SIZE, enrollment_Date
 		FROM PRODUCT
 		WHERE PRODUCT_NO = #{productNo}
 	</select>
@@ -57,15 +57,16 @@
 	
 	<update id="productUpdate" parameterType="productVo">
 		UPDATE PRODUCT
-		    SET
-				NAME = #{name},
-		        QUANTITY = #{quantity},
-		        PRICE = #{price},
-		        DETAIL = #{detail},
-		        ORIGINAL_FILE_NAME = #{originalFileName},
-		        STORED_FILE_NAME = #{storedFileName},
-		        FILE_SIZE = #{fileSize}
-		WHERE PRODUCT_NO = #{productNo};
+		    <set>
+				<if test="name != ''">NAME = #{name},</if>
+		        <if test="quantity != ''">QUANTITY = QUANTITY + #{quantity},</if>
+		        <if test="price != ''">PRICE = #{price},</if>
+		        <if test="detail != ''">DETAIL = #{detail},</if>
+		        <if test="originalFileName != ''">ORIGINAL_FILE_NAME = #{originalFileName},</if>
+		        <if test="storedFileName != ''">STORED_FILE_NAME = #{storedFileName},</if>
+		        <if test="fileSize != ''">FILE_SIZE = #{fileSize}</if>
+			</set>
+		WHERE PRODUCT_NO = #{productNo}
 	</update>
 
 </mapper>

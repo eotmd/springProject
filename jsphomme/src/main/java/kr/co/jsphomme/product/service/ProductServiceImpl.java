@@ -1,5 +1,6 @@
 package kr.co.jsphomme.product.service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.jsphomme.member.dao.MemberDao;
@@ -47,8 +49,6 @@ public class ProductServiceImpl implements ProductService{
 		
 		productDao.productInsert(productVo);
 		
-		int productNo = productVo.getProductNo();
-		
 		log.debug("ProductServiceImpl productInsert enter!! {}", productVo);
 		
 	}
@@ -72,6 +72,25 @@ public class ProductServiceImpl implements ProductService{
 	public int productUpdate(
 			ProductVo productVo, MultipartHttpServletRequest multipartHttpServletRequest) {
 		// TODO Auto-generated method stub
+		
+		log.debug("ProductServiceImpl productUpdate enter! - {}", productVo);
+		
+		List<MultipartFile> tempFileList = fileUtils.getFile(multipartHttpServletRequest);
+		Iterator<MultipartFile> iterator = tempFileList.iterator();
+		
+		while (iterator.hasNext()) {
+			if (iterator.next().getSize() != productVo.getFileSize()) {
+				fileUtils.parseUpdateFileInfo(productVo);
+			}
+		}
+		
+		
+		try {
+			fileUtils.parseInsertFileInfo(productVo, multipartHttpServletRequest);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return productDao.productUpdate(productVo);
 	}

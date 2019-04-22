@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 등록</title>
+<title>상품 수정</title>
 
 <script type="text/javascript" 
 	src="/jsphomme/resources/js/jquery-3.3.1.js"></script>
@@ -69,25 +69,26 @@
 			<table class="explanation">
 				<tr>
 					<td style="width: 150px;">상품 이름</td>
-					<td><input type="text" name="name"></td>
+					<td><input type="text" name="name" value="${productVo.name}"></td>
 				</tr>
 				<tr>
 					<td style="width: 150px;">가격</td>
-					<td><input type="number" name="price"></td>
+					<td><input type="number" name="price" value="${productVo.price}"></td>
 				</tr>
 				<tr>
-					<td style="width: 150px;">추가 물량</td>
-					<td><input type="number" name="quantity"></td>
+					<td style="width: 150px;">추가 물량 (현재 물량에 추가될 갯수를 적으면 됩니다.)</td>
+					<td><input type="number" name="quantity" value="0"></td>
 				</tr>
 				<tr>
 					<td style="width: 150px;"><input type="reset" value="취소"></td>
-					<td><input type="submit" value="등록"></td>
+					<td><input type="submit" value="수정하기"></td>
 				</tr>
 			</table>
 			<div style="clear: both;">			
-				<textarea name="detail"></textarea>
+				<textarea name="detail">${productVo.detail}</textarea>
 			</div>
-		</form>
+			<input type="hidden" name="productNo" value="${productVo.productNo}">
+		</form>                                                                                                            
 		
 	</div>
 	

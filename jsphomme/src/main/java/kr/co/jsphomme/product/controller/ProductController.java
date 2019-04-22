@@ -107,22 +107,30 @@ public class ProductController {
 		return "product/productInsert";
 	}
 	
-	@RequestMapping(value = "/product/update.do")
+	@RequestMapping(value = "/product/update.do", method = RequestMethod.POST)
 	public String productUpdate(
 			ProductVo productVo, 
 			MultipartHttpServletRequest multipartHttpServletRequest,
 			Model model) {
 
-		log.debug("Welcome productUpdate enter!");
-		
 		productService.productUpdate(productVo, multipartHttpServletRequest);
 		
 		log.debug("Welcome productInsertMove enter! - {}", productVo);
 		
-		return "product/productUpdate";
+		return "common/successPage";
 	}
 	
-	
+	@RequestMapping(value = "/product/updateMove.do")
+	public String productUpdateMove(int productNo, Model model) {
+
+		
+		ProductVo productVo = productService.productOneDeteilView(productNo);
+		
+		log.debug("Welcome productUpdateMove enter! - {}", productVo);
+		model.addAttribute("productVo", productVo);
+		
+		return "product/productUpdate";
+	}
 	
 	
 	
