@@ -4,6 +4,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+	#loginDiv {
+		
+	}
+	
+	#loginH2 {
+		text-align: center;
+	}
+	
+	#loginTable {
+		width: 400px;
+		margin: auto;
+		text-align: center;
+	}
+	
+	tr {
+		height: 30px;
+	}
+	
+	
+	#loginBtn {
+		width: 200px;
+		margin: auto;
+	}
+	
+	#memberRegiBtn{
+		width: 200px;
+		margin: auto;
+	}
+</style>
+
 <title>로그인</title>
 
 <!-- 아이디 validation 체크 어떻게 할꺼야? -->
@@ -24,7 +55,7 @@
 			return false;
 		}
 		
-		var formObj = document.getElementById("login")
+		var formObj = document.getElementById("loginForm")
 		formObj.submit();		
 			
 	}
@@ -38,10 +69,10 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
 
-	<h2>사용자 로그인</h2>
-	<div>
-		<form action="loginCtr.do" id="login" method="post">
-			<table>
+	<h2 id="loginH2">사용자 로그인</h2>
+	<div id="loginDiv">
+		<form action="loginCtr.do" id="loginForm" method="post">
+			<table id="loginTable">
 				<tr>
 					<td>아이디</td>
 					<td><input type="text" name="id" id="memberId"></td>
@@ -51,11 +82,14 @@
 					<td><input type="password" name='password' id="memberPassword"></td>
 				</tr>
 				<tr>
-					<td> 
-						<input type="button" value="로그인" onclick="loginFnc();">
+					<td colspan="2"> 
+						<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();">
 					</td>
-					<td>
-						<input type="button" value="회원가입" onclick="myRegisterFnc();">
+				</tr>
+				
+				<tr>	
+					<td colspan="2">
+						<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
 					</td>
 				</tr>
 			</table>
