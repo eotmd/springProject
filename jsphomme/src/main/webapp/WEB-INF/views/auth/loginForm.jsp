@@ -25,8 +25,13 @@
 		}
 		
 		var formObj = document.getElementById("login")
-		formObj.submit();
-		
+		formObj.submit();		
+			
+	}
+	
+	
+	function myRegisterFnc() {
+		location.href = "../member/add.do";
 	}
 </script>
 </head>
@@ -46,8 +51,11 @@
 					<td><input type="password" name='password' id="memberPassword"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="button" value="로그인"
-						onclick="loginFnc();">
+					<td> 
+						<input type="button" value="로그인" onclick="loginFnc();">
+					</td>
+					<td>
+						<input type="button" value="회원가입" onclick="myRegisterFnc();">
 					</td>
 				</tr>
 			</table>

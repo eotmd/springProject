@@ -82,18 +82,18 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/addCtr.do", method = RequestMethod.POST)
-	public String memberAdd(MemberVo memberVo, MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
+	public String memberAddCtr(MemberVo memberVo, Model model) {
 		log.trace("Welcome MemberController memberAdd 신규등록 처리! " + memberVo);
 
 		try {
-			memberService.memberInsert(memberVo, multipartHttpServletRequest);
+//			memberService.memberInsert(memberVo);;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 
 			e.printStackTrace();
 		}
 
-		return "redirect:/member/detail.do";
+		return "auth/login";
 	}
 
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
@@ -104,13 +104,14 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
-	public String loginCtr(String id, String password, String authority, HttpSession session, Model model) {
+	public String loginCtr(String id, String password, String authority, String address, HttpSession session, Model model) {
 		log.debug("Welcome MemberController loginCtr! " + id + ", " + password + authority);
 
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("id", id);
 		paramMap.put("password", password);
 		paramMap.put("authority", authority);
+		paramMap.put("address", address);
 		MemberVo memberVo = memberService.memberExist(paramMap);
 
 		String viewUrl = "";
@@ -205,6 +206,23 @@ public class MemberController {
 		}
 
 		return "redirect:/member/list.do";
+	}
+	
+	@RequestMapping(value = "/member/leaveCtr.do", method = RequestMethod.GET)
+	public String memberLeave(HttpSession session, int memberNo, Model model) {
+		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", memberNo);
+
+		try {
+			memberService.memberDelete(memberNo);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		session.invalidate();
+
+		return "redirect:/auth/login.do";
 	}
 
 }

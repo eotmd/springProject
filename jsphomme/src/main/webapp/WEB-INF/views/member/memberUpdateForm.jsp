@@ -37,9 +37,10 @@
 		연락처: <input type="number" name="hp" value="${memberVo.hp}"><br>
 		
 		
-		<input type="submit" value="수정완료">
+		
 		<input type="button" value="이전페이지" 
 				onclick="pageMoveBeforeFnc(${memberVo.memberNo});">
+		<input type="submit" value="수정완료">
 
 	</form>
 	

@@ -56,8 +56,6 @@
 			
 		INSERT INTO MEMBER(
 	    MEMBER_NO,
-	    STATUS,
-	    AUTHORITY,
 	    NAME,
 	    ID,
 	    PASSWORD,
@@ -68,8 +66,7 @@
 	)
 	values(
 	    MEMBER_NO_SEQ.nextval,
-	    #{memberNO},	#{status},
-	    #{authority},	#{name},
+	    #{memberNO},	#{name},
 	    #{id},			#{password},
 	    #{address},
 	    SYSDATE,

@@ -19,6 +19,9 @@
 		location.href = "list.do";
 	}
 	
+	function leaveFnc() {
+		location.href = "./leaveCtr.do?memberNo=" + ${memberVo.memberNo};
+	}
 	
 </script>
 
@@ -41,9 +44,11 @@
 		연락처: <input type="number" name="hp" value="${memberVo.hp}"
 			readonly="readonly"><br>
 		
+		
+		<input type="button" value="이전페이지" onclick="pageMoveListFnc();">
+		<input type="button" value="탈퇴하기" onclick="leaveFnc(${memberVo.memberNo});">
 		<input type="submit" value="수정하기" >
-		<input type="button" value="이전페이지" 
-				onclick="pageMoveListFnc();">
+
 
 	</form>
 	

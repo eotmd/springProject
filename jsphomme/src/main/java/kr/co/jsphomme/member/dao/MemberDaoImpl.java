@@ -4,6 +4,7 @@ package kr.co.jsphomme.member.dao;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 import java.util.Map;
@@ -22,8 +23,9 @@ public class MemberDaoImpl implements MemberDao{
 	String namespace = "kr.co.jsphomme.member.";
 	
 	@Override
-	public MemberVo memberInsert(MemberVo memberVo) {
+	public MemberVo memberInsert(MemberVo memberVo ) {
 		// TODO Auto-generated method stub
+//		return sqlSession.insert(namespace + "memberInsertOne", memberVo);	
 		return null;
 	}
 
