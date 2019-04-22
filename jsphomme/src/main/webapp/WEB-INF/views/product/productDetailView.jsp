@@ -12,7 +12,9 @@
 	src="/jsphomme/resources/js/jquery-3.3.1.js"></script>
 
 <script type="text/javascript">
-
+function goUpdate() {
+	location.href = "/jsphomme/product/updateMove.do?productNo=${productVo.productNo}"
+};
 </script>
 
 <style type="text/css">
@@ -107,6 +109,11 @@
 				<tr>
 					<td colspan="2"><input type="submit" value="즉시 구매"></td>
 				</tr>
+				<c:if test="${_memberVo_.authority == 0}">
+					<tr>
+						<td colspan="2"><input type="button" value="수정하기" onclick="goUpdate();"></td>
+					</tr>
+				</c:if>
 	<%-- 			<c:if test="${_memberVo_.authority == '0'}"> --%>
 	<!-- 				<tr> -->
 	<!-- 					<td colspan="2"><input type="button" value="제품 삭제" onclick="deleteFnc();"></td> -->

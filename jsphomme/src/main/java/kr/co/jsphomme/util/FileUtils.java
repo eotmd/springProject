@@ -18,6 +18,27 @@ public class FileUtils {
 
 	private static final String filePath = "C:\\upload";
 
+	public List<MultipartFile> getFile(MultipartHttpServletRequest multipartHttpServletRequest) {
+		
+		Iterator<String> iteratorFileName = multipartHttpServletRequest.getFileNames();
+		List<MultipartFile> fileList = new ArrayList<MultipartFile>();
+		MultipartFile multipartFile = null;
+		
+		while (iteratorFileName.hasNext()) {
+		
+			multipartFile = multipartHttpServletRequest.getFile(iteratorFileName.next());
+			
+			if (multipartFile.isEmpty() == false) {
+				
+				fileList.add(multipartFile);
+			
+			}
+			
+		}
+		
+		return fileList;
+	}
+	
 //	int parentSeq는 파일이 담겨진 테이블의 기본키값이다
 	public void parseInsertFileInfo(ProductVo productVo,
 			MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
@@ -59,9 +80,9 @@ public class FileUtils {
 
 	
 //	int parentSeq는 파일이 담겨진 테이블의 기본키값이다
-	public boolean parseUpdateFileInfo(Map<String, Object> tempFileMap) {
+	public boolean parseUpdateFileInfo(ProductVo productVo) {
 
-		String storedFileName = (String)tempFileMap.get("STORED_FILE_NAME");
+		String storedFileName = productVo.getStoredFileName();
 		
 		File file = new File(filePath + "/" +storedFileName);
 		

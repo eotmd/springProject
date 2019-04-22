@@ -54,7 +54,7 @@ public class ProductDaoImpl implements ProductDao{
 	public int productUpdate(ProductVo productVo) {
 		// TODO Auto-generated method stub
 		
-		return 0;
+		return sqlSession.update(namespace + "productUpdate", productVo);
 	}
 
 	@Override
