@@ -37,7 +37,7 @@ function memberListFnc() {
 }
 
 function purchaseListFnc(memberNo) {
-	location.href = "/jsphomme/purchacelist/purchaseList.do=?memberNo" + memberNo;
+	location.href = "/jsphomme/purchase/list.do?memberNo=" + memberNo;
 }
 
 function logoutFnc() {

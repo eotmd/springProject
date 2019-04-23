@@ -16,7 +16,7 @@
 
 	#tableCon{
 		width: 1550px;
-		height:250px;
+		height:350px;
 		margin: auto;
 		background-color: #F6F6F6;
 		box-shadow:  7px 7px 20px -8px gray;
@@ -101,15 +101,15 @@
 			</tr>
 		</table>
 		<ins><hr></ins>
-		<div id="tableCon2" style="height: 200px;">
+		<div id="tableCon2" style="height: 300px;">
 		<table class="tableId" style="height: 200px;">
 			<tr>	
-				<td class="tableBt" style="310px; height: 160px"><img style="width: 300px; height: 150px;" alt="${purchaseListVo.storedFileName}" src="<c:url value='/img/${purchaseListVo.storedFileName}'/>"></td>		
+				<td class="tableBt" style="310px; height: 310px"><img style="width: 300px; height: 300px;" alt="${purchaseListVo.storedFileName}" src="<c:url value='/img/${purchaseListVo.storedFileName}'/>"></td>		
 				<td class="tableBt" style="font-weight: bold; width: 300px;">${purchaseListVo.productName}</td>
-				<td class="tableBt" style="width: 223px;">${purchaseListVo.productPrice}</td>
+				<td class="tableBt" style="width: 223px;"><fmt:formatNumber value="${purchaseListVo.productPrice}" pattern="#,###"/></td>
 				<td class="tableBt" style="width: 223px;">${purchaseListVo.productSize}</td>
 				<td class="tableBt" style="width: 222px;">${purchaseListVo.purchaseQuantity}</td>
-				<td class="tableBt" style="width: 222px;">${purchaseListVo.productPrice * purchaseListVo.purchaseQuantity}</td>
+				<td class="tableBt" style="width: 222px;"><fmt:formatNumber value="${purchaseListVo.productPrice * purchaseListVo.purchaseQuantity}" pattern="#,###"/></td>
 			</tr>
 			
 		</table>
@@ -119,7 +119,7 @@
 	<div id="memberInfoCon">
 	<br/>
 	<br/>
-		<form action="/jsphomme/purchaseFinish.do" method="post">
+		<form action="/jsphomme/purchase/finish.do" method="post">
 			<div id="memberInfoId">
 			
 				<input class="memberInfoSample" type="text" disabled="disabled" value="받는 사람"><br/>
@@ -131,6 +131,7 @@
 				<input class="memberInfoSample" type="text" disabled="disabled" style="color: #6EE3F7;" value="요청사항"><br/>
 				<input class="memberInfoInput" type="text" style="color: #6EE3F7;" name="requests" value="요청사항"><br/>
 				<ins><hr style="border:solid 1px #6EE3F7; margin-top: 1px;"></ins>
+				<span>기본적인 배송 정보는 회원님의 정보를 기본으로 하고 있으나 <br/>자유롭게 변경 가능하오니 받으실 분의 정보를 입력해주시면 감사하겠습니다.</span>
 			</div>
 			
 			<div style="height: 100px;">

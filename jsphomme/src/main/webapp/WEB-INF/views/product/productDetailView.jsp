@@ -62,7 +62,7 @@ function goUpdate() {
 	<h1>${productVo.name}</h1>
 	<div class="detailView">
 		
-		<form action="../purchaseView.do">
+		<form action="../purchase/view.do">
 			<input type="hidden" name = "productName" value="${productVo.name}">
 			<input type="hidden" name = "storedFileName" value="${productVo.storedFileName}">
 			<input type="hidden" name = "productPrice" value="${productVo.price}">

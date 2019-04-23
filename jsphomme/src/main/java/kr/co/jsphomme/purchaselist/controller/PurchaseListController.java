@@ -27,7 +27,7 @@ public class PurchaseListController {
 	@Autowired
 	private PurchaseListService purchaseListService;
 	
-	@RequestMapping(value="/purchaseList.do", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/purchase/list.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String PurchaseListView(@RequestParam(defaultValue ="1") int curPage, int memberNo ,HttpServletRequest req ,Model model) {
 		
 		int num = 0;
@@ -69,7 +69,7 @@ public class PurchaseListController {
 		return "purchaseList/purchaseListViewForm";
 	}
 	
-	@RequestMapping(value="/purchaseView.do", method = RequestMethod.GET)
+	@RequestMapping(value="/purchase/view.do", method = RequestMethod.GET)
 	public String PurchaseView(PurchaseListVo purchaseListVo, Model model) {
 		
 		
@@ -78,7 +78,7 @@ public class PurchaseListController {
 		return "purchaseList/purchaseViewForm";
 	}
 	
-	@RequestMapping(value="/purchaseFinish.do", method = RequestMethod.POST)
+	@RequestMapping(value="/purchase/finish.do", method = RequestMethod.POST)
 	public String PurchaseListInsert(PurchaseListVo purchaseListVo,HttpServletRequest req ,Model model) {
 		
 		purchaseListService.purchaseListCreate(purchaseListVo);
@@ -86,7 +86,7 @@ public class PurchaseListController {
 		
 		req.setAttribute("memberNo", purchaseListVo.getMemberNo());
 		
-		return "forward:/purchaseList.do";
+		return "forward:/purchase/list.do";
 	}
 //	
 }
