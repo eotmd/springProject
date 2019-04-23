@@ -138,6 +138,9 @@ public class MemberController {
 //			viewUrl = "/common/siteMainPage"; 
 			viewUrl = "redirect:/product/list.do";  // 일단 조회수 기능 구현전이라 상품리스트 페이지가 메인페이지의 역할을 대신하고 있다
 		
+			
+			//자동로그인 아직 구현안함;;;;
+			
 //			if ( memberVo.isUseCookie() ){ // dto 클래스 안에 useCookie 항목에 폼에서 넘어온 쿠키사용 여부(true/false)가 들어있을 것임
 //                // 쿠키 사용한다는게 체크되어 있으면...
 //                // 쿠키를 생성하고 현재 로그인되어 있을 때 생성되었던 세션의 id를 쿠키에 저장한다.
