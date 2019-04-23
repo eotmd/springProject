@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>${productVo.name}</title>
 
+<link rel = "stylesheet" type = "text/css" href = "/jsphomme/resources/css/buttonCss.css">
+
 <script type="text/javascript" 
 	src="/jsphomme/resources/js/jquery-3.3.1.js"></script>
 
@@ -21,6 +23,11 @@ function goLogin() {
 	
 	location.href = "/jsphomme/auth/login.do";
 }
+
+function goBack() {
+	location.href = "/jsphomme/product/list.do"
+}
+
 </script>
 
 <style type="text/css">
@@ -57,17 +64,6 @@ function goLogin() {
 		border-radius: 7px;
 	}
 	
-	.button{
-		border: 1px;
-		background: white;
-		font-size: 20px;
-		font-weight: bold;
-	}
-	
-	.button:hover {
-		color: gray;
-	}
-	
 }
 </style>
 
@@ -89,21 +85,21 @@ function goLogin() {
 	
 			<table class="explanation">
 				<tr>
-					<td style="width: 150px;">번호</td>
+					<td style="width: 150px; font-weight: bold;">번호</td>
 					<td>${productVo.productNo}<input type="hidden" name="productNo" value="${productVo.productNo}">
 					</td>
 				</tr>
 				<tr>
-					<td style="width: 150px;">상품명</td>
+					<td style="width: 150px; font-weight: bold;">상품명</td>
 					<td>${productVo.name}</td>
 				</tr>
 				<tr>
-					<td style="width: 150px;">가격</td>
+					<td style="width: 150px; font-weight: bold;">가격</td>
 					<td>${productVo.price}</td>
 				</tr>
 				<c:if test="${productVo.quantity > 0}">
 					<tr>
-						<td style="width: 150px;">사이즈</td>
+						<td style="width: 150px; font-weight: bold;">사이즈</td>
 						<td><select name="productSize">
 							<option value="S">S</option>
 							<option value="M">M</option>
@@ -114,7 +110,7 @@ function goLogin() {
 						</select></td>
 					</tr>
 					<tr>
-						<td style="width: 150px;">수량</td>
+						<td style="width: 150px; font-weight: bold;">수량</td>
 							<td><input type="number" name="purchaseQuantity" value="1" max="${productVo.quantity}" min="1"></td>
 					</tr>
 				</c:if>
@@ -123,27 +119,28 @@ function goLogin() {
 						<td colspan="2">품절</td>
 					</tr>
 				</c:if>
+					<tr>
+						<td><input type="button" value="뒤로가기" 
+							class="goBackBtn" onclick="goBack();"></td>
 				<c:if test="${_memberVo_ == null}">
-					<td colspan="2">
-						<input type="button" class="button" value="즉시 구매" onclick="goLogin();">
-					</td>
+						<td>
+							<input type="button" value="즉시 구매" 
+								class="goBuyBtn" onclick="goLogin();">
+						</td>
+					</tr>
 				</c:if>
 				<c:if test="${_memberVo_ != null}">
-					<tr>
-						<td colspan="2"><input type="submit" class="button" value="즉시 구매"></td>
+						<td colspan="2"><input type="submit" 
+							class="goBuyBtn" value="즉시 구매"></td>
 					</tr>
 				</c:if>
 				<c:if test="${_memberVo_.authority == '0'}">
 					<tr>
-						<td colspan="2"><input type="button" class="button" 
-							value="수정하기" onclick="goUpdate();"></td>
+						<td colspan="2"><input type="button" value="수정하기"
+							class="goUpdateBtn" onclick="goUpdate();"></td>
 					</tr>
 				</c:if>
-	<%-- 			<c:if test="${_memberVo_.authority == '0'}"> --%>
-	<!-- 				<tr> -->
-	<!-- 					<td colspan="2"><input type="button" value="제품 삭제" onclick="deleteFnc();"></td> -->
-	<!-- 				</tr> -->
-	<%-- 			</c:if> --%>
+				
 			</table>
 		</form>
 		

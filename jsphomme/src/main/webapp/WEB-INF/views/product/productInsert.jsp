@@ -42,7 +42,10 @@ function goInsert() {
 	}
 	
 	formTagObj.submit();
-	
+}
+
+function goBack() {
+	location.href = "/jsphomme/product/list.do"
 }
 
 </script>
@@ -118,9 +121,11 @@ function goInsert() {
 				</tr>
 			</table>
 			<div style="clear: both;">			
+			<input type="button" value="뒤로가기" onclick="goBack();">
 				<textarea name="detail"></textarea>
 			</div>
 		</form>
+		
 		
 	</div>
 	

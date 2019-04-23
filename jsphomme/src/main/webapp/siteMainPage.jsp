@@ -10,7 +10,9 @@
 
 <script type="text/javascript">
 
-
+function goProductList() {
+	location.href = "/jsphomme/product/list.do";
+}
 
 </script>
 
@@ -74,7 +76,7 @@
 			<ul>
 				<li>
 					<span>
-						<a href='#'>
+						<a href='#' onclick="goProductList();">
 							<img alt="1" src="/jsphomme/resources/images/main_1.jpg">
 						</a>
 					</span>
@@ -83,7 +85,7 @@
 			<ul>
 				<li>
 					<span>
-						<a href='#'>
+						<a href='#' onclick="goProductList();">
 							<img alt="2" src="/jsphomme/resources/images/main_2.jpg">
 						</a>
 					</span>
@@ -92,7 +94,7 @@
 			<ul>
 				<li>
 					<span>
-						<a href='#'>
+						<a href='#' onclick="goProductList();">
 							<img alt="3" src="/jsphomme/resources/images/main_3.jpg">
 						</a>
 					</span>
