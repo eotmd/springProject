@@ -2,15 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
+
 
 <link rel = "stylesheet" type = "text/css" href = "/jsphomme/resources/css/headerStyle.css">
 
 
-<title>JSP Homme</title>
 
 <script type="text/javascript">
 function shopNameFnc() {
@@ -44,7 +41,7 @@ function logoutFnc() {
 	location.href = "/jsphomme/auth/logout.do";
 }
 
-function loginFnc() {
+function LoginFnc() {
 	location.href = "/jsphomme/auth/login.do";
 }
 
@@ -52,9 +49,6 @@ function menswearFnc() {
 	location.href ="/jsphomme//product/list.do";
 }
 </script>
-</head>
-<body>
-
 
 
 <div id="headerContainer" >   
@@ -98,9 +92,9 @@ function menswearFnc() {
 <c:if test="${_memberVo_== null}">	
 	<div class="fncButton">	
 		<span> ${_memberVo_.name} </span>
-		<input class="myPageBtn" type="button" value="마이페이지" onclick="loginFnc();">
-		<input class="purchaseListBtn" type="button" value="구매목록" onclick="loginFnc();">
-		<input class="logoutBtn" type="button" value="로그인"  onclick="loginFnc();" >
+		<input class="myPageBtn" type="button" value="마이페이지" onclick="LoginFnc();">
+		<input class="purchaseListBtn" type="button" value="구매목록" onclick="LoginFnc();">
+		<input class="logoutBtn" type="button" value="로그인"  onclick="LoginFnc();" >
 	</div> 
 	
 </c:if>	
@@ -121,5 +115,3 @@ function menswearFnc() {
 </div>
 
 
-</body>
-</html>
