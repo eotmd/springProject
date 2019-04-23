@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.jsphomme.member.vo.MemberVo;
 import kr.co.jsphomme.product.vo.ProductVo;
 import kr.co.jsphomme.purchaselist.service.PurchaseListService;
 import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
@@ -71,7 +73,15 @@ public class PurchaseListController {
 	}
 	
 	@RequestMapping(value="/purchase/view.do", method = RequestMethod.GET)
-	public String PurchaseView(PurchaseListVo purchaseListVo, Model model) {
+	public String PurchaseView(PurchaseListVo purchaseListVo, HttpSession session, Model model) {
+		
+		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
+		
+		if(memberVo == null) {
+			return "redirect:/auth/login.do";
+		}
+		
+		
 		
 		
 		model.addAttribute("purchaseListVo", purchaseListVo);
@@ -80,9 +90,18 @@ public class PurchaseListController {
 	}
 	
 	@RequestMapping(value="/purchase/finish.do", method = RequestMethod.POST)
-	public String PurchaseListInsert(PurchaseListVo purchaseListVo,HttpServletRequest req ,Model model) {
+	public String PurchaseListInsert(PurchaseListVo purchaseListVo,HttpServletRequest req , HttpSession session, Model model) {
 		
 		purchaseListService.purchaseListCreate(purchaseListVo);
+		
+		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
+		
+		if(memberVo == null) {
+			return "redirect:/auth/login.do";
+		}
+		
+		
+		
 		
 		
 		req.setAttribute("memberNo", purchaseListVo.getMemberNo());
