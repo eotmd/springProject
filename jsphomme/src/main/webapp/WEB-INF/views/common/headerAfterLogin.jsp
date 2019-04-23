@@ -16,7 +16,7 @@
 function shopNameFnc() {
 	
 // 	location.href="/jsphomme/common/main.do";    // 이후 조회수를 구현하게되면 이를 사용하자
-	location.href="/jsphomme/product/list.do";
+	location.href="/jsphomme";
 	
 }
 
@@ -42,6 +42,10 @@ function purchaseListFnc(memberNo) {
 
 function logoutFnc() {
 	location.href = "/jsphomme/auth/logout.do";
+}
+
+function loginFnc() {
+	location.href = "/jsphomme/auth/login.do";
 }
 
 function menswearFnc() {
@@ -87,6 +91,16 @@ function menswearFnc() {
 		<input class="myPageBtn" type="button" value="마이페이지" onclick="myPageFnc(${_memberVo_.memberNo});">
 		<input class="purchaseListBtn" type="button" value="구매목록" onclick="purchaseListFnc(${_memberVo_.memberNo});">
 		<input class="logoutBtn" type="button" value="로그아웃"  onclick="logoutFnc();" >
+	</div> 
+	
+</c:if>	
+
+<c:if test="${_memberVo_== null}">	
+	<div class="fncButton">	
+		<span> ${_memberVo_.name} </span>
+		<input class="myPageBtn" type="button" value="마이페이지" onclick="loginFnc();">
+		<input class="purchaseListBtn" type="button" value="구매목록" onclick="loginFnc();">
+		<input class="logoutBtn" type="button" value="로그인"  onclick="loginFnc();" >
 	</div> 
 	
 </c:if>	
