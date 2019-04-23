@@ -19,19 +19,19 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 	public PurchaseListDao purchaseListDao; 
 	
 	@Override
-	public PurchaseListVo purchaseListInsert(PurchaseListVo purchaseListVo) {
+	public PurchaseListVo purchaseListCreate(PurchaseListVo purchaseListVo) {
 		// TODO Auto-generated method stub
-		return null;
+		return purchaseListDao.purchaseListCreate(purchaseListVo);
 	}
 
 	@Override
-	public List<PurchaseListVo> purchaseListView(int start, int end) {
+	public List<PurchaseListVo> purchaseListView(int start, int end, int memberNo) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("start", start);
 		map.put("end", end);
-		
+		map.put("memberNo", memberNo);
 		List<PurchaseListVo> purchaseList = purchaseListDao.purchaseListView(map);
 		
 		
@@ -45,9 +45,9 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 	}
 
 	@Override
-	public int purchaseListCount() {
+	public int purchaseListCount(int memberNo) {
 		
-		return purchaseListDao.purchaseListCount();
+		return purchaseListDao.purchaseListCount(memberNo);
 	}
 
 	@Override

@@ -28,16 +28,35 @@ public class PurchaseListController {
 	private PurchaseListService purchaseListService;
 	
 	@RequestMapping(value="/purchaseList.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String PurchaseListView(@RequestParam(defaultValue ="1") int curPage,Model model) {
+	public String PurchaseListView(@RequestParam(defaultValue ="1") int curPage, int memberNo ,HttpServletRequest req ,Model model) {
 		
-		int num = purchaseListService.purchaseListCount();
+		int num = 0;
+		
+		if(req.getAttribute("memberNo") == null) {
+			
+			num = purchaseListService.purchaseListCount(memberNo);
+		}else {
+			
+			num = purchaseListService.purchaseListCount((Integer)req.getAttribute("memberNo"));
+		}
+		
 		
 		Paging purchaseListPaging = new Paging(num, curPage);
 		
 		int start = purchaseListPaging.getPageBegin();
 		int end = purchaseListPaging.getPageEnd();
 		
-		List<PurchaseListVo> purchaseList = purchaseListService.purchaseListView(start, end);
+		List<PurchaseListVo> purchaseList = null;
+		
+		if(req.getAttribute("memberNo") == null) {
+			
+			
+			purchaseList = purchaseListService.purchaseListView(start, end, memberNo);
+		}else {
+			
+			
+			purchaseList = purchaseListService.purchaseListView(start, end, (Integer)req.getAttribute("memberNo"));
+		}
 		
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", num);
@@ -59,18 +78,15 @@ public class PurchaseListController {
 		return "purchaseList/purchaseViewForm";
 	}
 	
-//	@RequestMapping(value="/purchaseListInsert.do", method = RequestMethod.GET)
-//	public String PurchaseListInsert(HttpServletRequest req, Model model) {
-//		
-//		
-//		req.getAttribute("")
-//		
-//		
-//		
-//		
-//		
-//		
-//		return "";
-//	}
+	@RequestMapping(value="/purchaseFinish.do", method = RequestMethod.POST)
+	public String PurchaseListInsert(PurchaseListVo purchaseListVo,HttpServletRequest req ,Model model) {
+		
+		purchaseListService.purchaseListCreate(purchaseListVo);
+		
+		
+		req.setAttribute("memberNo", purchaseListVo.getMemberNo());
+		
+		return "forward:/purchaseList.do";
+	}
 //	
 }
