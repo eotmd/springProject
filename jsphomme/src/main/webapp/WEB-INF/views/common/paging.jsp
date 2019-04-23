@@ -48,9 +48,8 @@
 </style>
 
 <script type="text/javascript"
-	src="/jsphomme/resources/js/jquery-3.3.1.js"></script>
-
-<script type="text/javascript">
+	src="/jsphomme/resources/js/jquery-3.3.1.js">
+	
    function goPageFnc(pageNumber) {
       var curPage = $("#curPage");  // = document.getElementById("curPage"); 동일함
       curPage.val(pageNumber);
@@ -58,16 +57,15 @@
       $("#pagingForm").submit();
    }
    
-   window.onload = function() {
-      var curPageDoc = $('#curPage');
-      var id = '#pageButton'+curPageDoc.val();
-      
-      $(id).addClass('active');
-   }
+   $(document).ready(function(){
+	   var curPageDoc = $('#curPage');
+	      var id = '#pageButton'+curPageDoc.val();
+	      
+	      $(id).addClass('active');
+   });
+
+
 </script>
-
-
-
 
 <nav class="paging">
 	<ul>
