@@ -2,128 +2,124 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
- 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Welcome JSP Homme!</title>
+
+<script type="text/javascript">
+
+
+
+</script>
+
 <style type="text/css">
 	
-	.detailView {
-		margin: auto;
-		width: 1200px;
-		overflow: hidden;
+	* {
+		margin: 0;
+		padding: 0;
 	}
 	
-	.explanation {
-		float: right;
-		width: 600px;
+	.mainImg{
+		overflow: hidden;
+		margin: auto;
+		width: 1200px;
 	}
-
-	.detail > ul  {
-		list-style-type: none;
-		font-size: 20px;
+	
+	nav {
 		
 	}
 	
-	img {
-		width: 500px;
-		height: 500px;
+	.mainImg ul{
+		width: 400px;
 		float: left;
 	}
 	
-	textarea {
-		resize: none;
-		width: 1190px;
-		margin: auto;
-		margin-top: 50px;
-		height: 400px;
-		border-radius: 7px;
+	li{
+		list-style-type: none;
 	}
 	
-}
+	.mainImg ul li{
+		text-align: center;
+		
+	}
+	
+	.mainImg img{
+		width: 380px;
+		height: 300px;
+	}
+	
+	a{
+		text-decoration: none;
+		color: black;
+	}
+	
+	.introduce{
+		width: 800px;
+		margin: auto;
+		margin-top: 50px;
+	}
+	
 </style>
-
-
-
-<title>JSP HOMME 메인화면입니다</title>
-
-<script type="text/javascript" 
-	src="/jsphomme/resources/js/jquery-3.3.1.js"></script>
-
-
 
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
-
-<h1>${productVo.name}</h1>
-	<div class="detailView">
-		
-		<form action="../purchaseView.do">
-			<input type="hidden" name = "productName" value="${productVo.name}">
-			<input type="hidden" name = "storedFileName" value="${productVo.storedFileName}">
-			<input type="hidden" name = "productPrice" value="${productVo.price}">
-			<span>
-				<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
-			</span>
+	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"></jsp:include>
 	
-			<table class="explanation">
-				<tr>
-					<td style="width: 150px;">번호</td>
-					<td>${productVo.productNo}<input type="hidden" name="productNo" value="${productVo.productNo}">
-					</td>
-				</tr>
-				<tr>
-					<td style="width: 150px;">상품명</td>
-					<td>${productVo.name}</td>
-				</tr>
-				<tr>
-					<td style="width: 150px;">가격</td>
-					<td>${productVo.price}</td>
-				</tr>
-				<c:if test="${productVo.quantity > 0}">
-					<tr>
-						<td style="width: 150px;">사이즈</td>
-						<td><select name="productSize">
-							<option value="S">S</option>
-							<option value="M">M</option>
-							<option value="L">L</option>
-							<option value="XL">XL</option>
-							<option value="XXL">XXL</option>
-							<option value="XXXL">XXXL</option>
-						</select></td>
-					</tr>
-					<tr>
-						<td style="width: 150px;">수량</td>
-							<td><input type="number" name="purchaseQuantity" value="1" max="${productVo.quantity}" min="1"></td>
-					</tr>
-				</c:if>
-				<c:if test="${productVo.quantity == 0}">
-					<tr>			
-						<td colspan="2">품절</td>
-					</tr>
-				</c:if>
-				<tr>
-					<td colspan="2"><input type="submit" value="즉시 구매"></td>
-				</tr>
-	<%-- 			<c:if test="${_memberVo_.authority == '0'}"> --%>
-	<!-- 				<tr> -->
-	<!-- 					<td colspan="2"><input type="button" value="제품 삭제" onclick="deleteFnc();"></td> -->
-	<!-- 				</tr> -->
-	<%-- 			</c:if> --%>
-			</table>
-		</form>
-		
-		<div style="clear: both;">			
-			${productVo.detail}
-		</div>
+	<h1>JSP Homme</h1>
+	<div class="mainImg">
+		<nav>
+			<ul>
+				<li>
+					<span>
+						<a href='#'>
+							<img alt="1" src="/jsphomme/resources/images/main_1.jpg">
+						</a>
+					</span>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<span>
+						<a href='#'>
+							<img alt="2" src="/jsphomme/resources/images/main_2.jpg">
+						</a>
+					</span>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<span>
+						<a href='#'>
+							<img alt="3" src="/jsphomme/resources/images/main_3.jpg">
+						</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div class="introduce">
+		저희 JSP Homme는 영국에서 최초로 시작되어 저희의 옷을 입는 모든 사람에게 행운을 주었고
+		바로 지금! 당신에게 행운의 기회가 찾아왔습니다. 당신은 4일안에 저희의 옷을 당신곁의 모든 사람에게 추천해 주어야 합니다. 
+		이 문구를 포함해서 총 7명의 행운이 필요한 사람에게 보내 주셔야 합니다.
+		복사를 해도 좋습니다. 흑 미신이라 하실지 모르지만 사실입니다. 
+		영국에서 HGXWCH라는 사람은 1930년에 저희의 옷을 추천 받았습니다. 
+		그는 비서에게 시켜 당장 JSP Homme의 옷을 사고 주변인들에게 추천하라고 했습니다. 
+		며칠뒤에 복권이 당첨되어 20억을 받았습니다. 이떤이는 이 편지를 받았으나 
+		96시간 이내에 자신의 주변 사람들에게 추천해야 한다는 사실을 잊었습니다. 
+		그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7명의 사람에게 JSP Homme의 옷을 추천했는데
+		다시 좋은 직장을 얻었습니다.
+		기억해 주세요. 저희의 옷을 구매하지 않으면 행운은 찾아오지 않습니다. 
+		하지만 저희의 옷을 구매하고 다른 사람들에게 추천한다면 행운이 있을 것입니다. 
+		당신과 저희의 옷을 사는 모든 사람들은 7년의 행운이 있을 것이고,
+		이 문구를 무시하거나 옷을 구매하지 않는 사람들은 3년의 불행이 있을 것입니다.
+		아디오스..
 		
 	</div>
 	
-
-<jsp:include page="/WEB-INF/views/common/tail.jsp" />
-
+	<jsp:include page="/WEB-INF/views/common/tail.jsp"></jsp:include>
+	
 </body>
 </html>

@@ -13,7 +13,37 @@
 
 <script type="text/javascript">
 
-
+function goInsert() {
+	
+	var fileObj = document.getElementById("file");
+	var nameObj = document.getElementById("name");
+	var priceObj = document.getElementById("price");
+	var quantityObj = document.getElementById("quantity");
+	var formTagObj = document.getElementById("formTag");
+	
+	if (fileObj.value == "") {
+		alert("파일을 추가해주세요!");
+		return false;
+	}
+	
+	if (nameObj.value == "") {
+		alert("상품 이름을 입력해주세요!");
+		return false;
+	}
+	
+	if (priceObj.value == "") {
+		alert("가격을 입력해주세요!");
+		return false;
+	}
+	
+	if (quantityObj.value == "") {
+		alert("입고 물량을 입력해주세요!");
+		return false;
+	}
+	
+	formTagObj.submit();
+	
+}
 
 </script>
 
@@ -51,6 +81,10 @@
 		border-radius: 7px;
 	}
 	
+	.explanation > td{
+		width: 150px;
+	}
+	
 }
 </style>
 
@@ -61,27 +95,26 @@
 	
 	<h1>상품 등록</h1>
 	<div class="detailView">
-		<form action="./insert.do" method="post" enctype="multipart/form-data">
-			<span class="image">
-				<input type="file" name="file">
-			</span>
-		
+		<form action="./insert.do" id="formTag" method="post" enctype="multipart/form-data">
 			<table class="explanation">
 				<tr>
-					<td style="width: 150px;">상품 이름</td>
-					<td><input type="text" name="name"></td>
+					<td colspan="2"><input type="file" id="file" name="file"></td>
 				</tr>
 				<tr>
-					<td style="width: 150px;">가격</td>
-					<td><input type="number" name="price"></td>
+					<td>상품 이름</td>
+					<td><input type="text" id="name" name="name"></td>
 				</tr>
 				<tr>
-					<td style="width: 150px;">입고 물량</td>
-					<td><input type="number" name="quantity"></td>
+					<td>가격</td>
+					<td><input type="number" id="price" name="price"></td>
 				</tr>
 				<tr>
-					<td style="width: 150px;"><input type="reset" value="취소"></td>
-					<td><input type="submit" value="등록"></td>
+					<td>입고 물량</td>
+					<td><input type="number" id="quantity" name="quantity"></td>
+				</tr>
+				<tr>
+					<td><input type="reset" value="취소"></td>
+					<td><input type="button" value="등록" onclick="goInsert();"></td>
 				</tr>
 			</table>
 			<div style="clear: both;">			

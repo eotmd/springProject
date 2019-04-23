@@ -15,6 +15,12 @@
 function goUpdate() {
 	location.href = "/jsphomme/product/updateMove.do?productNo=${productVo.productNo}"
 };
+
+function goLogin() {
+	alert("로그인을 하셔야 합니다!");
+	
+	location.href = "/jsphomme/auth/login.do";
+}
 </script>
 
 <style type="text/css">
@@ -49,6 +55,17 @@ function goUpdate() {
 		margin-top: 50px;
 		height: 400px;
 		border-radius: 7px;
+	}
+	
+	.button{
+		border: 1px;
+		background: white;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	
+	.button:hover {
+		color: gray;
 	}
 	
 }
@@ -106,12 +123,20 @@ function goUpdate() {
 						<td colspan="2">품절</td>
 					</tr>
 				</c:if>
-				<tr>
-					<td colspan="2"><input type="submit" value="즉시 구매"></td>
-				</tr>
-				<c:if test="${_memberVo_.authority == 0}">
+				<c:if test="${_memberVo_ == null}">
+					<td colspan="2">
+						<input type="button" class="button" value="즉시 구매" onclick="goLogin();">
+					</td>
+				</c:if>
+				<c:if test="${_memberVo_ != null}">
 					<tr>
-						<td colspan="2"><input type="button" value="수정하기" onclick="goUpdate();"></td>
+						<td colspan="2"><input type="submit" class="button" value="즉시 구매"></td>
+					</tr>
+				</c:if>
+				<c:if test="${_memberVo_.authority == '0'}">
+					<tr>
+						<td colspan="2"><input type="button" class="button" 
+							value="수정하기" onclick="goUpdate();"></td>
 					</tr>
 				</c:if>
 	<%-- 			<c:if test="${_memberVo_.authority == '0'}"> --%>
@@ -122,7 +147,7 @@ function goUpdate() {
 			</table>
 		</form>
 		
-		<div style="clear: both;">			
+		<div style="clear: both; ">
 			${productVo.detail}
 		</div>
 		
