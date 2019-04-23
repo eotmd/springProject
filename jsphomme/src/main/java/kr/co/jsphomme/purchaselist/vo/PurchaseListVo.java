@@ -14,6 +14,7 @@ public class PurchaseListVo {
 	private String requests = "";
 	private String address = "";
 	private int purchaseQuantity = 0;
+	private String recipient = "";
 	private String storedFileName = "";
 	
 	
@@ -22,11 +23,10 @@ public class PurchaseListVo {
 	}
 	
 	
-	
 
 	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, String productName, int productPrice,
 			String productSize, Date purchaseDate, String requests, String address, int purchaseQuantity,
-			String storedFileName) {
+			String recipient, String storedFileName) {
 		super();
 		this.purchaseListNo = purchaseListNo;
 		this.memberNo = memberNo;
@@ -38,6 +38,7 @@ public class PurchaseListVo {
 		this.requests = requests;
 		this.address = address;
 		this.purchaseQuantity = purchaseQuantity;
+		this.recipient = recipient;
 		this.storedFileName = storedFileName;
 	}
 
@@ -158,6 +159,16 @@ public class PurchaseListVo {
 	}
 
 
+	public String getRecipient() {
+		return recipient;
+	}
+
+
+
+	public void setRecipient(String recipient) {
+		this.recipient = recipient;
+	}
+
 
 
 	@Override
@@ -165,12 +176,13 @@ public class PurchaseListVo {
 		return "PurchaseListVo [purchaseListNo=" + purchaseListNo + ", memberNo=" + memberNo + ", productNo="
 				+ productNo + ", productName=" + productName + ", productPrice=" + productPrice + ", productSize="
 				+ productSize + ", purchaseDate=" + purchaseDate + ", requests=" + requests + ", address=" + address
-				+ ", purchaseQuantity=" + purchaseQuantity + "]";
+				+ ", purchaseQuantity=" + purchaseQuantity + ", recipient=" + recipient + ", storedFileName="
+				+ storedFileName + "]";
 	}
 
-	
-	
 
+
+	
 	
 	
 }

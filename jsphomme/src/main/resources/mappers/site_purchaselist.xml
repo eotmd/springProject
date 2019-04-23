@@ -6,6 +6,7 @@
 		<id column="PURCHASE_LIST_NO" property="purchaseListNo"/>
 		<id column="PRODUCT_NO" property="productNo"/>
 		<id column="NAME" property="productName"/>
+		<id column="RECIPIENT" property="recipient"/>
 		<id column="PRICE" property="productPrice"/>
 		<id column="PRODUCT_SIZE" property="productSize"/>
 		<id column="ADDRESS" property="address"/>
@@ -25,7 +26,8 @@
 			ADDRESS,
 			PURCHASE_DATE,
 			REQUESTS,
-			PURCHASE_LIST_QUANTITY
+			PURCHASE_LIST_QUANTITY,
+			RECIPIENT
 			FROM(
 				SELECT ROWNUM RNUM,
 				PURCHASE_LIST_NO,
@@ -36,7 +38,8 @@
 				P.ADDRESS,
 				P.PURCHASE_DATE,
 				P.REQUESTS,
-				P.PURCHASE_LIST_QUANTITY
+				P.PURCHASE_LIST_QUANTITY,
+				P.RECIPIENT
 				FROM(
 					SELECT PURCHASE_LIST_NO,
 					P.PRODUCT_NO,
@@ -46,7 +49,8 @@
 					PL.ADDRESS,
 					PL.PURCHASE_DATE,
 					REQUESTS,
-					PURCHASE_LIST_QUANTITY
+					PURCHASE_LIST_QUANTITY,
+					RECIPIENT
 					FROM PURCHASE_LIST PL, MEMBER M, PRODUCT P
 					WHERE M.MEMBER_NO = PL.MEMBER_NO
 					AND P.PRODUCT_NO = PL.PRODUCT_NO
@@ -54,6 +58,7 @@
 					) P
 			) PURCHASE_LIST
 			WHERE RNUM BETWEEN #{start} AND #{end}
+			ORDER BY PURCHASE_DATE DESC
 	</select>
 	
 	<select id="purchaseListCount" resultType="int">
@@ -77,9 +82,9 @@
 	
 	<select id="purchaseListCreate" resultMap="purchaseListResultMap">
 		INSERT INTO PURCHASE_LIST
-		(PURCHASE_LIST_NO, MEMBER_NO, PRODUCT_NO, PRODUCT_SIZE, PURCHASE_DATE, REQUESTS, ADDRESS, PURCHASE_LIST_QUANTITY)
+		(PURCHASE_LIST_NO, MEMBER_NO, PRODUCT_NO, PRODUCT_SIZE, PURCHASE_DATE, REQUESTS, ADDRESS, PURCHASE_LIST_QUANTITY, RECIPIENT)
 		VALUES
-		(PURCHASE_NO_SEQ.NEXTVAL,#{memberNo},#{productNo},#{productSize},SYSDATE,#{requests}, #{address},#{purchaseQuantity})
+		(PURCHASE_NO_SEQ.NEXTVAL,#{memberNo},#{productNo},#{productSize},SYSDATE,#{requests}, #{address},#{purchaseQuantity},#{recipient})
 	</select>
 	
 </mapper>

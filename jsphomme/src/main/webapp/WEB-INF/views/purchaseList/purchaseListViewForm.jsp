@@ -63,6 +63,7 @@
 			<td class="tableTop">개당 가격</td>
 			<td class="tableTop">총 지불액</td>
 			<td class="tableTop">배송지</td>
+			<td class="tableTop">수령인</td>
 			<td class="tableTop">구매 날짜</td>
 			<td class="tableTop">요청사항</td>
 		</tr>
@@ -74,7 +75,8 @@
 			<td style="text-align: center; width: 70px;">${purchaseList.purchaseQuantity}</td>
 			<td style="text-align: right; width: 100px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>
 			<td style="text-align: right; width: 110px;"><fmt:formatNumber value="${purchaseList.productPrice * purchaseList.purchaseQuantity}" pattern="#,###"/></td>
-			<td style="text-align: left; width: 475px;">${purchaseList.address}</td>
+			<td style="text-align: left; width: 375px;">${purchaseList.address}</td>
+			<td style="text-align: left; width: 100px;">${purchaseList.recipient}</td>
 			<td style="text-align: center; width: 220px;"><fmt:formatDate value="${purchaseList.purchaseDate}" pattern="yyyy년 MM월 dd일  hh시mm분"/></td>
 			<td style="text-align: left; width: 330px;">${purchaseList.requests}</td>
 		</tr>

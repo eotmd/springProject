@@ -56,6 +56,7 @@ public class PurchaseListController {
 			
 			
 			purchaseList = purchaseListService.purchaseListView(start, end, (Integer)req.getAttribute("memberNo"));
+			
 		}
 		
 		Map<String, Object> pagingMap = new HashMap<>();
@@ -85,6 +86,7 @@ public class PurchaseListController {
 		
 		
 		req.setAttribute("memberNo", purchaseListVo.getMemberNo());
+		req.setAttribute("memberName", req.getParameter("name"));
 		
 		return "forward:/purchase/list.do";
 	}

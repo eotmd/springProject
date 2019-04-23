@@ -17,6 +17,31 @@
 	function backFnc(no) {
 		location.href ="/jsphomme/product/detail.do?productNo="+no;
 	}
+	
+	function finshFnc() {
+		var formIdObj = document.getElementById("formId");
+		var nameIdObj = document.getElementById("nameId");
+		var addressIdObj = document.getElementById("addressId");
+		var hpIdObj = document.getElementById("hpId");
+		
+		if(nameIdObj.value ==""){
+			alert("이름을 입력해 주세요");
+			return;
+		}
+		
+		if(addressIdObj.value ==""){
+			alert("주소를 입력해 주세요");
+			return;
+		}
+		
+		if(hpIdObj.value ==""){
+			alert("연락처를 입력해 주세요");
+			return;
+		}
+		
+		formIdObj.submit();
+		
+	}
 </script>
 <style type="text/css">
 
@@ -99,6 +124,7 @@
 		color: #6EE3F7;
 	}
 </style>
+
 </head>
 <body>
 	
@@ -138,15 +164,15 @@
 	<div id="memberInfoCon">
 	<br/>
 	<br/>
-		<form action="/jsphomme/purchase/finish.do" method="post">
+		<form id="formId" action="/jsphomme/purchase/finish.do" method="post">
 			<div id="memberInfoId">
 			
 				<input class="memberInfoSample" type="text" disabled="disabled" value="받는 사람"><br/>
-				<input id="nameId" class="memberInfoInput" type="text"  placeholder="이름" name = "name" value="${_memberVo_.name}"><br/>
+				<input id="nameId" class="memberInfoInput" type="text"  placeholder="이름" name = "recipient" value="${_memberVo_.name}"><br/>
 				<input class="memberInfoSample" type="text" disabled="disabled" value="주소"><br/>
-				<input class="memberInfoInput" type="text"  placeholder="주소" name="address" value="${_memberVo_.address}"><br/>
+				<input id="addressId" class="memberInfoInput" type="text"  placeholder="주소" name="address" value="${_memberVo_.address}"><br/>
 				<input class="memberInfoSample" type="text" disabled="disabled" value="연락처"><br/>
-				<input class="memberInfoInput" type="text"  placeholder="연락처" value="${_memberVo_.hp}"><br/>
+				<input id="hpId" class="memberInfoInput" type="text"  placeholder="연락처" value="${_memberVo_.hp}"><br/>
 				<input class="memberInfoSample" type="text" disabled="disabled" style="color: #6EE3F7;" value="요청사항"><br/>
 				<input class="memberInfoInput" type="text" style="color: #6EE3F7;" name="requests" value="요청사항"><br/>
 				<ins><hr style="border:solid 1px #6EE3F7; margin-top: 1px;"></ins>
@@ -157,7 +183,7 @@
 			<br/>
 			<hr/>
 				<input class="resultBt" type="button" value="뒤로가기" onclick="backFnc(${purchaseListVo.productNo});">
-				<input class="resultBt" style="margin-left:500px;"type="submit" value="결제 완료">
+				<input class="resultBt" style="margin-left:500px;"type="button" value="결제 완료" onclick="finshFnc();">
 			</div>
 			<input type="hidden" name = "memberNo" value="${_memberVo_.memberNo}">
 			<input type="hidden" name = "productNo" value="${purchaseListVo.productNo}">
