@@ -5,6 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+	#memberUpdateBodyDiv{
+		width: 1920px;
+		height: 620px;
+	}
+
+</style>
 <title>마이페이지 수정</title>
 <script type="text/javascript">
 	
@@ -22,6 +29,8 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
+
+<div id="memberUpdateBodyDiv">
 	
 	<h1>회원 정보 수정페이지</h1>
 	
@@ -43,6 +52,8 @@
 		<input type="submit" value="수정완료">
 
 	</form>
+
+</div>
 	
 <jsp:include page="/WEB-INF/views/common/tail.jsp" />	
 	

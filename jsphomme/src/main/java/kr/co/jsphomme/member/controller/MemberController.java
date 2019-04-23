@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -114,7 +115,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
-	public String loginCtr(String id, String password, String authority, String name, String address, HttpSession session,
+	public String loginCtr(String id, String password, String authority, String name, String address, String hp, HttpSession session,
 			Model model) {
 		log.debug("Welcome MemberController loginCtr! " + id + ", " + password + authority);
 
@@ -124,6 +125,7 @@ public class MemberController {
 		paramMap.put("authority", authority);
 		paramMap.put("name", name);
 		paramMap.put("address", address);
+		paramMap.put("hp", hp);
 		MemberVo memberVo = memberService.memberExist(paramMap);
 
 		String viewUrl = "";
@@ -134,7 +136,23 @@ public class MemberController {
 
 			// 이후 조회수 기능 구현을 하게되면 미완성된 메인페이지를 상품리스트형식과 유사하게 만든후  주석처리한 아래의 것을 사용하자!!!
 //			viewUrl = "/common/siteMainPage"; 
-			viewUrl = "product/productListView";  // 일단 조회수 기능 구현전이라 상품리스트 페이지가 메인페이지의 역할을 대신하고 있다
+			viewUrl = "redirect:/product/list.do";  // 일단 조회수 기능 구현전이라 상품리스트 페이지가 메인페이지의 역할을 대신하고 있다
+		
+			
+			//자동로그인 아직 구현안함;;;;
+			
+//			if ( memberVo.isUseCookie() ){ // dto 클래스 안에 useCookie 항목에 폼에서 넘어온 쿠키사용 여부(true/false)가 들어있을 것임
+//                // 쿠키 사용한다는게 체크되어 있으면...
+//                // 쿠키를 생성하고 현재 로그인되어 있을 때 생성되었던 세션의 id를 쿠키에 저장한다.
+//                Cookie cookie = new Cookie("loginCo mn nbvb okie", session.getId());
+//                // 쿠키를 찾을 경로를 컨텍스트 경로로 변경해 주고...
+//                cookie.setPath("/");
+//                cookie.setMaxAge(60*60*24*7); // 단위는 (초)임으로 7일정도로 유효시간을 설정해 준다.
+//                // 쿠키를 적용해 준다.
+//                response.addCookie(cookie);
+//            }
+		
+		
 		} else {
 			viewUrl = "/auth/loginFail";
 		}

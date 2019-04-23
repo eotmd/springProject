@@ -4,6 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+#memberListOneBodyDiv{
+	width: 1920px;
+	height: 620px;
+}
+
+</style>
 <title>마이페이지 보기</title>
 <script type="text/javascript">
 	window.onload = function(){
@@ -29,6 +36,9 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />	
+	
+<div id="memberListOneBodyDiv">	
+	
 	<h1>회원 정보 상세페이지</h1>
 	
 	<form action="./update.do" method="get">
@@ -51,6 +61,8 @@
 
 
 	</form>
+
+</div>
 	
 <jsp:include page="/WEB-INF/views/common/tail.jsp" />
 </body>

@@ -69,7 +69,7 @@
 		<c:forEach var="purchaseList" items="${purchaseList}">
 		<tr>
 			<td style="text-align: center; width: 90px;">${purchaseList.purchaseListNo}</td>
-			<td class="productName" style="text-align: left; width: 260px;"><a style="text-decoration: none; color: black;" href="./product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
+			<td class="productName" style="text-align: left; width: 260px;"><a style="text-decoration: none; color: black;" href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
 			<td style="text-align: center; width: 90px;">${purchaseList.productSize}</td>
 			<td style="text-align: center; width: 70px;">${purchaseList.purchaseQuantity}</td>
 			<td style="text-align: right; width: 100px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>
@@ -87,8 +87,10 @@
 	</jsp:include>
 	
 	
-	<form action="./purchaseList.do" id="pagingForm" method="post">
+	<form action="/jsphomme/purchase/list.do" id="pagingForm" method="post">
 		<input type="hidden" id="curPage" name="curPage" value="${pagingMap.paging.curPage}">
+		<input type="hidden" id="curPage" name="memberNo" value="${_memberVo_.memberNo}">
+		
 	</form>
 </div>
 	<jsp:include page="/WEB-INF/views/common/tail.jsp"/>
