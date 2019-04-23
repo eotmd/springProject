@@ -16,7 +16,7 @@
 
 	#tableCon{
 		width: 1550px;
-		height:350px;
+		height:380px;
 		margin: auto;
 		background-color: #F6F6F6;
 		box-shadow:  7px 7px 20px -8px gray;
@@ -57,7 +57,7 @@
 	}
 	#memberInfoId{
 		width:1300px;
-		height:320px;
+		height:350px;
 		margin-left: 100px;
 		font-weight: bold;
 	}
@@ -71,7 +71,7 @@
 	.memberInfoInput{
 		border: 0px; 
 		background-color:#F6F6F6;
-		height: 25px;
+		height: 35px;
 		font-size: 18px;
 		font-weight: 5px;
 		margin-bottom: 5px;
@@ -79,6 +79,19 @@
 		width: 900px;
 	}
 	
+	.resultBt{
+		margin-left:200px; 
+		width: 270px; 
+		height: 50px; 
+		border: 0px; 
+		background-color: #F6F6F6; 
+		color: gray; 
+		font-weight: bold; 
+		font-size: 22px;
+	}
+	.resultBt:hover {
+		color: #6EE3F7;
+	}
 </style>
 </head>
 <body>
@@ -101,7 +114,7 @@
 			</tr>
 		</table>
 		<ins><hr></ins>
-		<div id="tableCon2" style="height: 300px;">
+		<div id="tableCon2" style="height: 320px;">
 		<table class="tableId" style="height: 200px;">
 			<tr>	
 				<td class="tableBt" style="310px; height: 310px"><img style="width: 300px; height: 300px;" alt="${purchaseListVo.storedFileName}" src="<c:url value='/img/${purchaseListVo.storedFileName}'/>"></td>		
@@ -134,11 +147,11 @@
 				<span>기본적인 배송 정보는 회원님의 정보를 기본으로 하고 있으나 <br/>자유롭게 변경 가능하오니 받으실 분의 정보를 입력해주시면 감사하겠습니다.</span>
 			</div>
 			
-			<div style="height: 100px;">
+			<div style="height: 150px;">
 			<br/>
-				<hr>
-				<input type="button" value="뒤로가기" onclick="backFnc(${purchaseListVo.productNo});">
-				<input type="submit" value="결제 완료">
+			<hr/>
+				<input class="resultBt" type="button" value="뒤로가기" onclick="backFnc(${purchaseListVo.productNo});">
+				<input class="resultBt" style="margin-left:500px;"type="submit" value="결제 완료">
 			</div>
 			<input type="hidden" name = "memberNo" value="${_memberVo_.memberNo}">
 			<input type="hidden" name = "productNo" value="${purchaseListVo.productNo}">
