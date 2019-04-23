@@ -26,12 +26,16 @@
 		border-radius: 13px;
 				
 	}
+	.shopName input:hover{
+		background-color: #808080;
+	}
 	
 	.fncButton {
 		float: right;
 		margin-top: 47px;
 		margin-right: 50px;
 	}
+	
 	
 	.headerLine {
 		clear: both;
@@ -55,7 +59,9 @@
 		border-radius: 5px;
 	}
 	
-	
+	.productRegiBtn:hover {
+		background-color: #c0c0c0;
+	}
 	
 	
 	.myPageBtn {
@@ -71,6 +77,9 @@
 		border-radius: 5px;
 	}
 	
+	.myPageBtn:hover {
+		background-color: #c0c0c0;
+	}
 	
 	.memberListBtn {
 		background-color: #DBDBDB; 
@@ -83,6 +92,10 @@
 		font-style: normal;
 		font-family: "Lucida Console", Monaco, monospace;
 		border-radius: 5px;
+	}
+	
+	.memberListBtn:hover {
+		background-color: #c0c0c0;
 	}
 	
 	.purchaseListBtn {
@@ -98,6 +111,10 @@
 		border-radius: 5px;
 	}
 	
+	.purchaseListBtn:hover{
+		background-color: #808080;
+	}
+	
 	.logoutBtn {
 		background-color: #636363;
 		text-align: center; 
@@ -109,6 +126,10 @@
 		font-style: normal;
 		font-family: "Lucida Console", Monaco, monospace;
 		border-radius: 5px;
+	}
+	
+	.logoutBtn:hover{
+		background-color: #808080;
 	}
 	 .menu {
       background-color: #636363; 
@@ -126,6 +147,9 @@
       border-radius: 7px;
       border: 0px;
       
+   }
+   .menu:hover{
+   	background-color: #808080;
    }
 	 .search {
       background-color: #636363; 

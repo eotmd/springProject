@@ -8,6 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+	window.onload = function() {
+		var nameIdObj = document.getElementById("nameId");
+		
+		nameIdObj.focus();
+	}
+	
 	function backFnc(no) {
 		location.href ="/jsphomme/product/detail.do?productNo="+no;
 	}
@@ -136,7 +142,7 @@
 			<div id="memberInfoId">
 			
 				<input class="memberInfoSample" type="text" disabled="disabled" value="받는 사람"><br/>
-				<input class="memberInfoInput" type="text"  placeholder="이름" name = "name" value="${_memberVo_.name}"><br/>
+				<input id="nameId" class="memberInfoInput" type="text"  placeholder="이름" name = "name" value="${_memberVo_.name}"><br/>
 				<input class="memberInfoSample" type="text" disabled="disabled" value="주소"><br/>
 				<input class="memberInfoInput" type="text"  placeholder="주소" name="address" value="${_memberVo_.address}"><br/>
 				<input class="memberInfoSample" type="text" disabled="disabled" value="연락처"><br/>
