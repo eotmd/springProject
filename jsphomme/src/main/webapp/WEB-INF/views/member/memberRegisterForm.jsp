@@ -184,8 +184,9 @@
 	      });
 	   });
 	 
-   $(document).ready(function() {
-	      $('#passwordConfirm').keyup(function() {
+	 
+	 $(document).ready(function() {
+	      $('#password').keyup(function() {
 	         var passwordObj = $('#password').val();
 	         var passwordConfirmObj = $('#passwordConfirm').val();
 	         
@@ -198,6 +199,25 @@
 	         } else if(passwordConfirmObj != passwordObj){
 	            $('#passwordConfirmMsg').css('color', 'red');
 		         $('#passwordConfirmMsg').html(failMsg);
+	         }
+	      });
+	   });	 
+	 
+	 
+   $(document).ready(function() {
+	      $('#passwordConfirm').keyup(function() {
+	         var passwordObj = $('#password').val();
+	         var passwordConfirmObj = $('#passwordConfirm').val();
+	         
+	         var successMsg = "비밀번호가 일치합니다.";
+	         var failMsg = "비밀번호가 일치하지 않습니다.";
+	        	 
+	         if (passwordConfirmObj == passwordObj) {
+	            $('#passwordConfirmAgainMsg').css('color', 'grey');
+		         $('#passwordConfirmAgainMsg').html(successMsg);
+	         } else if(passwordConfirmObj != passwordObj){
+	            $('#passwordConfirmAgainMsg').css('color', 'red');
+		         $('#passwordConfirmAgainMsg').html(failMsg);
 	         }
 	      });
 	   });
@@ -267,12 +287,13 @@
 			
 			<input class="memberRegiInfo" type="text" value="비밀번호" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="password" id="password" name="password"
-				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" ><br/>
+				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" >
+			<a id="passwordConfirmMsg"></a><br/>
 			
 			<input class="memberRegiInfo" type="text" value="비밀번호 확인" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="password" id="passwordConfirm" name="passwordConfirm"
 				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)">
-			<a id="passwordConfirmMsg"></a></br>
+			<a id="passwordConfirmAgainMsg"></a></br>
 			
 			<input class="memberRegiInfo" type="text" value="주소" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="text" id="address" name="address"

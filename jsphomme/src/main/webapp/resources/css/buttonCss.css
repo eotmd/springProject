@@ -1,0 +1,37 @@
+/* button css */
+.goBackBtn {
+	border: 1px solid;
+	border-radius: 7px;
+	background: white;
+	font-size: 20px;
+}
+
+.goBackBtn:hover {
+	color: gray;
+}
+
+.goBuyBtn {
+	border: 1px solid;
+	border-radius: 7px;
+	background: white;
+	font-size: 20px;
+	background: #0080FF;
+	color: white;
+}
+
+.goBuyBtn:hover {
+	background: #819FF7;
+}
+
+.goUpdateBtn {
+	border: 1px solid;
+	border-radius: 7px;
+	background: white;
+	font-size: 20px;
+	background: #FF4000;
+	color: white;
+}
+
+.goUpdateBtn:hover{
+	background: #F79F81;
+}
