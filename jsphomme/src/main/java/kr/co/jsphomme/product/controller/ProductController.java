@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.jsphomme.member.service.MemberService;
+import kr.co.jsphomme.member.vo.MemberVo;
 import kr.co.jsphomme.product.service.ProductService;
 import kr.co.jsphomme.product.vo.ProductVo;
 import kr.co.jsphomme.util.Paging;
@@ -83,7 +85,7 @@ public class ProductController {
 		return "product/productDetailView";
 	}
 	
-	@RequestMapping(value = "/product/insert.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/insert.do", method = {RequestMethod.POST})
 	public String productInsert(ProductVo productVo, 
 			MultipartHttpServletRequest multipartHttpServletRequest, Model model) {
 		log.debug("Welcome productInsert enter! 신규 등록 처리! - {}", productVo);
@@ -100,16 +102,32 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/insertMove.do")
-	public String productInsertMove() {
+	public String productInsertMove(HttpSession session) {
 		
-		log.debug("Welcome productInsertMove enter!");
+		MemberVo memberVo = (MemberVo) session.getAttribute("_memberVo_");
+		
+		log.debug("Welcome productInsertMove enter! - {}", memberVo);
+
+		if (memberVo == null) {
+			
+			log.debug("productInsertMove fail!");
+			
+			return "redirect:/common/main.do";
+		}
+		
+		if (!memberVo.getAuthority().equals("0")) {
+			
+			log.debug("productInsertMove fail!");
+			
+			return "redirect:/common/main.do";
+		}
 		
 		return "product/productInsert";
 	}
 	
 	@RequestMapping(value = "/product/update.do", method = RequestMethod.POST)
 	public String productUpdate(
-			ProductVo productVo, 
+			ProductVo productVo,  
 			MultipartHttpServletRequest multipartHttpServletRequest,
 			Model model) {
 
@@ -121,26 +139,31 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product/updateMove.do")
-	public String productUpdateMove(int productNo, Model model) {
+	public String productUpdateMove(int productNo, HttpSession session, Model model) {
 
-		
 		ProductVo productVo = productService.productOneDeteilView(productNo);
+		MemberVo memberVo = (MemberVo) session.getAttribute("_memberVo_");
+		
+		log.debug("Welcome productInsertMove enter! - {}", memberVo);
+
+		if (memberVo == null) {
+			
+			log.debug("productUpdateMove fail!");
+			
+			return "redirect:/common/main.do";
+		}
+		
+		if (!memberVo.getAuthority().equals("0")) {
+			
+			log.debug("productUpdateMove fail!");
+			
+			return "redirect:/common/main.do";
+		}
 		
 		log.debug("Welcome productUpdateMove enter! - {}", productVo);
 		model.addAttribute("productVo", productVo);
 		
 		return "product/productUpdate";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
