@@ -19,9 +19,9 @@ public class PurchaseListDaoImpl implements PurchaseListDao{
 	String namespace = "kr.co.jsphomme.purchaselist.";
 	
 	@Override
-	public PurchaseListVo purchaseListInsert(PurchaseListVo purchaseListVo) {
-		// TODO Auto-generated method stub
-		return null;
+	public PurchaseListVo purchaseListCreate(PurchaseListVo purchaseListVo) {
+		
+		return sqlSession.selectOne(namespace+"purchaseListCreate",purchaseListVo);
 	}
 
 	@Override
@@ -37,9 +37,9 @@ public class PurchaseListDaoImpl implements PurchaseListDao{
 	}
 
 	@Override
-	public int purchaseListCount() {
+	public int purchaseListCount(int memberNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"purchaseListCount");
+		return sqlSession.selectOne(namespace+"purchaseListCount",memberNo);
 	}
 
 	@Override
