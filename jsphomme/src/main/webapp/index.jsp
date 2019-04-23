@@ -5,6 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+	#indexBodyDiv{
+		width: 1920px;
+		height: 600px;	
+	}	
+</style>
 <title>Welcome JSP HOMME</title>
 <script type="text/javascript">
 	function loginMoveFnc(){
@@ -19,12 +25,16 @@
 <body>
 	
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
+
+<div id="indexBodyDiv">
 	
 	<form action="auth/login.do"id='indexForm' method="get">
 		<input type="button"  
 			value="JSP HOMME 로그인 화면으로 이동" onclick="loginMoveFnc();">
 	
 	</form>
+
+</div>
 
 <jsp:include page="/WEB-INF/views/common/tail.jsp" />
 

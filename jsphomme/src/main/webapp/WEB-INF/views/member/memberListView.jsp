@@ -13,6 +13,11 @@ table , tr, td {
 	
 }
 
+#memberListViewBodyDiv {
+	width: 1920px;
+	height: 620px;
+}
+
 </style>
 <title>회원 목록</title>
 <script type="text/javascript">
@@ -23,6 +28,8 @@ table , tr, td {
 <body>
 
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
+
+<div id="memberListViewBodyDiv">
 
 	<h1>회원목록</h1>
 	
@@ -67,6 +74,8 @@ table , tr, td {
 		
 	
 	</table>
+
+</div>
 	
 <jsp:include page="/WEB-INF/views/common/tail.jsp" />
 </body>

@@ -7,33 +7,35 @@
 	
 	.shopName {
 		float: left;
-		margin-left: 50px;
-		margin-bottom: 20px;
+		margin-top: 20px;
+		margin-left: 100px;
+		margin-bottom: 15px;
+		
 	}
 	
 	.shopName input  {
 		background-color: #636363; 
 		text-align: center; 
-		width: 250px; 
-		height: 40px;
+		width: 300px; 
+		height: 50px;
 		color: #FFFFFF;
 		font-size: 23px; 
 		font-weight: bolder;
 		font-style: normal;
 		font-family: "Lucida Console", Monaco, monospace;
-		border-radius: 7px;
+		border-radius: 13px;
 				
 	}
 	
 	.fncButton {
 		float: right;
-		margin-top: 13px;
+		margin-top: 47px;
 		margin-right: 50px;
 	}
 	
 	.headerLine {
 		clear: both;
-		margin-top: 50px;
+		margin-top: 70px;
 	}
 	
 	.headerLine hr {
@@ -112,14 +114,14 @@
       background-color: #636363; 
       text-align: center; 
       width: 250px; 
-      height: 23px;
+      height: 27px;
       color: #FFFFFF;
       font-size: 20px; 
       font-weight: bolder;
       font-style: normal;
       font-family: "Lucida Console", Monaco, monospace;
       margin-left: 340px;
-      margin-top: 17px;
+      margin-top: 0px;
       margin-bottom: 20px;
       border-radius: 7px;
       border: 0px;
@@ -129,17 +131,18 @@
       background-color: #636363; 
       text-align: left; 
       width: 250px; 
-      height:21px;
+      height:27px;
       color: #FFFFFF;
       font-size: 17px; 
       font-weight: bolder;
       font-style: normal;
       font-family: "Lucida Console", Monaco, monospace;
       margin-left: 680px;
-      margin-top: 17px;
+      margin-top: 0px;
       margin-bottom: 20px;
       border-radius: 7px;
       border: 0px;
       vertical-align: bottom;
    }
+	
 	

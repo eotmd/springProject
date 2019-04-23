@@ -43,9 +43,15 @@ function purchaseListFnc(memberNo) {
 function logoutFnc() {
 	location.href = "/jsphomme/auth/logout.do";
 }
+
+function menswearFnc() {
+	location.href ="/jsphomme//product/list.do";
+}
 </script>
 </head>
 <body>
+
+
 
 <div id="headerContainer" >   
 
@@ -94,10 +100,12 @@ function logoutFnc() {
 	</div>
 	
 	 <div>
-      <input class="menu" type="button" value="Menswear">
+      <input class="menu" type="button" value="Menswear" onclick="menswearFnc();">
       <input class="search" type="text" value="" placeholder="search">
    	</div>
 	
 </div>
+
+
 </body>
 </html>
