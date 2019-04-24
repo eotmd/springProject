@@ -5,29 +5,30 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-	#loginDiv {
+	#loginBoxDiv {
+		width: 550px;
+		height: 350px;
+		margin: auto;
+		background-color: #EBF7FF;
+	}
+			
+	#loginRegiDiv {
+	
 		
 	}
 	
-	#loginH2 {
-		text-align: center;
-	}
-	
-	#loginTable {
+	#loginForm{
 		width: 400px;
-		margin-left: 750px;
-		text-align: left;
+		height: 400px;
+/* 		margin-top: 50px; */
+/* 		margin-left: 20px; */
+/* 		margin-right: 20px; */
+/* 		margin-bottom: 20px; */
+		padding: 20px;
+		background-color: #F6F6F6;
+		
+		box-shadow:  7px 7px 10px -8px gray;
 	}
-	
-	tr {
-		height: 30px;
-	}
-	
-	#loginRegiDiv {
-		width: 400px;
-		margin-left: 750px;
-	}
-	
 	
 	#loginBtn {
 		width: 200px;
@@ -41,7 +42,7 @@
 	
 	#loginBodyDiv {
 		width: 1920px;
-		height: 600px;
+		height: 2010px;
 	}
 	
 </style>
@@ -82,27 +83,24 @@
 
 <div id="loginBodyDiv">
 
-	<h2 id="loginH2">사용자 로그인</h2>
-	<div id="loginDiv">
+
+<!-- 	<img alt="ConceptPhoto" src="../resources/images/conceptPhoto.jpg"> -->
+
+	
+	<div id="loginBoxDiv">
 		<form action="loginCtr.do" id="loginForm" method="post">
-			<table id="loginTable">
-				<tr>
-					<td style="font-weight:bolder; font-family: 'Lucida Console', Monaco, monospace;">아이디</td>
-					<td><input type="text" name="id" id="memberId"></td>
-				</tr>
-				<tr>
-					<td style="font-weight:bolder; font-family: 'Lucida Console', Monaco, monospace;">암호</td>
-					<td><input type="password" name='password' id="memberPassword"></td>
-				</tr>
-				
-			</table>			
-			<br>
-			<br>
 			
+			
+			
+				<input type="text" name="id" id="memberId" placeholder="id"></br>
+				
+				<input type="password" name='password' id="memberPassword" placeholder="password"></br>
+								
+					
 		<div id="loginRegiDiv">			
-						<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();">
+						<input type="text" value="로그인" id="loginBtn" onclick="loginFnc();">
 						<br><br>
-						<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
+						<input type="text" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
 		</div>					
 		</form>
 	</div>

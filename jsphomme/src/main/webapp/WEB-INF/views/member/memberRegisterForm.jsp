@@ -190,15 +190,21 @@
 	         var passwordObj = $('#password').val();
 	         var passwordConfirmObj = $('#passwordConfirm').val();
 	         
-	         var successMsg = "비밀번호가 일치합니다.";
-	         var failMsg = "비밀번호가 일치하지 않습니다.";
+	         var successMsg1 = "비밀번호가 일치합니다.";
+	         var successMsg2 = "비밀번호가 일치합니다.";
+	         var failMsg1 = "비밀번호가 일치하지 않습니다. 비밀번호 입력칸을 다시 입력해주세요";
+	         var failMsg2 = "비밀번호가 일치하지 않습니다. 비민번호 입력 확인칸을 다시 입력해주세요";
 	        	 
 	         if (passwordConfirmObj == passwordObj) {
-	            $('#passwordConfirmMsg').css('color', 'grey');
-		         $('#passwordConfirmMsg').html(successMsg);
+	             $('#passwordConfirmMsg').css('color', 'grey');
+		         $('#passwordConfirmMsg').html(successMsg1);
+		         $('#passwordConfirmAgainMsg').css('color', 'grey');
+		         $('#passwordConfirmAgainMsg').html(successMsg2);
 	         } else if(passwordConfirmObj != passwordObj){
-	            $('#passwordConfirmMsg').css('color', 'red');
-		         $('#passwordConfirmMsg').html(failMsg);
+	             $('#passwordConfirmMsg').css('color', 'red');
+		         $('#passwordConfirmMsg').html(failMsg1);
+		         $('#passwordConfirmAgainMsg').css('color', 'red');
+		         $('#passwordConfirmAgainMsg').html(failMsg2);
 	         }
 	      });
 	   });	 
@@ -209,15 +215,21 @@
 	         var passwordObj = $('#password').val();
 	         var passwordConfirmObj = $('#passwordConfirm').val();
 	         
-	         var successMsg = "비밀번호가 일치합니다.";
-	         var failMsg = "비밀번호가 일치하지 않습니다.";
+	         var successMsg1 = "비밀번호가 일치합니다.";
+	         var successMsg2 = "비밀번호가 일치합니다.";
+	         var failMsg1 = "비밀번호가 일치하지 않습니다. 비밀번호 입력칸을 다시 입력해주세요";
+	         var failMsg2 = "비밀번호가 일치하지 않습니다. 비민번호 입력 확인칸을 다시 입력해주세요";
 	        	 
 	         if (passwordConfirmObj == passwordObj) {
-	            $('#passwordConfirmAgainMsg').css('color', 'grey');
-		         $('#passwordConfirmAgainMsg').html(successMsg);
+	        	 $('#passwordConfirmMsg').css('color', 'grey');
+		         $('#passwordConfirmMsg').html(successMsg1);
+	             $('#passwordConfirmAgainMsg').css('color', 'grey');
+		         $('#passwordConfirmAgainMsg').html(successMsg2);
 	         } else if(passwordConfirmObj != passwordObj){
-	            $('#passwordConfirmAgainMsg').css('color', 'red');
-		         $('#passwordConfirmAgainMsg').html(failMsg);
+	        	 $('#passwordConfirmMsg').css('color', 'red');
+		         $('#passwordConfirmMsg').html(failMsg1);
+		         $('#passwordConfirmAgainMsg').css('color', 'red');
+		         $('#passwordConfirmAgainMsg').html(failMsg2);
 	         }
 	      });
 	   });
@@ -246,10 +258,10 @@
 	    	  $('#hp').val($('#hp').val().replace(/[^0-9]/g,""));
 	    	 
 	    	 var hpObj = $('#hp').val();
-	         var failMsg = "(-) 제외 숫자만 입력해주세요";
+	         var failMsg = "(-) 제외 11 자리 숫자만 입력해주세요";
 	        	 
 	         if (hpObj == "" || hpObj == null) {
-	            $('#hpConfirmMsg').css('color', 'red');
+	            $('#hpConfirmMsg').css('color', 'grey');
 		        $('#hpConfirmMsg').html(failMsg);
 	         } else {
 	        		 
@@ -302,7 +314,7 @@
 			
 			<input class="memberRegiInfo" type="text" value="연락처" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="text" id="hp" name="hp" maxlength="11"
-				placeholder="( - ) 제외한 숫자만 입력해주세요" >
+				placeholder="( - ) 제외한  11자리 숫자만 입력해주세요" >
 			<a id="hpConfirmMsg"></a>
 	
 			

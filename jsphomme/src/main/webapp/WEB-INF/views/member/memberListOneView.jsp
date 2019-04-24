@@ -26,8 +26,8 @@
 		location.href = "list.do";
 	}
 	
-	function leaveFnc() {
-		location.href = "./leaveCtr.do?memberNo=" + ${memberVo.memberNo};
+	function leaveFnc(no) {
+		location.href = "./leaveCtr.do?memberNo=" + no;
 	}
 	
 </script>

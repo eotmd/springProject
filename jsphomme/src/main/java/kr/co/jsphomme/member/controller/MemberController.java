@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.jsphomme.member.service.MemberService;
 import kr.co.jsphomme.member.vo.MemberVo;
+import kr.co.jsphomme.purchaselist.service.PurchaseListService;
+import kr.co.jsphomme.purchaselist.service.PurchaseListServiceImpl;
 import kr.co.jsphomme.util.Paging;
 
 @Controller
@@ -29,7 +31,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-
+	
+	
 	
 	@RequestMapping(value = "/common/main.do")
 
@@ -115,11 +118,12 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
-	public String loginCtr(String id, String password, String authority, String name, String address, String hp, HttpSession session,
+	public String loginCtr(int memberNo, String id, String password, String authority, String name, String address, String hp, HttpSession session,
 			Model model) {
 		log.debug("Welcome MemberController loginCtr! " + id + ", " + password + authority);
 
 		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("memberNo", memberNo);
 		paramMap.put("id", id);
 		paramMap.put("password", password);
 		paramMap.put("authority", authority);
@@ -243,6 +247,8 @@ public class MemberController {
 		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", memberNo);
 
 		try {
+			
+			
 			memberService.memberDelete(memberNo);
 
 		} catch (Exception e) {
