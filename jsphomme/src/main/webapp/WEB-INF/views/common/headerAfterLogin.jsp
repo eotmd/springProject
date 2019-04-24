@@ -46,7 +46,11 @@ function LoginFnc() {
 }
 
 function menswearFnc() {
-	location.href ="/jsphomme//product/list.do";
+	location.href ="/jsphomme/product/list.do";
+}
+
+function goProductList() {
+	location.href = "/jsphomme/product/list.do";
 }
 </script>
 

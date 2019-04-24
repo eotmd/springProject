@@ -55,10 +55,11 @@
 					WHERE M.MEMBER_NO = PL.MEMBER_NO
 					AND P.PRODUCT_NO = PL.PRODUCT_NO
 					AND M.MEMBER_NO = #{memberNo}
+					ORDER BY PURCHASE_DATE DESC
 					) P
 			) PURCHASE_LIST
 			WHERE RNUM BETWEEN #{start} AND #{end}
-			ORDER BY PURCHASE_DATE DESC
+			
 	</select>
 	
 	<select id="purchaseListCount" resultType="int">
