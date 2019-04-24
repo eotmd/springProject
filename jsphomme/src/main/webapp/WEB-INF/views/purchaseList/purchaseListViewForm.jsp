@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+	*  .mainImg > nav > ul{
+		margin: 0;
+		padding: 0;
+	}
 	#tableCon{
 		width: 1805px;
 		margin: auto;
@@ -40,6 +44,28 @@
 	.productName > a:hover {
 		font-weight: bold;
 	}
+	
+	.mainImg{
+		overflow: hidden;
+		margin: auto;
+		width: 1300px;
+	}
+	.mainImg img{
+		width: 380px;
+		height: 300px;
+	}
+	.mainImg ul{
+		width: 400px;
+		float: left;
+	}
+	
+	li{
+		list-style-type: none;
+	}
+	.mainImg ul li{
+		text-align: center;
+		
+	}
 </style>
 
 </head>
@@ -48,13 +74,42 @@
 	
 <div style="margin: auto;">	
 
-	<div id="imageCon">
-		<img style="height: 200px; width: 1800px; margin-bottom: 80px;" alt="asd" src="/jsphomme/test.jpg">
+<img style="width: 1500px; height: 300px;" alt="1" src="/jsphomme/resources/images/conceptPhotoTomFord.jpg">
+	<div class="mainImg">
+							<img alt="1" src="/jsphomme/resources/images/conceptPhotoTomFord.jpg">
+		<nav>
+			<ul>
+				<li>
+					<span>
+						<a href='#' onclick="goProductList();">
+						</a>
+					</span>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<span>
+						<a href='#' onclick="goProductList();">
+							<img alt="2" src="/jsphomme/resources/images/main_2.jpg">
+						</a>
+					</span>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<span>
+						<a href='#' onclick="goProductList();">
+							<img alt="3" src="/jsphomme/resources/images/main_3.jpg">
+						</a>
+					</span>
+				</li>
+			</ul>
+		</nav>
 	</div>
 	
-	<div id="tableCon">
+	<div id="tableCon" >
 	
-	<table>
+	<table style="margin-top: 20px;">
 		<tr>
 			<td class="tableTop">상품 번호</td>
 			<td class="tableTop">상품 이름</td>
@@ -69,7 +124,7 @@
 		</tr>
 		<c:forEach var="purchaseList" items="${purchaseList}">
 		<tr>
-			<td style="text-align: center; width: 90px;">${purchaseList.purchaseListNo}</td>
+			<td style="text-align: center; width: 90px;">${purchaseList.productNo}</td>
 			<td class="productName" style="text-align: left; width: 260px;"><a style="text-decoration: none; color: black;" href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
 			<td style="text-align: center; width: 90px;">${purchaseList.productSize}</td>
 			<td style="text-align: center; width: 70px;">${purchaseList.purchaseQuantity}</td>

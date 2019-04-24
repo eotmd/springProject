@@ -3,12 +3,14 @@ package kr.co.jsphomme.purchaselist.controller;
 
 import java.util.List;
 import java.util.HashMap;
-import java.util.Locale;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jsphomme.member.vo.MemberVo;
+import kr.co.jsphomme.product.controller.ProductController;
 import kr.co.jsphomme.product.vo.ProductVo;
 import kr.co.jsphomme.purchaselist.service.PurchaseListService;
 import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
@@ -25,28 +28,31 @@ import kr.co.jsphomme.util.Paging;
 @Controller
 public class PurchaseListController {
 	
+	private final Logger log = LoggerFactory.getLogger(ProductController.class);
 	
 	@Autowired
 	private PurchaseListService purchaseListService;
 	
 	@RequestMapping(value="/purchase/list.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String PurchaseListView(@RequestParam(defaultValue ="1") int curPage,@RequestParam(defaultValue ="0") int memberNo, HttpServletRequest req, Model model) {
+	public String PurchaseListView(@RequestParam(defaultValue ="1") int curPage, HttpSession session, Model model) {
 		
+		log.debug("리스트 두 탄다 : {}" + curPage);
 		
-				
-		if(memberNo == 0) {
+		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
+		log.debug("리스트 두 에서 세션정보 : {}" + memberVo);
+		if(memberVo == null) {
 			return "redirect:/auth/login.do";
 		}
 		
-		int num = 0;
+		int memberNo = memberVo.getMemberNo();	
 		
-		if(req.getAttribute("memberNo") == null) {
+		
+		System.out.println("회원번호:"+memberVo.getMemberNo());
+		
+		
 			
-			num = purchaseListService.purchaseListCount(memberNo);
-		}else {
-			
-			num = purchaseListService.purchaseListCount((Integer)req.getAttribute("memberNo"));
-		}
+		int num = purchaseListService.purchaseListCount(memberNo);
+		
 		
 		
 		Paging purchaseListPaging = new Paging(num, curPage);
@@ -54,18 +60,12 @@ public class PurchaseListController {
 		int start = purchaseListPaging.getPageBegin();
 		int end = purchaseListPaging.getPageEnd();
 		
-		List<PurchaseListVo> purchaseList = null;
+
+			
+		List<PurchaseListVo> purchaseList = purchaseListService.purchaseListView(start, end, memberNo);
 		
-		if(req.getAttribute("memberNo") == null) {
 			
-			
-			purchaseList = purchaseListService.purchaseListView(start, end, memberNo);
-		}else {
-			
-			
-			purchaseList = purchaseListService.purchaseListView(start, end, (Integer)req.getAttribute("memberNo"));
-			
-		}
+
 		
 		Map<String, Object> pagingMap = new HashMap<>();
 		pagingMap.put("totalCount", num);
@@ -106,14 +106,9 @@ public class PurchaseListController {
 		}
 		purchaseListService.purchaseListCreate(purchaseListVo);
 		
+
 		
-		
-		
-		
-		req.setAttribute("memberNo", purchaseListVo.getMemberNo());
-		req.setAttribute("memberName", req.getParameter("name"));
-		
-		return "forward:/purchase/list.do";
+		return "redirect:/purchase/list.do";
 	}
 	
 //	
