@@ -123,13 +123,9 @@ public class MemberController {
 		log.debug("Welcome MemberController loginCtr! " + id + ", " + password + authority);
 
 		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("memberNo", memberNo);
+		
 		paramMap.put("id", id);
 		paramMap.put("password", password);
-		paramMap.put("authority", authority);
-		paramMap.put("name", name);
-		paramMap.put("address", address);
-		paramMap.put("hp", hp);
 		MemberVo memberVo = memberService.memberExist(paramMap);
 
 		String viewUrl = "";

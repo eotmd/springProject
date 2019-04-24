@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
+	img {
+		margin: auto;
+	}
+
 	#loginBoxDiv {
 		width: 550px;
 		height: 350px;
@@ -49,7 +53,7 @@
 
 <title>로그인</title>
 
-<!-- 아이디 validation 체크 어떻게 할꺼야? -->
+
 <script type="text/javascript">
 	function loginFnc() {
 		var idObj = document.getElementById("memberId");
@@ -84,7 +88,7 @@
 <div id="loginBodyDiv">
 
 
-<!-- 	<img alt="ConceptPhoto" src="../resources/images/conceptPhoto.jpg"> -->
+	<img alt="ConceptPhoto" src="../resources/images/conceptPhoto.jpg" >
 
 	
 	<div id="loginBoxDiv">
@@ -98,9 +102,9 @@
 								
 					
 		<div id="loginRegiDiv">			
-						<input type="text" value="로그인" id="loginBtn" onclick="loginFnc();">
+						<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();">
 						<br><br>
-						<input type="text" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
+						<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
 		</div>					
 		</form>
 	</div>
