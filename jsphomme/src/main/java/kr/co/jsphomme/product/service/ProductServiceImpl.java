@@ -1,5 +1,6 @@
 package kr.co.jsphomme.product.service;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -55,10 +56,15 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public List<ProductVo> productListView(
-			/* String searchOption, String keyword, */int start, int end) {
+			/* String searchOption,*/String keyword, int start, int end) {
 		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap();
 		
-		return productDao.productListView(/* searchOption, keyword, */ start, end);
+//		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		map.put("start", start);
+		map.put("end", end);
+		return productDao.productListView(map);
 	}
 
 	@Override
@@ -102,9 +108,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public int productSelectTotalCount() {
+	public int productSelectTotalCount(String keyword) {
 		// TODO Auto-generated method stub
-		return productDao.productSelectTotalCount();
+		return productDao.productSelectTotalCount(keyword);
 	}
 	
 }

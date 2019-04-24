@@ -8,13 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	*  .mainImg > nav > ul{
-		margin: 0;
-		padding: 0;
-	}
+
 	#tableCon{
 		width: 1805px;
 		margin: auto;
+		
+		
 	}
 	#tableCon > table, td{
 		border: 1px solid;
@@ -22,8 +21,8 @@
 		padding: 5px;
 	}
 	#tableCon > table{
-		
-		width: 1800px;
+		margin:auto;
+		width: 1505px;
 	}
 	#tableCon > td{
 		height: 32px;
@@ -45,27 +44,7 @@
 		font-weight: bold;
 	}
 	
-	.mainImg{
-		overflow: hidden;
-		margin: auto;
-		width: 1300px;
-	}
-	.mainImg img{
-		width: 380px;
-		height: 300px;
-	}
-	.mainImg ul{
-		width: 400px;
-		float: left;
-	}
-	
-	li{
-		list-style-type: none;
-	}
-	.mainImg ul li{
-		text-align: center;
-		
-	}
+
 </style>
 
 </head>
@@ -74,40 +53,12 @@
 	
 <div style="margin: auto;">	
 
-<img style="width: 1500px; height: 300px;" alt="1" src="/jsphomme/resources/images/conceptPhotoTomFord.jpg">
-	<div class="mainImg">
-							<img alt="1" src="/jsphomme/resources/images/conceptPhotoTomFord.jpg">
-		<nav>
-			<ul>
-				<li>
-					<span>
-						<a href='#' onclick="goProductList();">
-						</a>
-					</span>
-				</li>
-			</ul>
-			<ul>
-				<li>
-					<span>
-						<a href='#' onclick="goProductList();">
-							<img alt="2" src="/jsphomme/resources/images/main_2.jpg">
-						</a>
-					</span>
-				</li>
-			</ul>
-			<ul>
-				<li>
-					<span>
-						<a href='#' onclick="goProductList();">
-							<img alt="3" src="/jsphomme/resources/images/main_3.jpg">
-						</a>
-					</span>
-				</li>
-			</ul>
-		</nav>
-	</div>
+		<a href='#' onclick="goProductList();" style="margin-left: 190px;">
+			<img style="width: 1500px; height: 300px;" alt="1" src="/jsphomme/resources/images/conceptPhotoTomFord.jpg">
+		</a>
 	
-	<div id="tableCon" >
+	
+	<div id="tableCon">
 	
 	<table style="margin-top: 20px;">
 		<tr>
@@ -124,16 +75,16 @@
 		</tr>
 		<c:forEach var="purchaseList" items="${purchaseList}">
 		<tr>
-			<td style="text-align: center; width: 90px;">${purchaseList.productNo}</td>
-			<td class="productName" style="text-align: left; width: 260px;"><a style="text-decoration: none; color: black;" href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
-			<td style="text-align: center; width: 90px;">${purchaseList.productSize}</td>
-			<td style="text-align: center; width: 70px;">${purchaseList.purchaseQuantity}</td>
-			<td style="text-align: right; width: 100px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>
-			<td style="text-align: right; width: 110px;"><fmt:formatNumber value="${purchaseList.productPrice * purchaseList.purchaseQuantity}" pattern="#,###"/></td>
-			<td style="text-align: left; width: 375px;">${purchaseList.address}</td>
-			<td style="text-align: left; width: 100px;">${purchaseList.recipient}</td>
-			<td style="text-align: center; width: 220px;"><fmt:formatDate value="${purchaseList.purchaseDate}" pattern="yyyy년 MM월 dd일  hh시mm분"/></td>
-			<td style="text-align: left; width: 330px;">${purchaseList.requests}</td>
+			<td style="text-align: center; width: 100px;">${purchaseList.productNo}</td>
+			<td class="productName" style="text-align: left; width: 202px;"><a style="text-decoration: none; color: black;" href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
+			<td style="text-align: center; width: 101px;">${purchaseList.productSize}</td>
+			<td style="text-align: center; width: 101px;">${purchaseList.purchaseQuantity}</td>
+			<td style="text-align: right; width: 101px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>
+			<td style="text-align: right; width: 101px;"><fmt:formatNumber value="${purchaseList.productPrice * purchaseList.purchaseQuantity}" pattern="#,###"/></td>
+			<td style="text-align: left; width: 301px;">${purchaseList.address}</td>
+			<td style="text-align: left; width: 101px;">${purchaseList.recipient}</td>
+			<td style="text-align: center; width: 151px;"><fmt:formatDate value="${purchaseList.purchaseDate}" pattern="yyyy년 MM월 dd일  hh시mm분"/></td>
+			<td style="text-align: left; width: 251px;">${purchaseList.requests}</td>
 		</tr>
 		</c:forEach>
 	</table>

@@ -23,7 +23,9 @@
 				FROM (
 					SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME
 					FROM PRODUCT
-<!-- 					WHERE NAME LIKE '%%' -->
+					<if test="keyword != ''">
+						WHERE NAME LIKE '%'||#{keyword}||'%'
+					</if>
                     ORDER BY PRODUCT_NO DESC) P
             )PRODUCT
 		WHERE RNUM BETWEEN #{start} AND #{end}
@@ -35,9 +37,12 @@
 		WHERE PRODUCT_NO = #{productNo}
 	</select>
 	
-	<select id="productSelectTotalCount" resultType="int">
+	<select id="productSelectTotalCount" resultType="int" parameterType="java.lang.String">
 		SELECT COUNT(*)
 		FROM PRODUCT
+		<if test="value != ''">
+			WHERE NAME LIKE '%'||#{value}||'%'
+		</if>
 	</select>
 	
 	<insert id="productInsert" parameterType="memberVo" 

@@ -36,16 +36,16 @@ public class ProductController {
 	public String productListView(
 			@RequestParam(defaultValue ="1") int curPage,
 //			@RequestParam(defaultValue ="title") String searchOption,
-//			@RequestParam(defaultValue ="") String keyword,
+			@RequestParam(defaultValue ="") String keyword,
 			Model model) {
 		
 		log.debug("Welcome ProductController productList!");
 		log.debug("Welcome ProductController productList! : {}", curPage);
 //		log.debug(": {}", searchOption);
-//		log.debug(": {}", keyword);
+		log.debug(": {}", keyword);
 		
 		int totalCount =
-				productService.productSelectTotalCount();
+				productService.productSelectTotalCount(keyword);
 		
 		System.out.println(totalCount);
 		
@@ -55,7 +55,7 @@ public class ProductController {
 		
 		List<ProductVo> productList = 
 				productService.productListView(
-						/* searchOption, keyword, */start, end);
+						/* searchOption,*/ keyword, start, end);
 		
 		Map<String, Object> pagingMap= new HashMap<>();
 		pagingMap.put("totalCount", totalCount);
@@ -63,7 +63,7 @@ public class ProductController {
 		
 		model.addAttribute("productList", productList);
 		model.addAttribute("pagingMap", pagingMap);
-//		model.addAttribute("keyword", keyword);
+		model.addAttribute("keyword", keyword);
 //		model.addAttribute("searchOption", searchOption);
 				
 		return "product/productListView";

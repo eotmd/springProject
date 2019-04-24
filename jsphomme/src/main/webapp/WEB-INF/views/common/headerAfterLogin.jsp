@@ -52,6 +52,13 @@ function menswearFnc() {
 function goProductList() {
 	location.href = "/jsphomme/product/list.do";
 }
+function searchFnc() {
+	var searchIdObj = document.getElementById("searchId")
+	if(event.keyCode == 13){
+		
+		searchIdObj.submit();
+	}
+}
 </script>
 
 
@@ -113,7 +120,9 @@ function goProductList() {
 	
 	 <div>
       <input class="menu" type="button" value="Menswear" onclick="menswearFnc();">
-      <input class="search" type="text" value="" placeholder="search">
+      <form id="searchId" action="/jsphomme/product/list.do" method="get">
+      	<input class="search" type="text" name="keyword" value="" placeholder="search" onkeydown="searchFnc();">
+      </form>
    	</div>
 	
 </div>
