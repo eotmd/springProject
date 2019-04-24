@@ -6,47 +6,73 @@
 <meta charset="UTF-8">
 <style type="text/css">
 	img {
-		margin: auto;
+		margin-left: 93px;
+    	margin-right: 93px;
+    	margin-top: 30px;
+	}
+	
+	.loginContainerDiv{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		width: 400px;
+		margin-top: 80px;
+		background-color: rgba(0, 0, 0, 0.1);
+		color: white;
+		padding: 30px;
+		box-shadow: 0px 2px 8px 2px #555;
+		border-radius: 6px;
+		box-sizing: border-box;
 	}
 
-	#loginBoxDiv {
-		width: 550px;
-		height: 350px;
-		margin: auto;
-		background-color: #EBF7FF;
+	.loginContainerDiv h2{
+		text-align: center;
+		padding: 10px 15px;
+		letter-spacing: 1px;
+	}
+	
+	
+	#loginBoxDiv label{
+		text-transform: uppercase;
+		font-size: 12px;
+		letter-spacing: 1px;
+	}
+	
+	#memberId, #memberPassword, #loginBtn ,#memberRegiBtn {
+		width: 100%;
+		padding: 8px 12px;
+		margin: 8px 0px;
+		display: inline-block;
+		box-sizing: border-box;
+		color: white;
+		background-color: transparent;
+		border: 1px solid white;
+	}
+	
+	#memberId:focus, #memberPassword:focus {
+		outline: none;
+	}
+	
+	#loginBtn, #memberRegiBtn {
+		padding: 12px 20px;
+		cursor: pointer;
+		font-family: Abel;
+		font-size: 14px;
+		letter-spacing: 1px;
+	}
+	
+	#loginBtn:hover, #memberRegiBtn:hover {
+		background: rgba(0, 0, 0, 0.5);
 	}
 			
-	#loginRegiDiv {
 	
-		
-	}
 	
-	#loginForm{
-		width: 400px;
-		height: 400px;
-/* 		margin-top: 50px; */
-/* 		margin-left: 20px; */
-/* 		margin-right: 20px; */
-/* 		margin-bottom: 20px; */
-		padding: 20px;
-		background-color: #F6F6F6;
-		
-		box-shadow:  7px 7px 10px -8px gray;
-	}
 	
-	#loginBtn {
-		width: 200px;
-		margin: auto;
-	}
-	
-	#memberRegiBtn{
-		width: 200px;
-		margin: auto;
-	}
 	
 	#loginBodyDiv {
 		width: 1920px;
-		height: 2010px;
+		height: 900px;
 	}
 	
 </style>
@@ -62,13 +88,13 @@
 		if (idObj.value == null || idObj.value == "") {
 			alert("아이디를 입력해 주세요");
 			idObj.focus();
-			return false;
+			
 		}
 
 		if (passwordObj.value == null || passwordObj.value == "") {
 			alert("비밀번호를 입력해 주세요")
 			passwordObj.focus();
-			return false;
+			
 		}
 		
 		var formObj = document.getElementById("loginForm")
@@ -90,26 +116,26 @@
 
 	<img alt="ConceptPhoto" src="../resources/images/conceptPhotoTomFord.jpg" width="1700px;" height="700px;">
 
-	<h2>LOGIN FORM</h2>
-	<div id="loginBoxDiv">
-		<form action="loginCtr.do" id="loginForm" method="post">
-			
-			
-				<label><b>ID</b></label>
-				<input type="text" name="id" id="memberId" placeholder="ID"></br>
-				<label><b>Password</b></label>
-				<input type="password" name='password' id="memberPassword" placeholder="Password" required="required"></br>
-								
-					
-		<div id="loginRegiDiv">			
-						<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();"
-							style="">
-						<br><br>
-						<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
-		</div>					
-		</form>
+	<div class="loginContainerDiv">		
+		
+		<h2>LOGIN FORM</h2>
+		<div id="loginBoxDiv">
+			<form action="loginCtr.do" id="loginForm" method="post">
+				
+				
+					<label><b>ID</b></label>
+					<input type="text" name="id" id="memberId" placeholder="ID"></br>
+					<label><b>Password</b></label>
+					<input type="password" name='password' id="memberPassword" placeholder="Password" required="required"></br></br>
+									
+						
+					<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();">
+					<br>
+					<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
+							
+			</form>
+		</div>
 	</div>
-
 
 </div>
 

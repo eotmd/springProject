@@ -134,9 +134,9 @@ public class MemberController {
 			// 사이트 메인페이지로 이동
 			session.setAttribute("_memberVo_", memberVo);
 
-			// 이후 조회수 기능 구현을 하게되면 미완성된 메인페이지를 상품리스트형식과 유사하게 만든후  주석처리한 아래의 것을 사용하자!!!
-//			viewUrl = "/common/siteMainPage"; 
-			viewUrl = "redirect:/product/list.do";  // 일단 조회수 기능 구현전이라 상품리스트 페이지가 메인페이지의 역할을 대신하고 있다
+			
+			viewUrl = "redirect:/siteMainPage.jsp"; 
+
 		
 			
 			//자동로그인 아직 구현안함;;;;

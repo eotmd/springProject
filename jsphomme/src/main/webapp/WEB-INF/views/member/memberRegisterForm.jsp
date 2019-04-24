@@ -8,6 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
+	img {
+		width: 1700px;
+		height: 300px;
+	    margin-left: 93px;
+    	margin-right: 93px;
+	}
 
 	#memberRegiBodyDiv{
 		width: 1920px;
@@ -66,7 +72,7 @@
 		font-size: 22px;
 	}
 	
-	#memberRegisterBtn:hover {
+	#memberRegisterBtn:hover,  #moveToMainBtn:hover{
 		color: #6EE3F7;
 	}
 	
@@ -82,10 +88,7 @@
 		font-size: 22px;
 	}
 	
-	#moveToMainBtn:hover {
-		color: #6EE3F7;
-	}	
-	
+		
 	a {
 		font-size: 14px;
 	}
@@ -97,6 +100,10 @@
    
 </script>
 <script type="text/javascript">
+
+	function pageMoveMainFnc() {
+		location.href = "../";
+	}
 
 // 포커스가 가도록
 
@@ -276,6 +283,8 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
+
+<img alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
 
 <div id="memberRegiBodyDiv">
 
