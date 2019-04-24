@@ -87,4 +87,10 @@
 		(PURCHASE_NO_SEQ.NEXTVAL,#{memberNo},#{productNo},#{productSize},SYSDATE,#{requests}, #{address},#{purchaseQuantity},#{recipient})
 	</select>
 	
+	<delete id="purchaseListDelete" parameterType="int">
+		DELETE FROM PURCHASE_LIST
+		WHERE MEMBER_NO = #{memberNo}
+	</delete>
+	
+	
 </mapper>

@@ -30,7 +30,13 @@ public class PurchaseListController {
 	private PurchaseListService purchaseListService;
 	
 	@RequestMapping(value="/purchase/list.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public String PurchaseListView(@RequestParam(defaultValue ="1") int curPage, int memberNo ,HttpServletRequest req ,Model model) {
+	public String PurchaseListView(@RequestParam(defaultValue ="1") int curPage,@RequestParam(defaultValue ="0") int memberNo, HttpServletRequest req, Model model) {
+		
+		
+				
+		if(memberNo == 0) {
+			return "redirect:/auth/login.do";
+		}
 		
 		int num = 0;
 		
@@ -92,13 +98,13 @@ public class PurchaseListController {
 	@RequestMapping(value="/purchase/finish.do", method = RequestMethod.POST)
 	public String PurchaseListInsert(PurchaseListVo purchaseListVo,HttpServletRequest req , HttpSession session, Model model) {
 		
-		purchaseListService.purchaseListCreate(purchaseListVo);
-		
 		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
 		
 		if(memberVo == null) {
 			return "redirect:/auth/login.do";
+		
 		}
+		purchaseListService.purchaseListCreate(purchaseListVo);
 		
 		
 		
@@ -109,5 +115,6 @@ public class PurchaseListController {
 		
 		return "forward:/purchase/list.do";
 	}
+	
 //	
 }

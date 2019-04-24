@@ -39,9 +39,9 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 	}
 
 	@Override
-	public int purchaseListDelete(int no) {
+	public int purchaseListDelete(int memberNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return purchaseListDao.purchaseListDelete(memberNo);
 	}
 
 	@Override

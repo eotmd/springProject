@@ -91,8 +91,6 @@
 	
 	<form action="/jsphomme/purchase/list.do" id="pagingForm" method="post">
 		<input type="hidden" id="curPage" name="curPage" value="${pagingMap.paging.curPage}">
-		<input type="hidden" id="curPage" name="memberNo" value="${_memberVo_.memberNo}">
-		
 	</form>
 </div>
 	<jsp:include page="/WEB-INF/views/common/tail.jsp"/>
