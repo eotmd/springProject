@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <style type="text/css">
 	img {
-		margin: auto;
+		margin-left: 93px;
+    	margin-right: 93px;
+    	margin-top: 30px;
 	}
 	
 	.loginContainerDiv{
@@ -14,8 +16,8 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%,-50%);
-		width: 28%;
-		margin: auto;
+		width: 400px;
+		margin-top: 80px;
 		background-color: rgba(0, 0, 0, 0.1);
 		color: white;
 		padding: 30px;
@@ -25,6 +27,7 @@
 	}
 
 	.loginContainerDiv h2{
+		text-align: center;
 		padding: 10px 15px;
 		letter-spacing: 1px;
 	}
@@ -69,7 +72,7 @@
 	
 	#loginBodyDiv {
 		width: 1920px;
-		height: 2010px;
+		height: 900px;
 	}
 	
 </style>
@@ -123,15 +126,13 @@
 					<label><b>ID</b></label>
 					<input type="text" name="id" id="memberId" placeholder="ID"></br>
 					<label><b>Password</b></label>
-					<input type="password" name='password' id="memberPassword" placeholder="Password" required="required"></br>
+					<input type="password" name='password' id="memberPassword" placeholder="Password" required="required"></br></br>
 									
 						
-			<div id="loginRegiDiv">			
-							<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();"
-								style="">
-							<br><br>
-							<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
-			</div>					
+					<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();">
+					<br>
+					<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
+							
 			</form>
 		</div>
 	</div>
