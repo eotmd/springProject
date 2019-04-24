@@ -88,21 +88,22 @@
 <div id="loginBodyDiv">
 
 
-	<img alt="ConceptPhoto" src="../resources/images/conceptPhoto.jpg" >
+	<img alt="ConceptPhoto" src="../resources/images/conceptPhotoTomFord.jpg" width="1700px;" height="700px;">
 
-	
+	<h2>LOGIN FORM</h2>
 	<div id="loginBoxDiv">
 		<form action="loginCtr.do" id="loginForm" method="post">
 			
 			
-			
-				<input type="text" name="id" id="memberId" placeholder="id"></br>
-				
-				<input type="password" name='password' id="memberPassword" placeholder="password"></br>
+				<label><b>ID</b></label>
+				<input type="text" name="id" id="memberId" placeholder="ID"></br>
+				<label><b>Password</b></label>
+				<input type="password" name='password' id="memberPassword" placeholder="Password" required="required"></br>
 								
 					
 		<div id="loginRegiDiv">			
-						<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();">
+						<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();"
+							style="">
 						<br><br>
 						<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
 		</div>					
