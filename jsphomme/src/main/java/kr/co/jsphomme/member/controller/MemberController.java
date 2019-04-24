@@ -118,9 +118,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
-	public String loginCtr(int memberNo, String id, String password, String authority, String name, String address, String hp, HttpSession session,
+	public String loginCtr(String id, String password,  HttpSession session,
 			Model model) {
-		log.debug("Welcome MemberController loginCtr! " + id + ", " + password + authority);
+		log.debug("Welcome MemberController loginCtr! " + id + ", " + password );
 
 		Map<String, Object> paramMap = new HashMap<>();
 		
