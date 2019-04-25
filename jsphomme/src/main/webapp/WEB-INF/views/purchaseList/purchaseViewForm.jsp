@@ -25,7 +25,7 @@
 		var hpIdObj = document.getElementById("hpId");
 		
 		if(nameIdObj.value ==""){
-			alert("이름을 입력해 주세요");
+			alert("수령인을 입력해 주세요");
 			return;
 		}
 		

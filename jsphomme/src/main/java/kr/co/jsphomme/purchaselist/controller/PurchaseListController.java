@@ -36,10 +36,10 @@ public class PurchaseListController {
 	@RequestMapping(value="/purchase/list.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String PurchaseListView(@RequestParam(defaultValue ="1") int curPage, HttpSession session, Model model) {
 		
-		log.debug("리스트 두 탄다 : {}" + curPage);
+		log.debug("구매목록 컨트롤러 : {}" + curPage);
 		
 		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
-		log.debug("리스트 두 에서 세션정보 : {}" + memberVo);
+		
 		if(memberVo == null) {
 			return "redirect:/auth/login.do";
 		}
@@ -80,7 +80,7 @@ public class PurchaseListController {
 	
 	@RequestMapping(value="/purchase/view.do", method = RequestMethod.GET)
 	public String PurchaseView(PurchaseListVo purchaseListVo, HttpSession session, Model model) {
-		
+		log.debug("결제페이지이동 컨트롤러 : {}" + purchaseListVo);
 		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
 		
 		if(memberVo == null) {
@@ -97,7 +97,7 @@ public class PurchaseListController {
 	
 	@RequestMapping(value="/purchase/finish.do", method = RequestMethod.POST)
 	public String PurchaseListInsert(PurchaseListVo purchaseListVo,HttpServletRequest req , HttpSession session, Model model) {
-		
+		log.debug("결제완료 컨트롤러 : {}" + purchaseListVo);
 		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
 		
 		if(memberVo == null) {
