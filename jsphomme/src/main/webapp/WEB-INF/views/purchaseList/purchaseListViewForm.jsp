@@ -8,9 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
 	#tableCon{
 		width: 1805px;
 		margin: auto;
+		
+		
 	}
 	#tableCon > table, td{
 		border: 1px solid;
@@ -18,8 +21,8 @@
 		padding: 5px;
 	}
 	#tableCon > table{
-		
-		width: 1800px;
+		margin:auto;
+		width: 1505px;
 	}
 	#tableCon > td{
 		height: 32px;
@@ -39,7 +42,10 @@
 	}
 	.productName > a:hover {
 		font-weight: bold;
+		
 	}
+	
+
 </style>
 
 </head>
@@ -48,13 +54,14 @@
 	
 <div style="margin: auto;">	
 
-	<div id="imageCon">
-		<img style="height: 200px; width: 1800px; margin-bottom: 80px;" alt="asd" src="/jsphomme/test.jpg">
-	</div>
+		<a href='#' onclick="goProductList();" style="margin-left: 190px;">
+			<img style="width: 1500px; height: 300px;" alt="1" src="/jsphomme/resources/images/conceptPhotoTomFord.jpg">
+		</a>
+	
 	
 	<div id="tableCon">
 	
-	<table>
+	<table style="margin-top: 20px;">
 		<tr>
 			<td class="tableTop">상품 번호</td>
 			<td class="tableTop">상품 이름</td>
@@ -69,16 +76,16 @@
 		</tr>
 		<c:forEach var="purchaseList" items="${purchaseList}">
 		<tr>
-			<td style="text-align: center; width: 90px;">${purchaseList.purchaseListNo}</td>
-			<td class="productName" style="text-align: left; width: 260px;"><a style="text-decoration: none; color: black;" href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
-			<td style="text-align: center; width: 90px;">${purchaseList.productSize}</td>
-			<td style="text-align: center; width: 70px;">${purchaseList.purchaseQuantity}</td>
-			<td style="text-align: right; width: 100px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>
-			<td style="text-align: right; width: 110px;"><fmt:formatNumber value="${purchaseList.productPrice * purchaseList.purchaseQuantity}" pattern="#,###"/></td>
-			<td style="text-align: left; width: 375px;">${purchaseList.address}</td>
-			<td style="text-align: left; width: 100px;">${purchaseList.recipient}</td>
-			<td style="text-align: center; width: 220px;"><fmt:formatDate value="${purchaseList.purchaseDate}" pattern="yyyy년 MM월 dd일  hh시mm분"/></td>
-			<td style="text-align: left; width: 330px;">${purchaseList.requests}</td>
+			<td style="text-align: center; width: 100px;">${purchaseList.productNo}</td>
+			<td class="productName" style="text-align: left; width: 202px;"><a style="text-decoration: none; color: black;" href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
+			<td style="text-align: center; width: 101px;">${purchaseList.productSize}</td>
+			<td style="text-align: center; width: 101px;">${purchaseList.purchaseQuantity}</td>
+			<td style="text-align: right; width: 101px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>
+			<td style="text-align: right; width: 101px;"><fmt:formatNumber value="${purchaseList.productPrice * purchaseList.purchaseQuantity}" pattern="#,###"/></td>
+			<td style="text-align: left; width: 301px;">${purchaseList.address}</td>
+			<td style="text-align: left; width: 101px;">${purchaseList.recipient}</td>
+			<td style="text-align: center; width: 151px;"><fmt:formatDate value="${purchaseList.purchaseDate}" pattern="yyyy년 MM월 dd일  hh시mm분"/></td>
+			<td style="text-align: left; width: 251px;">${purchaseList.requests}</td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -91,8 +98,6 @@
 	
 	<form action="/jsphomme/purchase/list.do" id="pagingForm" method="post">
 		<input type="hidden" id="curPage" name="curPage" value="${pagingMap.paging.curPage}">
-		<input type="hidden" id="curPage" name="memberNo" value="${_memberVo_.memberNo}">
-		
 	</form>
 </div>
 	<jsp:include page="/WEB-INF/views/common/tail.jsp"/>

@@ -5,29 +5,110 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
+img {
+		width: 1700px;
+		height: 300px;
+	    margin-left: 93px;
+    	margin-right: 93px;
+	}
+
 #memberListOneBodyDiv{
 	width: 1920px;
 	height: 620px;
 }
 
+#memberInfoContainer{
+		width: 1250px;
+		height:500px;
+		margin: auto;
+		margin-top: 30px;
+		background-color: #F6F6F6;
+		box-shadow:  7px 7px 20px -8px gray;
+}
+
+#memberInfoDiv{
+		width:1300px;
+		height:320px;
+		margin-left: 200px;
+		font-weight: bold;	
+	    padding-top: 62px;
+}
+
+.memberInfo {
+		font-weight: bold; 
+		border: 0px; 
+		background-color:#F6F6F6;
+		color: #C3C3C3;
+}
+
+.memberInput {
+		border: 0px; 
+		border-color: #747474;
+		background-color:#F6F6F6;
+		height: 35px;
+		font-size: 16px;
+		font-weight: 5px;
+		margin-bottom: 5px;
+		color: gray;
+		width: 600px;
+}
+
+
+	
+#moveMainPageBtn:hover, #memberLeaveBtn:hover, #modifyBtn:hover {
+		color: #6EE3F7;
+}
+
+#moveMainPageBtn{
+	    margin-left: 20px;
+		width: 270px; 
+		height: 50px; 
+		border: 0px; 
+		background-color: #F6F6F6; 
+		color: gray; 
+		font-weight: bold; 
+		font-size: 22px;
+}
+
+#memberLeaveBtn{
+    	margin-left: 200px;
+		width: 270px; 
+		height: 50px; 
+		border: 0px; 
+		background-color: #F6F6F6; 
+		color: gray; 
+		font-weight: bold; 
+		font-size: 22px;
+}
+
+#modifyBtn {
+		margin-left: 200px;
+		width: 270px; 
+		height: 50px; 
+		border: 0px; 
+		background-color: #F6F6F6; 
+		color: gray; 
+		font-weight: bold; 
+		font-size: 22px;
+}
 </style>
 <title>마이페이지 보기</title>
 <script type="text/javascript">
 	window.onload = function(){
 		var memberNameInputObj = 
-			document.getElementById('memberName');
+			document.getElementById('name');
 		
 		memberNameInputObj.style.backgroundColor = '#E7E7E7';
 	}
 
 
 
-	function pageMoveListFnc(){
-		location.href = "list.do";
+	function MoveMainPageFnc(){
+		location.href = "../";
 	}
 	
-	function leaveFnc() {
-		location.href = "./leaveCtr.do?memberNo=" + ${memberVo.memberNo};
+	function leaveFnc(no) {
+		location.href = "./leaveCtr.do?memberNo=" + no;
 	}
 	
 </script>
@@ -36,29 +117,48 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />	
+
+<img alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
 	
 <div id="memberListOneBodyDiv">	
 	
-	<h1>회원 정보 상세페이지</h1>
+	<h1 style="text-align: center;">회원 정보 상세페이지</h1>
 	
 	<form action="./update.do" method="get">
+			
+	<div id="memberInfoContainer">		
+		
+		<div id="memberInfoDiv">	
+			
 			<input type="hidden" name='memberNo' value='${memberVo.memberNo}'>
-		이름: <input type="text" name='name' id='memberName' value='${memberVo.name}' 
-				readonly="readonly"><br>
-		아이디: <input type="text" name="id" value="${memberVo.id}"
-				readonly="readonly"><br>
-		비밀번호:	<input type="password" name="password" value="${memberVo.password}"
-				readonly="readonly"><br>
-		주소: <input type="text" name="address" value="${memberVo.address}"
-			readonly="readonly"><br>
-		연락처: <input type="number" name="hp" value="${memberVo.hp}"
-			readonly="readonly"><br>
+			
+			<input class="memberInfo" type="text" value="이름" disabled="disabled"><br/>
+			<input class="memberInput" type="text" name='name' id='name' value='${memberVo.name}' readonly="readonly"><br>
 		
+			<input class="memberInfo" type="text" value="아이디" disabled="disabled"><br/>
+			<input class="memberInput" type="text" name="id" value="${memberVo.id}" readonly="readonly"><br>
+				
+			<input class="memberInfo" type="text" value="비밀번호" disabled="disabled"><br/>
+			<input class="memberInput" type="password" name="password" value="${memberVo.password}"
+				readonly="readonly"><br>
 		
-		<input type="button" value="이전페이지" onclick="pageMoveListFnc();">
-		<input type="button" value="탈퇴하기" onclick="leaveFnc(${memberVo.memberNo});">
-		<input type="submit" value="수정하기" >
+			<input class="memberInfo" type="text" value="주소" disabled="disabled"><br/>
+			<input class="memberInput" type="text" name="address" value="${memberVo.address}" readonly="readonly"><br>
+		
+			<input class="memberInfo" type="text" value="연락처" disabled="disabled"><br/>
+			<input class="memberInput" type="number" name="hp" value="${memberVo.hp}" readonly="readonly"><br>
+		
+		</div>
+		
+		<div id="hrDiv">
+			<br/>
+			<hr>
+		</div>
+			<input type="button" value="메인페이지" id="moveMainPageBtn" onclick="MoveMainPageFnc();">
+			<input type="button" value="탈퇴하기" id=memberLeaveBtn onclick="leaveFnc(${memberVo.memberNo});">
+			<input type="submit" value="수정하기" id="modifyBtn">
 
+	</div>
 
 	</form>
 

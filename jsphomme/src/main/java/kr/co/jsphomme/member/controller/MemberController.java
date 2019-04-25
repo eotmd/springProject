@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.jsphomme.member.service.MemberService;
 import kr.co.jsphomme.member.vo.MemberVo;
+import kr.co.jsphomme.purchaselist.service.PurchaseListService;
+import kr.co.jsphomme.purchaselist.service.PurchaseListServiceImpl;
 import kr.co.jsphomme.util.Paging;
 
 @Controller
@@ -29,7 +31,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-
+	
+	
 	
 	@RequestMapping(value = "/common/main.do")
 
@@ -115,17 +118,14 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
-	public String loginCtr(String id, String password, String authority, String name, String address, String hp, HttpSession session,
+	public String loginCtr(String id, String password,  HttpSession session,
 			Model model) {
-		log.debug("Welcome MemberController loginCtr! " + id + ", " + password + authority);
+		log.debug("Welcome MemberController loginCtr! " + id + ", " + password );
 
 		Map<String, Object> paramMap = new HashMap<>();
+		
 		paramMap.put("id", id);
 		paramMap.put("password", password);
-		paramMap.put("authority", authority);
-		paramMap.put("name", name);
-		paramMap.put("address", address);
-		paramMap.put("hp", hp);
 		MemberVo memberVo = memberService.memberExist(paramMap);
 
 		String viewUrl = "";
@@ -134,9 +134,9 @@ public class MemberController {
 			// 사이트 메인페이지로 이동
 			session.setAttribute("_memberVo_", memberVo);
 
-			// 이후 조회수 기능 구현을 하게되면 미완성된 메인페이지를 상품리스트형식과 유사하게 만든후  주석처리한 아래의 것을 사용하자!!!
-//			viewUrl = "/common/siteMainPage"; 
-			viewUrl = "redirect:/product/list.do";  // 일단 조회수 기능 구현전이라 상품리스트 페이지가 메인페이지의 역할을 대신하고 있다
+			
+			viewUrl = "redirect:/siteMainPage.jsp"; 
+
 		
 			
 			//자동로그인 아직 구현안함;;;;
@@ -243,6 +243,8 @@ public class MemberController {
 		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", memberNo);
 
 		try {
+			
+			
 			memberService.memberDelete(memberNo);
 
 		} catch (Exception e) {

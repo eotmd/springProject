@@ -27,18 +27,10 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public List<ProductVo> productListView(
-			/* String searchOption, String keyword, */ int start, int end) {
+	public List<ProductVo> productListView(Map<String,Object> map) {
 		// TODO Auto-generated method stub
 		
-		Map<String, Object> map = new HashMap();
-		
-//		map.put("searchOption", searchOption);
-//		map.put("keyword", keyword);
-		map.put("start", start);
-		map.put("end", end);
-		
-		
+
 		return sqlSession.selectList(namespace + "productListView", map);
 	}
 
@@ -64,9 +56,9 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public int productSelectTotalCount() {
+	public int productSelectTotalCount(String keyword) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace + "productSelectTotalCount");
+		return sqlSession.selectOne(namespace + "productSelectTotalCount", keyword);
 	}
 
 }

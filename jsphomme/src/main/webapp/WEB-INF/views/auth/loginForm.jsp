@@ -5,50 +5,81 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-	#loginDiv {
-		
+	img {
+		margin-left: 93px;
+    	margin-right: 93px;
+    	margin-top: 30px;
 	}
 	
-	#loginH2 {
+	.loginContainerDiv{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		width: 400px;
+		margin-top: 80px;
+		background-color: rgba(0, 0, 0, 0.1);
+		color: white;
+		padding: 30px;
+		box-shadow: 0px 2px 8px 2px #555;
+		border-radius: 6px;
+		box-sizing: border-box;
+	}
+
+	.loginContainerDiv h2{
 		text-align: center;
-	}
-	
-	#loginTable {
-		width: 400px;
-		margin-left: 750px;
-		text-align: left;
-	}
-	
-	tr {
-		height: 30px;
-	}
-	
-	#loginRegiDiv {
-		width: 400px;
-		margin-left: 750px;
+		padding: 10px 15px;
+		letter-spacing: 1px;
 	}
 	
 	
-	#loginBtn {
-		width: 200px;
-		margin: auto;
+	#loginBoxDiv label{
+		text-transform: uppercase;
+		font-size: 12px;
+		letter-spacing: 1px;
 	}
 	
-	#memberRegiBtn{
-		width: 200px;
-		margin: auto;
+	#memberId, #memberPassword, #loginBtn ,#memberRegiBtn {
+		width: 100%;
+		padding: 8px 12px;
+		margin: 8px 0px;
+		display: inline-block;
+		box-sizing: border-box;
+		color: white;
+		background-color: transparent;
+		border: 1px solid white;
 	}
+	
+	#memberId:focus, #memberPassword:focus {
+		outline: none;
+	}
+	
+	#loginBtn, #memberRegiBtn {
+		padding: 12px 20px;
+		cursor: pointer;
+		font-family: Abel;
+		font-size: 14px;
+		letter-spacing: 1px;
+	}
+	
+	#loginBtn:hover, #memberRegiBtn:hover {
+		background: rgba(0, 0, 0, 0.5);
+	}
+			
+	
+	
+	
 	
 	#loginBodyDiv {
 		width: 1920px;
-		height: 600px;
+		height: 900px;
 	}
 	
 </style>
 
 <title>로그인</title>
 
-<!-- 아이디 validation 체크 어떻게 할꺼야? -->
+
 <script type="text/javascript">
 	function loginFnc() {
 		var idObj = document.getElementById("memberId");
@@ -57,13 +88,13 @@
 		if (idObj.value == null || idObj.value == "") {
 			alert("아이디를 입력해 주세요");
 			idObj.focus();
-			return false;
+			
 		}
 
 		if (passwordObj.value == null || passwordObj.value == "") {
 			alert("비밀번호를 입력해 주세요")
 			passwordObj.focus();
-			return false;
+			
 		}
 		
 		var formObj = document.getElementById("loginForm")
@@ -82,31 +113,29 @@
 
 <div id="loginBodyDiv">
 
-	<h2 id="loginH2">사용자 로그인</h2>
-	<div id="loginDiv">
-		<form action="loginCtr.do" id="loginForm" method="post">
-			<table id="loginTable">
-				<tr>
-					<td style="font-weight:bolder; font-family: 'Lucida Console', Monaco, monospace;">아이디</td>
-					<td><input type="text" name="id" id="memberId"></td>
-				</tr>
-				<tr>
-					<td style="font-weight:bolder; font-family: 'Lucida Console', Monaco, monospace;">암호</td>
-					<td><input type="password" name='password' id="memberPassword"></td>
-				</tr>
-				
-			</table>			
-			<br>
-			<br>
-			
-		<div id="loginRegiDiv">			
-						<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();">
-						<br><br>
-						<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
-		</div>					
-		</form>
-	</div>
 
+	<img alt="ConceptPhoto" src="../resources/images/conceptPhotoTomFord.jpg" width="1700px;" height="700px;">
+
+	<div class="loginContainerDiv">		
+		
+		<h2>LOGIN FORM</h2>
+		<div id="loginBoxDiv">
+			<form action="loginCtr.do" id="loginForm" method="post">
+				
+				
+					<label><b>ID</b></label>
+					<input type="text" name="id" id="memberId" placeholder="ID"></br>
+					<label><b>Password</b></label>
+					<input type="password" name='password' id="memberPassword" placeholder="Password" required="required"></br></br>
+									
+						
+					<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();">
+					<br>
+					<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
+							
+			</form>
+		</div>
+	</div>
 
 </div>
 

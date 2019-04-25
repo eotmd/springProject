@@ -10,9 +10,7 @@
 
 <script type="text/javascript">
 
-function goProductList() {
-	location.href = "/jsphomme/product/list.do";
-}
+
 
 </script>
 

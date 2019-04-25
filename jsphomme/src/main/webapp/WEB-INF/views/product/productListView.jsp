@@ -98,6 +98,7 @@
 	<form action="./list.do" id="pagingForm" method="get">
 		<input type="hidden" id="curPage" name="curPage" 
 			value="${pagingMap.paging.curPage}">
+		<input type="hidden" name="keyword" value="${keyword}">
 	</form>
 	
 	<jsp:include page="/WEB-INF/views/common/tail.jsp"></jsp:include>

@@ -46,7 +46,18 @@ function LoginFnc() {
 }
 
 function menswearFnc() {
-	location.href ="/jsphomme//product/list.do";
+	location.href ="/jsphomme/product/list.do";
+}
+
+function goProductList() {
+	location.href = "/jsphomme/product/list.do";
+}
+function searchFnc() {
+	var searchIdObj = document.getElementById("searchId")
+	if(event.keyCode == 13){
+		
+		searchIdObj.submit();
+	}
 }
 </script>
 
@@ -109,7 +120,9 @@ function menswearFnc() {
 	
 	 <div>
       <input class="menu" type="button" value="Menswear" onclick="menswearFnc();">
-      <input class="search" type="text" value="" placeholder="search">
+      <form style="display: inline;" id="searchId" action="/jsphomme/product/list.do" method="get">
+      	<input class="search"  type="text" name="keyword" value="" placeholder="search" onkeydown="searchFnc();">
+      </form>
    	</div>
 	
 </div>

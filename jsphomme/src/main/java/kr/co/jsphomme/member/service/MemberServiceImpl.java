@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.jsphomme.member.dao.MemberDao;
 import kr.co.jsphomme.member.vo.MemberVo;
+import kr.co.jsphomme.purchaselist.service.PurchaseListService;
 
 
 @Service
@@ -23,6 +24,9 @@ public class MemberServiceImpl implements MemberService{
 		
 	@Autowired
 	public MemberDao memberDao;
+	
+	@Autowired
+	public PurchaseListService purchaseListService;
 	
 	@Override
 	public void memberInsertOne(MemberVo memberVo) {
@@ -74,6 +78,7 @@ public class MemberServiceImpl implements MemberService{
 	public int memberDelete(int memberNo)  {
 		// TODO Auto-generated method stub
 				
+		purchaseListService.purchaseListDelete(memberNo);
 		return memberDao.memberDelete(memberNo);
 	}
 

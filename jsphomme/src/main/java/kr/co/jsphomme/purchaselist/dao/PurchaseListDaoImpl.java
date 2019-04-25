@@ -31,9 +31,10 @@ public class PurchaseListDaoImpl implements PurchaseListDao{
 	}
 
 	@Override
-	public int purchaseListDelete(int no) {
+	public int purchaseListDelete(int memberNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.delete(namespace+"purchaseListDelete", Integer.valueOf(memberNo));
 	}
 
 	@Override
