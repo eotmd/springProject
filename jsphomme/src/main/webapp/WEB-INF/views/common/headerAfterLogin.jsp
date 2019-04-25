@@ -120,8 +120,8 @@ function searchFnc() {
 	
 	 <div>
       <input class="menu" type="button" value="Menswear" onclick="menswearFnc();">
-      <form id="searchId" action="/jsphomme/product/list.do" method="get">
-      	<input class="search" type="text" name="keyword" value="" placeholder="search" onkeydown="searchFnc();">
+      <form style="display: inline;" id="searchId" action="/jsphomme/product/list.do" method="get">
+      	<input class="search"  type="text" name="keyword" value="" placeholder="search" onkeydown="searchFnc();">
       </form>
    	</div>
 	

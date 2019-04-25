@@ -42,6 +42,7 @@
 	}
 	.productName > a:hover {
 		font-weight: bold;
+		
 	}
 	
 
