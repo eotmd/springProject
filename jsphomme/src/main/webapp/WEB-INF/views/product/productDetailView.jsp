@@ -28,6 +28,16 @@ function goBack() {
 	location.href = "/jsphomme/product/list.do"
 }
 
+function goBuy() {
+	var formBuyObj = document.getElementById("formBuy");
+	
+	formBuyObj.submit();
+}
+
+function soldOut() {
+	alert("품절된 상품입니다.")
+}
+
 </script>
 
 <style type="text/css">
@@ -75,7 +85,7 @@ function goBack() {
 	<h1>${productVo.name}</h1>
 	<div class="detailView">
 		
-		<form action="../purchase/view.do">
+		<form action="../purchase/view.do" id="formBuy">
 			<input type="hidden" name = "productName" value="${productVo.name}">
 			<input type="hidden" name = "storedFileName" value="${productVo.storedFileName}">
 			<input type="hidden" name = "productPrice" value="${productVo.price}">
@@ -111,7 +121,8 @@ function goBack() {
 					</tr>
 					<tr>
 						<td style="width: 150px; font-weight: bold;">수량</td>
-							<td><input type="number" name="purchaseQuantity" value="1" max="${productVo.quantity}" min="1"></td>
+							<td><input type="number" name="purchaseQuantity" 
+								value="1" max="${productVo.quantity}" min="1"></td>
 					</tr>
 				</c:if>
 				<c:if test="${productVo.quantity == 0}">
@@ -119,9 +130,13 @@ function goBack() {
 						<td colspan="2">품절</td>
 					</tr>
 				</c:if>
-					<tr>
-						<td><input type="button" value="뒤로가기" 
-							class="goBackBtn" onclick="goBack();"></td>
+				<tr>
+					<td style="width: 150px; font-weight: bold;">재고량</td>
+					<td>${productVo.quantity}</td>
+				</tr>
+				<tr>
+					<td><input type="button" value="뒤로가기" 
+						class="goBackBtn" onclick="goBack();"></td>
 				<c:if test="${_memberVo_ == null}">
 						<td>
 							<input type="button" value="즉시 구매" 
@@ -129,9 +144,14 @@ function goBack() {
 						</td>
 					</tr>
 				</c:if>
-				<c:if test="${_memberVo_ != null}">
-						<td colspan="2"><input type="submit" 
-							class="goBuyBtn" value="즉시 구매"></td>
+				<c:if test="${_memberVo_ != null && productVo.quantity > 0}">
+						<td colspan="2"><input type="submit" value="즉시 구매" 
+							class="goBuyBtn""></td>
+					</tr>
+				</c:if>
+				<c:if test="${_memberVo_ != null && productVo.quantity <= 0}">
+						<td colspan="2"><input type="button" value="즉시 구매" 
+							class="goBuyBtn" onclick="soldOut();"></td>
 					</tr>
 				</c:if>
 				<c:if test="${_memberVo_.authority == '0'}">

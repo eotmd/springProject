@@ -80,7 +80,8 @@ function goBack() {
 					<td><input type="number" name="price" value="${productVo.price}"></td>
 				</tr>
 				<tr>
-					<td style="width: 150px; font-weight: bold;">추가 물량 (현재 물량에 추가될 갯수를 적으면 됩니다.)</td>
+					<td style="width: 150px; font-weight: bold;">추가 물량 (현재 물량에 추가될 갯수를 적으면 됩니다.
+						<br>현재: ${productVo.quantity} 개)</td>
 					<td><input type="number" name="quantity" value="0"></td>
 				</tr>
 				<tr>
