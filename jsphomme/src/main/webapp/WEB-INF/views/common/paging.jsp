@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <style type="text/css">
+.paging{
+	margin-top: 20px;
+}
 .paging>ul {
 	list-style-type: none;
 	padding: 0px;
