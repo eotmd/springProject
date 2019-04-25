@@ -86,7 +86,7 @@ function goBack() {
 				<tr>
 					<td style="width: 150px;"><input type="reset" value="취소"
 						class="goUpdateBtn"></td>
-					<td><input type="submit" value="수정하기"
+					<td><input type="submit" value="수정 완료"
 						class="goBuyBtn"></td>
 				</tr>
 				<tr>
