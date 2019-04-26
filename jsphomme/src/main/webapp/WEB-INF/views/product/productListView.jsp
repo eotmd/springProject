@@ -21,10 +21,18 @@
 		padding: 0;
 	}
 	
+ 	#mainImg { 
+ 		width: 1698px;
+      	height: 300px;
+       	margin-left: 94px;
+       	margin-right: 94px;
+ 	} 
 	.productList{
 		overflow: hidden;
-		margin: auto;
-		width: 1200px;
+		margin-top:50px;
+		width: 1698px;
+		margin-left: 93px; 
+     	margin-right: 93px; 
 	}
 	
 	nav {
@@ -33,8 +41,10 @@
 	
 	.productList ul{
 		float: left;
-		width: 300px;
-		margin: 50px;
+		width: 450px;
+		margin-right: 174px;
+		margin-bottom: 50px;
+		
 	}
 	
 	li{
@@ -46,8 +56,8 @@
 	}
 	
 	.productList img{
-		width: 300px;
-		height: 300px;
+		width: 450px;
+		height: 450px;
 	}
 	
 	a{
@@ -62,23 +72,48 @@
 
 	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"></jsp:include>
 	
-	<h1>상품 리스트</h1>
+	<img id="mainImg" alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
 	<div class="productList">	
 		<nav>
-			<c:forEach var="productVo" items="${productList}">
-				<ul>
-					<li>
-						<span>
-							<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
-								<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
-							</a>
-						</span>
-					</li>
-					<li>
-						<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
-							<span>${productVo.name}</span>
-						</a>
-					</li>
+			<c:forEach var="productVo" items="${productList}" varStatus="i">
+					
+					<c:choose>
+						<c:when test="${i.count % 3 == 0}">
+							<ul style="margin-right: 0px;">
+								<li>
+									<span>
+										<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
+											<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
+										</a>
+									</span>
+								</li>
+								<li>
+									<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
+										<span>${productVo.name}</span>
+									</a>
+								</li>
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<ul>
+								<li>
+									<span>
+										<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
+											<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
+										</a>
+									</span>
+								</li>
+								<li>
+									<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
+										<span>${productVo.name}</span>
+									</a>
+								</li>
+							</ul>
+						</c:otherwise>
+					</c:choose>
+					
+					
+				
 					
 					<%-- <li>
 						<span>${productVo.quantity}</span>
@@ -86,7 +121,7 @@
 					<li>
 						<span>${productVo.price}</span>
 					</li> --%>
-				</ul>
+				
 			</c:forEach>
 		</nav>
 	</div>

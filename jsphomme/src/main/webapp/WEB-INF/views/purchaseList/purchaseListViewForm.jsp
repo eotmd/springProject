@@ -8,7 +8,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
+	#mainImg { 
+ 		width: 1698px;
+      	height: 300px;
+       	margin-left: 94px;
+       	margin-right: 94px;
+ 	} 
 	#tableCon{
 		width: 1805px;
 		margin: auto;
@@ -22,19 +27,12 @@
 	}
 	#tableCon > table{
 		margin:auto;
-		width: 1505px;
+		width: 1698px;
 	}
 	#tableCon > td{
 		height: 32px;
 	}
-	#imageCon{
-		width: 1805;
-		margin: auto;
-	}
-	#imageCon > img{
-		display:block;
-		margin: auto;
-	}
+	
 	.tableTop{
 		text-align: center;
 		background-color: #DBDBDB;
@@ -54,8 +52,8 @@
 	
 <div style="margin: auto;">	
 
-		<a href='#' onclick="goProductList();" style="margin-left: 190px;">
-			<img style="width: 1500px; height: 300px;" alt="1" src="/jsphomme/resources/images/conceptPhotoTomFord.jpg">
+		<a href='#' onclick="goProductList();">
+			<img id="mainImg" alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
 		</a>
 	
 	
@@ -77,15 +75,15 @@
 		<c:forEach var="purchaseList" items="${purchaseList}">
 		<tr>
 			<td style="text-align: center; width: 100px;">${purchaseList.productNo}</td>
-			<td class="productName" style="text-align: left; width: 202px;"><a style="text-decoration: none; color: black;" href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
+			<td class="productName" style="text-align: left; width: 242px;"><a style="text-decoration: none; color: black;" href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
 			<td style="text-align: center; width: 101px;">${purchaseList.productSize}</td>
 			<td style="text-align: center; width: 101px;">${purchaseList.purchaseQuantity}</td>
 			<td style="text-align: right; width: 101px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>
 			<td style="text-align: right; width: 101px;"><fmt:formatNumber value="${purchaseList.productPrice * purchaseList.purchaseQuantity}" pattern="#,###"/></td>
-			<td style="text-align: left; width: 301px;">${purchaseList.address}</td>
+			<td style="text-align: left; width: 349px;">${purchaseList.address}</td>
 			<td style="text-align: left; width: 101px;">${purchaseList.recipient}</td>
 			<td style="text-align: center; width: 151px;"><fmt:formatDate value="${purchaseList.purchaseDate}" pattern="yyyy년 MM월 dd일  hh시mm분"/></td>
-			<td style="text-align: left; width: 251px;">${purchaseList.requests}</td>
+			<td style="text-align: left; width: 351px;">${purchaseList.requests}</td>
 		</tr>
 		</c:forEach>
 	</table>
