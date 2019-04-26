@@ -8,11 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-	img {
-		width: 1700px;
-		height: 300px;
-	    margin-left: 93px;
-    	margin-right: 93px;
+img {
+		width: 1698px;
+		height: 380px;
+	    margin-left: 94px;
+    	margin-right: 94px;
 	}
 
 	#memberRegiBodyDiv{

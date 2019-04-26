@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <style type="text/css">
 img {
-		width: 1700px;
-		height: 300px;
-	    margin-left: 93px;
-    	margin-right: 93px;
+		width: 1698px;
+		height: 380px;
+	    margin-left: 94px;
+    	margin-right: 94px;
 	}
 
 #memberListOneBodyDiv{
@@ -91,17 +91,12 @@ img {
 		font-weight: bold; 
 		font-size: 22px;
 }
+
+
 </style>
 <title>마이페이지 보기</title>
 <script type="text/javascript">
-	window.onload = function(){
-		var memberNameInputObj = 
-			document.getElementById('name');
-		
-		memberNameInputObj.style.backgroundColor = '#E7E7E7';
-	}
-
-
+	
 
 	function MoveMainPageFnc(){
 		location.href = "../";
@@ -118,7 +113,7 @@ img {
 
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />	
 
-<img alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
+<img alt="ConceptPhoto" src="../resources/images/concept2.jpg">
 	
 <div id="memberListOneBodyDiv">	
 	
@@ -133,20 +128,19 @@ img {
 			<input type="hidden" name='memberNo' value='${memberVo.memberNo}'>
 			
 			<input class="memberInfo" type="text" value="이름" disabled="disabled"><br/>
-			<input class="memberInput" type="text" name='name' id='name' value='${memberVo.name}' readonly="readonly"><br>
+			<input class="memberInput" type="text" name='name' id='name' value='${memberVo.name}' disabled="disabled" ><br>
 		
 			<input class="memberInfo" type="text" value="아이디" disabled="disabled"><br/>
-			<input class="memberInput" type="text" name="id" value="${memberVo.id}" readonly="readonly"><br>
+			<input class="memberInput" type="text" name="id" value="${memberVo.id}" disabled="disabled"><br>
 				
 			<input class="memberInfo" type="text" value="비밀번호" disabled="disabled"><br/>
-			<input class="memberInput" type="password" name="password" value="${memberVo.password}"
-				readonly="readonly"><br>
+			<input class="memberInput" type="password" name="password" value="${memberVo.password}" disabled="disabled"><br>
 		
 			<input class="memberInfo" type="text" value="주소" disabled="disabled"><br/>
-			<input class="memberInput" type="text" name="address" value="${memberVo.address}" readonly="readonly"><br>
+			<input class="memberInput" type="text" name="address" value="${memberVo.address}" disabled="disabled"><br>
 		
 			<input class="memberInfo" type="text" value="연락처" disabled="disabled"><br/>
-			<input class="memberInput" type="number" name="hp" value="${memberVo.hp}" readonly="readonly"><br>
+			<input class="memberInput" type="number" name="hp" value="${memberVo.hp}" disabled="disabled"><br>
 		
 		</div>
 		
@@ -155,7 +149,7 @@ img {
 			<hr>
 		</div>
 			<input type="button" value="메인페이지" id="moveMainPageBtn" onclick="MoveMainPageFnc();">
-			<input type="button" value="탈퇴하기" id=memberLeaveBtn onclick="leaveFnc(${memberVo.memberNo});">
+			<input type="button" value="탈퇴하기" id="memberLeaveBtn" onclick="leaveFnc('${memberVo.memberNo}');">
 			<input type="submit" value="수정하기" id="modifyBtn">
 
 	</div>

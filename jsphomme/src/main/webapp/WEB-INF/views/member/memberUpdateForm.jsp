@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <style type="text/css">
 img {
-		width: 1700px;
-		height: 300px;
-	    margin-left: 93px;
-    	margin-right: 93px;
+		width: 1698px;
+		height: 380px;
+	    margin-left: 94px;
+    	margin-right: 94px;
 	}
 
 
@@ -21,7 +21,7 @@ img {
 	
 #memberInfoContainer{
 		width: 1250px;
-		height:500px;
+		height:580px;
 		margin: auto;
 		margin-top: 30px;
 		background-color: #F6F6F6;
@@ -82,18 +82,154 @@ img {
 		font-weight: bold; 
 		font-size: 22px;
 }
+
+a {
+		font-size: 14px;
+	}
+	
+#hrDiv{
+		margin-top: 80px;		
+	}	
 </style>
 <title>마이페이지 수정</title>
+
+<script type="text/javascript"
+   src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+
 <script type="text/javascript">
-	
-
-
+	window.onload = function(){
+		var focusObj = document.getElementById("name");
+		focusObj.focus();			
+	}
+		
 	function pageMoveBeforeFnc(memberNo){
 		
 		var url = 'detail.do?memberNo=' + memberNo;
 		location.href = url;	
-		
 	}
+	
+	
+	$(document).ready(function() {
+	      $('#name').keydown(function() {
+	         var nameObj = $('#name').val();
+			 var failMsg = "이름을 입력해주세요";
+	         var successMsg = "한글,영문 대소문자 가능/ 숫자,특수문자 사용불가 (공백없이 입력해주세요)";
+			 
+	         if (nameObj == "" || nameObj == null) {
+	            $('#nameConfirmMsg').css('color', 'red');
+		         $('#nameConfirmMsg').html(failMsg);
+//		         $('#name').focus();
+	         }	else if (nameObj != "" && nameObj != null) {
+	        	 $('#nameConfirmMsg').css('color', 'grey');
+		         $('#nameConfirmMsg').html(successMsg);
+	        	 
+	         }
+	      });
+	   });
+
+	 $(document).ready(function() {
+	      $('#id').keydown(function() {
+	        
+			 var idObj = $('#id').val();
+	         var failMsg = "아이디를 입력해주세요";
+	         var successMsg = "숫자,영문 대소문자 가능/ 한글,특수문자 사용불가 (공백없이 입력해주세요)";
+	         
+	         if (idObj == "" || idObj == null) {
+	            $('#idConfirmMsg').css('color', 'red');
+		         $('#idConfirmMsg').html(failMsg);
+	         }	else if (idObj != "" && idObj != null) {
+	        	 $('#idConfirmMsg').css('color', 'grey');
+		         $('#idConfirmMsg').html(successMsg);
+	         }
+	      });
+	   });
+	 
+	 
+	 $(document).ready(function() {
+	      $('#password').keyup(function() {
+	         var passwordObj = $('#password').val();
+	         var passwordConfirmObj = $('#passwordConfirm').val();
+	         
+	         var successMsg1 = "비밀번호가 일치합니다.";
+	         var successMsg2 = "비밀번호가 일치합니다.";
+	         var failMsg1 = "비밀번호가 일치하지 않습니다. 비밀번호 입력칸을 다시 입력해주세요";
+	         var failMsg2 = "비밀번호가 일치하지 않습니다. 비민번호 입력 확인칸을 다시 입력해주세요";
+	        	 
+	         if (passwordConfirmObj == passwordObj) {
+	             $('#passwordConfirmMsg').css('color', 'grey');
+		         $('#passwordConfirmMsg').html(successMsg1);
+		         $('#passwordConfirmAgainMsg').css('color', 'grey');
+		         $('#passwordConfirmAgainMsg').html(successMsg2);
+	         } else if(passwordConfirmObj != passwordObj){
+	             $('#passwordConfirmMsg').css('color', 'red');
+		         $('#passwordConfirmMsg').html(failMsg1);
+		         $('#passwordConfirmAgainMsg').css('color', 'red');
+		         $('#passwordConfirmAgainMsg').html(failMsg2);
+	         }
+	      });
+	   });	 
+	 
+	 
+ $(document).ready(function() {
+	      $('#passwordConfirm').keyup(function() {
+	         var passwordObj = $('#password').val();
+	         var passwordConfirmObj = $('#passwordConfirm').val();
+	         
+	         var successMsg1 = "비밀번호가 일치합니다.";
+	         var successMsg2 = "비밀번호가 일치합니다.";
+	         var failMsg1 = "비밀번호가 일치하지 않습니다. 비밀번호 입력칸을 다시 입력해주세요";
+	         var failMsg2 = "비밀번호가 일치하지 않습니다. 비민번호 입력 확인칸을 다시 입력해주세요";
+	        	 
+	         if (passwordConfirmObj == passwordObj) {
+	        	 $('#passwordConfirmMsg').css('color', 'grey');
+		         $('#passwordConfirmMsg').html(successMsg1);
+	             $('#passwordConfirmAgainMsg').css('color', 'grey');
+		         $('#passwordConfirmAgainMsg').html(successMsg2);
+	         } else if(passwordConfirmObj != passwordObj){
+	        	 $('#passwordConfirmMsg').css('color', 'red');
+		         $('#passwordConfirmMsg').html(failMsg1);
+		         $('#passwordConfirmAgainMsg').css('color', 'red');
+		         $('#passwordConfirmAgainMsg').html(failMsg2);
+	         }
+	      });
+	   });
+		
+ $(document).ready(function() {
+	      $('#address').keydown(function() {
+	        
+			 var addressObj = $('#address').val();
+	         var failMsg = "주소를 입력해주세요";
+	         var successMsg = "숫자,한글,영문 대소문자,특수문자 사용가능 (공백없이 입력해주세요)";
+	         
+	         if (addressObj == "" || addressObj == null) {
+	            $('#addressConfirmMsg').css('color', 'red');
+		         $('#addressConfirmMsg').html(failMsg);
+	         }	else if (addressObj != "" && addressObj != null) {
+	        	 $('#addressConfirmMsg').css('color', 'grey');
+		         $('#addressConfirmMsg').html(successMsg);
+	         }
+	      });
+	   });
+ 
+		
+ $(document).ready(function() {
+	      $('#hp').keydown(function() {
+	    	 
+	    	  $('#hp').val($('#hp').val().replace(/[^0-9]/g,""));
+	    	 
+	    	 var hpObj = $('#hp').val();
+	         var failMsg = "(-) 제외 11 자리 숫자만 입력해주세요";
+	        	 
+	         if (hpObj == "" || hpObj == null) {
+	            $('#hpConfirmMsg').css('color', 'grey');
+		        $('#hpConfirmMsg').html(failMsg);
+	         } else {
+	        		 
+	         }
+	         
+	      });
+	   });
 </script>
 
 </head>
@@ -105,7 +241,7 @@ img {
 
 <div id="memberUpdateBodyDiv">
 	
-	<h1 style="text-align: center;">회원 정보 수정페이지</h1>
+	<h1>회원 정보 수정페이지</h1>
 	
 	<form action="./updateCtr.do" method="post">
 			
@@ -118,19 +254,38 @@ img {
 			<input type="hidden" name="authority" value="${memberVo.authority}">
 			
 			<input class="memberInfo" type="text" value="이름" disabled="disabled"><br/>
-			<input class="memberInput" type="text" name='name' id='name' value='${memberVo.name}'><br>
+			<input class="memberInput" type="text" id="name"  name="name" value='${memberVo.name}'
+				placeholder="한글,영문 대소문자 가능(공백없이 입력해주세요)" >
+			<a id="nameConfirmMsg"></a><br/>
+<%-- 			<input class="memberInput" type="text" name='name' id='name' value='${memberVo.name}'><br> --%>
 		
 			<input class="memberInfo" type="text" value="아이디" disabled="disabled"><br/>
-			<input  class="memberInput" type="text" name="id" value="${memberVo.id}" readonly="readonly"><br>
+			<input class="memberInput" type="text" id="id" name="id" value="${memberVo.id}"
+				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)">
+			<a id="idConfirmMsg"></a><br/> 
+<%-- 			<input  class="memberInput" type="text" name="id" value="${memberVo.id}" readonly="readonly"><br> --%>
 		
 			<input class="memberInfo" type="text" value="비밀번호" disabled="disabled"><br/>
-			<input  class="memberInput" type="password" name="password" value="${memberVo.password}"><br>
+			<input class="memberInput" type="password" id="password" name="password" value="${memberVo.password}"
+				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" >
+			<a id="passwordConfirmMsg"></a><br/>
+<%-- 			<input  class="memberInput" type="password" name="password" value="${memberVo.password}"><br> --%>
 	
+			<input class="memberInfo" type="text" value="비밀번호 확인" disabled="disabled"><br/>
+			<input class="memberInput" type="password" id="passwordConfirm" name="passwordConfirm" 
+				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)"></br>
+			
 			<input class="memberInfo" type="text" value="주소" disabled="disabled"><br/>
-			<input class="memberInput" type="text" name="address" value="${memberVo.address}"><br>
+			<input class="memberInput" type="text" id="address" name="address" value="${memberVo.address}"
+				placeholder="숫자,한글,영문 대소문자 ,특수문자 가능">
+			<a id="addressConfirmMsg"></a><br/> 
+<%-- 			<input class="memberInput" type="text" name="address" value="${memberVo.address}"><br> --%>
 			
 			<input class="memberInfo" type="text" value="연락처" disabled="disabled"><br/>
-			<input  class="memberInput" type="number" name="hp" value="${memberVo.hp}"><br>
+			<input class="memberInput" type="text" id="hp" name="hp" maxlength="11"
+				placeholder="( - ) 제외한  11자리 숫자만 입력해주세요" >
+			<a id="hpConfirmMsg"></a>
+<%-- 			<input  class="memberInput" type="number" name="hp" value="${memberVo.hp}"><br> --%>
 		
 		</div>
 		
