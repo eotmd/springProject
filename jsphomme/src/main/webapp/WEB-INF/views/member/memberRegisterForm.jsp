@@ -284,7 +284,7 @@ img {
 <body>
 	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
 
-<img alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
+<img alt="ConceptPhoto" src="../resources/images/concept2.jpg">
 
 <div id="memberRegiBodyDiv">
 
