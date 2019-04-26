@@ -92,7 +92,9 @@ img {
 		font-size: 22px;
 }
 
-
+h1{
+	text-align: center;
+}
 </style>
 <title>마이페이지 보기</title>
 <script type="text/javascript">
@@ -117,7 +119,7 @@ img {
 	
 <div id="memberListOneBodyDiv">	
 	
-	<h1 style="text-align: center;">회원 정보 상세페이지</h1>
+	<h1>회원 정보 상세페이지</h1>
 	
 	<form action="./update.do" method="get">
 			
