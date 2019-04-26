@@ -282,7 +282,7 @@ a {
 <%-- 			<input class="memberInput" type="text" name="address" value="${memberVo.address}"><br> --%>
 			
 			<input class="memberInfo" type="text" value="연락처" disabled="disabled"><br/>
-			<input class="memberInput" type="text" id="hp" name="hp" maxlength="11"
+			<input class="memberInput" type="text" id="hp" name="hp" maxlength="11" value="${memberVo.hp}"
 				placeholder="( - ) 제외한  11자리 숫자만 입력해주세요" >
 			<a id="hpConfirmMsg"></a>
 <%-- 			<input  class="memberInput" type="number" name="hp" value="${memberVo.hp}"><br> --%>
