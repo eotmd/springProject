@@ -114,7 +114,7 @@ img {
  		var pwdObj = document.getElementById("password");
 	
  		var pwdConfirmObj = document.getElementById("passwordConfirm");
-	var memberRegiFormObj = document.getElementById("memberRegiForm");
+		var memberRegiFormObj = document.getElementById("memberRegiForm");
 
  		if (nameObj.value == "" || nameObj.value == null)  {
 //  			alert("이름을 입력해주세요");
@@ -147,7 +147,7 @@ img {
  			pwdObj.focus();
  // 			return false;
  		}
-	
+	 
  		else {
 			memberRegiFormObj.submit();
 		}

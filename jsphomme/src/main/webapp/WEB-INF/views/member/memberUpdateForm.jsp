@@ -90,6 +90,10 @@ a {
 #hrDiv{
 		margin-top: 80px;		
 	}	
+	
+h1{
+	text-align: center;
+}
 </style>
 <title>마이페이지 수정</title>
 
@@ -109,6 +113,52 @@ a {
 		location.href = url;	
 	}
 	
+	
+	function modifyFnc() {
+		var nameObj = document.getElementById("name");
+ 		var idObj = document.getElementById("id");
+ 		var pwdObj = document.getElementById("password");
+	
+ 		var pwdConfirmObj = document.getElementById("passwordConfirm");
+		var memberModifyFormObj = document.getElementById("memberModifyForm");
+
+		if (nameObj.value == "" || nameObj.value == null)  {
+//			alert("이름을 입력해주세요");
+			nameObj.focus();
+// 			return;
+		}
+
+		else if (idObj.value == "" || idObj.value == null) {
+//			alert("아이디를 다시 입력해세요");
+			idObj.fucous();
+// 			ruturn false;
+		}
+
+
+		else if (pwdObj.value == "" || pwdObj.value == null) {
+//			alert("비민번호를 다시 입력해주세요")
+			pwdObj.focus();
+// 			return flase;
+		}
+
+
+		else if (pwdConfirmObj.value == "" || pwdConfirmObj.value == null) {
+//			alert("비민번호 확인란을 다시 입력해주세요");
+		pwdConfirmObj.focus();
+// 			return flase;
+		}
+
+		else if (pwdObj.value != pwdConfirmObj.value) {
+//			alert("비밀번호와 비밀번호 확인란에 입력하신 것이 다릅니다. 다시 입력해주세요")
+			pwdObj.focus();
+// 			return false;
+		}
+ 
+		else {
+			memberModifyFormObj.submit();
+	}
+	
+	}
 	
 	$(document).ready(function() {
 	      $('#name').keydown(function() {
@@ -237,13 +287,13 @@ a {
 
 <jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp" />
 
-<img alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
+<img alt="ConceptPhoto" src="../resources/images/concept2.jpg">
 
 <div id="memberUpdateBodyDiv">
 	
 	<h1>회원 정보 수정페이지</h1>
 	
-	<form action="./updateCtr.do" method="post">
+	<form action="./updateCtr.do" method="post" id="memberModifyForm">
 			
 	<div id="memberInfoContainer">	
 		
@@ -295,7 +345,7 @@ a {
 		</div>
 			
 			<input type="button" value="이전페이지" id="previousPageBtn" onclick="pageMoveBeforeFnc(${memberVo.memberNo});">
-			<input type="submit" value="수정완료" id="modifyBtn">
+			<input type="button" value="수정완료" id="modifyBtn" onclick="modifyFnc();">
 	</div>
 	</form>
 
