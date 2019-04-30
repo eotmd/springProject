@@ -101,6 +101,7 @@ img {
 </script>
 <script type="text/javascript">
 
+
 	function pageMoveMainFnc() {
 		location.href = "../";
 	}
@@ -112,49 +113,92 @@ img {
  		var nameObj = document.getElementById("name");
  		var idObj = document.getElementById("id");
  		var pwdObj = document.getElementById("password");
+ 		var addressObj = document.getElementById("address");
+ 		var hpObj = document.getElementById("hp");
+ 		var judgeNumberObj = document.getElementById("judgeNumber");
 	
  		var pwdConfirmObj = document.getElementById("passwordConfirm");
 		var memberRegiFormObj = document.getElementById("memberRegiForm");
 
  		if (nameObj.value == "" || nameObj.value == null)  {
-//  			alert("이름을 입력해주세요");
+ 			alert("이름을 입력해주세요");
  			nameObj.focus();
- // 			return;
+ 			return;
  		}
 	
- 		else if (idObj.value == "" || idObj.value == null) {
-//  			alert("아이디를 다시 입력해세요");
- 			idObj.fucous();
- // 			ruturn false;
+ 		if (idObj.value == "" || idObj.value == null) {
+ 			alert("아이디를 다시 입력해세요");
+ 			idObj.focus();
+ 			return;
  		}
 	
 	
- 		else if (pwdObj.value == "" || pwdObj.value == null) {
-//  			alert("비민번호를 다시 입력해주세요")
+ 		if (pwdObj.value == "" || pwdObj.value == null) {
+ 			alert("비민번호를 다시 입력해주세요")
  			pwdObj.focus();
- // 			return flase;
+ 			return flase;
  		}
 	
 
  		else if (pwdConfirmObj.value == "" || pwdConfirmObj.value == null) {
-//  			alert("비민번호 확인란을 다시 입력해주세요");
+ 			alert("비민번호 확인란을 다시 입력해주세요");
 			pwdConfirmObj.focus();
- // 			return flase;
+ 			return flase;
  		}
 	
- 		else if (pwdObj.value != pwdConfirmObj.value) {
-//  			alert("비밀번호와 비밀번호 확인란에 입력하신 것이 다릅니다. 다시 입력해주세요")
+ 		if (pwdObj.value != pwdConfirmObj.value) {
+ 			alert("비밀번호와 비밀번호 확인란에 입력하신 것이 다릅니다. 다시 입력해주세요")
  			pwdObj.focus();
- // 			return false;
+ 			return false;
  		}
 	 
- 		else {
+ 		if (addressObj.value == "" || addressObj.value == null) {
+ 			alert("주소를 입력해세요");
+ 			addressObj.focus();
+ 			return;
+ 		}
+ 		if (hpObj.value == "" || hpObj.value == null) {
+ 			alert("연락처를 입력해세요");
+ 			hpObj.focus();
+ 			return;
+ 		}
+ 		
+ 		if(judgeNumberObj.value == 1){
+ 			alert("아이디 중복체크를 해주세요");
+ 			return;
+ 		}
+ 		
 			memberRegiFormObj.submit();
-		}
+		
 		
 		
 	}
 	
+	function overlapCheckFnc() {
+		var idObj = document.getElementById("id");
+		var nameObj = document.getElementById("name");
+		var addressObj = document.getElementById("address");
+		var hpObj = document.getElementById("hp");
+		var hiddenFormObj = document.getElementById("hiddenForm");
+		
+		var str = "<input type='hidden' name='id' value="+idObj.value+">";
+		str += "<input type='hidden' name='name' value="+nameObj.value+">";
+		str += "<input type='hidden' name='address' value="+addressObj.value+">";
+		str += "<input type='hidden' name='hp' value="+hpObj.value+">";
+		
+		
+		
+		if(idObj.value == ""){
+			alert("아이디를 입력해 주세요");
+			return;
+		}
+		
+		hiddenFormObj.innerHTML = str;
+		
+		
+		hiddenFormObj.submit();
+		
+	}
 	
 	 $(document).ready(function() {
 	      $('#name').keydown(function() {
@@ -242,16 +286,13 @@ img {
 	   });
 		
    $(document).ready(function() {
-	      $('#address').keydown(function() {
+	      $('#address').change(function() {
 	        
 			 var addressObj = $('#address').val();
 	         var failMsg = "주소를 입력해주세요";
 	         var successMsg = "숫자,한글,영문 대소문자,특수문자 사용가능 (공백없이 입력해주세요)";
 	         
-	         if (addressObj == "" || addressObj == null) {
-	            $('#addressConfirmMsg').css('color', 'red');
-		         $('#addressConfirmMsg').html(failMsg);
-	         }	else if (addressObj != "" && addressObj != null) {
+	         	if (addressObj != "" && addressObj != null) {
 	        	 $('#addressConfirmMsg').css('color', 'grey');
 		         $('#addressConfirmMsg').html(successMsg);
 	         }
@@ -298,12 +339,15 @@ img {
 			<br>
 			<input class="memberRegiInfo" type="text" value="이름" disabled="disabled"><br/> 
 			<input class="memberRegiInput" type="text" id="name"  name="name"
-				placeholder="한글,영문 대소문자 가능(공백없이 입력해주세요)" >
+				placeholder="한글,영문 대소문자 가능(공백없이 입력해주세요)" value="${MemberVo.name}">
 			<a id="nameConfirmMsg"></a><br/>
+			
 			
 			<input class="memberRegiInfo" type="text" value="아이디" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="text" id="id" name="id"
-				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)">
+				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" style="width: 380px;" value="${MemberVo.id}">
+			<input type="button" value="아이디 중복체크" onclick="overlapCheckFnc()">
+			
 			<a id="idConfirmMsg"></a><br/> 
 			
 			<input class="memberRegiInfo" type="text" value="비밀번호" disabled="disabled"><br/>
@@ -314,16 +358,16 @@ img {
 			<input class="memberRegiInfo" type="text" value="비밀번호 확인" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="password" id="passwordConfirm" name="passwordConfirm"
 				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)">
-			<a id="passwordConfirmAgainMsg"></a></br>
+			<a id="passwordConfirmAgainMsg"></a><br/>
 			
 			<input class="memberRegiInfo" type="text" value="주소" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="text" id="address" name="address"
-				placeholder="숫자,한글,영문 대소문자 ,특수문자 가능">
+				placeholder="숫자,한글,영문 대소문자 ,특수문자 가능" value="${MemberVo.address}">
 			<a id="addressConfirmMsg"></a><br/> 
 			
 			<input class="memberRegiInfo" type="text" value="연락처" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="text" id="hp" name="hp" maxlength="11"
-				placeholder="( - ) 제외한  11자리 숫자만 입력해주세요" >
+				placeholder="( - ) 제외한  11자리 숫자만 입력해주세요" value="${MemberVo.hp}">
 			<a id="hpConfirmMsg"></a>
 	
 			
@@ -340,8 +384,10 @@ img {
 	</div>
 	
 	</form>
-
-
+	<form id="hiddenForm" action="/jsphomme/member/overlapCheck.do" method="post">
+		
+	</form> 
+	<input type="hidden" id="judgeNumber" name="judgeNumber" value="${judgeNumber}">
 </div>
 
 	<jsp:include page="/WEB-INF/views/common/tail.jsp" />

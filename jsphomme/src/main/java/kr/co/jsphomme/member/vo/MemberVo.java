@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class MemberVo {
 	
-	private int memberNo;
-	private int status;
-	private String authority;
-	private String name;
-	private String id;
-	private String password;
-	private String address;
-	private String hp;
-	private Date creDate;
-	private Date modDate;
+	private int memberNo = 0;
+	private int status = 0;
+	private String authority = "";
+	private String name = "";
+	private String id = "";
+	private String password = "";
+	private String address = "";
+	private String hp = "";
+	private Date creDate = null;
+	private Date modDate =null;
 	
 	
 	

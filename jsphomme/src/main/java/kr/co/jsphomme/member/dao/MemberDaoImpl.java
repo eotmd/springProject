@@ -69,5 +69,11 @@ public class MemberDaoImpl implements MemberDao{
 				namespace + "memberSelectTotalCount", map);
 	}
 
+	@Override
+	public int memberIdOverlapCheck(String overlapIdCheck) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "memberIdOverlapCheck", overlapIdCheck); 
+	}
+
 	
 }

@@ -52,9 +52,9 @@
 	
 <div style="margin: auto;">	
 
-		<a href='#' onclick="goProductList();">
-			<img id="mainImg" alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
-		</a>
+		
+			<img id="mainImg" alt="ConceptPhoto" src="../resources/images/concept2.jpg">
+		
 	
 	
 	<div id="tableCon">
