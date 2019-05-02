@@ -44,7 +44,7 @@ public class PurchaseListController {
 			return "redirect:/auth/login.do";
 		}
 		
-		int memberNo = memberVo.getMemberNo();	
+		int memberNo = memberVo.getMemberNo();
 		
 			
 			

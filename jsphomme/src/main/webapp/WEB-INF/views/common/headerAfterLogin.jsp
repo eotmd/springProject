@@ -17,6 +17,9 @@ function shopNameFnc() {
 	
 }
 
+function basketFnc() {
+	location.href = "/jsphomme/basket/list.do";
+}
 
 function productRegiFnc() {
 	location.href ="/jsphomme/product/insertMove.do";
@@ -87,6 +90,7 @@ function searchFnc() {
 		<input class="memberListBtn" type="button" value="회원목록" onclick="memberListFnc();">
 		<input class="purchaseListBtn" type="button" value="구매목록" onclick="purchaseListFnc(${_memberVo_.memberNo});">
 		<input class="logoutBtn" type="button" value="로그아웃" onclick="logoutFnc();">
+		<input class="myPageBtn" type="button" value="장바구니"  onclick="basketFnc();" >
 	</div>
 
 </c:if>
@@ -99,6 +103,7 @@ function searchFnc() {
 		<input class="myPageBtn" type="button" value="마이페이지" onclick="myPageFnc(${_memberVo_.memberNo});">
 		<input class="purchaseListBtn" type="button" value="구매목록" onclick="purchaseListFnc(${_memberVo_.memberNo});">
 		<input class="logoutBtn" type="button" value="로그아웃"  onclick="logoutFnc();" >
+		<input class="myPageBtn" type="button" value="장바구니"  onclick="basketFnc();" >
 	</div> 
 	
 </c:if>	

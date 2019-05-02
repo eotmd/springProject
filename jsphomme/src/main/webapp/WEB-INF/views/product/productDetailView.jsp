@@ -38,6 +38,15 @@ function soldOut() {
 	alert("품절된 상품입니다.")
 }
 
+function getBasket() {
+	var formBuyObj = document.getElementById("formBuy");
+	
+	formBuyObj.action = "../basket/insert.do";
+	
+	formBuyObj.submit();
+}
+
+
 </script>
 
 <style type="text/css">
@@ -160,8 +169,22 @@ function soldOut() {
 							class="goUpdateBtn" onclick="goUpdate();"></td>
 					</tr>
 				</c:if>
+				<c:if test="${_memberVo_ != null && productVo.quantity > 0}">
+					<tr>
+						<td colspan="2"><input type="button" value="장바구니에 담기"
+							class="goBuyBtn" onclick="getBasket();"></td>
+					</tr>
+				</c:if>
+				<c:if test="${_memberVo_ == null}">
+					<tr>
+						<td colspan="2"><input type="button" value="장바구니에 담기"
+							class="goBuyBtn" onclick="goLogin();"></td>
+					</tr>
+				</c:if>
+				
 				
 			</table>
+<%-- 			<input type="hidden" name="memberNo" value="${_memberVo_.memberNo}"> --%>
 		</form>
 		
 		<div style="clear: both; ">

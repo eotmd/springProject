@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.jsphomme.basket">
+
+	<resultMap type="basketVo" id="basketResultMap">
+		<id column="BASKET_NO" property="basketNo" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="PRODUCT_NO" property="productNo" />
+		<result column="NAME" property="name" />
+		<result column="PRICE" property="price" />
+		<result column="PRODUCT_SIZE" property="productSize" />
+		<result column="STORED_FILE_NAME" property="storedFileName" />
+		<result column="SHOPPING_BASKET_QUANTITY" property="shoppingBasketQuantity" />
+	</resultMap>
+
+	<select id="basketSelectTotalCount" resultType="int" parameterType="java.lang.String">
+		SELECT COUNT(*)
+		FROM SHOPPING_BASKET
+	</select>
+	
+	<select id="basketListView" resultMap="basketResultMap">
+		SELECT BASKET_NO, P.PRODUCT_NO, P.NAME, P.PRICE, 
+			B.PRODUCT_SIZE, B.SHOPPING_BASKET_QUANTITY, P.STORED_FILE_NAME
+		FROM SHOPPING_BASKET B, MEMBER M, PRODUCT P
+		WHERE M.MEMBER_NO = B.MEMBER_NO
+		AND P.PRODUCT_NO = B.PRODUCT_NO
+		AND M.MEMBER_NO = #{memberNo}
+		ORDER BY BASKET_NO DESC
+
+	</select>
+	
+	<insert id="basketInsert" parameterType="basketVo" >
+		INSERT INTO SHOPPING_BASKET(
+		    BASKET_NO, MEMBER_NO, PRODUCT_NO, PRODUCT_SIZE, SHOPPING_BASKET_QUANTITY
+		)
+		VALUES(
+		    BASKET_NO_SEQ.NEXTVAL, #{memberNo}, #{productNo}, 
+		    #{productSize}, #{shoppingBasketQuantity}
+		)
+	</insert>
+
+</mapper>

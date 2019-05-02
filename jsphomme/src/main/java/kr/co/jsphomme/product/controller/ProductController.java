@@ -31,23 +31,19 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping(value="/product/list.do",
-			method= {RequestMethod.GET})
+	@RequestMapping(value="/product/list.do", method= {RequestMethod.GET})
 	public String productListView(
 			@RequestParam(defaultValue ="1") int curPage,
 //			@RequestParam(defaultValue ="title") String searchOption,
 			@RequestParam(defaultValue ="") String keyword,
 			Model model) {
 		
-		log.debug("Welcome ProductController productList!");
 		log.debug("Welcome ProductController productList! : {}", curPage);
 //		log.debug(": {}", searchOption);
 		log.debug(": {}", keyword);
 		
 		int totalCount =
 				productService.productSelectTotalCount(keyword);
-		
-		System.out.println(totalCount);
 		
 		Paging paging = new Paging(totalCount, curPage);
 		int start = paging.getPageBegin();

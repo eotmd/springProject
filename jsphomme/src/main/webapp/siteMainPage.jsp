@@ -68,7 +68,7 @@
 
 	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"></jsp:include>
 	
-	<h1>JSP Homme</h1>
+	
 	<div class="mainImg">
 		<nav>
 			<ul>

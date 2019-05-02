@@ -8,6 +8,7 @@
   	<typeAlias type="kr.co.jsphomme.member.vo.MemberVo" alias="memberVo"/>
   	<typeAlias type="kr.co.jsphomme.product.vo.ProductVo" alias="productVo"/>
   	<typeAlias type="kr.co.jsphomme.purchaselist.vo.PurchaseListVo" alias="purchaseListVo"/>
+  	<typeAlias type="kr.co.jsphomme.basket.vo.BasketVo" alias="basketVo"/>
   </typeAliases>
   
 </configuration>

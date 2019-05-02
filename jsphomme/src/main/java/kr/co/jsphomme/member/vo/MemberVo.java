@@ -13,7 +13,8 @@ public class MemberVo {
 	private String address = "";
 	private String hp = "";
 	private Date creDate = null;
-	private Date modDate =null;
+	private Date modDate = null;
+
 	
 	
 	

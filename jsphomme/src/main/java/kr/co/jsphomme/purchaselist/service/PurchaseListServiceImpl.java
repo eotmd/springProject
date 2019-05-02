@@ -21,6 +21,7 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 	
 	@Autowired
 	public PurchaseListDao purchaseListDao; 
+	
 	@Autowired
 	public ProductDao productDao; 
 	
