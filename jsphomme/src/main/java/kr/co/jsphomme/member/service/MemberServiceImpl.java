@@ -41,6 +41,8 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberVo> memberListView(String searchOption, String keyword, int start, int end) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
 		map.put("start", start);
 		map.put("end", end);
 		
@@ -92,6 +94,12 @@ public class MemberServiceImpl implements MemberService{
 		map.put("keyword", keyword);
 		
 		return memberDao.memberSelectTotalCount(map);
+	}
+
+	@Override
+	public int memberIdOverlapCheck(String overlapIdCheck) {
+		// TODO Auto-generated method stub
+		return memberDao.memberIdOverlapCheck(overlapIdCheck);
 	}
 
 	

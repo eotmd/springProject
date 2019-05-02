@@ -73,7 +73,6 @@ h1{
 	<table>
 		<tr>
 			<td class="category">회원 번호</td>
-			<td class="category">활성화 상태</td>
 			<td class="category">권한</td>
 			<td class="category">이름</td>
 			<td class="category">아이디</td>
@@ -86,7 +85,6 @@ h1{
 		<c:forEach var="memberVo" items="${memberList}">
 			<tr>
 				<td id="memberNo">${memberVo.memberNo}</td>
-				<td id="status">${memberVo.status}</td>
 				<td id="authority">${memberVo.authority}</td>
 				<td id="memberName">${memberVo.name}</td>
 				<td id="id">${memberVo.id}</td>
@@ -112,8 +110,20 @@ h1{
 <jsp:include page="/WEB-INF/views/common/paging.jsp">
 		<jsp:param value="${pagingMap}" name="pagingMap" />
 </jsp:include>
-
-
+	<form id="form1" action="/jsphomme/member/list.do" method="get">
+		<select name="searchOption">
+			<option value="userId" <c:if test="${searchOption == 'userId'}">selected</c:if>>아이디</option>				<!-- 이메일  -->
+			<option value="userName"<c:if test="${searchOption == 'userName'}">selected</c:if>>이름</option>					<!-- 이름  -->
+							
+		</select>
+		<input type="text" name="keyword" value="${keyword}">			
+		<input type="submit" value="검색">					
+	</form>
+	<form action="/jsphomme/member/list.do" id="pagingForm" method="post">
+		<input type="hidden" id="curPage" name="curPage" value="${pagingMap.paging.curPage}">
+		<input type="hidden" name="searchOption" value="${searchOption}">
+		<input type="hidden" name="keyword" value="${keyword}">
+	</form>
 </div>
 	
 <jsp:include page="/WEB-INF/views/common/tail.jsp" />

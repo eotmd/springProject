@@ -15,5 +15,6 @@ public interface MemberDao {
 	public int memberDelete(int memberNo);				//관리자가 회원 삭제
 	
 	// 페이징
-		public int memberSelectTotalCount(Map<String, String> map);
+	public int memberSelectTotalCount(Map<String, String> map);
+	public int memberIdOverlapCheck(String overlapIdCheck);
 }

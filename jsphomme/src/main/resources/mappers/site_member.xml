@@ -28,6 +28,14 @@
 				FROM (
 					SELECT MEMBER_NO, STATUS, AUTHORITY, NAME, ID, ADDRESS, HP, CRE_DATE, MOD_DATE
 					FROM MEMBER
+					<choose>
+						<when test="searchOption == 'userId'">
+							WHERE ID LIKE '%'||#{keyword}||'%'
+						</when>
+						<when test="searchOption == 'userName'">
+							WHERE NAME LIKE '%'||#{keyword}||'%'
+						</when>
+					</choose>
 					ORDER BY MEMBER_NO DESC) M
 		) MEMBER
 		WHERE RNUM BETWEEN #{start} AND #{end}
@@ -111,7 +119,21 @@
 		resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER
-		
+		<choose>
+			<when test="searchOption == 'userId'">
+				WHERE ID LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="searchOption == 'userName'">
+				WHERE NAME LIKE '%'||#{keyword}||'%'
+			</when>
+		</choose>
 	
+	</select>
+	
+	<select id="memberIdOverlapCheck" parameterType="string" resultType="int">
+		SELECT COUNT (ID) 
+<!-- 		SELECT id  -->
+		FROM MEMBER
+		WHERE ID = #{value}
 	</select>
 </mapper>

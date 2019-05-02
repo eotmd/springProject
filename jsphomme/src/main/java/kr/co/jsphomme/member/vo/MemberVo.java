@@ -14,6 +14,7 @@ public class MemberVo {
 	private String hp = "";
 	private Date creDate = null;
 	private Date modDate = null;
+
 	
 	
 	

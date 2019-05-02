@@ -81,7 +81,28 @@
 
 
 <script type="text/javascript">
-	function loginFnc() {
+	function loginFnc1() {
+		if(event.keyCode == 13){
+			var idObj = document.getElementById("memberId");
+			var passwordObj = document.getElementById("memberPassword");
+	
+			if (idObj.value == null || idObj.value == "") {
+				alert("아이디를 입력해 주세요");
+				idObj.focus();
+				
+			}
+	
+			if (passwordObj.value == null || passwordObj.value == "") {
+				alert("비밀번호를 입력해 주세요")
+				passwordObj.focus();
+				
+			}
+			
+			var formObj = document.getElementById("loginForm")
+			formObj.submit();		
+		}	
+	}
+	function loginFnc2() {
 		var idObj = document.getElementById("memberId");
 		var passwordObj = document.getElementById("memberPassword");
 
@@ -124,12 +145,12 @@
 				
 				
 					<label><b>ID</b></label>
-					<input type="text" name="id" id="memberId" placeholder="ID"></br>
+					<input type="text" name="id" id="memberId" placeholder="ID"><br/>
 					<label><b>Password</b></label>
-					<input type="password" name='password' id="memberPassword" placeholder="Password" required="required"></br></br>
+					<input type="password" name='password' id="memberPassword" placeholder="Password" required="required"onkeypress="loginFnc1();"><br/>
 									
 						
-					<input type="button" value="로그인" id="loginBtn" onclick="loginFnc();">
+					<input type="button" value="로그인" id="loginBtn" onclick="loginFnc2();">
 					<br>
 					<input type="button" value="회원가입" id="memberRegiBtn" onclick="myRegisterFnc();">
 							

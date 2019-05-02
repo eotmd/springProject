@@ -20,4 +20,6 @@ public interface MemberService {
 	// 페이징
 	public int memberSelectTotalCount(String searchOption, String keyword);
 	
+	public int memberIdOverlapCheck(String overlapIdCheck);
+	
 }

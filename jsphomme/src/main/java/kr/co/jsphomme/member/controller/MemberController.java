@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,12 +46,19 @@ public class MemberController {
 	}
 
 	// 관리자가 회원 목록 조회 화면으로
-	@RequestMapping(value = "/member/list.do", method = { RequestMethod.GET })
+	@RequestMapping(value = "/member/list.do", method = {RequestMethod.GET, RequestMethod.POST})
 
 	public String memberListView(@RequestParam(defaultValue = "1") int curPage,
-			@RequestParam(defaultValue = "title") String searchOption, @RequestParam(defaultValue = "") String keyword,
-			Model model) {
-
+			@RequestParam(defaultValue = "userId") String searchOption, @RequestParam(defaultValue = "") String keyword,
+			HttpSession session ,Model model) {
+		
+		log.debug(": {}", session.getAttribute("_memberVo_"));
+		
+		if(session.getAttribute("_memberVo_") == null) {
+			return "redirect:/auth/login.do";
+		}
+		
+		
 		log.info("memberListView enter! -{}", curPage);
 
 		log.debug(": {}", searchOption);
@@ -76,7 +85,15 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/detail.do")
-	public String memberOneDeteilView(int memberNo, Model model) {
+	public String memberOneDeteilView(int memberNo,HttpSession session ,Model model) {
+		log.debug(": {}", session.getAttribute("_memberVo_"));
+		
+	
+		
+		if(session.getAttribute("_memberVo_") == null) {
+			 
+			return "redirect:/auth/login.do";
+		}
 		log.debug("Welcome memberOneDeteilView enter! - {}", memberNo);
 
 		Map<String, Object> map = memberService.memberOneDeteilView(memberNo);
@@ -88,10 +105,15 @@ public class MemberController {
 		return "member/memberListOneView";
 	}
 
-	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
-	public String memberAdd(Model model) {
+	@RequestMapping(value = "/member/add.do", method = {RequestMethod.GET,RequestMethod.POST})
+	public String memberAdd(@RequestParam(defaultValue = "1") int judgeNumber,MemberVo memberVo ,Model model) {
 		log.debug("Welcome MemberController memberAdd 페이지 이동! ");
-
+		
+		
+		
+		model.addAttribute("judgeNumber",judgeNumber);
+		model.addAttribute("MemberVo",memberVo);
+		
 		return "member/memberRegisterForm";
 	}
 
@@ -113,7 +135,10 @@ public class MemberController {
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
 	public String login(HttpSession session, Model model) {
 		log.debug("Welcome MemberController login 페이지 이동! ");
-
+		
+		
+		
+		
 		return "auth/loginForm";
 	}
 
@@ -154,7 +179,7 @@ public class MemberController {
 		
 		
 		} else {
-			viewUrl = "/auth/loginFail";
+			viewUrl = "/common/failPage";
 		}
 
 		return viewUrl;
@@ -171,7 +196,12 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/update.do")
-	public String memberUpdateOne(int memberNo, Model model) {
+	public String memberUpdateOne(int memberNo, HttpSession session, Model model) {
+		log.debug(": {}", session.getAttribute("_memberVo_"));
+		
+		if(session.getAttribute("_memberVo_") == null) {
+			return "redirect:/auth/login.do";
+		}
 		log.debug("Welcome memberUpdate enter! - {}", memberNo);
 
 		Map<String, Object> map = memberService.memberOneDeteilView(memberNo);
@@ -255,6 +285,27 @@ public class MemberController {
 		session.invalidate();
 
 		return "redirect:/auth/login.do";
+	}
+	
+	@RequestMapping(value = "/member/overlapCheck.do", method = RequestMethod.POST)
+	public String memberOverlapCheck(MemberVo memberVo, Model model) {
+		log.debug("Welcome MemberController memberOverlapCheck" + " 아이디 중복체크! - {}", memberVo.getId());
+		
+		
+		int judgeNumber = memberService.memberIdOverlapCheck(memberVo.getId());
+		
+		if(judgeNumber == 1) {
+			
+			model.addAttribute("MemberVo",memberVo);
+			model.addAttribute("judgeNumber",1);
+		}else if(judgeNumber == 0) {
+			
+			model.addAttribute("MemberVo",memberVo);
+			model.addAttribute("judgeNumber",0);
+			
+		}
+		
+		return "/common/judgePage";
 	}
 
 }
