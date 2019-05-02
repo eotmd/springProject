@@ -192,7 +192,7 @@ public class MemberController {
 		// 세션의 객체들 파기
 		session.invalidate();
 
-		return "redirect:/auth/login.do";
+		return "redirect:/siteMainPage.jsp";
 	}
 
 	@RequestMapping(value = "/member/update.do")
