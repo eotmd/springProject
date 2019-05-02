@@ -46,10 +46,7 @@ public class PurchaseListController {
 		
 		int memberNo = memberVo.getMemberNo();	
 		
-		
-		System.out.println("회원번호:"+memberVo.getMemberNo());
-		
-		
+			
 			
 		int num = purchaseListService.purchaseListCount(memberNo);
 		

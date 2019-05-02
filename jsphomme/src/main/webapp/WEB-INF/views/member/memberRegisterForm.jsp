@@ -101,6 +101,9 @@ img {
 </script>
 <script type="text/javascript">
 
+	window.onload = function name() {
+		
+	}
 
 	function pageMoveMainFnc() {
 		location.href = "../";

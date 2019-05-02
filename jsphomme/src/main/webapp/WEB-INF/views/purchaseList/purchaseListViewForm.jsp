@@ -10,7 +10,7 @@
 <style type="text/css">
 	#mainImg { 
  		width: 1698px;
-      	height: 300px;
+      	height: 380px;
        	margin-left: 94px;
        	margin-right: 94px;
  	} 

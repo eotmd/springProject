@@ -52,6 +52,7 @@ function menswearFnc() {
 function goProductList() {
 	location.href = "/jsphomme/product/list.do";
 }
+
 function searchFnc() {
 	var searchIdObj = document.getElementById("searchId")
 	if(event.keyCode == 13){
@@ -59,6 +60,8 @@ function searchFnc() {
 		searchIdObj.submit();
 	}
 }
+
+
 </script>
 
 
