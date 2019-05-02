@@ -23,7 +23,7 @@
 	
  	#mainImg { 
  		width: 1698px;
-      	height: 300px;
+      	height: 400px;
        	margin-left: 94px;
        	margin-right: 94px;
  	} 
@@ -77,41 +77,41 @@
 	<div class="productList">	
 		<nav>
 			<c:forEach var="productVo" items="${productList}" varStatus="i">
-					
-					<c:choose>
-						<c:when test="${i.count % 3 == 0}">
-							<ul style="margin-right: 0px;">
-								<li>
-									<span>
-										<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
-											<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
-										</a>
-									</span>
-								</li>
-								<li>
-									<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
-										<span>${productVo.name}</span>
+				
+				<c:choose>
+					<c:when test="${i.count % 3 == 0}">
+						<ul style="margin-right: 0px;">
+							<li>
+								<span>
+									<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
+										<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
 									</a>
-								</li>
-							</ul>
-						</c:when>
-						<c:otherwise>
-							<ul>
-								<li>
-									<span>
-										<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
-											<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
-										</a>
-									</span>
-								</li>
-								<li>
-									<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
-										<span>${productVo.name}</span>
+								</span>
+							</li>
+							<li>
+								<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
+									<span>${productVo.name}</span>
+								</a>
+							</li>
+						</ul>
+					</c:when>
+					<c:otherwise>
+						<ul>
+							<li>
+								<span>
+									<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
+										<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
 									</a>
-								</li>
-							</ul>
-						</c:otherwise>
-					</c:choose>
+								</span>
+							</li>
+							<li>
+								<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
+									<span>${productVo.name}</span>
+								</a>
+							</li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
 					
 					
 				

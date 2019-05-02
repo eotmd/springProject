@@ -149,7 +149,7 @@
 		<div id="tableCon2" style="height: 320px;">
 		<table class="tableId" style="height: 200px;">
 			<tr>	
-				<td class="tableBt" style="310px; height: 310px"><img style="width: 300px; height: 300px;" alt="${purchaseListVo.storedFileName}" src="<c:url value='/img/${purchaseListVo.storedFileName}'/>"></td>		
+				<td class="tableBt" style="height: 310px"><img style="width: 300px; height: 300px;" alt="${purchaseListVo.storedFileName}" src="<c:url value='/img/${purchaseListVo.storedFileName}'/>"></td>		
 				<td class="tableBt" style="font-weight: bold; width: 300px;">${purchaseListVo.productName}</td>
 				<td class="tableBt" style="width: 223px;"><fmt:formatNumber value="${purchaseListVo.productPrice}" pattern="#,###"/></td>
 				<td class="tableBt" style="width: 223px;">${purchaseListVo.productSize}</td>

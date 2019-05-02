@@ -44,7 +44,7 @@ public class PurchaseListController {
 			return "redirect:/auth/login.do";
 		}
 		
-		int memberNo = memberVo.getMemberNo();	
+		int memberNo = memberVo.getMemberNo();
 		
 		
 		System.out.println("회원번호:"+memberVo.getMemberNo());
