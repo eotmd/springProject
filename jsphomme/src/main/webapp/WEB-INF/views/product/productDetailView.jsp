@@ -40,10 +40,16 @@ function soldOut() {
 
 function getBasket() {
 	var formBuyObj = document.getElementById("formBuy");
+	var confirmVal = confirm("장바구니에 담으시겠습니까?");
 	
-	formBuyObj.action = "../basket/insert.do";
+	if (confirmVal == true) {
+
+		formBuyObj.action = "../basket/insert.do";
 	
-	formBuyObj.submit();
+		formBuyObj.submit();
+	} else {
+		return;
+	}
 }
 
 
@@ -163,22 +169,30 @@ function getBasket() {
 							class="goBuyBtn" onclick="soldOut();"></td>
 					</tr>
 				</c:if>
-				<c:if test="${_memberVo_.authority == '0'}">
-					<tr>
-						<td colspan="2"><input type="button" value="수정하기"
-							class="goUpdateBtn" onclick="goUpdate();"></td>
-					</tr>
-				</c:if>
 				<c:if test="${_memberVo_ != null && productVo.quantity > 0}">
 					<tr>
 						<td colspan="2"><input type="button" value="장바구니에 담기"
-							class="goBuyBtn" onclick="getBasket();"></td>
+							class="goBuyBtn" onclick="getBasket();"
+							style="width: 294px;"></td>
 					</tr>
 				</c:if>
 				<c:if test="${_memberVo_ == null}">
 					<tr>
 						<td colspan="2"><input type="button" value="장바구니에 담기"
-							class="goBuyBtn" onclick="goLogin();"></td>
+							class="goBuyBtn" onclick="goLogin();"
+							style="width: 294px;"></td>
+					</tr>
+				</c:if>
+				<c:if test="${_memberVo_ != null && productVo.quantity <= 0}">
+						<td colspan="2"><input type="button" value="장바구니에 담기" 
+							class="goBuyBtn" onclick="soldOut();"
+							style="width: 294px;"></td>
+				</c:if>
+				<c:if test="${_memberVo_.authority == '0'}">
+					<tr>
+						<td colspan="2"><input type="button" value="수정하기"
+							class="goUpdateBtn" onclick="goUpdate();"
+							style="width: 294px;"></td>
 					</tr>
 				</c:if>
 				

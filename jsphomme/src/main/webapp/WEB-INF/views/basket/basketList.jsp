@@ -80,8 +80,8 @@
 					<td class="tableBt" style="font-weight: bold; width: 300px;">${basketVo.name}</td>
 					<td class="tableBt" style="width: 223px;"><fmt:formatNumber value="${basketVo.price}" pattern="#,###"/></td>
 					<td class="tableBt" style="width: 223px;">${basketVo.productSize}</td>
-					<td class="tableBt" style="width: 222px;">${basketVo.shoppingBasketQuantity}</td>
-					<td class="tableBt" style="width: 222px;"><fmt:formatNumber value="${basketVo.price * basketVo.shoppingBasketQuantity}" pattern="#,###"/></td>
+					<td class="tableBt" style="width: 222px;">${basketVo.purchaseQuantity}</td>
+					<td class="tableBt" style="width: 222px;"><fmt:formatNumber value="${basketVo.price * basketVo.purchaseQuantity}" pattern="#,###"/></td>
 				</tr>
 			</c:forEach>
 			

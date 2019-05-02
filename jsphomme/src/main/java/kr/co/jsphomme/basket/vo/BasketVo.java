@@ -8,7 +8,7 @@ public class BasketVo {
 	private String name = "";
 	private int price = 0;
 	private String productSize = "";
-	private int shoppingBasketQuantity = 0;
+	private int purchaseQuantity = 0;
 	private String storedFileName = "";
 
 	public BasketVo() {
@@ -16,7 +16,7 @@ public class BasketVo {
 	}
 
 	public BasketVo(int basketNo, int memberNo, int productNo, String name, int price, String productSize,
-			int shoppingBasketQuantity, String storedFileName) {
+			int purchaseQuantity, String storedFileName) {
 		super();
 		this.basketNo = basketNo;
 		this.memberNo = memberNo;
@@ -24,7 +24,7 @@ public class BasketVo {
 		this.name = name;
 		this.price = price;
 		this.productSize = productSize;
-		this.shoppingBasketQuantity = shoppingBasketQuantity;
+		this.purchaseQuantity = purchaseQuantity;
 		this.storedFileName = storedFileName;
 	}
 
@@ -76,12 +76,12 @@ public class BasketVo {
 		this.productSize = productSize;
 	}
 
-	public int getShoppingBasketQuantity() {
-		return shoppingBasketQuantity;
+	public int getPurchaseQuantity() {
+		return purchaseQuantity;
 	}
 
-	public void setShoppingBasketQuantity(int shoppingBasketQuantity) {
-		this.shoppingBasketQuantity = shoppingBasketQuantity;
+	public void setPurchaseQuantity(int purchaseQuantity) {
+		this.purchaseQuantity = purchaseQuantity;
 	}
 
 	public String getStoredFileName() {
@@ -94,10 +94,9 @@ public class BasketVo {
 
 	@Override
 	public String toString() {
-		return "BasketVo [basketNo=" + basketNo + ", memberNo=" + memberNo 
-				+ ", productNo=" + productNo + ", name=" + name + ", price=" 
-				+ price + ", productSize=" + productSize + ", shoppingBasketQuantity="
-				+ shoppingBasketQuantity + ", storedFileName=" + storedFileName + "]";
+		return "BasketVo [basketNo=" + basketNo + ", memberNo=" + memberNo + ", productNo=" + productNo + ", name="
+				+ name + ", price=" + price + ", productSize=" + productSize + ", purchaseQuantity=" + purchaseQuantity
+				+ ", storedFileName=" + storedFileName + "]";
 	}
 
 }

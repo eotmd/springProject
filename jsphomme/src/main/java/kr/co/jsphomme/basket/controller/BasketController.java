@@ -65,4 +65,10 @@ public class BasketController {
 		return "redirect:/basket/list.do";
 	}
 	
+	@RequestMapping(value="/basket/delete.do", method= {RequestMethod.POST})
+	public String basketDelete() {
+		
+		return null;
+	}
+	
 }

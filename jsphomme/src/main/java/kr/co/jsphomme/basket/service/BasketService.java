@@ -10,7 +10,7 @@ public interface BasketService {
 	public List<BasketVo> basketListView(int memberNo);
 	public BasketVo basketOneDeteilView();
 	public int basketUpdate();
-	public int basketDelete();
+	public int basketDelete(int basketNo);
 	public int basketSelectTotalCount();
 
 }

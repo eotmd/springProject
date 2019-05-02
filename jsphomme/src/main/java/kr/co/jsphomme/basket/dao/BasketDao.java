@@ -14,7 +14,7 @@ public interface BasketDao {
 	public List<BasketVo> basketListView(Map<String, Object> map);
 	public BasketVo basketOneDeteilView();
 	public int basketUpdate();
-	public int basketDelete();
+	public int basketDelete(int basketNo);
 	public int basketSelectTotalCount();
 
 }

@@ -11,7 +11,7 @@
 		<result column="PRICE" property="price" />
 		<result column="PRODUCT_SIZE" property="productSize" />
 		<result column="STORED_FILE_NAME" property="storedFileName" />
-		<result column="SHOPPING_BASKET_QUANTITY" property="shoppingBasketQuantity" />
+		<result column="SHOPPING_BASKET_QUANTITY" property="purchaseQuantity" />
 	</resultMap>
 
 	<select id="basketSelectTotalCount" resultType="int" parameterType="java.lang.String">
@@ -36,8 +36,18 @@
 		)
 		VALUES(
 		    BASKET_NO_SEQ.NEXTVAL, #{memberNo}, #{productNo}, 
-		    #{productSize}, #{shoppingBasketQuantity}
+		    #{productSize}, #{purchaseQuantity}
 		)
 	</insert>
+	
+	<delete id="basketDelete" parameterType="int">
+		DELETE FROM SHOPPING_BASKET
+		WHERE BASKET_NO = #{basketNo}
+	</delete>
+	
+	<delete id="basketDeleteAll" parameterType="int">
+		DELETE FROM SHOPPING_BASKET
+		WHERE MEMBER_NO = #{memberNo}
+	</delete>
 
 </mapper>

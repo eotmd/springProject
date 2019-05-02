@@ -43,9 +43,9 @@ public class BasketDaoImpl implements BasketDao{
 	}
 
 	@Override
-	public int basketDelete() {
+	public int basketDelete(int basketNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(namespace + "basketDelete", basketNo);
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class BasketServiceImpl implements BasketService{
 	}
 
 	@Override
-	public int basketDelete() {
+	public int basketDelete(int basketNo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
