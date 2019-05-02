@@ -119,7 +119,7 @@ h1{
 		<input type="text" name="keyword" value="${keyword}">			
 		<input type="submit" value="검색">					
 	</form>
-<form action="/jsphomme/member/list.do" id="pagingForm" method="post">
+	<form action="/jsphomme/member/list.do" id="pagingForm" method="post">
 		<input type="hidden" id="curPage" name="curPage" value="${pagingMap.paging.curPage}">
 		<input type="hidden" name="searchOption" value="${searchOption}">
 		<input type="hidden" name="keyword" value="${keyword}">

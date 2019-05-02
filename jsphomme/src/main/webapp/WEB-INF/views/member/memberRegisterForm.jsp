@@ -53,7 +53,7 @@ img {
 		font-weight: 5px;
 		margin-bottom: 5px;
 		color: gray;
-		width: 600px;
+		width: 495px;
 	}
 	
 	#hrDiv{
@@ -289,8 +289,8 @@ img {
 	      $('#address').change(function() {
 	        
 			 var addressObj = $('#address').val();
-	         var failMsg = "주소를 입력해주세요";
-	         var successMsg = "숫자,한글,영문 대소문자,특수문자 사용가능 (공백없이 입력해주세요)";
+	         
+	         var successMsg = "숫자,한글,영문 대소문자,특수문자,공백도 사용가능합니다.";
 	         
 	         	if (addressObj != "" && addressObj != null) {
 	        	 $('#addressConfirmMsg').css('color', 'grey');
@@ -346,7 +346,7 @@ img {
 			<input class="memberRegiInfo" type="text" value="아이디" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="text" id="id" name="id"
 				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" style="width: 380px;" value="${MemberVo.id}">
-			<input type="button" value="아이디 중복체크" onclick="overlapCheckFnc()">
+			<input type="button" value="아이디 중복체크" onclick="overlapCheckFnc()" style=" background-color:#DBDBDB;  border-radius: 4px;font-weight: bold; ">
 			
 			<a id="idConfirmMsg"></a><br/> 
 			
@@ -362,7 +362,7 @@ img {
 			
 			<input class="memberRegiInfo" type="text" value="주소" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="text" id="address" name="address"
-				placeholder="숫자,한글,영문 대소문자 ,특수문자 가능" value="${MemberVo.address}">
+				placeholder="숫자,한글,영문 대소문자,특수문자,공백도 사용가능합니다." value="${MemberVo.address}">
 			<a id="addressConfirmMsg"></a><br/> 
 			
 			<input class="memberRegiInfo" type="text" value="연락처" disabled="disabled"><br/>

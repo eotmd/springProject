@@ -88,7 +88,10 @@ public class MemberController {
 	public String memberOneDeteilView(int memberNo,HttpSession session ,Model model) {
 		log.debug(": {}", session.getAttribute("_memberVo_"));
 		
+	
+		
 		if(session.getAttribute("_memberVo_") == null) {
+			 
 			return "redirect:/auth/login.do";
 		}
 		log.debug("Welcome memberOneDeteilView enter! - {}", memberNo);
@@ -105,6 +108,8 @@ public class MemberController {
 	@RequestMapping(value = "/member/add.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String memberAdd(@RequestParam(defaultValue = "1") int judgeNumber,MemberVo memberVo ,Model model) {
 		log.debug("Welcome MemberController memberAdd 페이지 이동! ");
+		
+		
 		
 		model.addAttribute("judgeNumber",judgeNumber);
 		model.addAttribute("MemberVo",memberVo);
