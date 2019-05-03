@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import kr.co.jsphomme.basket.vo.BasketVo;
+import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
 
 @Repository
 public interface BasketDao {
@@ -16,5 +17,7 @@ public interface BasketDao {
 	public int basketUpdate();
 	public int basketDelete(int basketNo);
 	public int basketSelectTotalCount();
+	public void basketDeleteAll(int memberNo);
+	public List<PurchaseListVo> basketBuy(int[] basketNoArr);
 
 }

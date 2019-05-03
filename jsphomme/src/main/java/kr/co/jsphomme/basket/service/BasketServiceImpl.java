@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.jsphomme.basket.dao.BasketDao;
 import kr.co.jsphomme.basket.vo.BasketVo;
 import kr.co.jsphomme.product.dao.ProductDao;
+import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
 
 @Service
 public class BasketServiceImpl implements BasketService{
@@ -53,13 +54,28 @@ public class BasketServiceImpl implements BasketService{
 	@Override
 	public int basketDelete(int basketNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		return basketDao.basketDelete(basketNo);
 	}
 
 	@Override
 	public int basketSelectTotalCount() {
 		// TODO Auto-generated method stub
 		return basketDao.basketSelectTotalCount();
+	}
+
+	@Override
+	public void basketDeleteAll(int memberNo) {
+		// TODO Auto-generated method stub
+		
+		basketDao.basketDeleteAll(memberNo);
+	}
+
+	@Override
+	public List<PurchaseListVo> basketBuy(int[] basketNoArr) {
+		// TODO Auto-generated method stub
+		
+		return basketDao.basketBuy(basketNoArr);
 	}
 
 }

@@ -61,6 +61,7 @@ function getBasket() {
 		margin: auto;
 		width: 1200px;
 		overflow: hidden;
+		padding-top: 50px;
 	}
 	
 	.explanation {
@@ -97,7 +98,6 @@ function getBasket() {
 
 	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"></jsp:include>
 	
-	<h1>${productVo.name}</h1>
 	<div class="detailView">
 		
 		<form action="../purchase/view.do" id="formBuy">
@@ -107,20 +107,14 @@ function getBasket() {
 			<span>
 				<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
 			</span>
-	
+			<input type="hidden" name="productNo" value="${productVo.productNo}">	
 			<table class="explanation">
 				<tr>
-					<td style="width: 150px; font-weight: bold;">번호</td>
-					<td>${productVo.productNo}<input type="hidden" name="productNo" value="${productVo.productNo}">
-					</td>
-				</tr>
-				<tr>
-					<td style="width: 150px; font-weight: bold;">상품명</td>
-					<td>${productVo.name}</td>
+					<td colspan="2" style="font-size: 50px; font-weight: bold; height: 100px;">${productVo.name}</td>
 				</tr>
 				<tr>
 					<td style="width: 150px; font-weight: bold;">가격</td>
-					<td>${productVo.price}</td>
+					<td><fmt:formatNumber value="${productVo.price}" pattern="#,###"/></td>
 				</tr>
 				<c:if test="${productVo.quantity > 0}">
 					<tr>
@@ -159,17 +153,20 @@ function getBasket() {
 						</td>
 					</tr>
 				</c:if>
-				<c:if test="${_memberVo_ != null && productVo.quantity > 0}">
+				<c:if test="${_memberVo_ != null && productVo.quantity > 0 
+					&& _memberVo_.authority != '0'}">
 						<td colspan="2"><input type="submit" value="즉시 구매" 
 							class="goBuyBtn""></td>
 					</tr>
 				</c:if>
-				<c:if test="${_memberVo_ != null && productVo.quantity <= 0}">
+				<c:if test="${_memberVo_ != null && productVo.quantity <= 0
+					&& _memberVo_.authority != '0'}">
 						<td colspan="2"><input type="button" value="즉시 구매" 
 							class="goBuyBtn" onclick="soldOut();"></td>
 					</tr>
 				</c:if>
-				<c:if test="${_memberVo_ != null && productVo.quantity > 0}">
+				<c:if test="${_memberVo_ != null && productVo.quantity > 0
+					&& _memberVo_.authority != '0'}">
 					<tr>
 						<td colspan="2"><input type="button" value="장바구니에 담기"
 							class="goBuyBtn" onclick="getBasket();"
@@ -183,7 +180,8 @@ function getBasket() {
 							style="width: 294px;"></td>
 					</tr>
 				</c:if>
-				<c:if test="${_memberVo_ != null && productVo.quantity <= 0}">
+				<c:if test="${_memberVo_ != null && productVo.quantity <= 0
+					&& _memberVo_.authority != '0'}">
 						<td colspan="2"><input type="button" value="장바구니에 담기" 
 							class="goBuyBtn" onclick="soldOut();"
 							style="width: 294px;"></td>
@@ -191,22 +189,19 @@ function getBasket() {
 				<c:if test="${_memberVo_.authority == '0'}">
 					<tr>
 						<td colspan="2"><input type="button" value="수정하기"
-							class="goUpdateBtn" onclick="goUpdate();"
-							style="width: 294px;"></td>
+							class="goUpdateBtn" onclick="goUpdate();"></td>
 					</tr>
 				</c:if>
 				
 				
 			</table>
-<%-- 			<input type="hidden" name="memberNo" value="${_memberVo_.memberNo}"> --%>
 		</form>
-		
-		<div style="clear: both; ">
+		<div style="clear: both; padding-top: 50px;">
 			${productVo.detail}
 		</div>
 		
 	</div>
-		
+
 	
 	<jsp:include page="/WEB-INF/views/common/tail.jsp"></jsp:include>
 	
