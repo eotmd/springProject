@@ -2,6 +2,7 @@ package kr.co.jsphomme.purchaselist.controller;
 
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.util.Map;
@@ -83,8 +84,10 @@ public class PurchaseListController {
 		if(memberVo == null) {
 			return "redirect:/auth/login.do";
 		}
+		List<PurchaseListVo> purchaseList = new ArrayList<PurchaseListVo>();
+		purchaseList.add(purchaseListVo);
 		
-		model.addAttribute("purchaseListVo", purchaseListVo);
+		model.addAttribute("purchaseListVo", purchaseList);
 		
 		return "purchaseList/purchaseViewForm";
 	}
