@@ -89,13 +89,13 @@
 			if (idObj.value == null || idObj.value == "") {
 				alert("아이디를 입력해 주세요");
 				idObj.focus();
-				
+				return;
 			}
 	
 			if (passwordObj.value == null || passwordObj.value == "") {
 				alert("비밀번호를 입력해 주세요")
 				passwordObj.focus();
-				
+				return;
 			}
 			
 			var formObj = document.getElementById("loginForm")
@@ -109,13 +109,13 @@
 		if (idObj.value == null || idObj.value == "") {
 			alert("아이디를 입력해 주세요");
 			idObj.focus();
-			
+			return;
 		}
 
 		if (passwordObj.value == null || passwordObj.value == "") {
 			alert("비밀번호를 입력해 주세요")
 			passwordObj.focus();
-			
+			return;
 		}
 		
 		var formObj = document.getElementById("loginForm")

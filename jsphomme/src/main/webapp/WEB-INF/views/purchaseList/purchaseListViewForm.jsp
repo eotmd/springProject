@@ -38,8 +38,15 @@
 		background-color: #DBDBDB;
 		font-weight: bold;
 	}
-	.productName > a:hover {
+	.productName > a{
+		text-decoration: none; 
+		color: olive;
 		font-weight: bold;
+		
+	}
+	.productName > a:hover {
+		color: red;
+		
 		
 	}
 	
@@ -56,8 +63,8 @@
 			<img id="mainImg" alt="ConceptPhoto" src="../resources/images/concept2.jpg">
 		
 	
-	
 	<div id="tableCon">
+	<h1 style="margin-left: 56px;">구매목록</h1>
 	
 	<table style="margin-top: 20px;">
 		<tr>
@@ -75,7 +82,7 @@
 		<c:forEach var="purchaseList" items="${purchaseList}">
 		<tr>
 			<td style="text-align: center; width: 100px;">${purchaseList.productNo}</td>
-			<td class="productName" style="text-align: left; width: 242px;"><a style="text-decoration: none; color: black;" href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
+			<td class="productName" style="text-align: left; width: 242px;"><a href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
 			<td style="text-align: center; width: 101px;">${purchaseList.productSize}</td>
 			<td style="text-align: center; width: 101px;">${purchaseList.purchaseQuantity}</td>
 			<td style="text-align: right; width: 101px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>

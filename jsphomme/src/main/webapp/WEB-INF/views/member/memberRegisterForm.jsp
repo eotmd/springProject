@@ -165,6 +165,11 @@ img {
  			hpObj.focus();
  			return;
  		}
+ 		if(hpObj.value ==/[a-z]/g){
+ 			alert("숫자만 입력해 주세요");
+ 			hpObj.focus();
+ 			return;
+ 		}
  		
  		if(judgeNumberObj.value == 1){
  			alert("아이디 중복체크를 해주세요");
@@ -306,7 +311,7 @@ img {
    $(document).ready(function() {
 	      $('#hp').keydown(function() {
 	    	 
-	    	  $('#hp').val($('#hp').val().replace(/[^0-9]/g,""));
+	    	  $('#hp').val($('#hp').val().replace(/[a-z]/g,""));
 	    	 
 	    	 var hpObj = $('#hp').val();
 	         var failMsg = "(-) 제외 11 자리 숫자만 입력해주세요";

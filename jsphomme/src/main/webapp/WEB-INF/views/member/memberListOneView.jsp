@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,16 +20,17 @@ img {
 
 #memberInfoContainer{
 		width: 1250px;
-		height:500px;
+		height:450px;
 		margin: auto;
 		margin-top: 30px;
+		margin-bottom: 30px;
 		background-color: #F6F6F6;
 		box-shadow:  7px 7px 20px -8px gray;
 }
 
 #memberInfoDiv{
 		width:1300px;
-		height:320px;
+		height:300px;
 		margin-left: 200px;
 		font-weight: bold;	
 	    padding-top: 62px;
@@ -105,7 +107,16 @@ h1{
 	}
 	
 	function leaveFnc(no) {
-		location.href = "./leaveCtr.do?memberNo=" + no;
+		
+		var confirmVal = confirm("회원 탈퇴하시겠습니까?")
+		
+		if(confirmVal == true){
+			location.href = "./leaveCtr.do?memberNo=" + no;
+			
+		}else{
+			return;
+		}
+		
 	}
 	
 </script>
@@ -123,7 +134,7 @@ h1{
 	
 	<form action="./update.do" method="get">
 			
-	<div id="memberInfoContainer">		
+	<div id="memberInfoContainer"<c:if test="${_memberVo_.authority == '0'}">style="height: 530px;"</c:if>>
 		
 		<div id="memberInfoDiv">	
 			
@@ -134,20 +145,27 @@ h1{
 		
 			<input class="memberInfo" type="text" value="아이디" disabled="disabled"><br/>
 			<input class="memberInput" type="text" name="id" value="${memberVo.id}" disabled="disabled"><br>
-				
+		<c:if test="${_memberVo_.authority == '0'}">
 			<input class="memberInfo" type="text" value="비밀번호" disabled="disabled"><br/>
-			<input class="memberInput" type="password" name="password" value="${memberVo.password}" disabled="disabled"><br>
-		
+			<input class="memberInput" type="text" name="password" value="${memberVo.password}" disabled="disabled"><br>
+		</c:if>
+		<c:if test="${_memberVo_.authority == '0'}">
+			<input class="memberInfo" type="text" value="권한" disabled="disabled"><br/>
+			<input class="memberInput" type="text" name="authority" value="${memberVo.authority}" disabled="disabled"><br>
+		</c:if>
 			<input class="memberInfo" type="text" value="주소" disabled="disabled"><br/>
 			<input class="memberInput" type="text" name="address" value="${memberVo.address}" disabled="disabled"><br>
 		
 			<input class="memberInfo" type="text" value="연락처" disabled="disabled"><br/>
-			<input class="memberInput" type="number" name="hp" value="${memberVo.hp}" disabled="disabled"><br>
+			<input class="memberInput" type="text" name="hp" value="${memberVo.hp}" disabled="disabled"><br>
+			
+			
 		
 		</div>
 		
-		<div id="hrDiv">
-			<br/>
+		
+		<div id="hrDiv" <c:if test="${_memberVo_.authority == '0'}">style="margin-top: 90px;"</c:if>>
+			
 			<hr>
 		</div>
 			<input type="button" value="메인페이지" id="moveMainPageBtn" onclick="MoveMainPageFnc();">

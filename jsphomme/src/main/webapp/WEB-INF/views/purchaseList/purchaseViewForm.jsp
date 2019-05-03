@@ -38,8 +38,14 @@
 			alert("연락처를 입력해 주세요");
 			return;
 		}
+		var confirmVal = confirm("정말 구매하시겠습니까?");
 		
-		formIdObj.submit();
+		if(confirmVal == true){
+			
+			formIdObj.submit();
+		}else{
+			return;
+		}
 		
 	}
 </script>

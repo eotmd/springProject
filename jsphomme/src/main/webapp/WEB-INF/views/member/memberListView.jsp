@@ -17,12 +17,12 @@ img {
 table , tr, td {
 	border: solid 1px black;
 	border-collapse: collapse;
-	
+	height: 45px;
+	padding: 5px;
 }
 
 table {
 	width: 1698px;
-	height: 400px;
 	margin-left: 94px;
 }
 
@@ -37,24 +37,29 @@ h1{
 
 .category{
 	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	background-color: #DBDBDB;
 }
 
-#memberNo {
-	text-align: right;
-}
 
-#status, #authority, #memberName , #id, #hp, #creDate, #modDate, #deleteFnc {
-	text-align: center;
-}
 
-#address {
-	text-align: left;
+#kickId:hover{
+	font-size: 15px;
 }
 
 </style>
 <title>회원 목록</title>
 <script type="text/javascript">
-
+function deleteMemberFnc(no) {
+	var confirmVal = confirm(no+"번 회원을 삭제 하시겠습니까?");
+	
+	if(confirmVal == true){
+		location.href = "./deleteCtr.do?memberNo="+no;
+	}else{
+		return;
+	}
+}
 
 </script>
 </head>
@@ -66,28 +71,36 @@ h1{
 
 <div id="memberListViewBodyDiv">
 
-	<h1>회원목록</h1>
+	<h1 style="float: left; margin-right: 100px;">회원목록</h1>
 	
+	<form id="form1" action="/jsphomme/member/list.do" method="get" >
+		<select name="searchOption">
+			<option value="userId" <c:if test="${searchOption == 'userId'}">selected</c:if>>아이디</option>				<!-- 이메일  -->
+			<option value="userName"<c:if test="${searchOption == 'userName'}">selected</c:if>>이름</option>					<!-- 이름  -->
+							
+		</select>
+		<input type="text" name="keyword" value="${keyword}">			
+		<input type="submit" value="검색">					
+	</form>
 	
-	
-	<table>
+	<table style="clear: both;">
 		<tr>
-			<td class="category">회원 번호</td>
-			<td class="category">권한</td>
-			<td class="category">이름</td>
-			<td class="category">아이디</td>
-			<td class="category">주소 </td>
-			<td class="category">연락처	</td>
-			<td class="category">가입 날짜 </td>
-			<td class="category">수정 날짜 </td>
-			<td class="category">삭제</td>
+			<td class="category" style="width: 100px;">회원 번호</td>
+			<td class="category" style="width: 188px;">권한</td>
+			<td class="category" style="width: 188px;">이름</td>
+			<td class="category" style="width: 188px;">아이디</td>
+			<td class="category" style="width: 194px;">주소 </td>
+			<td class="category" style="width: 188px;">연락처	</td>
+			<td class="category" style="width: 232px;">가입 날짜 </td>
+			<td class="category" style="width: 232px;">수정 날짜 </td>
+			<td class="category" style="width: 188px;">삭제</td>
 		</tr>
 		<c:forEach var="memberVo" items="${memberList}">
 			<tr>
 				<td id="memberNo">${memberVo.memberNo}</td>
 				<td id="authority">${memberVo.authority}</td>
 				<td id="memberName">${memberVo.name}</td>
-				<td id="id">${memberVo.id}</td>
+				<td id="id"><a href="/jsphomme/member/detail.do?memberNo=${memberVo.memberNo}">${memberVo.id}</a></td>
 				<td id="address">${memberVo.address}</td>
 				<td id="hp">${memberVo.hp}</td>
 				<td id="creDate"><fmt:formatDate value="${memberVo.creDate}"
@@ -96,9 +109,8 @@ h1{
 				<td id="modDate"><fmt:formatDate value="${memberVo.modDate}"
 						pattern="yyyy년MM월dd일 hh시mm분"/>
 				</td>
-				<td>
-				<a style="text-align: center;" id="deleteFnc" href='./deleteCtr.do?memberNo=${memberVo.memberNo}'>[삭제]</a>
-<%-- 					<input type="button" value="삭제" onclick="deleteMemberFnc(${memberVo.memberNo});"> --%>
+				<td style="text-align: center;">
+					<input id="kickId" type="button" value="[삭제]" onclick="deleteMemberFnc(${memberVo.memberNo});" style="border: 0px; background-color: #ffffff; color: red; font-weight: bold;">
 				</td>		
 			</tr>
 				
@@ -110,15 +122,7 @@ h1{
 <jsp:include page="/WEB-INF/views/common/paging.jsp">
 		<jsp:param value="${pagingMap}" name="pagingMap" />
 </jsp:include>
-	<form id="form1" action="/jsphomme/member/list.do" method="get">
-		<select name="searchOption">
-			<option value="userId" <c:if test="${searchOption == 'userId'}">selected</c:if>>아이디</option>				<!-- 이메일  -->
-			<option value="userName"<c:if test="${searchOption == 'userName'}">selected</c:if>>이름</option>					<!-- 이름  -->
-							
-		</select>
-		<input type="text" name="keyword" value="${keyword}">			
-		<input type="submit" value="검색">					
-	</form>
+	
 	<form action="/jsphomme/member/list.do" id="pagingForm" method="post">
 		<input type="hidden" id="curPage" name="curPage" value="${pagingMap.paging.curPage}">
 		<input type="hidden" name="searchOption" value="${searchOption}">

@@ -2,6 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<script type="text/javascript"
+	src="/jsphomme/resources/js/jquery-3.3.1.js">
+	
+  
+   
+
+
+</script>
+
 <style type="text/css">
 .paging{
 	margin-top: 20px;
@@ -37,27 +47,22 @@
 	margin-bottom: auto;
 }
 
-.paging>ul>li>a:hover {
+
+
+.paging > ul > li > a:hover {
+	background-color: #B2EBF4;
+	font-weight: bold;
+	border-radius: 7px;
+}
+.paging > ul > .active {
 	background-color: #B2EBF4;
 	font-weight: bold;
 	border-radius: 7px;
 }
 
-.active {
-	background-color: #B2EBF4;
-	font-weight: bold;
-	border-radius: 7px;
-}
 </style>
 
-<script type="text/javascript"
-	src="/jsphomme/resources/js/jquery-3.3.1.js">
-	
-  
-   
 
-
-</script>
 <script type="text/javascript">
 function goPageFnc(pageNumber) {
     var curPage = $("#curPage");  // = document.getElementById("curPage"); 동일함

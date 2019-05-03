@@ -101,7 +101,14 @@ public class PurchaseListController {
 			return "redirect:/auth/login.do";
 		
 		}
-		purchaseListService.purchaseListCreate(purchaseListVo);
+		try {
+			
+			purchaseListService.purchaseListCreate(purchaseListVo);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "/common/soldOutPage";
+		}
 		
 
 		
