@@ -1,5 +1,6 @@
 package kr.co.jsphomme.basket.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fasterxml.jackson.databind.ser.std.StdArraySerializers.IntArraySerializer;
+
 import kr.co.jsphomme.basket.service.BasketService;
 import kr.co.jsphomme.basket.vo.BasketVo;
 import kr.co.jsphomme.member.vo.MemberVo;
+import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
 
 @Controller
 public class BasketController {
@@ -65,10 +69,45 @@ public class BasketController {
 		return "redirect:/basket/list.do";
 	}
 	
-	@RequestMapping(value="/basket/delete.do", method= {RequestMethod.POST})
-	public String basketDelete() {
+	@RequestMapping(value="/basket/delete.do", 
+			method= {RequestMethod.POST, RequestMethod.GET})
+	public String basketDelete(int basketNo, Model model) {
 		
-		return null;
+		log.debug("Welcome ProductController basketDelete! - {}", basketNo);
+		
+		basketService.basketDelete(basketNo);
+		
+		return "redirect:/basket/list.do";
 	}
+	
+	@RequestMapping(value="/basket/deleteAll.do", 
+			method= {RequestMethod.POST, RequestMethod.GET})
+	public String basketDeleteAll(HttpSession session, Model model) {
+		
+		MemberVo memberVo = (MemberVo) session.getAttribute("_memberVo_");
+		int memberNo = memberVo.getMemberNo();
+		
+		log.debug("Welcome ProductController basketDeleteAll! - {}", memberNo);
+		
+		basketService.basketDeleteAll(memberNo);
+		
+		return "redirect:/basket/list.do";
+	}
+
+	@RequestMapping(value="/basket/buy.do",
+			method= {RequestMethod.POST, RequestMethod.GET})
+	public String basketBuy(int[] basketNoArr, Model model) {
+		
+		log.debug("Welcome ProductController basketBuy! - {}", basketNoArr);
+		
+		List<PurchaseListVo> list = basketService.basketBuy(basketNoArr);
+		
+		log.debug("Welcome ProductController basketBuy! - {}", list);
+		
+		model.addAttribute("purchaseListVo", list);
+		
+		return "purchaseList/purchaseViewForm";
+	}
+
 	
 }

@@ -84,13 +84,11 @@ public class PurchaseListController {
 			return "redirect:/auth/login.do";
 		}
 		
-		
-		
-		
 		model.addAttribute("purchaseListVo", purchaseListVo);
 		
 		return "purchaseList/purchaseViewForm";
 	}
+	
 	
 	@RequestMapping(value="/purchase/finish.do", method = RequestMethod.POST)
 	public String PurchaseListInsert(PurchaseListVo purchaseListVo,HttpServletRequest req , HttpSession session, Model model) {

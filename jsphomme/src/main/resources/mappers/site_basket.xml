@@ -13,6 +13,23 @@
 		<result column="STORED_FILE_NAME" property="storedFileName" />
 		<result column="SHOPPING_BASKET_QUANTITY" property="purchaseQuantity" />
 	</resultMap>
+	
+	<resultMap type="purchaseListVo" id="purchaseListResultMap">
+		<id column="PURCHASE_LIST_NO" property="purchaseListNo"/>
+		<id column="PRODUCT_NO" property="productNo"/>
+		<id column="NAME" property="productName"/>
+		<id column="RECIPIENT" property="recipient"/>
+		<id column="PRICE" property="productPrice"/>
+		<id column="PRODUCT_SIZE" property="productSize"/>
+		<id column="ADDRESS" property="address"/>
+		<id column="PURCHASE_DATE" property="purchaseDate"
+			javaType="java.util.Date"/>
+		<id column="REQUESTS" property="requests"/>
+		<id column="SHOPPING_BASKET_QUANTITY" property="purchaseQuantity"/>
+		<id column="STORED_FILE_NAME" property="storedFileName"/>
+	</resultMap>
+	
+	
 
 	<select id="basketSelectTotalCount" resultType="int" parameterType="java.lang.String">
 		SELECT COUNT(*)
@@ -49,5 +66,13 @@
 		DELETE FROM SHOPPING_BASKET
 		WHERE MEMBER_NO = #{memberNo}
 	</delete>
+	
+	<select id="basketBuy" parameterType="int" resultMap="purchaseListResultMap">
+		SELECT P.PRODUCT_NO, P.NAME, P.PRICE, B.PRODUCT_SIZE, B.SHOPPING_BASKET_QUANTITY, P.STORED_FILE_NAME
+		FROM PRODUCT P, SHOPPING_BASKET B, MEMBER M
+		WHERE P.PRODUCT_NO = B.PRODUCT_NO
+		AND M.MEMBER_NO = B.MEMBER_NO
+		AND B.BASKET_NO = #{value}
+	</select>
 
 </mapper>

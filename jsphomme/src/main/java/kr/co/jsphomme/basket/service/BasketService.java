@@ -3,6 +3,7 @@ package kr.co.jsphomme.basket.service;
 import java.util.List;
 
 import kr.co.jsphomme.basket.vo.BasketVo;
+import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
 
 public interface BasketService {
 	
@@ -12,5 +13,7 @@ public interface BasketService {
 	public int basketUpdate();
 	public int basketDelete(int basketNo);
 	public int basketSelectTotalCount();
+	public void basketDeleteAll(int memberNo);
+	public List<PurchaseListVo> basketBuy(int[] basketNoArr);
 
 }

@@ -52,42 +52,116 @@
 		padding: 5px;
 	}
 	
+	.goUpdateBtn {
+	border: 1px solid;
+	border-radius: 7px;
+	background: white;
+	font-size: 20px;
+	background: #939393;
+	color: white;
+	width: 98px;
+	}
+	
+	.goUpdateBtn:hover{
+		background: #F79F81;
+	}
+	
 </style>
+
+<script type="text/javascript">
+
+function goDeleteFnc(no) {
+	
+	var confirmVal = confirm("장바구니에서 삭제됩니다.\n삭제하시겠습니까?");
+	
+	if (confirmVal == true) {
+		
+		location.href = "/jsphomme/basket/delete.do?basketNo=" + no;
+	} else {
+		return;
+	}
+}
+
+function goDeleteAllFnc() {
+	
+	var confirmVal = confirm("장바구니에 담은 모든 상품이 삭제됩니다.\n장바구니를 비우시겠습니까?");
+	
+	if (confirmVal == true) {
+			
+			location.href = "/jsphomme/basket/deleteAll.do";
+		} else {
+			
+			return;
+		}
+}
+
+function goBuyFnc() {
+	
+	var goBuyObj = document.getElementById('goBuy');
+	
+	goBuyObj.submit();
+	
+}
+
+</script>
+
 </head>
 <body>
 
 	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"></jsp:include>
 	
 	
-	
-		<div id="tableCon">	
+	<div id="tableCon">	
+				
 		<table class="tableId">
 			<tr>
+					<td class="tableTop" style="width: 190px;">
+						<input type="button" class="" value="선택항목 구매" 
+							onclick="goBuyFnc();">
+					</td>
 					<td class="tableTop" style="width: 310px;"></td>
 					<td class="tableTop" style="width: 300px;">상품 이름</td>
-					<td class="tableTop" style="width: 223px;">가격</td>
-					<td class="tableTop" style="width: 223px;">사이즈</td>
-					<td class="tableTop" style="width: 222px;">수량</td>
-					<td class="tableTop" style="width: 222px;">총 결제 금액</td>
+					<td class="tableTop" style="width: 190px;">가격</td>
+					<td class="tableTop" style="width: 190px;">사이즈</td>
+					<td class="tableTop" style="width: 190px;">수량</td>
+					<td class="tableTop" style="width: 190px;">총 결제 금액</td>
+					<td class="tableTop" style="width: 100px;">
+						<input type="button" class="goUpdateBtn" value="모두 삭제" 
+							onclick="goDeleteAllFnc();">
+					</td>
 			</tr>
 		</table>
 		<ins><hr></ins>
 		<div id="tableCon2">
-		<table class="tableId">
-			<c:forEach var="basketVo" items="${basketList}">
-				<tr>	
-					<td class="tableBt" style="height: 310px"><img style="width: 300px; height: 300px;" alt="${basketVo.storedFileName}" src="<c:url value='/img/${basketVo.storedFileName}'/>"></td>		
-					<td class="tableBt" style="font-weight: bold; width: 300px;">${basketVo.name}</td>
-					<td class="tableBt" style="width: 223px;"><fmt:formatNumber value="${basketVo.price}" pattern="#,###"/></td>
-					<td class="tableBt" style="width: 223px;">${basketVo.productSize}</td>
-					<td class="tableBt" style="width: 222px;">${basketVo.purchaseQuantity}</td>
-					<td class="tableBt" style="width: 222px;"><fmt:formatNumber value="${basketVo.price * basketVo.purchaseQuantity}" pattern="#,###"/></td>
-				</tr>
-			</c:forEach>
+		<form action="/jsphomme/basket/buy.do" id="goBuy">
+			<table class="tableId">
+				<c:forEach var="basketVo" items="${basketList}">
+					<tr>	
+						<td class="tableBt" style="width: 40px;">
+							<input type="checkbox" name="basketNoArr" value="${basketVo.basketNo}">
+						</td>
+						<td class="tableBt" style="height: 310px"><img style="width: 300px; height: 300px;" alt="${basketVo.storedFileName}" src="<c:url value='/img/${basketVo.storedFileName}'/>"></td>		
+						<td class="tableBt" style="font-weight: bold; width: 300px;">${basketVo.name}</td>
+						<td class="tableBt" style="width: 190px;"><fmt:formatNumber value="${basketVo.price}" pattern="#,###"/></td>
+						<td class="tableBt" style="width: 190px;">${basketVo.productSize}</td>
+						<td class="tableBt" style="width: 190px;">${basketVo.purchaseQuantity}</td>
+						<td class="tableBt" style="width: 190px;"><fmt:formatNumber value="${basketVo.price * basketVo.purchaseQuantity}" pattern="#,###"/></td>
+						<td class="tableBt" style="width: 100px;">
+							<input type="button" value="삭제" class="goUpdateBtn" 
+								style="width: 56px;" onclick="goDeleteFnc(${basketVo.basketNo});">
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+			</form>
 			
-		</table>
+			<c:if test="${empty basketList}">
+				<p style="text-align: center;">장바구니에 담은 상품이 없습니다.</p>
+			</c:if>
+			
 		</div>
 	</div>
+	
 	
 	<jsp:include page="/WEB-INF/views/common/tail.jsp"></jsp:include>
 	
