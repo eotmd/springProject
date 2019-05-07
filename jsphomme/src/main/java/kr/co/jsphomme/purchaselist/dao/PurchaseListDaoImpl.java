@@ -21,6 +21,9 @@ public class PurchaseListDaoImpl implements PurchaseListDao{
 	@Override
 	public PurchaseListVo purchaseListCreate(PurchaseListVo purchaseListVo) {
 		
+			
+		
+		
 		return sqlSession.selectOne(namespace+"purchaseListCreate",purchaseListVo);
 	}
 

@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,8 +78,9 @@ public class PurchaseListController {
 	}
 	
 	@RequestMapping(value="/purchase/view.do", method = RequestMethod.GET)
-	public String PurchaseView(PurchaseListVo purchaseListVo, HttpSession session, Model model) {
+	public String PurchaseView(PurchaseListVo purchaseListVo,/*int[] basketNo,*/ HttpSession session, Model model) {
 		log.debug("결제페이지이동 컨트롤러 : {}" + purchaseListVo);
+		
 		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
 		
 		if(memberVo == null) {
@@ -89,32 +91,72 @@ public class PurchaseListController {
 		
 		model.addAttribute("purchaseListVo", purchaseList);
 		
+		
+		
 		return "purchaseList/purchaseViewForm";
 	}
 	
 	
 	@RequestMapping(value="/purchase/finish.do", method = RequestMethod.POST)
-	public String PurchaseListInsert(PurchaseListVo purchaseListVo,HttpServletRequest req , HttpSession session, Model model) {
-		log.debug("결제완료 컨트롤러 : {}" + purchaseListVo);
+	public String PurchaseListInsert(PurchaseListVo purchaseListVo,int[] productNoArr, String[] productSizeArr, int[] purchaseQuantityArr,int[] basketNo, HttpSession session, Model model) {
+		log.debug("결제완료 컨트롤러 - purchaseListVo: {}" + purchaseListVo);
+		log.debug("결제완료 컨트롤러 - productNo: {}" + productNoArr);
+		log.debug("결제완료 컨트롤러 - productSize: {}" + productSizeArr);
+		log.debug("결제완료 컨트롤러 - purchaseQuantity: {}" + purchaseQuantityArr);
+		
 		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
 		
 		if(memberVo == null) {
 			return "redirect:/auth/login.do";
 		
 		}
-		try {
+		
+		
 			
-			purchaseListService.purchaseListCreate(purchaseListVo);
 			
-		} catch (Exception e) {
-			// TODO: handle exception
-			return "/common/soldOutPage";
-		}
+			
+		purchaseListService.purchaseListCreate(purchaseListVo,productNoArr,productSizeArr,purchaseQuantityArr,basketNo);
+			
+			
+		
+		
+		
+		
+//		try {
+//			
+//			
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			return "/common/soldOutPage";
+//		}
 		
 
 		
 		return "redirect:/purchase/list.do";
 	}
-	
+	/*
+	 * @RequestMapping(value="/purchase/finish.do", method = RequestMethod.POST)
+	 * public String PurchaseListInsert(PurchaseListVo
+	 * purchaseListVo,HttpServletRequest req , HttpSession session, Model model) {
+	 * log.debug("결제완료 컨트롤러 : {}" + purchaseListVo);
+	 * 
+	 * MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
+	 * 
+	 * if(memberVo == null) { return "redirect:/auth/login.do";
+	 * 
+	 * }
+	 * 
+	 * 
+	 * try {
+	 * 
+	 * purchaseListService.purchaseListCreate(purchaseListVo);
+	 * 
+	 * } catch (Exception e) { // TODO: handle exception return
+	 * "/common/soldOutPage"; }
+	 * 
+	 * 
+	 * 
+	 * return "redirect:/purchase/list.do"; }
+	 */	
 //	
 }

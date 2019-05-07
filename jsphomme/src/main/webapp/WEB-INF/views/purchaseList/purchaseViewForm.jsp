@@ -162,11 +162,17 @@
 			<div id="tableCon2" style="height: 320px;">
 				<table class="tableId" style="height: 200px;">
 
-					<c:forEach var="purchaseListVo" items="${purchaseListVo}">
+					<c:forEach var="purchaseListVo" items="${purchaseListVo}" varStatus="i">
 						<input type="hidden" name="memberNo"
 							value="${_memberVo_.memberNo}">
-						<input type="hidden" name="productNo"
+						<input type="hidden" name="productNoArr"
 							value="${purchaseListVo.productNo}">
+						<input type="hidden" name="productSizeArr"
+							value="${purchaseListVo.productSize}">
+						<input type="hidden" name="purchaseQuantityArr"
+							value="${purchaseListVo.purchaseQuantity}">
+						<input type="hidden" name="basketNo"
+							value="${basketNo[i.index]}">
 						<tr>
 							<td class="tableBt" style="height: 310px">
 								<img style="width: 300px; height: 300px;"
@@ -181,6 +187,7 @@
 									value="${purchaseListVo.productPrice * purchaseListVo.purchaseQuantity}"
 									pattern="#,###" /></td>
 						</tr>
+						
 					</c:forEach>
 
 				</table>

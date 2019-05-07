@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.jsphomme.basket.dao.BasketDao;
 import kr.co.jsphomme.member.vo.MemberVo;
 import kr.co.jsphomme.product.dao.ProductDao;
 import kr.co.jsphomme.product.service.ProductService;
@@ -15,45 +16,60 @@ import kr.co.jsphomme.product.vo.ProductVo;
 import kr.co.jsphomme.purchaselist.dao.PurchaseListDao;
 import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
 
-
 @Service
-public class PurchaseListServiceImpl implements PurchaseListService{
-	
+public class PurchaseListServiceImpl implements PurchaseListService {
+
 	@Autowired
-	public PurchaseListDao purchaseListDao; 
-	
+	public PurchaseListDao purchaseListDao;
+
 	@Autowired
-	public ProductDao productDao; 
-	
+	public ProductDao productDao;
+	@Autowired
+	public BasketDao basketDao;
+
 	@Override
-	public PurchaseListVo purchaseListCreate(PurchaseListVo purchaseListVo) {
+	public PurchaseListVo purchaseListCreate(PurchaseListVo purchaseListVo,int[] productNoArr,String[] productSizeArr,int[] purchaseQuantityArr,int[] basketNo) {
 		// TODO Auto-generated method stub
 		
-		int minusQuantity = -purchaseListVo.getPurchaseQuantity();
-		int productNo = purchaseListVo.getProductNo();
+		ProductVo productVo = null;
+		int minusQuantity = 0;
+		int productNo = 0;
 		
+		for (int i = 0; i < productNoArr.length; i++) {
+			purchaseListVo.setProductNo(productNoArr[i]);
+			purchaseListVo.setProductSize(productSizeArr[i]);
+			purchaseListVo.setPurchaseQuantity(purchaseQuantityArr[i]);
+			
+			minusQuantity = -purchaseListVo.getPurchaseQuantity();
+			productNo = purchaseListVo.getProductNo();
+			productVo = new ProductVo();
+			
+			productVo.setQuantity(minusQuantity);
+			productVo.setProductNo(productNo);
+			
+			productDao.productUpdate(productVo);
+			
+			purchaseListDao.purchaseListCreate(purchaseListVo);
+			
+			basketDao.basketDelete(basketNo[i]);
+		}
+			
 		
-		ProductVo productVo = new ProductVo();
-		
-		productVo.setQuantity(minusQuantity);
-		productVo.setProductNo(productNo);
-		
-		
-		productDao.productUpdate(productVo);
-		return purchaseListDao.purchaseListCreate(purchaseListVo);
+
+		return null;
+
 	}
 
 	@Override
 	public List<PurchaseListVo> purchaseListView(int start, int end, int memberNo) {
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		map.put("start", start);
 		map.put("end", end);
 		map.put("memberNo", memberNo);
 		List<PurchaseListVo> purchaseList = purchaseListDao.purchaseListView(map);
-		
-		
+
 		return purchaseList;
 	}
 
@@ -65,15 +81,14 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 
 	@Override
 	public int purchaseListCount(int memberNo) {
-		
+
 		return purchaseListDao.purchaseListCount(memberNo);
 	}
 
 	@Override
 	public PurchaseListVo purchaseView() {
-		
+
 		return purchaseListDao.purchaseView();
 	}
 
-	
 }

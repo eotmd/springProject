@@ -18,6 +18,8 @@ public class PurchaseListVo {
 	private String storedFileName = "";
 	
 	
+	
+	
 	public PurchaseListVo() {
 		super();
 	}
@@ -168,6 +170,7 @@ public class PurchaseListVo {
 	public void setRecipient(String recipient) {
 		this.recipient = recipient;
 	}
+
 
 
 
