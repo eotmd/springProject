@@ -17,4 +17,5 @@ public interface MemberDao {
 	// 페이징
 	public int memberSelectTotalCount(Map<String, String> map);
 	public int memberIdOverlapCheck(String overlapIdCheck);
+	public MemberVo memberCertification(String password);
 }

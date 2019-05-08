@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<title>마이페이지 보기</title>
+
 <style type="text/css">
 img {
 		width: 1698px;
@@ -13,34 +16,47 @@ img {
     	margin-right: 94px;
 	}
 
-#memberSelfCertificatioBodyDiv{
+#memberSelfCertificationBodyDiv{
 	width: 1920px;
 	height: 620px;
 }
 
-
+#certificationForm{
+	display:inline-block; 
+	margin-top: 200px; 
+	background-color: #F6F6F6;
+	
+}
+#certificationIn{
+	width:600px;
+	height: 50px;
+	font-size: 20px;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-bottom: 35px;
+	margin-top: 35px;
+}
+#certificationSb{
+	border: 0px;
+	width: 100px;
+	height: 30px;
+	font-size: 17px;
+	border-radius: 4px;
+	background-color: #B2EBF4;
+}
+#certificationSb:hover {
+	font-weight: bold;
+	background-color: #B2EBF4;
+	box-shadow: 0px 0px 1px 1px #BCEBF4;
+}
 </style>
-<title>마이페이지 보기</title>
-<script type="text/javascript">
-	
 
-	function MoveMainPageFnc(){
-		location.href = "../";
+<script type="text/javascript">
+	function MoveFnc() {
+		var certificationFormObj = document.getElementById("certificationForm");
+		
+		certificationFormObj.submit();
 	}
-	
-	function leaveFnc(no) {
-		
-		var confirmVal = confirm("회원 탈퇴하시겠습니까?")
-		
-		if(confirmVal == true){
-			location.href = "./leaveCtr.do?memberNo=" + no;
-			
-		}else{
-			return;
-		}
-		
-	}
-	
 </script>
 
 </head>
@@ -50,17 +66,16 @@ img {
 
 <img alt="ConceptPhoto" src="../resources/images/concept2.jpg">
 	
-<div id="memberSelfCertificatioBodyDiv">	
+<div id="memberSelfCertificationBodyDiv">	
 	
 	
-	<form action="./update.do" method="get">
+		<div style="height: 600px; width:1698px; margin-left: 94px; text-align: center;">
+			<form id="certificationForm" action="/jsphomme/member/certificationCtr.do" method="post">
+				<input id="certificationIn" type="password" name="password" placeholder="비밀번호 확인">
 			
-	
-		
-		
-		
-
-	</form>
+			</form>
+				<p><input id="certificationSb" type="button" value="확인" onclick="MoveFnc();"></p>
+		</div>
 
 </div>
 	

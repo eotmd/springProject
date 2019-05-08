@@ -27,9 +27,7 @@
 		width: 1200px;
 	}
 	
-	nav {
-		
-	}
+	
 	
 	.mainImg ul{
 		width: 400px;

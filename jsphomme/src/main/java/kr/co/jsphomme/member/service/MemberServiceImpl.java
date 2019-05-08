@@ -102,6 +102,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.memberIdOverlapCheck(overlapIdCheck);
 	}
 
+	@Override
+	public MemberVo memberCertification(String password) {
+		// TODO Auto-generated method stub
+		return memberDao.memberCertification(password);
+	}
+
 	
 
 	
