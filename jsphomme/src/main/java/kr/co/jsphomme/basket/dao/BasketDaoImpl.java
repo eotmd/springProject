@@ -67,20 +67,10 @@ public class BasketDaoImpl implements BasketDao {
 	}
 
 	@Override
-	public List<PurchaseListVo> basketBuy(int[] basketNoArr) {
+	public PurchaseListVo basketBuy(int basketNo) {
 		// TODO Auto-generated method stub
 		
-		List<PurchaseListVo> list = new ArrayList<PurchaseListVo>();
-		PurchaseListVo purchaseListVo = null;
-		
-		for (int i = 0; i < basketNoArr.length; i++) {
-			
-			purchaseListVo = sqlSession.selectOne(namespace + "basketBuy", basketNoArr[i]);
-			
-			list.add(purchaseListVo);
-		}
-		
-		return list;
+		return sqlSession.selectOne(namespace + "basketBuy", basketNo);
 	}
 
 }

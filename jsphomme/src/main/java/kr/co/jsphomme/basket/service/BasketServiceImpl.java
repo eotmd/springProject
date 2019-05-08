@@ -1,5 +1,6 @@
 package kr.co.jsphomme.basket.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +76,17 @@ public class BasketServiceImpl implements BasketService{
 	public List<PurchaseListVo> basketBuy(int[] basketNoArr) {
 		// TODO Auto-generated method stub
 		
-		return basketDao.basketBuy(basketNoArr);
+		List<PurchaseListVo> list = new ArrayList<PurchaseListVo>();
+		PurchaseListVo purchaseListVo = null;
+		
+		for (int i = 0; i < basketNoArr.length; i++) {
+			
+			purchaseListVo = basketDao.basketBuy(basketNoArr[i]);
+			
+			list.add(purchaseListVo);
+		}
+		
+		return list;
 	}
 
 }

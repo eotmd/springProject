@@ -12,6 +12,11 @@
 </script>
 <style type="text/css">
 	
+	img{
+		width: 300px; 
+		height: 300px;
+	}
+	
 	#tableCon{
 		width: 1550px;
 		height:640px;
@@ -97,9 +102,22 @@ function goDeleteAllFnc() {
 
 function goBuyFnc() {
 	
+	var isChecked = false;
+	var basketNoArrObj = document.getElementByName('basketNoArr');
 	var goBuyObj = document.getElementById('goBuy');
 	
-	goBuyObj.submit();
+	for (var i = 0; i < basketNoArrObj.length; i++) {
+		if (basketNoArrObj[i].checked == true) {
+			isChecked = true;
+			break;
+		}
+	}
+	
+	if (!isChecked) {
+		alert("구매할 상품을 선택해주세요!");
+	} else {
+		goBuyObj.submit();
+	}
 	
 }
 
@@ -140,7 +158,11 @@ function goBuyFnc() {
 						<td class="tableBt" style="width: 40px;">
 							<input type="checkbox" name="basketNoArr" value="${basketVo.basketNo}">
 						</td>
-						<td class="tableBt" style="height: 310px"><img style="width: 300px; height: 300px;" alt="${basketVo.storedFileName}" src="<c:url value='/img/${basketVo.storedFileName}'/>"></td>		
+						<td class="tableBt" style="height: 310px">
+							<a href="/jsphomme/product/detail.do?productNo=${basketVo.basketNo}">
+								<img alt="${basketVo.storedFileName}" 
+								src="<c:url value='/img/${basketVo.storedFileName}'/>"></a>
+						</td>		
 						<td class="tableBt" style="font-weight: bold; width: 300px;">${basketVo.name}</td>
 						<td class="tableBt" style="width: 190px;"><fmt:formatNumber value="${basketVo.price}" pattern="#,###"/></td>
 						<td class="tableBt" style="width: 190px;">${basketVo.productSize}</td>

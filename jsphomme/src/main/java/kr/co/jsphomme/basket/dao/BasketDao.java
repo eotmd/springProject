@@ -18,6 +18,6 @@ public interface BasketDao {
 	public int basketDelete(int basketNo);
 	public int basketSelectTotalCount();
 	public void basketDeleteAll(int memberNo);
-	public List<PurchaseListVo> basketBuy(int[] basketNoArr);
+	public PurchaseListVo basketBuy(int basketNo);
 
 }
