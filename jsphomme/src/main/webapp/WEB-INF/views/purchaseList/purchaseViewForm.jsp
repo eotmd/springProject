@@ -14,8 +14,13 @@
 		nameIdObj.focus();
 	}
 	
-	function backFnc(no) {
-		location.href ="/jsphomme/product/detail.do?productNo="+no;
+	function backFnc1() {
+		var productNoObj = document.getElementById("productNo");
+		location.href ="/jsphomme/product/detail.do?productNo="+productNoObj.value;
+	}
+	function backFnc2() {
+		
+		location.href ="/jsphomme/basket/list.do";
 	}
 	
 	function finshFnc() {
@@ -165,7 +170,7 @@
 					<c:forEach var="purchaseListVo" items="${purchaseListVo}" varStatus="i">
 						<input type="hidden" name="memberNo"
 							value="${_memberVo_.memberNo}">
-						<input type="hidden" name="productNoArr"
+						<input type="hidden" id="productNo" name="productNoArr"
 							value="${purchaseListVo.productNo}">
 						<input type="hidden" name="productSizeArr"
 							value="${purchaseListVo.productSize}">
@@ -223,8 +228,15 @@
 			<div style="height: 150px;">
 				<br>
 				<hr />
+				<c:if test="${basketNo == null}">
 				<input class="resultBt" type="button" value="뒤로가기"
-					onclick="backFnc();"> <input
+					onclick="backFnc1();">
+					</c:if> 
+				<c:if test="${basketNo != null}">
+				<input class="resultBt" type="button" value="뒤로가기"
+					onclick="backFnc2();">
+					</c:if> 
+					<input
 					class="resultBt" style="margin-left: 500px;" type="button"
 					value="결제 완료" onclick="finshFnc();">
 			</div>

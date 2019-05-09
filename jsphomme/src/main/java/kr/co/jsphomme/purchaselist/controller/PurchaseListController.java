@@ -111,24 +111,16 @@ public class PurchaseListController {
 		
 		}
 		
-		
-			
-			
-			
-		purchaseListService.purchaseListCreate(purchaseListVo,productNoArr,productSizeArr,purchaseQuantityArr,basketNo);
-			
 			
 		
-		
-		
-		
-//		try {
-//			
-//			
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			return "/common/soldOutPage";
-//		}
+		try {
+			
+			purchaseListService.purchaseListCreate(purchaseListVo,productNoArr,productSizeArr,purchaseQuantityArr,basketNo);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "/common/soldOutPage";
+		}
 		
 
 		

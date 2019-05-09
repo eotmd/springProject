@@ -21,5 +21,6 @@ public interface MemberService {
 	public int memberSelectTotalCount(String searchOption, String keyword);
 	
 	public int memberIdOverlapCheck(String overlapIdCheck);
+	public MemberVo memberCertification(String password);
 	
 }

@@ -136,4 +136,10 @@
 		FROM MEMBER
 		WHERE ID = #{value}
 	</select>
+	
+	<select id="memberCertification" parameterType="string" resultMap="memberResultMap">
+		SELECT PASSWORD, MEMBER_NO
+		FROM MEMBER
+		WHERE PASSWORD = #{value}
+	</select>
 </mapper>

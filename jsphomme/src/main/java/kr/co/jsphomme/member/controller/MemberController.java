@@ -33,9 +33,7 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-	
-	
-	
+
 	@RequestMapping(value = "/common/main.do")
 
 	public String mainSiteView(Model model) {
@@ -46,19 +44,18 @@ public class MemberController {
 	}
 
 	// 관리자가 회원 목록 조회 화면으로
-	@RequestMapping(value = "/member/list.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/member/list.do", method = { RequestMethod.GET, RequestMethod.POST })
 
 	public String memberListView(@RequestParam(defaultValue = "1") int curPage,
 			@RequestParam(defaultValue = "userId") String searchOption, @RequestParam(defaultValue = "") String keyword,
-			HttpSession session ,Model model) {
-		
+			HttpSession session, Model model) {
+
 		log.debug(": {}", session.getAttribute("_memberVo_"));
-		
-		if(session.getAttribute("_memberVo_") == null) {
+
+		if (session.getAttribute("_memberVo_") == null) {
 			return "redirect:/auth/login.do";
 		}
-		
-		
+
 		log.info("memberListView enter! -{}", curPage);
 
 		log.debug(": {}", searchOption);
@@ -85,13 +82,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/detail.do")
-	public String memberOneDeteilView(int memberNo,HttpSession session ,Model model) {
+	public String memberOneDeteilView(int memberNo, HttpSession session, Model model) {
 		log.debug(": {}", session.getAttribute("_memberVo_"));
-		
-	
-		
-		if(session.getAttribute("_memberVo_") == null) {
-			 
+
+		if (session.getAttribute("_memberVo_") == null) {
+
 			return "redirect:/auth/login.do";
 		}
 		log.debug("Welcome memberOneDeteilView enter! - {}", memberNo);
@@ -105,15 +100,13 @@ public class MemberController {
 		return "member/memberListOneView";
 	}
 
-	@RequestMapping(value = "/member/add.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String memberAdd(@RequestParam(defaultValue = "1") int judgeNumber,MemberVo memberVo ,Model model) {
+	@RequestMapping(value = "/member/add.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String memberAdd(@RequestParam(defaultValue = "1") int judgeNumber, MemberVo memberVo, Model model) {
 		log.debug("Welcome MemberController memberAdd 페이지 이동! ");
-		
-		
-		
-		model.addAttribute("judgeNumber",judgeNumber);
-		model.addAttribute("MemberVo",memberVo);
-		
+
+		model.addAttribute("judgeNumber", judgeNumber);
+		model.addAttribute("MemberVo", memberVo);
+
 		return "member/memberRegisterForm";
 	}
 
@@ -135,20 +128,16 @@ public class MemberController {
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
 	public String login(HttpSession session, Model model) {
 		log.debug("Welcome MemberController login 페이지 이동! ");
-		
-		
-		
-		
+
 		return "auth/loginForm";
 	}
 
 	@RequestMapping(value = "/auth/loginCtr.do", method = RequestMethod.POST)
-	public String loginCtr(String id, String password,  HttpSession session,
-			Model model) {
-		log.debug("Welcome MemberController loginCtr! " + id + ", " + password );
+	public String loginCtr(String id, String password, HttpSession session, Model model) {
+		log.debug("Welcome MemberController loginCtr! " + id + ", " + password);
 
 		Map<String, Object> paramMap = new HashMap<>();
-		
+
 		paramMap.put("id", id);
 		paramMap.put("password", password);
 		MemberVo memberVo = memberService.memberExist(paramMap);
@@ -159,13 +148,10 @@ public class MemberController {
 			// 사이트 메인페이지로 이동
 			session.setAttribute("_memberVo_", memberVo);
 
-			
-			viewUrl = "redirect:/siteMainPage.jsp"; 
+			viewUrl = "redirect:/siteMainPage.jsp";
 
-		
-			
-			//자동로그인 아직 구현안함;;;;
-			
+			// 자동로그인 아직 구현안함;;;;
+
 //			if ( memberVo.isUseCookie() ){ // dto 클래스 안에 useCookie 항목에 폼에서 넘어온 쿠키사용 여부(true/false)가 들어있을 것임
 //                // 쿠키 사용한다는게 체크되어 있으면...
 //                // 쿠키를 생성하고 현재 로그인되어 있을 때 생성되었던 세션의 id를 쿠키에 저장한다.
@@ -176,8 +162,7 @@ public class MemberController {
 //                // 쿠키를 적용해 준다.
 //                response.addCookie(cookie);
 //            }
-		
-		
+
 		} else {
 			viewUrl = "/common/failPage";
 		}
@@ -198,8 +183,8 @@ public class MemberController {
 	@RequestMapping(value = "/member/update.do")
 	public String memberUpdateOne(int memberNo, HttpSession session, Model model) {
 		log.debug(": {}", session.getAttribute("_memberVo_"));
-		
-		if(session.getAttribute("_memberVo_") == null) {
+
+		if (session.getAttribute("_memberVo_") == null) {
 			return "redirect:/auth/login.do";
 		}
 		log.debug("Welcome memberUpdate enter! - {}", memberNo);
@@ -273,8 +258,7 @@ public class MemberController {
 		log.debug("Welcome MemberController memberDelete" + " 회원삭제 처리! - {}", memberNo);
 
 		try {
-			
-			
+
 			memberService.memberDelete(memberNo);
 
 		} catch (Exception e) {
@@ -286,26 +270,49 @@ public class MemberController {
 
 		return "redirect:/auth/login.do";
 	}
-	
+
 	@RequestMapping(value = "/member/overlapCheck.do", method = RequestMethod.POST)
 	public String memberOverlapCheck(MemberVo memberVo, Model model) {
 		log.debug("Welcome MemberController memberOverlapCheck" + " 아이디 중복체크! - {}", memberVo.getId());
-		
-		
+
 		int judgeNumber = memberService.memberIdOverlapCheck(memberVo.getId());
-		
-		if(judgeNumber == 1) {
-			
-			model.addAttribute("MemberVo",memberVo);
-			model.addAttribute("judgeNumber",1);
-		}else if(judgeNumber == 0) {
-			
-			model.addAttribute("MemberVo",memberVo);
-			model.addAttribute("judgeNumber",0);
-			
+
+		if (judgeNumber == 1) {
+
+			model.addAttribute("MemberVo", memberVo);
+			model.addAttribute("judgeNumber", 1);
+		} else if (judgeNumber == 0) {
+
+			model.addAttribute("MemberVo", memberVo);
+			model.addAttribute("judgeNumber", 0);
+
 		}
-		
+
 		return "/common/judgePage";
+	}
+
+	@RequestMapping(value = "/member/certificationMove.do", method = RequestMethod.GET)
+	public String memberCertification(HttpSession session, Model model) {
+		log.debug("Welcome MemberController memberCertification" + " 본인인증 페이지! - {}");
+
+		if (session.getAttribute("_memberVo_") == null) {
+			return "redirect:/auth/login.do";
+		}
+
+		return "/member/memberSelfCertificationPage";
+	}
+
+	@RequestMapping(value = "/member/certificationCtr.do", method = RequestMethod.POST)
+	public String memberCertification(String password, Model model) {
+		log.debug("Welcome MemberController memberCertification" + " 비밀번호 확인! - {}", password);
+
+		MemberVo memberVo = memberService.memberCertification(password);
+
+		if (memberVo == null || !memberVo.getPassword().equals(password)) {
+			return "/common/failPage2";
+		}
+
+		return "redirect:/member/update.do?memberNo=" + memberVo.getMemberNo();
 	}
 
 }

@@ -103,7 +103,7 @@ h1{
 	
 
 	function MoveMainPageFnc(){
-		location.href = "../";
+		location.href = "/jsphomme";
 	}
 	
 	function leaveFnc(no) {
@@ -118,7 +118,9 @@ h1{
 		}
 		
 	}
-	
+	function MoveCertificationFnc() {
+		location.href = "/jsphomme/member/certificationMove.do"
+	}
 </script>
 
 </head>
@@ -170,7 +172,7 @@ h1{
 		</div>
 			<input type="button" value="메인페이지" id="moveMainPageBtn" onclick="MoveMainPageFnc();">
 			<input type="button" value="탈퇴하기" id="memberLeaveBtn" onclick="leaveFnc('${memberVo.memberNo}');">
-			<input type="submit" value="수정하기" id="modifyBtn">
+			<input type="button" value="수정하기" id="modifyBtn" onclick="MoveCertificationFnc()">
 
 	</div>
 

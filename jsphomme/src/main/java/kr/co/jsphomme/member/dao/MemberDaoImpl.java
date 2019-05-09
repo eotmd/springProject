@@ -75,5 +75,11 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.selectOne(namespace + "memberIdOverlapCheck", overlapIdCheck); 
 	}
 
+	@Override
+	public MemberVo memberCertification(String password) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"memberCertification",password);
+	}
+
 	
 }
