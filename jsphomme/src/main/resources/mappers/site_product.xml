@@ -14,14 +14,15 @@
 		<result column="FILE_SIZE" property="fileSize" />
 		<result column="ENROLLMENT_DATE" property="enrollmentDate"
 			javaType="java.util.Date" />
+		<result column="STATUS" property="status" />
 	</resultMap>
 	
 	<select id="productListView" resultMap="productResultMap">
-		SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME
+		SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME, STATUS
 			FROM (
-			SELECT ROWNUM RNUM, P.PRODUCT_NO, P.NAME, P.QUANTITY, P.PRICE, P.STORED_FILE_NAME
+			SELECT ROWNUM RNUM, P.PRODUCT_NO, P.NAME, P.QUANTITY, P.PRICE, P.STORED_FILE_NAME, P.STATUS
 				FROM (
-					SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME
+					SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME, STATUS
 					FROM PRODUCT
 					<if test="keyword != ''">
 						WHERE NAME LIKE '%'||#{keyword}||'%'
@@ -32,7 +33,7 @@
 	</select>
 	
 	<select id="productOneDeteilView" resultMap="productResultMap" parameterType="int">
-		SELECT PRODUCT_NO, NAME, QUANTITY, ORIGINAL_FILE_NAME, PRICE, DETAIL, STORED_FILE_NAME, FILE_SIZE, enrollment_Date
+		SELECT PRODUCT_NO, NAME, QUANTITY, ORIGINAL_FILE_NAME, PRICE, DETAIL, STORED_FILE_NAME, FILE_SIZE, ENROLLMENT_DATE, STATUS
 		FROM PRODUCT
 		WHERE PRODUCT_NO = #{productNo}
 	</select>
@@ -73,5 +74,29 @@
 			</set>
 		WHERE PRODUCT_NO = #{productNo}
 	</update>
+	
+	<update id="productStatusUpdate" parameterType="map">
+		UPDATE PRODUCT
+		<set>
+			<if test="status == 1">STATUS = 0</if>
+			<if test="status == 0">STATUS = 1</if>
+		</set>
+		WHERE PRODUCT_NO = #{productNo}
+	</update>
+	
+	<delete id="productDelete" parameterType="int">
+		DELETE FROM PRODUCT
+		WHERE PRODUCT_NO = #{productNo}
+	</delete>
+	
+	<delete id="basketDelete" parameterType="int">
+		DELETE FROM SHOPPING_BASKET
+		WHERE PRODUCT_NO = #{productNo}
+	</delete>
+	
+	<delete id="purchaseListDelete" parameterType="int">
+		DELETE FROM PURCHASE_LIST
+		WHERE PRODUCT_NO = #{productNo}
+	</delete>
 
 </mapper>

@@ -102,15 +102,22 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public int productDelete() {
+	public int productDelete(int productNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return productDao.productDelete(productNo);
 	}
 
 	@Override
 	public int productSelectTotalCount(String keyword) {
 		// TODO Auto-generated method stub
 		return productDao.productSelectTotalCount(keyword);
+	}
+
+	@Override
+	public int productStatusUpdate(int productNo, int status) {
+		// TODO Auto-generated method stub
+		
+		return productDao.productStatusUpdate(productNo, status);
 	}
 	
 }

@@ -27,13 +27,14 @@ public class ProductVo {
 	private String storedFileName = "";
 	private double fileSize = 0;
 	private Date enrollmentDate = null;
+	private int status = 0;
 	
 	public ProductVo() {
 		super();
 	}
 
 	public ProductVo(int productNo, String name, int quantity, int price, String detail, String originalFileName,
-			String storedFileName, int fileSize, Date enrollmentDate) {
+			String storedFileName, double fileSize, Date enrollmentDate, int status) {
 		super();
 		this.productNo = productNo;
 		this.name = name;
@@ -44,8 +45,9 @@ public class ProductVo {
 		this.storedFileName = storedFileName;
 		this.fileSize = fileSize;
 		this.enrollmentDate = enrollmentDate;
+		this.status = status;
 	}
-	
+
 	public int getProductNo() {
 		return productNo;
 	}
@@ -106,7 +108,7 @@ public class ProductVo {
 		return fileSize;
 	}
 
-	public void setFileSize(Double fileSize) {
+	public void setFileSize(double fileSize) {
 		this.fileSize = fileSize;
 	}
 
@@ -118,11 +120,23 @@ public class ProductVo {
 		this.enrollmentDate = enrollmentDate;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public static String getFilepath() {
+		return filePath;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductVo [productNo=" + productNo + ", name=" + name + ", quantity=" + quantity + ", price=" + price
 				+ ", detail=" + detail + ", originalFileName=" + originalFileName + ", storedFileName=" + storedFileName
-				+ ", fileSize=" + fileSize + ", enrollmentDate=" + enrollmentDate + "]";
+				+ ", fileSize=" + fileSize + ", enrollmentDate=" + enrollmentDate + ", status=" + status + "]";
 	}
-
+	
 }

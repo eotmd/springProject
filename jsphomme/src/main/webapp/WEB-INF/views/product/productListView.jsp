@@ -77,53 +77,87 @@
 	<div class="productList">	
 		<nav>
 			<c:forEach var="productVo" items="${productList}" varStatus="i">
-				
-				<c:choose>
-					<c:when test="${i.count % 3 == 0}">
-						<ul style="margin-right: 0px;">
-							<li>
-								<span>
-									<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
-										<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
+				<c:if test="${productVo.status == 1}">
+					<c:choose>
+						<c:when test="${i.count % 3 == 0}">
+							<ul style="margin-right: 0px;">
+								<li>
+									<span>
+										<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
+											<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
+										</a>
+									</span>
+								</li>
+								<li>
+									<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
+										<span>${productVo.name}</span>
 									</a>
-								</span>
-							</li>
-							<li>
-								<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
-									<span>${productVo.name}</span>
-								</a>
-							</li>
-						</ul>
-					</c:when>
-					<c:otherwise>
-						<ul>
-							<li>
-								<span>
-									<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
-										<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
+								</li>
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<ul>
+								<li>
+									<span>
+										<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'>
+											<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
+										</a>
+									</span>
+								</li>
+								<li>
+									<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
+										<span>${productVo.name}</span>
 									</a>
-								</span>
-							</li>
-							<li>
-								<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}">
-									<span>${productVo.name}</span>
-								</a>
-							</li>
-						</ul>
-					</c:otherwise>
-				</c:choose>
-					
-					
-				
-					
-					<%-- <li>
-						<span>${productVo.quantity}</span>
-					</li>
-					<li>
-						<span>${productVo.price}</span>
-					</li> --%>
-				
+								</li>
+							</ul>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
 			</c:forEach>
+			
+			
+<%-- 			<c:if test="${_memberVo_.AUTHORITY == 0}">	 --%>
+<%-- 				<c:forEach var="productVo" items="${productList}" varStatus="i"> --%>
+<%-- 					<c:if test="${productVo.status == 0}"> --%>
+<%-- 						<c:choose> --%>
+<%-- 							<c:when test="${i.count % 3 == 0}"> --%>
+<!-- 								<ul style="margin-right: 0px;"> -->
+<!-- 									<li> -->
+<!-- 										<span> -->
+<%-- 											<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'> --%>
+<%-- 												<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/> --%>
+<!-- 											</a> -->
+<!-- 										</span> -->
+<!-- 									</li> -->
+<!-- 									<li> -->
+<%-- 										<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}"> --%>
+<%-- 											<span>${productVo.name}<strong>(숨김)<strong></span> --%>
+<!-- 										</a> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<%-- 							</c:when> --%>
+<%-- 							<c:otherwise> --%>
+<!-- 								<ul> -->
+<!-- 									<li> -->
+<!-- 										<span> -->
+<%-- 											<a href='/jsphomme/product/detail.do?productNo=${productVo.productNo}'> --%>
+<%-- 												<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/> --%>
+<!-- 											</a> -->
+<!-- 										</span> -->
+<!-- 									</li> -->
+<!-- 									<li> -->
+<%-- 										<a href="/jsphomme/product/detail.do?productNo=${productVo.productNo}"> --%>
+<%-- 											<span>${productVo.name}<strong>(숨김)<strong></span> --%>
+<!-- 										</a> -->
+<!-- 									</li> -->
+<!-- 								</ul> -->
+<%-- 							</c:otherwise> --%>
+<%-- 						</c:choose> --%>
+<%-- 					</c:if> --%>
+<%-- 				</c:forEach> --%>
+<%-- 			</c:if> --%>
+			
+			
 		</nav>
 	</div>
 	

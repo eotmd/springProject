@@ -50,15 +50,30 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public int productDelete() {
+	public int productDelete(int productNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		sqlSession.delete(namespace + "basketDelete", productNo);
+		sqlSession.delete(namespace + "purchaseListDelete", productNo);
+		return sqlSession.delete(namespace + "productDelete", productNo);
 	}
 
 	@Override
 	public int productSelectTotalCount(String keyword) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "productSelectTotalCount", keyword);
+	}
+
+	@Override
+	public int productStatusUpdate(int productNo, int status) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("productNo", productNo);
+		map.put("status", status);
+		
+		return sqlSession.update(namespace + "productStatusUpdate", map);
 	}
 
 }

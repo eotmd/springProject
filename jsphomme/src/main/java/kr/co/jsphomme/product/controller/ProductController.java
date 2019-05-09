@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.co.jsphomme.basket.service.BasketService;
 import kr.co.jsphomme.member.service.MemberService;
 import kr.co.jsphomme.member.vo.MemberVo;
 import kr.co.jsphomme.product.service.ProductService;
 import kr.co.jsphomme.product.vo.ProductVo;
+import kr.co.jsphomme.purchaselist.service.PurchaseListService;
 import kr.co.jsphomme.util.Paging;
 
 @Controller
@@ -74,7 +76,7 @@ public class ProductController {
 		
 		log.debug("Welcome productOneDeteilView enter! - {}", productNo);
 		
-		System.out.println(productVo);
+		log.debug(" - {}", productVo);
 		
 		model.addAttribute("productVo", productVo);
 		
@@ -160,6 +162,27 @@ public class ProductController {
 		model.addAttribute("productVo", productVo);
 		
 		return "product/productUpdate";
+	}
+	
+	@RequestMapping(value = "/product/delete.do", method = RequestMethod.POST)
+	public String productDelete(int productNo, Model model) {
+		
+		log.debug("Welcome productDelete enter! - {}", productNo);
+		
+		productService.productDelete(productNo);
+		
+		return "common/successPage";
+	}
+	
+	@RequestMapping(value = "product/statusUpdate.do", method = RequestMethod.POST)
+	public String productStatusUpdate(int productNo, int status, Model model) {
+		
+		log.debug("Welcome productStatusUpdate enter! - {}", productNo);
+		log.debug(" - {}", status);
+		
+		productService.productStatusUpdate(productNo, status);
+		
+		return "common/successPage";
 	}
 	
 }

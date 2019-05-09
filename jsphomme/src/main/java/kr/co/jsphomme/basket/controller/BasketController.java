@@ -105,6 +105,7 @@ public class BasketController {
 		log.debug("Welcome ProductController basketBuy! - {}", list);
 		
 		model.addAttribute("purchaseListVo", list);
+		model.addAttribute("basketNo", basketNoArr);
 		
 		return "purchaseList/purchaseViewForm";
 	}

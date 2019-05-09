@@ -13,6 +13,7 @@ public interface ProductDao {
 	public List<ProductVo> productListView(Map<String,Object> map);			//물품 리스트
 	public ProductVo productOneDeteilView(int productNo);	//물품 상세 정보
 	public int productUpdate(ProductVo productVo);			//물품 수정
-	public int productDelete();
+	public int productDelete(int productNo);
 	public int productSelectTotalCount(String keyword);
+	public int productStatusUpdate(int productNo, int status);
 }

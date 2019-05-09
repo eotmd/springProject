@@ -45,13 +45,44 @@ function getBasket() {
 	if (confirmVal == true) {
 
 		formBuyObj.action = "../basket/insert.do";
-	
 		formBuyObj.submit();
 	} else {
 		return;
 	}
 }
 
+function goDeleteFnc() {
+	var formBuyObj = document.getElementById("formBuy");
+	var confirmVal = confirm("상품과 관련된 모든 정보가 삭제됩니다.\n정말 삭제하시겠습니까?");
+	
+	if (confirmVal == true) {
+		
+		formBuyObj.action = "../product/delete.do";
+		formBuyObj.method="post";
+		formBuyObj.submit();
+	} else {
+		
+		return;
+	}
+	
+}
+
+function goHideFnc() {
+	
+	var formBuyObj = document.getElementById("formBuy");
+	var confirmVal = confirm("상품이 감춰져 유저들이 열람할 수 없는 상태가 됩니다.\n상품을 숨기겠습니까?");
+	
+	if (confirmVal == true) {
+		
+		formBuyObj.action = "../product/statusUpdate.do";
+		formBuyObj.method="post";
+		formBuyObj.submit();
+	} else {
+		
+		return;
+	}
+	
+}
 
 </script>
 
@@ -104,10 +135,11 @@ function getBasket() {
 			<input type="hidden" name = "productName" value="${productVo.name}">
 			<input type="hidden" name = "storedFileName" value="${productVo.storedFileName}">
 			<input type="hidden" name = "productPrice" value="${productVo.price}">
+			<input type="hidden" name="productNo" value="${productVo.productNo}">
+			<input type="hidden" name="status" value="${productVo.status}">	
 			<span>
 				<img alt="${productVo.name}" src="<c:url value='/img/${productVo.storedFileName}'/>"/>
 			</span>
-			<input type="hidden" name="productNo" value="${productVo.productNo}">	
 			<table class="explanation">
 				<tr>
 					<td colspan="2" style="font-size: 50px; font-weight: bold; height: 100px;">${productVo.name}</td>
@@ -190,6 +222,12 @@ function getBasket() {
 					<tr>
 						<td colspan="2"><input type="button" value="수정하기"
 							class="goUpdateBtn" onclick="goUpdate();"></td>
+					</tr>
+				</c:if>
+				<c:if test="${_memberVo_.authority == '0'}">
+					<tr>
+						<td><input type="button" value="제품삭제" onclick="goDeleteFnc();"></td>
+						<td><input type="button" value="숨기기" onclick="goHideFnc()"></td>
 					</tr>
 				</c:if>
 				
