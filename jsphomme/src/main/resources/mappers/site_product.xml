@@ -24,8 +24,25 @@
 				FROM (
 					SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME, STATUS
 					FROM PRODUCT
+					WHERE STATUS = 1
 					<if test="keyword != ''">
-						WHERE NAME LIKE '%'||#{keyword}||'%'
+						AND NAME LIKE '%'||#{keyword}||'%'
+					</if>
+                    ORDER BY PRODUCT_NO DESC) P
+            )PRODUCT
+		WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="productHideListView" resultMap="productResultMap">
+		SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME, STATUS
+			FROM (
+			SELECT ROWNUM RNUM, P.PRODUCT_NO, P.NAME, P.QUANTITY, P.PRICE, P.STORED_FILE_NAME, P.STATUS
+				FROM (
+					SELECT PRODUCT_NO, NAME, QUANTITY, PRICE, STORED_FILE_NAME, STATUS
+					FROM PRODUCT
+					WHERE STATUS = 0
+					<if test="keyword != ''">
+						AND NAME LIKE '%'||#{keyword}||'%'
 					</if>
                     ORDER BY PRODUCT_NO DESC) P
             )PRODUCT
@@ -43,6 +60,15 @@
 		FROM PRODUCT
 		<if test="value != ''">
 			WHERE NAME LIKE '%'||#{value}||'%'
+		</if>
+	</select>
+	
+	<select id="hideProductSelectTotalCount" resultType="int" parameterType="java.lang.String">
+		SELECT COUNT(*)
+		FROM PRODUCT
+		WHERE STATUS = 0
+		<if test="value != ''">
+			AND NAME LIKE '%'||#{value}||'%'
 		</if>
 	</select>
 	

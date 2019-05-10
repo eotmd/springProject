@@ -84,6 +84,23 @@ function goHideFnc() {
 	
 }
 
+function goUnhideFnc() {
+	
+	var formBuyObj = document.getElementById("formBuy");
+	var confirmVal = confirm("상품의 숨기기 상태가 취소됩니다\n취소하시겠습니까?");
+	
+	if (confirmVal == true) {
+		
+		formBuyObj.action = "../product/statusUpdate.do";
+		formBuyObj.method="post";
+		formBuyObj.submit();
+	} else {
+		
+		return;
+	}
+	
+}
+
 </script>
 
 <style type="text/css">
@@ -224,12 +241,19 @@ function goHideFnc() {
 							class="goUpdateBtn" onclick="goUpdate();"></td>
 					</tr>
 				</c:if>
-				<c:if test="${_memberVo_.authority == '0'}">
+				<c:if test="${_memberVo_.authority == '0' && productVo.status == 1}">
 					<tr>
 						<td><input type="button" value="제품삭제" onclick="goDeleteFnc();"></td>
 						<td><input type="button" value="숨기기" onclick="goHideFnc()"></td>
 					</tr>
 				</c:if>
+				<c:if test="${_memberVo_.authority == '0' && productVo.status == 0}">
+					<tr>
+						<td><input type="button" value="제품삭제" onclick="goDeleteFnc();"></td>
+						<td><input type="button" value="숨기기 취소" onclick="goUnhideFnc()"></td>
+					</tr>
+				</c:if>
+				
 				
 				
 			</table>

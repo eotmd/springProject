@@ -30,7 +30,6 @@ public class ProductDaoImpl implements ProductDao{
 	public List<ProductVo> productListView(Map<String,Object> map) {
 		// TODO Auto-generated method stub
 		
-
 		return sqlSession.selectList(namespace + "productListView", map);
 	}
 
@@ -74,6 +73,18 @@ public class ProductDaoImpl implements ProductDao{
 		map.put("status", status);
 		
 		return sqlSession.update(namespace + "productStatusUpdate", map);
+	}
+
+	@Override
+	public List<ProductVo> productHideListView(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "productHideListView", map);
+	}
+
+	@Override
+	public int hideProductSelectTotalCount(String keyword) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "hideProductSelectTotalCount", keyword);
 	}
 
 }

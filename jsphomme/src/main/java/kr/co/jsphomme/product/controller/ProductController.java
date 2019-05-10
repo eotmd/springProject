@@ -67,6 +67,39 @@ public class ProductController {
 		return "product/productListView";
 	}
 	
+	@RequestMapping(value="/product/hideList.do", method= {RequestMethod.GET})
+	public String productHideListView(
+			@RequestParam(defaultValue ="1") int curPage,
+//			@RequestParam(defaultValue ="title") String searchOption,
+			@RequestParam(defaultValue ="") String keyword,
+			Model model) {
+		
+		log.debug("Welcome ProductController productHideListView! : {}", curPage);
+//		log.debug(": {}", searchOption);
+		log.debug(": {}", keyword);
+		
+		int totalCount =
+				productService.hideProductSelectTotalCount(keyword);
+		
+		Paging paging = new Paging(totalCount, curPage);
+		int start = paging.getPageBegin();
+		int end = paging.getPageEnd();
+		
+		List<ProductVo> productList = 
+				productService.productHideListView(keyword, start, end);
+		
+		Map<String, Object> pagingMap= new HashMap<>();
+		pagingMap.put("totalCount", totalCount);
+		pagingMap.put("paging", paging);
+		
+		model.addAttribute("productList", productList);
+		model.addAttribute("pagingMap", pagingMap);
+		model.addAttribute("keyword", keyword);
+//		model.addAttribute("searchOption", searchOption);
+				
+		return "product/productHideListView";
+	}
+	
 	@RequestMapping(value = "/product/detail.do")
 	public String productOneDeteilView(int productNo, Model model) {
 		log.debug("Welcome productOneDeteilView enter! - {}", productNo);

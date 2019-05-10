@@ -119,5 +119,25 @@ public class ProductServiceImpl implements ProductService{
 		
 		return productDao.productStatusUpdate(productNo, status);
 	}
+
+	@Override
+	public List<ProductVo> productHideListView(String keyword, int start, int end) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> map = new HashMap();
+		
+//		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		map.put("start", start);
+		map.put("end", end);
+		
+		return productDao.productHideListView(map);
+	}
+
+	@Override
+	public int hideProductSelectTotalCount(String keyword) {
+		// TODO Auto-generated method stub
+		return productDao.hideProductSelectTotalCount(keyword);
+	}
 	
 }

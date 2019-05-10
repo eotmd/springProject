@@ -74,7 +74,11 @@
 	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"></jsp:include>
 	
 	<img id="mainImg" alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
-	<div class="productList">	
+	<div class="productList">
+	
+	<c:if test="${empty productList}">
+		<p style="text-align: center; height: 100px;">숨김상품이 없습니다.</p>
+	</c:if>	
 		<nav>
 			<c:forEach var="productVo" items="${productList}" varStatus="i">
 				<c:choose>
@@ -119,7 +123,7 @@
 		<jsp:param value="${pagingMap}" name="pagingMap"/>
 	</jsp:include>
 	
-	<form action="./list.do" id="pagingForm" method="get">
+	<form action="./hideList.do" id="pagingForm" method="get">
 		<input type="hidden" id="curPage" name="curPage" 
 			value="${pagingMap.paging.curPage}">
 		<input type="hidden" name="keyword" value="${keyword}">

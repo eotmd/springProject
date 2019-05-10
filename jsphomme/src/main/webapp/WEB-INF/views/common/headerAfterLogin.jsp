@@ -31,6 +31,7 @@
 	<div class="fncButton">	
 		<span> ${_memberVo_.name} </span>
 		<input class="productRegiBtn" type="button" value="상품등록" onclick="productRegiFnc();">
+		<input class="memberListBtn" type="button" value="숨김상품" onclick="goHideListFnc();">
 		<input class="memberListBtn" type="button" value="회원목록" onclick="memberListFnc();">
 		<input class="logoutBtn" type="button" value="로그아웃" onclick="logoutFnc();">
 	</div>

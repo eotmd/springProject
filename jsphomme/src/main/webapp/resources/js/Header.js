@@ -51,3 +51,7 @@ function searchFnc() {
 		searchIdObj.submit();
 	}
 }
+
+function goHideListFnc() {
+	location.href = "/jsphomme/product/hideList.do";
+}
