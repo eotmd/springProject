@@ -162,6 +162,7 @@ $(document).ready(function() {
     })
 })
 
+
 </script>
 
 </head>
@@ -198,10 +199,25 @@ $(document).ready(function() {
 			<table class="tableId">
 				<c:forEach var="basketVo" items="${basketList}">
 					<tr>	
-						<td class="tableBt" style="width: 40px;">
-							<input type="checkbox" name="basketNoArr" 
-								value="${basketVo.basketNo}" checked="checked">
-						</td>
+								
+						<c:choose>
+							<c:when test="${basketVo.quantity > 0}">
+							
+							<td class="tableBt" style="width: 40px;">
+								<input type="checkbox" name="basketNoArr"
+									value="${basketVo.basketNo}" checked="checked">
+							</td>
+							
+							</c:when>
+							<c:when test="${basketVo.quantity <= 0}">
+								<td class="tableBt" style="width: 40px;">
+									<input type="checkbox" name="basketNoArr" disabled="disabled"
+									value="${basketVo.basketNo}">
+								</td>
+							</c:when>
+						</c:choose>
+							
+						
 						<td class="tableBt" style="height: 310px">
 							<a href="/jsphomme/product/detail.do?productNo=${basketVo.productNo}">
 								<img alt="${basketVo.storedFileName}" 
@@ -210,7 +226,8 @@ $(document).ready(function() {
 						<td class="tableBt" style="font-weight: bold; width: 300px;">
 							<a class="tableBt_name" 
 								href="/jsphomme/product/detail.do?productNo=${basketVo.productNo}">
-									${basketVo.name}
+										<c:if test="${basketVo.quantity <= 0}">[품절]</c:if>
+										${basketVo.name}
 							</a>
 						</td>
 						<td class="tableBt" style="width: 190px;"><fmt:formatNumber value="${basketVo.price}" pattern="#,###"/></td>

@@ -12,6 +12,7 @@
 		<result column="PRODUCT_SIZE" property="productSize" />
 		<result column="STORED_FILE_NAME" property="storedFileName" />
 		<result column="SHOPPING_BASKET_QUANTITY" property="purchaseQuantity" />
+		<result column="QUANTITY" property="quantity" />
 	</resultMap>
 	
 	<resultMap type="purchaseListVo" id="purchaseListResultMap">
@@ -38,7 +39,7 @@
 	
 	<select id="basketListView" resultMap="basketResultMap">
 		SELECT BASKET_NO, P.PRODUCT_NO, P.NAME, P.PRICE, 
-			B.PRODUCT_SIZE, B.SHOPPING_BASKET_QUANTITY, P.STORED_FILE_NAME
+			B.PRODUCT_SIZE, B.SHOPPING_BASKET_QUANTITY, P.STORED_FILE_NAME, P.QUANTITY
 		FROM SHOPPING_BASKET B, MEMBER M, PRODUCT P
 		WHERE M.MEMBER_NO = B.MEMBER_NO
 		AND P.PRODUCT_NO = B.PRODUCT_NO
@@ -68,7 +69,8 @@
 	</delete>
 	
 	<select id="basketBuy" parameterType="int" resultMap="purchaseListResultMap">
-		SELECT P.PRODUCT_NO, P.NAME, P.PRICE, B.PRODUCT_SIZE, B.SHOPPING_BASKET_QUANTITY, P.STORED_FILE_NAME,B.BASKET_NO
+		SELECT P.PRODUCT_NO, P.NAME, P.PRICE, B.PRODUCT_SIZE, 
+			B.SHOPPING_BASKET_QUANTITY, P.STORED_FILE_NAME, B.BASKET_NO
 		FROM PRODUCT P, SHOPPING_BASKET B, MEMBER M
 		WHERE P.PRODUCT_NO = B.PRODUCT_NO
 		AND M.MEMBER_NO = B.MEMBER_NO
