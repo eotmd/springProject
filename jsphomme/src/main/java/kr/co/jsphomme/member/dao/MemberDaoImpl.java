@@ -76,9 +76,9 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public MemberVo memberCertification(String password) {
+	public MemberVo memberCertification(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"memberCertification",password);
+		return sqlSession.selectOne(namespace+"memberCertification",map);
 	}
 
 	

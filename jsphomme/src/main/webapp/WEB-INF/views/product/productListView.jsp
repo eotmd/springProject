@@ -35,9 +35,6 @@
      	margin-right: 93px; 
 	}
 	
-	nav {
-		
-	}
 	
 	.productList ul{
 		float: left;

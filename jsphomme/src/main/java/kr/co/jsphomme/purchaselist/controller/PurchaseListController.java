@@ -78,7 +78,7 @@ public class PurchaseListController {
 	}
 	
 	@RequestMapping(value="/purchase/view.do", method = RequestMethod.GET)
-	public String PurchaseView(PurchaseListVo purchaseListVo,/*int[] basketNo,*/ HttpSession session, Model model) {
+	public String PurchaseView(PurchaseListVo purchaseListVo, HttpSession session, Model model) {
 		log.debug("결제페이지이동 컨트롤러 : {}" + purchaseListVo);
 		
 		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
@@ -98,7 +98,7 @@ public class PurchaseListController {
 	
 	
 	@RequestMapping(value="/purchase/finish.do", method = RequestMethod.POST)
-	public String PurchaseListInsert(PurchaseListVo purchaseListVo,int[] productNoArr, String[] productSizeArr, int[] purchaseQuantityArr,int[] basketNo, HttpSession session, Model model) {
+	public String PurchaseListInsert(PurchaseListVo purchaseListVo,int[] productNoArr, String[] productSizeArr, int[] purchaseQuantityArr,@RequestParam(defaultValue ="0") int[] basketNo, HttpSession session, Model model) {
 		log.debug("결제완료 컨트롤러 - purchaseListVo: {}" + purchaseListVo);
 		log.debug("결제완료 컨트롤러 - productNo: {}" + productNoArr);
 		log.debug("결제완료 컨트롤러 - productSize: {}" + productSizeArr);
@@ -119,6 +119,7 @@ public class PurchaseListController {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
+			
 			return "/common/soldOutPage";
 		}
 		

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.jsphomme.basket.dao.BasketDao;
 import kr.co.jsphomme.member.vo.MemberVo;
@@ -26,7 +27,9 @@ public class PurchaseListServiceImpl implements PurchaseListService {
 	public ProductDao productDao;
 	@Autowired
 	public BasketDao basketDao;
-
+	
+	
+	@Transactional
 	@Override
 	public PurchaseListVo purchaseListCreate(PurchaseListVo purchaseListVo,int[] productNoArr,String[] productSizeArr,int[] purchaseQuantityArr,int[] basketNo) {
 		// TODO Auto-generated method stub

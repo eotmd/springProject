@@ -137,9 +137,10 @@
 		WHERE ID = #{value}
 	</select>
 	
-	<select id="memberCertification" parameterType="string" resultMap="memberResultMap">
+	<select id="memberCertification" parameterType="map" resultMap="memberResultMap">
 		SELECT PASSWORD, MEMBER_NO
 		FROM MEMBER
-		WHERE PASSWORD = #{value}
+		WHERE PASSWORD = #{password}
+		AND MEMBER_NO = #{memberNo}
 	</select>
 </mapper>

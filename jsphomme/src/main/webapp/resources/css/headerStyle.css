@@ -170,4 +170,6 @@
       vertical-align: bottom;
    }
 	
-	
+	body{
+		overflow-x: hidden;
+	}

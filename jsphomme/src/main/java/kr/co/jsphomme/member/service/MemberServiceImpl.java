@@ -103,9 +103,14 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVo memberCertification(String password) {
+	public MemberVo memberCertification(String password, int memberNo) {
 		// TODO Auto-generated method stub
-		return memberDao.memberCertification(password);
+		Map<String,Object> map = new HashMap<String, Object>();
+		
+		map.put("password", password);
+		map.put("memberNo", memberNo);
+		
+		return memberDao.memberCertification(map);
 	}
 
 	

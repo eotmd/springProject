@@ -62,7 +62,7 @@ img {
 }
 
 #moveMainPageBtn{
-	    margin-left: 20px;
+	    margin-left: 50px;
 		width: 270px; 
 		height: 50px; 
 		border: 0px; 
@@ -73,7 +73,7 @@ img {
 }
 
 #memberLeaveBtn{
-    	margin-left: 200px;
+    	margin-left: 170px;
 		width: 270px; 
 		height: 50px; 
 		border: 0px; 
@@ -84,7 +84,7 @@ img {
 }
 
 #modifyBtn {
-		margin-left: 200px;
+		margin-left: 170px;
 		width: 270px; 
 		height: 50px; 
 		border: 0px; 
@@ -138,7 +138,7 @@ h1{
 			
 	<div id="memberInfoContainer"<c:if test="${_memberVo_.authority == '0'}">style="height: 530px;"</c:if>>
 		
-		<div id="memberInfoDiv">	
+		<div id="memberInfoDiv" <c:if test="${_memberVo_.authority == '0'}">style="padding-top: 32px; padding-bottom: 32px;"</c:if>>	
 			
 			<input type="hidden" name='memberNo' value='${memberVo.memberNo}'>
 			
@@ -170,10 +170,11 @@ h1{
 			
 			<hr>
 		</div>
-			<input type="button" value="메인페이지" id="moveMainPageBtn" onclick="MoveMainPageFnc();">
-			<input type="button" value="탈퇴하기" id="memberLeaveBtn" onclick="leaveFnc('${memberVo.memberNo}');">
-			<input type="button" value="수정하기" id="modifyBtn" onclick="MoveCertificationFnc()">
-
+			<input type="button" value="메인페이지" id="moveMainPageBtn" onclick="MoveMainPageFnc();" style="margin-left: 200px;">
+			<c:if test="${_memberVo_.authority != '0'}">
+				<input type="button" value="탈퇴하기" id="memberLeaveBtn" onclick="leaveFnc('${memberVo.memberNo}');">
+				<input type="button" value="수정하기" id="modifyBtn" onclick="MoveCertificationFnc()">
+			</c:if>
 	</div>
 
 	</form>

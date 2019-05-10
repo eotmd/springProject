@@ -181,8 +181,10 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/update.do")
-	public String memberUpdateOne(int memberNo, HttpSession session, Model model) {
-		log.debug(": {}", session.getAttribute("_memberVo_"));
+	public String memberUpdateOne(int memberNo, @RequestParam(defaultValue = "1") int judgeNumber, @RequestParam(defaultValue = "") String id, HttpSession session, Model model) {
+		log.debug("memberVo: {}", session.getAttribute("_memberVo_"));
+		log.debug("judgeNumber: {}",judgeNumber);
+		log.debug("id: {}", id);
 
 		if (session.getAttribute("_memberVo_") == null) {
 			return "redirect:/auth/login.do";
@@ -190,10 +192,18 @@ public class MemberController {
 		log.debug("Welcome memberUpdate enter! - {}", memberNo);
 
 		Map<String, Object> map = memberService.memberOneDeteilView(memberNo);
-
+		
+		int judgeNumber2 = memberService.memberIdOverlapCheck(id);
+		
+		
 		MemberVo memberVo = (MemberVo) map.get("memberVo");
-
+		
+		if(!id.equals("")) {
+			memberVo.setId(id);
+		}
+		
 		model.addAttribute("memberVo", memberVo);
+		model.addAttribute("judgeNumber",judgeNumber2);
 
 		return "member/memberUpdateForm";
 	}
@@ -303,10 +313,15 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member/certificationCtr.do", method = RequestMethod.POST)
-	public String memberCertification(String password, Model model) {
+	public String memberCertification(String password, HttpSession session, Model model) {
 		log.debug("Welcome MemberController memberCertification" + " 비밀번호 확인! - {}", password);
-
-		MemberVo memberVo = memberService.memberCertification(password);
+		
+		if (session.getAttribute("_memberVo_") == null) {
+			return "redirect:/auth/login.do";
+		}
+		MemberVo sessionMemberVo = (MemberVo)session.getAttribute("_memberVo_");
+		int memberNo = sessionMemberVo.getMemberNo();
+		MemberVo memberVo = memberService.memberCertification(password, memberNo);
 
 		if (memberVo == null || !memberVo.getPassword().equals(password)) {
 			return "/common/failPage2";

@@ -39,7 +39,7 @@
 		font-weight: bold;
 	}
 	.productName > a{
-		text-decoration: none; 
+		text-decoration: underline; 
 		color: olive;
 		font-weight: bold;
 		

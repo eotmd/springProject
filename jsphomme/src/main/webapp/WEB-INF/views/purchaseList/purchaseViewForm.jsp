@@ -176,8 +176,10 @@
 							value="${purchaseListVo.productSize}">
 						<input type="hidden" name="purchaseQuantityArr"
 							value="${purchaseListVo.purchaseQuantity}">
+					<c:if test="${basketNo != null}">
 						<input type="hidden" name="basketNo"
 							value="${basketNo[i.index]}">
+					</c:if>
 						<tr>
 							<td class="tableBt" style="height: 310px">
 								<img style="width: 300px; height: 300px;"

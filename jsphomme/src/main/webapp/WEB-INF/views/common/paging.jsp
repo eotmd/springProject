@@ -78,6 +78,7 @@ function goPageFnc(pageNumber) {
    });
  
 </script>
+<div style="width: 1698px; margin: auto;">
 <nav class="paging">
 	<ul>
 		<li><a href="#"
@@ -97,4 +98,4 @@ function goPageFnc(pageNumber) {
 			onclick="goPageFnc(${pagingMap.paging.nextPage});"><span>≫</span></a></li>
 	</ul>
 </nav>
-
+</div>

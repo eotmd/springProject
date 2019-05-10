@@ -102,11 +102,19 @@ h1{
 </script>
 
 <script type="text/javascript">
+
 	window.onload = function(){
 		var focusObj = document.getElementById("name");
+		
 		focusObj.focus();			
 	}
+	
+	function judgeNumberTranFnc() {
+		var judgeNumberObj = document.getElementById("judgeNumber");
 		
+		judgeNumberObj.value = 0;
+	}
+	
 	function pageMoveBeforeFnc(memberNo){
 		
 		var url = 'detail.do?memberNo=' + memberNo;
@@ -118,47 +126,84 @@ h1{
 		var nameObj = document.getElementById("name");
  		var idObj = document.getElementById("id");
  		var pwdObj = document.getElementById("password");
-	
+ 		var judgeNumberObj = document.getElementById("judgeNumber");
  		var pwdConfirmObj = document.getElementById("passwordConfirm");
 		var memberModifyFormObj = document.getElementById("memberModifyForm");
 
 		if (nameObj.value == "" || nameObj.value == null)  {
-//			alert("이름을 입력해주세요");
+			alert("이름을 입력해주세요");
 			nameObj.focus();
-// 			return;
+			return;
 		}
 
-		else if (idObj.value == "" || idObj.value == null) {
-//			alert("아이디를 다시 입력해세요");
+		if (idObj.value == "" || idObj.value == null) {
+			alert("아이디를 다시 입력해세요");
 			idObj.fucous();
-// 			ruturn false;
+			return;
 		}
 
-
-		else if (pwdObj.value == "" || pwdObj.value == null) {
-//			alert("비민번호를 다시 입력해주세요")
+		 if(judgeNumberObj.value == 1){
+			alert("아이디 중복체크를 해주세요");
+			return;
+		}
+		
+		
+		if (pwdObj.value == "" || pwdObj.value == null) {
+			alert("비민번호를 다시 입력해주세요")
 			pwdObj.focus();
-// 			return flase;
+			return;
 		}
 
 
-		else if (pwdConfirmObj.value == "" || pwdConfirmObj.value == null) {
-//			alert("비민번호 확인란을 다시 입력해주세요");
-		pwdConfirmObj.focus();
-// 			return flase;
+		if (pwdConfirmObj.value == "" || pwdConfirmObj.value == null) {
+			alert("비민번호 확인란을 입력해주세요");
+			pwdConfirmObj.focus();
+			return;
 		}
 
-		else if (pwdObj.value != pwdConfirmObj.value) {
-//			alert("비밀번호와 비밀번호 확인란에 입력하신 것이 다릅니다. 다시 입력해주세요")
+		if (pwdObj.value != pwdConfirmObj.value) {
+			alert("비밀번호와 비밀번호 확인란에 입력하신 것이 다릅니다. 다시 입력해주세요");
 			pwdObj.focus();
-// 			return false;
+			return;
 		}
- 
-		else {
-			memberModifyFormObj.submit();
-	}
+ 		
+		
+		memberModifyFormObj.submit();
+	
 	
 	}
+
+	function overlapCheckFnc() {
+		var idObj =document.getElementById("id");
+		var formObj = document.getElementById("memberModifyForm");
+		
+		formObj.method = "post";
+		formObj.action = "/jsphomme/member/overlapCheck.do";
+		
+		
+		formObj.submit();
+	}
+	
+	$(document).ready(function() {
+	      $('#transBt').click(function() {
+	    	  var confirmObj = confirm("아이디를 변경하시겠습니까?");
+	    	  if(confirmObj == true){
+		    	  
+		    	  $('#transBt').attr('value','아이디 중복확인');
+		    	  $('#transBt').attr('onclick','overlapCheckFnc()');
+		    	  $('#id').removeAttr('readonly');
+		    	  $('#id').focus();
+		    	  $('#transBt').off("click")
+	    		  
+	    	  }else{
+	    		  return;
+	    	  }
+	    	  
+	    	 
+	      });
+	   });
+	
+	
 	
 	$(document).ready(function() {
 	      $('#name').keydown(function() {
@@ -307,35 +352,33 @@ h1{
 			<input class="memberInput" type="text" id="name"  name="name" value='${memberVo.name}'
 				placeholder="한글,영문 대소문자 가능(공백없이 입력해주세요)" >
 			<a id="nameConfirmMsg"></a><br/>
-<%-- 			<input class="memberInput" type="text" name='name' id='name' value='${memberVo.name}'><br> --%>
+
 		
 			<input class="memberInfo" type="text" value="아이디" disabled="disabled"><br/>
-			<input class="memberInput" type="text" id="id" name="id" value="${memberVo.id}"
-				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)">
+			<input class="memberInput" type="text" id="id" name="id" value="${memberVo.id}" onchange="judgeNumberTranFnc()"
+				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" readonly="readonly" style="width: 400px;">
+			<input id="transBt" type="button" value="아이디 변경" style=" background-color:#DBDBDB;  border-radius: 4px;font-weight: bold; ">
 			<a id="idConfirmMsg"></a><br/> 
-<%-- 			<input  class="memberInput" type="text" name="id" value="${memberVo.id}" readonly="readonly"><br> --%>
+
 		
 			<input class="memberInfo" type="text" value="비밀번호" disabled="disabled"><br/>
 			<input class="memberInput" type="password" id="password" name="password" value="${memberVo.password}"
 				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" >
 			<a id="passwordConfirmMsg"></a><br/>
-<%-- 			<input  class="memberInput" type="password" name="password" value="${memberVo.password}"><br> --%>
 	
 			<input class="memberInfo" type="text" value="비밀번호 확인" disabled="disabled"><br/>
 			<input class="memberInput" type="password" id="passwordConfirm" name="passwordConfirm" 
-				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)"></br>
+				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)"><br/>
 			
 			<input class="memberInfo" type="text" value="주소" disabled="disabled"><br/>
 			<input class="memberInput" type="text" id="address" name="address" value="${memberVo.address}"
 				placeholder="숫자,한글,영문 대소문자 ,특수문자 가능">
 			<a id="addressConfirmMsg"></a><br/> 
-<%-- 			<input class="memberInput" type="text" name="address" value="${memberVo.address}"><br> --%>
 			
 			<input class="memberInfo" type="text" value="연락처" disabled="disabled"><br/>
 			<input class="memberInput" type="text" id="hp" name="hp" maxlength="11" value="${memberVo.hp}"
 				placeholder="( - ) 제외한  11자리 숫자만 입력해주세요" >
 			<a id="hpConfirmMsg"></a>
-<%-- 			<input  class="memberInput" type="number" name="hp" value="${memberVo.hp}"><br> --%>
 		
 		</div>
 		
@@ -348,7 +391,7 @@ h1{
 			<input type="button" value="수정완료" id="modifyBtn" onclick="modifyFnc();">
 	</div>
 	</form>
-
+<input type="hidden" id="judgeNumber" name="judgeNumber" value="${judgeNumber}">
 </div>
 	
 <jsp:include page="/WEB-INF/views/common/tail.jsp" />	
