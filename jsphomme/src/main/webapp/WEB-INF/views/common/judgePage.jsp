@@ -14,7 +14,7 @@
 		var formIdObj2 = document.getElementById("formId2");
 		var memberNoObj = document.getElementById("memberNo");
 		
-		if(memberNoObj.value == ''){
+		if(memberNoObj.value == 0){
 			
 			if(judgeNumberObj.value == 1){
 				
@@ -29,7 +29,7 @@
 			return;
 		}
 		
-		if(memberNoObj.value != ''){
+		if(memberNoObj.value != 0){
 			
 			if(judgeNumberObj.value == 0){
 				alert("사용할 수 있는 아이디 입니다.");

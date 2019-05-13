@@ -258,9 +258,7 @@ function goUnhideFnc() {
 				
 			</table>
 		</form>
-		<div style="clear: both; padding-top: 50px;">
-			${productVo.detail}
-		</div>
+		<div style="clear: both; padding-top: 50px; white-space: pre;">${productVo.detail}</div>
 		
 	</div>
 

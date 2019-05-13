@@ -170,6 +170,6 @@
       vertical-align: bottom;
    }
 	
-	body{
+	html > body{
 		overflow-x: hidden;
 	}

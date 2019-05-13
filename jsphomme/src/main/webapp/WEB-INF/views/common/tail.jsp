@@ -56,7 +56,7 @@
 			ADDRESS: 서울 서초구 서초대로78길 48 12층 &nbsp;&nbsp;JSP HOMME		
 
 			<br>
-			CEO: 박대승, 박지원, 정혜미 &nbsp;(jsphomme@naver.com)  	
+			CEO: 박대승, 송지원, 정혜미 &nbsp;(jsphomme@naver.com)  	
 
 			<br>
 			COPYRIGHT: &nbsp;ⓒ JSP HOMME &nbsp;&nbsp;	ALL RIGHTS RESERVED

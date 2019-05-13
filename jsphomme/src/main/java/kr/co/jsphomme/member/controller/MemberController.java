@@ -297,7 +297,7 @@ public class MemberController {
 			model.addAttribute("judgeNumber", 0);
 
 		}
-
+		System.out.println("요기까지 오냐?");
 		return "/common/judgePage";
 	}
 
