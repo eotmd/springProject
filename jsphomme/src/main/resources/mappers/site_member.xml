@@ -84,6 +84,7 @@
 		SELECT  MEMBER_NO, STATUS, AUTHORITY, NAME, ID, ADDRESS, HP
 		FROM MEMBER
 		WHERE ID = #{id} AND PASSWORD = #{password}
+		AND STATUS = 1
 		
 	</select>
 	

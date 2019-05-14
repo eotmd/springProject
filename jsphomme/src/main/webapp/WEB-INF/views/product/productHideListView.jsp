@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품리스트</title>
+<title>숨김상품리스트</title>
 
 <script type="text/javascript">
 

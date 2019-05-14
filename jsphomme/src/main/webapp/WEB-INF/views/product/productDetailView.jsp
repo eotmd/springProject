@@ -125,7 +125,7 @@ function goUnhideFnc() {
 	
 	img {
 		width: 500px;
-		height: 500px;
+/* 		height: 660px; */
 		float: left;
 	}
 	
@@ -163,7 +163,7 @@ function goUnhideFnc() {
 				</tr>
 				<tr>
 					<td style="width: 150px; font-weight: bold;">가격</td>
-					<td><fmt:formatNumber value="${productVo.price}" pattern="#,###"/></td>
+					<td>₩ <fmt:formatNumber value="${productVo.price}" pattern="#,###"/></td>
 				</tr>
 				<c:if test="${productVo.quantity > 0}">
 					<tr>
@@ -199,21 +199,18 @@ function goUnhideFnc() {
 						<td>
 							<input type="button" value="즉시 구매" 
 								class="goBuyBtn" onclick="goLogin();">
-						</td>
-					</tr>
 				</c:if>
 				<c:if test="${_memberVo_ != null && productVo.quantity > 0 
 					&& _memberVo_.authority != '0'}">
 						<td colspan="2"><input type="submit" value="즉시 구매" 
 							class="goBuyBtn"></td>
-					</tr>
 				</c:if>
 				<c:if test="${_memberVo_ != null && productVo.quantity <= 0
 					&& _memberVo_.authority != '0'}">
 						<td colspan="2"><input type="button" value="즉시 구매" 
 							class="goBuyBtn" onclick="soldOut();"></td>
-					</tr>
 				</c:if>
+					</tr>
 				<c:if test="${_memberVo_ != null && productVo.quantity > 0
 					&& _memberVo_.authority != '0'}">
 					<tr>
