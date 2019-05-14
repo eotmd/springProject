@@ -124,7 +124,8 @@ img {
 	
  		var pwdConfirmObj = document.getElementById("passwordConfirm");
 		var memberRegiFormObj = document.getElementById("memberRegiForm");
-
+		
+		
  		if (nameObj.value == "" || nameObj.value == null)  {
  			alert("이름을 입력해주세요");
  			nameObj.focus();
@@ -133,6 +134,14 @@ img {
 	
  		if (idObj.value == "" || idObj.value == null) {
  			alert("아이디를 다시 입력해세요");
+ 			idObj.focus();
+ 			return;
+ 		}
+ 		
+		if (/[^0-9]/g.test(idObj.value) == false) {
+			
+ 			alert("아이디는 숫자로만 만들수 없습니다.");
+ 			idObj.value = "";
  			idObj.focus();
  			return;
  		}
@@ -196,15 +205,23 @@ img {
 		var hpObj = document.getElementById("hp");
 		var hiddenFormObj = document.getElementById("hiddenForm");
 		
+		
+		if (/[^0-9]/g.test(idObj.value) == false) {
+			
+ 			alert("아이디는 숫자로만 만들수 없습니다.");
+ 			idObj.value = "";
+ 			idObj.focus();
+ 			return;
+ 		}
+		if(idObj.value == ""){
+			alert("아이디를 입력해 주세요");
+			return;
+		}
 		var str = "<input type='hidden' name='id' value='"+idObj.value+"'>";
 		str += "<input type='hidden' name='name' value='"+nameObj.value+"'>";
 		str += "<input type='hidden' name='address' value='"+addressObj.value+"'>";
 		str += "<input type='hidden' name='hp' value='"+hpObj.value+"'>";
 		
-		if(idObj.value == ""){
-			alert("아이디를 입력해 주세요");
-			return;
-		}
 		
 		hiddenFormObj.innerHTML = str;
 		
