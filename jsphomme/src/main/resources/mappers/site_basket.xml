@@ -76,5 +76,11 @@
 		AND M.MEMBER_NO = B.MEMBER_NO
 		AND B.BASKET_NO = #{value}
 	</select>
+	
+	<update id="updateQuantity" parameterType="map">
+		UPDATE SHOPPING_BASKET
+		SET SHOPPING_BASKET_QUANTITY = #{shoppingBasketQuantity}
+		WHERE BASKET_NO = #{basketNo}
+	</update>
 
 </mapper>

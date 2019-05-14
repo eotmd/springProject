@@ -96,10 +96,12 @@ public class BasketController {
 
 	@RequestMapping(value="/basket/buy.do",
 			method= {RequestMethod.POST, RequestMethod.GET})
-	public String basketBuy(int[] basketNoArr, Model model) {
+	public String basketBuy(int[] basketNoArr, int[] shoppingBasketQuantityArr,  Model model) {
 		
 		log.debug("Welcome ProductController basketBuy! - {}", basketNoArr);
+		log.debug("Welcome ProductController basketBuy! - {}", shoppingBasketQuantityArr);
 		
+		basketService.updateQuantity(basketNoArr, shoppingBasketQuantityArr);
 		List<PurchaseListVo> list = basketService.basketBuy(basketNoArr);
 		
 		log.debug("Welcome ProductController basketBuy! - {}", list);

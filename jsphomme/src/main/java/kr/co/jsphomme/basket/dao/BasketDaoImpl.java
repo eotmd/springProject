@@ -73,4 +73,16 @@ public class BasketDaoImpl implements BasketDao {
 		return sqlSession.selectOne(namespace + "basketBuy", basketNo);
 	}
 
+	@Override
+	public void updateQuantity(int basketNoArr, int shoppingBasketQuantity) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("basketNo", basketNoArr);
+		map.put("shoppingBasketQuantity", shoppingBasketQuantity);
+		
+		sqlSession.update(namespace + "updateQuantity", map);
+	}
+
 }

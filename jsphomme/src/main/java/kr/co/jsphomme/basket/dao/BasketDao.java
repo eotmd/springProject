@@ -19,5 +19,5 @@ public interface BasketDao {
 	public int basketSelectTotalCount();
 	public void basketDeleteAll(int memberNo);
 	public PurchaseListVo basketBuy(int basketNo);
-
+	public void updateQuantity(int basketNoArr, int shoppingBasketQuantity);
 }

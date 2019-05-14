@@ -15,5 +15,5 @@ public interface BasketService {
 	public int basketSelectTotalCount();
 	public void basketDeleteAll(int memberNo);
 	public List<PurchaseListVo> basketBuy(int[] basketNoArr);
-
+	public void updateQuantity(int[] basketNoArr, int[] shoppingBasketQuantityArr);
 }

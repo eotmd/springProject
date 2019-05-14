@@ -232,7 +232,29 @@ $(document).ready(function() {
 						</td>
 						<td class="tableBt" style="width: 190px;"><fmt:formatNumber value="${basketVo.price}" pattern="#,###"/></td>
 						<td class="tableBt" style="width: 190px;">${basketVo.productSize}</td>
-						<td class="tableBt" style="width: 190px;">${basketVo.purchaseQuantity}</td>
+						
+						<c:choose>
+							<c:when test="${basketVo.quantity > 0}">
+								<td class="tableBt" style="width: 190px;">
+								<input type="number" value="${basketVo.purchaseQuantity}"
+									min="1" max="${basketVo.quantity}" style="width: 60px;"
+									name="shoppingBasketQuantityArr"> 개
+						</td>
+							</c:when>
+							
+							
+							<c:when test="${basketVo.quantity <= 0}">
+								<td class="tableBt" style="width: 190px;">
+								<input type="number" value="${basketVo.purchaseQuantity}"
+									min="0" max="${basketVo.quantity}" style="width: 60px;"> 개
+							</c:when>
+						
+						</c:choose>
+						
+						
+						
+						
+						
 						<td class="tableBt" style="width: 190px;"><fmt:formatNumber value="${basketVo.price * basketVo.purchaseQuantity}" pattern="#,###"/></td>
 						<td class="tableBt" style="width: 100px;">
 							<input type="button" value="삭제" class="goUpdateBtn" 

@@ -89,4 +89,13 @@ public class BasketServiceImpl implements BasketService{
 		return list;
 	}
 
+	@Override
+	public void updateQuantity(int[] basketNoArr, int[] shoppingBasketQuantityArr) {
+		// TODO Auto-generated method stub
+		
+		for (int i = 0; i < basketNoArr.length; i++) {
+			basketDao.updateQuantity(basketNoArr[i], shoppingBasketQuantityArr[i]);
+		}
+	}
+
 }
