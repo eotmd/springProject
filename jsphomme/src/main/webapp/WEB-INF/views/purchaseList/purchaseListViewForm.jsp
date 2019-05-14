@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>구매목록</title>
 <style type="text/css">
 	#mainImg { 
  		width: 1698px;

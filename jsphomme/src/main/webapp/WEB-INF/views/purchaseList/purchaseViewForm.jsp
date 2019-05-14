@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>...구매</title>
 <script type="text/javascript">
 	window.onload = function() {
 		var nameIdObj = document.getElementById("nameId");
@@ -57,7 +57,7 @@
 <style type="text/css">
 #tableCon {
 	width: 1550px;
-	height: 380px;
+	height: 460px;
 	margin: auto;
 	background-color: #F6F6F6;
 	box-shadow: 7px 7px 20px -8px gray;
@@ -164,8 +164,8 @@
 			<ins>
 				<hr>
 			</ins>
-			<div id="tableCon2" style="height: 320px;">
-				<table class="tableId" style="height: 200px;">
+			<div id="tableCon2" style="height: 400px;">
+				<table class="tableId" style="height: ">
 
 					<c:forEach var="purchaseListVo" items="${purchaseListVo}" varStatus="i">
 						<input type="hidden" name="memberNo"
@@ -181,8 +181,8 @@
 							value="${basketNo[i.index]}">
 					</c:if>
 						<tr>
-							<td class="tableBt" style="height: 310px">
-								<img style="width: 300px; height: 300px;"
+							<td class="tableBt" style="">
+								<img style="width: 300px;"
 								alt="${purchaseListVo.storedFileName}"
 								src="<c:url value='/img/${purchaseListVo.storedFileName}'/>"></td>
 							<td class="tableBt" style="font-weight: bold; width: 300px;">${purchaseListVo.productName}</td>
@@ -218,7 +218,7 @@
 				<input class="memberInfoSample" type="text" disabled="disabled"
 					style="color: #6EE3F7;" value="요청사항"><br /> <input
 					class="memberInfoInput" type="text" style="color: #6EE3F7;"
-					name="requests" value="요청사항"><br />
+					name="requests" placeholder="요청사항"><br />
 				<ins>
 					<hr style="border: solid 1px #6EE3F7; margin-top: 1px;">
 				</ins>

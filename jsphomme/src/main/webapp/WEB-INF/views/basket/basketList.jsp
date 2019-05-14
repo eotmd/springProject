@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 장바구니</title>
 
 <script type="text/javascript" 
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
@@ -15,7 +15,7 @@
 	
 	img{
 		width: 300px; 
-		height: 300px;
+/* 		height: 300px; */
 	}
 	
 	#tableCon{
@@ -162,6 +162,39 @@ $(document).ready(function() {
     })
 })
 
+window.onload = function() {
+			
+	var buyQuantity = $("input[name=shoppingBasketQuantityArr]").val();
+	var quantity =parseInt($("input[name=quantity]").val());
+	
+	if (buyQuantity > quantity) {
+		$("input[name=basketNoArr]").removeAttr('checked');
+		$("input[name=basketNoArr]").attr("disabled", "disabled");
+	}
+}
+
+$(document).ready(function() {
+
+	$("input[name=shoppingBasketQuantityArr]").on("keyup mouseup",function(){
+		
+		var buyQuantity = $("input[name=shoppingBasketQuantityArr]").val();
+		var quantity =parseInt($("input[name=quantity]").val());
+		
+		if (buyQuantity > quantity) {
+			$("input[name=basketNoArr]").removeAttr('checked');
+			$("input[name=basketNoArr]").attr("disabled", "disabled");
+		}else if(buyQuantity <= quantity){
+			$("input[name=basketNoArr]").removeAttr("disabled");
+			$("input[name=basketNoArr]").attr('checked', 'checked');
+		}
+    })
+});
+
+function keyDownFnc() {
+	if (event.keyCode == 13) {
+		event.preventDefault();
+	}
+}
 
 </script>
 
@@ -198,6 +231,7 @@ $(document).ready(function() {
 		<form action="/jsphomme/basket/buy.do" id="goBuy">
 			<table class="tableId">
 				<c:forEach var="basketVo" items="${basketList}">
+					<input type="hidden" value="${basketVo.quantity}" name="quantity">
 					<tr>	
 								
 						<c:choose>
@@ -236,10 +270,11 @@ $(document).ready(function() {
 						<c:choose>
 							<c:when test="${basketVo.quantity > 0}">
 								<td class="tableBt" style="width: 190px;">
-								<input type="number" value="${basketVo.purchaseQuantity}"
-									min="1" max="${basketVo.quantity}" style="width: 60px;"
-									name="shoppingBasketQuantityArr"> 개
-						</td>
+									<input type="number" value="${basketVo.purchaseQuantity}"
+										min="1" max="${basketVo.quantity}" style="width: 60px;"
+										name="shoppingBasketQuantityArr"
+										onkeydown="keyDownFnc();"> 개<br>(재고: ${basketVo.quantity})
+								</td>
 							</c:when>
 							
 							
