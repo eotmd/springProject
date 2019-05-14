@@ -106,14 +106,32 @@ h1{
 	window.onload = function(){
 		var focusObj = document.getElementById("name");
 		
-		focusObj.focus();			
+		focusObj.focus();
+		
+
+		    	  
+		    	  if($('#judgeNumber').val() == 1){
+			    	  
+			    	  $('#transBt').attr('value','아이디 중복확인');
+			    	  $('#transBt').attr('onclick','overlapCheckFnc()');
+			    	  $('#id').removeAttr('readonly');
+			    	  $('#id').focus();
+			    	  
+		    		  
+		    	  }
+		    	  
+		     
+
 	}
+	
+
 	
 	function judgeNumberTranFnc() {
 		var judgeNumberObj = document.getElementById("judgeNumber");
 		
-		judgeNumberObj.value = 0;
+		judgeNumberObj.value = 1;
 	}
+	
 	
 	function pageMoveBeforeFnc(memberNo){
 		
@@ -184,10 +202,11 @@ h1{
 		formObj.submit();
 	}
 	
+	
 	$(document).ready(function() {
 	      $('#transBt').click(function() {
 	    	  var confirmObj = confirm("아이디를 변경하시겠습니까?");
-	    	  if(confirmObj == true){
+	    	  if(confirmObj == true || $('#judgeNumber').val == 1){
 		    	  
 		    	  $('#transBt').attr('value','아이디 중복확인');
 		    	  $('#transBt').attr('onclick','overlapCheckFnc()');
@@ -199,7 +218,6 @@ h1{
 	    		  return;
 	    	  }
 	    	  
-	    	 
 	      });
 	   });
 	
@@ -358,6 +376,7 @@ h1{
 			<input class="memberInput" type="text" id="id" name="id" value="${memberVo.id}" onchange="judgeNumberTranFnc()"
 				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" readonly="readonly" style="width: 400px;">
 			<input id="transBt" type="button" value="아이디 변경" style=" background-color:#DBDBDB;  border-radius: 4px;font-weight: bold; ">
+			<input id="hiddenBtn" type="hidden">
 			<a id="idConfirmMsg"></a><br/> 
 
 		

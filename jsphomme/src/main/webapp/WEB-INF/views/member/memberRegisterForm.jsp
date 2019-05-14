@@ -119,6 +119,7 @@ img {
  		var addressObj = document.getElementById("address");
  		var hpObj = document.getElementById("hp");
  		var judgeNumberObj = document.getElementById("judgeNumber");
+
 	
  		var pwdConfirmObj = document.getElementById("passwordConfirm");
 		var memberRegiFormObj = document.getElementById("memberRegiForm");
@@ -178,6 +179,14 @@ img {
  		
 			memberRegiFormObj.submit();
 		
+		
+		
+	}
+	
+	function judgeNumberChFnc() {
+ 		var judgeNumberObj = document.getElementById("judgeNumber");
+ 		
+		judgeNumberObj.value = 1;
 		
 		
 	}
@@ -354,7 +363,7 @@ img {
 			
 			<input class="memberRegiInfo" type="text" value="아이디" disabled="disabled"><br/>
 			<input class="memberRegiInput" type="text" id="id" name="id"
-				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" style="width: 380px;" value="${MemberVo.id}">
+				placeholder="숫자,영문 대소문자만 가능(공백없이 입력해주세요)" style="width: 380px;" value="${MemberVo.id}" onchange="judgeNumberChFnc();">
 			<input type="button" value="아이디 중복체크" onclick="overlapCheckFnc()" style=" background-color:#DBDBDB;  border-radius: 4px;font-weight: bold; ">
 			
 			<a id="idConfirmMsg"></a><br/> 

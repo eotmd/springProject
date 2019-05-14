@@ -57,12 +57,12 @@ img {
 
 
 	
-#moveMainPageBtn:hover, #memberLeaveBtn:hover, #modifyBtn:hover {
+#moveMainPageBtn:hover, #memberLeaveBtn:hover, #modifyBtn:hover, #backBtn:hover {
 		color: #6EE3F7;
 }
 
 #moveMainPageBtn{
-	    margin-left: 50px;
+	    margin-left: 70px;
 		width: 270px; 
 		height: 50px; 
 		border: 0px; 
@@ -73,7 +73,7 @@ img {
 }
 
 #memberLeaveBtn{
-    	margin-left: 170px;
+    	margin-left: 150px;
 		width: 270px; 
 		height: 50px; 
 		border: 0px; 
@@ -84,7 +84,7 @@ img {
 }
 
 #modifyBtn {
-		margin-left: 170px;
+		margin-left: 150px;
 		width: 270px; 
 		height: 50px; 
 		border: 0px; 
@@ -93,7 +93,16 @@ img {
 		font-weight: bold; 
 		font-size: 22px;
 }
-
+#backBtn{
+	margin-left: 310px;
+		width: 270px; 
+		height: 50px; 
+		border: 0px; 
+		background-color: #F6F6F6; 
+		color: gray; 
+		font-weight: bold; 
+		font-size: 22px;
+}
 h1{
 	text-align: center;
 }
@@ -120,6 +129,9 @@ h1{
 	}
 	function MoveCertificationFnc() {
 		location.href = "/jsphomme/member/certificationMove.do"
+	}
+	function backFnc() {
+		location.href = "/jsphomme/member/list.do"
 	}
 </script>
 
@@ -170,10 +182,13 @@ h1{
 			
 			<hr>
 		</div>
-			<input type="button" value="메인페이지" id="moveMainPageBtn" onclick="MoveMainPageFnc();" style="margin-left: 200px;">
+			<input type="button" value="메인페이지" id="moveMainPageBtn" <c:if test="${_memberVo_.authority == '0'}">style="margin-left: 180px;"</c:if>onclick="MoveMainPageFnc();">
 			<c:if test="${_memberVo_.authority != '0'}">
 				<input type="button" value="탈퇴하기" id="memberLeaveBtn" onclick="leaveFnc('${memberVo.memberNo}');">
 				<input type="button" value="수정하기" id="modifyBtn" onclick="MoveCertificationFnc()">
+			</c:if>
+			<c:if test="${_memberVo_.authority == '0'}">
+				<input type="button" value="회원목록" id="backBtn" onclick="backFnc();">
 			</c:if>
 	</div>
 
