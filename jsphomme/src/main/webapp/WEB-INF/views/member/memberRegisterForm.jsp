@@ -102,7 +102,8 @@ img {
 <script type="text/javascript">
 
 	window.onload = function name() {
-		
+		var focusObj = document.getElementById("name");
+		focusObj.focus();
 	}
 
 	function pageMoveMainFnc() {
@@ -166,11 +167,7 @@ img {
  			hpObj.focus();
  			return;
  		}
- 		if(hpObj.value ==/[a-z]/g){
- 			alert("숫자만 입력해 주세요");
- 			hpObj.focus();
- 			return;
- 		}
+ 		
  		
  		if(judgeNumberObj.value == 1){
  			alert("아이디 중복체크를 해주세요");
@@ -199,12 +196,10 @@ img {
 		var hpObj = document.getElementById("hp");
 		var hiddenFormObj = document.getElementById("hiddenForm");
 		
-		var str = "<input type='hidden' name='id' value="+idObj.value+">";
-		str += "<input type='hidden' name='name' value="+nameObj.value+">";
-		str += "<input type='hidden' name='address' value="+addressObj.value+">";
-		str += "<input type='hidden' name='hp' value="+hpObj.value+">";
-		
-		
+		var str = "<input type='hidden' name='id' value='"+idObj.value+"'>";
+		str += "<input type='hidden' name='name' value='"+nameObj.value+"'>";
+		str += "<input type='hidden' name='address' value='"+addressObj.value+"'>";
+		str += "<input type='hidden' name='hp' value='"+hpObj.value+"'>";
 		
 		if(idObj.value == ""){
 			alert("아이디를 입력해 주세요");
@@ -319,22 +314,34 @@ img {
    
 		
    $(document).ready(function() {
-	      $('#hp').keydown(function() {
+	      $('#hp').on("keyup change",function() {
+	    	 var userInputStr = '';
+	    	 var temp = '';
 	    	 
-	    	  $('#hp').val($('#hp').val().replace(/[a-z]/g,""));
+	    	 userInputStr = $('#hp').val();
+	    	  
+	    	 
+	    	 userInputStr = userInputStr.replace(/[^0-9]/g,"");
+	    	
+	    	 
+	    	 
+	    	 $('#hp').val(userInputStr); 
+	    	 
+
 	    	 
 	    	 var hpObj = $('#hp').val();
 	         var failMsg = "(-) 제외 11 자리 숫자만 입력해주세요";
 	        	 
 	         if (hpObj == "" || hpObj == null) {
 	            $('#hpConfirmMsg').css('color', 'grey');
-		        $('#hpConfirmMsg').html(failMsg);
+		      
 	         } else {
 	        		 
 	         }
 	         
 	      });
 	   });
+   
 	
 	
 </script>

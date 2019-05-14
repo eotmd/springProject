@@ -104,11 +104,17 @@ h1{
 <script type="text/javascript">
 
 	window.onload = function(){
-		var focusObj = document.getElementById("name");
 		
+		var focusObj = document.getElementById("name");
+		var originalIdObj = document.getElementById("OriginalId");
+		var tempIdObj = document.getElementById("id");
 		focusObj.focus();
 		
-
+		if(originalIdObj.value == tempIdObj.value){
+			$('#judgeNumber').val(0);
+		}
+		
+		
 		    	  
 		    	  if($('#judgeNumber').val() == 1){
 			    	  
@@ -411,6 +417,7 @@ h1{
 	</div>
 	</form>
 <input type="hidden" id="judgeNumber" name="judgeNumber" value="${judgeNumber}">
+<input type="hidden" id="OriginalId" value="${_memberVo_.id}">
 </div>
 	
 <jsp:include page="/WEB-INF/views/common/tail.jsp" />	
