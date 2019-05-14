@@ -9,8 +9,6 @@ public interface BasketService {
 	
 	public int basketInsert(BasketVo basketVo);
 	public List<BasketVo> basketListView(int memberNo);
-	public BasketVo basketOneDeteilView();
-	public int basketUpdate();
 	public int basketDelete(int basketNo);
 	public int basketSelectTotalCount();
 	public void basketDeleteAll(int memberNo);

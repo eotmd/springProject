@@ -205,7 +205,7 @@ function goUnhideFnc() {
 				<c:if test="${_memberVo_ != null && productVo.quantity > 0 
 					&& _memberVo_.authority != '0'}">
 						<td colspan="2"><input type="submit" value="즉시 구매" 
-							class="goBuyBtn""></td>
+							class="goBuyBtn"></td>
 					</tr>
 				</c:if>
 				<c:if test="${_memberVo_ != null && productVo.quantity <= 0
@@ -243,14 +243,18 @@ function goUnhideFnc() {
 				</c:if>
 				<c:if test="${_memberVo_.authority == '0' && productVo.status == 1}">
 					<tr>
-						<td><input type="button" value="제품삭제" onclick="goDeleteFnc();"></td>
-						<td><input type="button" value="숨기기" onclick="goHideFnc()"></td>
+						<td><input type="button" value="제품삭제"
+							class="goUpdateBtn" onclick="goDeleteFnc();"></td>
+						<td><input type="button" value="숨기기" 
+							class="goUpdateBtn" onclick="goHideFnc()"></td>
 					</tr>
 				</c:if>
 				<c:if test="${_memberVo_.authority == '0' && productVo.status == 0}">
 					<tr>
-						<td><input type="button" value="제품삭제" onclick="goDeleteFnc();"></td>
-						<td><input type="button" value="숨기기 취소" onclick="goUnhideFnc()"></td>
+						<td><input type="button" value="제품삭제" 
+							class="goUpdateBtn" onclick="goDeleteFnc();"></td>
+						<td><input type="button" value="숨기기 취소" 
+							class="goUpdateBtn" onclick="goUnhideFnc()"></td>
 					</tr>
 				</c:if>
 				

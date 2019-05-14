@@ -19,9 +19,6 @@ public class BasketServiceImpl implements BasketService{
 	@Autowired
 	public BasketDao basketDao;
 	
-	@Autowired
-	public ProductDao productDao;
-
 	@Override
 	public int basketInsert(BasketVo basketVo) {
 		// TODO Auto-generated method stub
@@ -38,18 +35,6 @@ public class BasketServiceImpl implements BasketService{
 		map.put("memberNo", memberNo);
 		
 		return basketDao.basketListView(map);
-	}
-
-	@Override
-	public BasketVo basketOneDeteilView() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int basketUpdate() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override

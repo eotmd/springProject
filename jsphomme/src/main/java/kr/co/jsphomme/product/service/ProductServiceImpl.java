@@ -64,6 +64,7 @@ public class ProductServiceImpl implements ProductService{
 		map.put("keyword", keyword);
 		map.put("start", start);
 		map.put("end", end);
+		
 		return productDao.productListView(map);
 	}
 
