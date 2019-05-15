@@ -81,5 +81,11 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.selectOne(namespace+"memberCertification",map);
 	}
 
+	@Override
+	public int memberleave(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace+"memberleave", memberNo);
+	}
+
 	
 }

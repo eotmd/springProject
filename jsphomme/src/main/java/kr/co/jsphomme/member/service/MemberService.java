@@ -15,6 +15,7 @@ public interface MemberService {
 	public MemberVo memberExist(Map<String, Object> paramMap);		//회원로그인
 	
 	public int memberUpdateOne(MemberVo memberVo);				//정보 수정
+	public int memberleave(int memberNo);				//회원 탈퇴
 	public int memberDelete(int memberNo);				//관리자가 회원 삭제
 	
 	// 페이징

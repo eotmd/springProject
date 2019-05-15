@@ -52,11 +52,13 @@ img {
 </style>
 
 <script type="text/javascript">
+
 	function MoveFnc() {
 		var certificationFormObj = document.getElementById("certificationForm");
 		
 		certificationFormObj.submit();
 	}
+	
 </script>
 
 </head>
@@ -76,7 +78,7 @@ img {
 			</form>
 				<p><input id="certificationSb" type="button" value="확인" onclick="MoveFnc();"></p>
 		</div>
-
+	
 </div>
 	
 <jsp:include page="/WEB-INF/views/common/tail.jsp" />

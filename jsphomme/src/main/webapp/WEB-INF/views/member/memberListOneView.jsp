@@ -127,8 +127,8 @@ h1{
 		}
 		
 	}
-	function MoveCertificationFnc() {
-		location.href = "/jsphomme/member/certificationMove.do"
+	function MoveCertificationFnc(no) {
+		location.href = "/jsphomme/member/update.do?memberNo="+no;
 	}
 	function backFnc() {
 		location.href = "/jsphomme/member/list.do"
@@ -185,7 +185,7 @@ h1{
 			<input type="button" value="메인페이지" id="moveMainPageBtn" <c:if test="${_memberVo_.authority == '0'}">style="margin-left: 180px;"</c:if>onclick="MoveMainPageFnc();">
 			<c:if test="${_memberVo_.authority != '0'}">
 				<input type="button" value="탈퇴하기" id="memberLeaveBtn" onclick="leaveFnc('${memberVo.memberNo}');">
-				<input type="button" value="수정하기" id="modifyBtn" onclick="MoveCertificationFnc()">
+				<input type="button" value="수정하기" id="modifyBtn" onclick="MoveCertificationFnc(${_memberVo_.memberNo})">
 			</c:if>
 			<c:if test="${_memberVo_.authority == '0'}">
 				<input type="button" value="회원목록" id="backBtn" onclick="backFnc();">

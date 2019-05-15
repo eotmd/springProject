@@ -13,7 +13,7 @@ public interface MemberDao {
 //	public MemberVo memberLogout();			//회원 로그아웃
 	public int memberUpdateOne(MemberVo memberVo);				//정보 수정
 	public int memberDelete(int memberNo);				//관리자가 회원 삭제
-	
+	public int memberleave(int memberNo);				//회원 탈퇴
 	// 페이징
 	public int memberSelectTotalCount(Map<String, String> map);
 	public int memberIdOverlapCheck(String overlapIdCheck);

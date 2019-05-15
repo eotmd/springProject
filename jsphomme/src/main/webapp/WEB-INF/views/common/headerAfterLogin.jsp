@@ -24,7 +24,7 @@
 
 	
 	
-<!-- 관리자가 로그인 후 보일 버튼-->
+
 	
 <c:if test="${_memberVo_.authority == '0'}">	
 	
@@ -38,12 +38,12 @@
 
 </c:if>
 	
-<!-- 일반 회원 로그인 후 보일 버튼-->
+
 	
 <c:if test="${_memberVo_.authority == '일반'}">	
 	<div class="fncButton">	
 		<span> ${_memberVo_.name} </span>
-		<input class="myPageBtn" type="button" value="마이페이지" onclick="myPageFnc(${_memberVo_.memberNo});">
+		<input class="myPageBtn" type="button" value="마이페이지" onclick="myPageFnc();">
 		<input class="myPageBtn" type="button" value="장바구니"  onclick="basketFnc();" >
 		<input class="purchaseListBtn" type="button" value="구매목록" onclick="purchaseListFnc(${_memberVo_.memberNo});">
 		<input class="logoutBtn" type="button" value="로그아웃"  onclick="logoutFnc();" >

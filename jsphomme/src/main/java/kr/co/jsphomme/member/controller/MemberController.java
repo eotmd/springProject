@@ -141,7 +141,7 @@ public class MemberController {
 		paramMap.put("id", id);
 		paramMap.put("password", password);
 		MemberVo memberVo = memberService.memberExist(paramMap);
-
+		System.out.println("뭘까요?"+memberVo);
 		String viewUrl = "";
 		if (memberVo != null) {
 			// 회원이 존재한다면 세션에 담고
@@ -269,7 +269,7 @@ public class MemberController {
 
 		try {
 
-			memberService.memberDelete(memberNo);
+			memberService.memberleave(memberNo);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -308,7 +308,7 @@ public class MemberController {
 		if (session.getAttribute("_memberVo_") == null) {
 			return "redirect:/auth/login.do";
 		}
-
+		
 		return "/member/memberSelfCertificationPage";
 	}
 
@@ -327,7 +327,7 @@ public class MemberController {
 			return "/common/failPage2";
 		}
 
-		return "redirect:/member/update.do?memberNo=" + memberVo.getMemberNo();
+		return "redirect:/member/detail.do?memberNo=" + memberVo.getMemberNo();
 	}
 
 }

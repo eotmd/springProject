@@ -77,6 +77,7 @@ function deleteMemberFnc(no) {
 		<select name="searchOption">
 			<option value="userId" <c:if test="${searchOption == 'userId'}">selected</c:if>>아이디</option>				<!-- 이메일  -->
 			<option value="userName"<c:if test="${searchOption == 'userName'}">selected</c:if>>이름</option>					<!-- 이름  -->
+			<option value="userAuthority"<c:if test="${searchOption == 'userAuthority'}">selected</c:if>>권한</option>					<!-- 이름  -->
 							
 		</select>
 		<input type="text" name="keyword" value="${keyword}">			

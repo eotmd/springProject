@@ -13,11 +13,10 @@ function productRegiFnc() {
 	location.href ="/jsphomme/product/insertMove.do";
 }
 
-function myPageFnc(memberNo) {
-	location.href ="/jsphomme/member/detail.do?memberNo=" + memberNo;
+function myPageFnc() {
+	location.href ="/jsphomme/member/certificationMove.do";
 	
-// 	var url = '/detail.do?no=' + memberNo;
-// 	location.href = url;
+
 }
 
 function memberListFnc() {

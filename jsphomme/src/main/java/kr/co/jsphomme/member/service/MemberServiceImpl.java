@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.jsphomme.basket.service.BasketService;
 import kr.co.jsphomme.member.dao.MemberDao;
 import kr.co.jsphomme.member.vo.MemberVo;
 import kr.co.jsphomme.purchaselist.service.PurchaseListService;
@@ -28,6 +29,9 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	public PurchaseListService purchaseListService;
+	
+	@Autowired
+	public BasketService basketService;
 	
 	@Override
 	public void memberInsertOne(MemberVo memberVo) {
@@ -80,7 +84,8 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int memberDelete(int memberNo)  {
 		// TODO Auto-generated method stub
-				
+		
+		basketService.basketDeleteAll(memberNo);
 		purchaseListService.purchaseListDelete(memberNo);
 		return memberDao.memberDelete(memberNo);
 	}
@@ -112,6 +117,12 @@ public class MemberServiceImpl implements MemberService{
 		map.put("memberNo", memberNo);
 		
 		return memberDao.memberCertification(map);
+	}
+
+	@Override
+	public int memberleave(int memberNo) {
+		// TODO Auto-generated method stub
+		return memberDao.memberleave(memberNo);
 	}
 
 	

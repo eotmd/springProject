@@ -35,6 +35,9 @@
 						<when test="searchOption == 'userName'">
 							WHERE NAME LIKE '%'||#{keyword}||'%'
 						</when>
+						<when test="searchOption == 'userAuthority'">
+							WHERE AUTHORITY LIKE '%'||#{keyword}||'%'
+						</when>
 					</choose>
 					ORDER BY MEMBER_NO DESC) M
 		) MEMBER
@@ -127,6 +130,9 @@
 			<when test="searchOption == 'userName'">
 				WHERE NAME LIKE '%'||#{keyword}||'%'
 			</when>
+			<when test="searchOption == 'userAuthority'">
+				WHERE AUTHORITY LIKE '%'||#{keyword}||'%'
+			</when>
 		</choose>
 	
 	</select>
@@ -143,5 +149,11 @@
 		FROM MEMBER
 		WHERE PASSWORD = #{password}
 		AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="memberleave" parameterType="int">
+		UPDATE MEMBER
+		SET ID = MEMBER_ID_SEQ.NEXTVAL, STATUS = 0, AUTHORITY = '탈퇴'
+		WHERE MEMBER_NO = #{value}
 	</select>
 </mapper>
