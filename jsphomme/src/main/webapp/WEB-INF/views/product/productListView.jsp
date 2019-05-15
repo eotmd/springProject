@@ -73,6 +73,11 @@
 	<img id="mainImg" alt="ConceptPhoto" src="../resources/images/conceptPhotoCutTomFord.jpg">
 	<div class="productList">	
 		<nav>
+			<c:if test="${empty productList}">
+				<ul>
+					<li style="margin: auto;">상품이 없습니다</li>
+				</ul>
+			</c:if>
 			<c:forEach var="productVo" items="${productList}" varStatus="i">
 				<c:choose>
 					<c:when test="${i.count % 3 == 0}">
