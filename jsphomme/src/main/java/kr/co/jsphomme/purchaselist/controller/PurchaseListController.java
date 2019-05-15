@@ -26,6 +26,7 @@ import kr.co.jsphomme.product.vo.ProductVo;
 import kr.co.jsphomme.purchaselist.service.PurchaseListService;
 import kr.co.jsphomme.purchaselist.vo.PurchaseListVo;
 import kr.co.jsphomme.util.Paging;
+import kr.co.jsphomme.util.adminPaging;
 
 @Controller
 public class PurchaseListController {
@@ -76,6 +77,49 @@ public class PurchaseListController {
 		
 		return "purchaseList/purchaseListViewForm";
 	}
+	
+	@RequestMapping(value="/purchase/allList.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String userAllPurchaseListView(@RequestParam(defaultValue ="1") int curPage, HttpSession session, Model model) {
+		
+		log.debug("구매목록 컨트롤러All : {}" + curPage);
+		
+		MemberVo memberVo = (MemberVo)session.getAttribute("_memberVo_");
+		
+		if(memberVo == null) {
+			return "redirect:/auth/login.do";
+		}
+		if(!(memberVo.getAuthority()).equals("0")) {
+			return "redirect:/auth/login.do";
+		}
+			
+			
+		int allNum = purchaseListService.purchaseListCount();
+		
+		
+		
+		adminPaging allPurchaseListPaging = new adminPaging(allNum, curPage);
+		
+		int start = allPurchaseListPaging.getPageBegin();
+		int end = allPurchaseListPaging.getPageEnd();
+		
+
+			
+		List<PurchaseListVo> purchaseList = purchaseListService.allPurchaseListView(start, end);
+		
+			
+
+		
+		Map<String, Object> pagingMap = new HashMap<>();
+		pagingMap.put("totalCount", allNum);
+		pagingMap.put("paging", allPurchaseListPaging);
+		
+		
+		model.addAttribute("pagingMap",pagingMap);
+		model.addAttribute("purchaseList", purchaseList);
+		
+		return "purchaseList/allPurchaseListView";
+	}
+	
 	
 	@RequestMapping(value="/purchase/view.do", method = RequestMethod.GET)
 	public String PurchaseView(PurchaseListVo purchaseListVo, HttpSession session, Model model) {

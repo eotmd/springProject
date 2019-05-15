@@ -6,6 +6,7 @@ public class PurchaseListVo {
 
 	private String purchaseListNo = "";
 	private int memberNo = 0;
+	private String memberName = "";
 	private int productNo = 0;
 	private String productName = "";
 	private int productPrice = 0;
@@ -21,12 +22,15 @@ public class PurchaseListVo {
 		super();
 	}
 
-	public PurchaseListVo(String purchaseListNo, int memberNo, int productNo, String productName, int productPrice,
-			String productSize, Date purchaseDate, String requests, String address, int purchaseQuantity,
-			String recipient, String storedFileName) {
+	
+
+	public PurchaseListVo(String purchaseListNo, int memberNo, String memberName, int productNo, String productName,
+			int productPrice, String productSize, Date purchaseDate, String requests, String address,
+			int purchaseQuantity, String recipient, String storedFileName) {
 		super();
 		this.purchaseListNo = purchaseListNo;
 		this.memberNo = memberNo;
+		this.memberName = memberName;
 		this.productNo = productNo;
 		this.productName = productName;
 		this.productPrice = productPrice;
@@ -38,6 +42,8 @@ public class PurchaseListVo {
 		this.recipient = recipient;
 		this.storedFileName = storedFileName;
 	}
+
+
 
 	public String getPurchaseListNo() {
 		return purchaseListNo;
@@ -134,14 +140,24 @@ public class PurchaseListVo {
 	public void setRecipient(String recipient) {
 		this.recipient = recipient;
 	}
+	
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
 
 	@Override
 	public String toString() {
-		return "PurchaseListVo [purchaseListNo=" + purchaseListNo + ", memberNo=" + memberNo + ", productNo="
-				+ productNo + ", productName=" + productName + ", productPrice=" + productPrice + ", productSize="
-				+ productSize + ", purchaseDate=" + purchaseDate + ", requests=" + requests + ", address=" + address
-				+ ", purchaseQuantity=" + purchaseQuantity + ", recipient=" + recipient + ", storedFileName="
-				+ storedFileName + "]";
+		return "PurchaseListVo [purchaseListNo=" + purchaseListNo + ", memberNo=" + memberNo + ", memberName="
+				+ memberName + ", productNo=" + productNo + ", productName=" + productName + ", productPrice="
+				+ productPrice + ", productSize=" + productSize + ", purchaseDate=" + purchaseDate + ", requests="
+				+ requests + ", address=" + address + ", purchaseQuantity=" + purchaseQuantity + ", recipient="
+				+ recipient + ", storedFileName=" + storedFileName + "]";
 	}
 
+	
 }

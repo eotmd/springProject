@@ -69,8 +69,8 @@
 	<table style="margin-top: 20px;">
 		<tr>
 			<td class="tableTop">상품 번호</td>
-				
 			<td class="tableTop">상품 이름</td>
+			<td class="tableTop">결제한 사람</td>
 			<td class="tableTop">사이즈</td>
 			<td class="tableTop">수량</td>
 			<td class="tableTop">개당 가격</td>
@@ -84,6 +84,7 @@
 		<tr>
 			<td style="text-align: center; width: 100px;">${purchaseList.productNo}</td>
 			<td class="productName" style="text-align: left; width: 242px;"><a href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
+			<td style="text-align: center; width: 100px;">${purchaseList.memberName}</td>
 			<td style="text-align: center; width: 101px;">${purchaseList.productSize}</td>
 			<td style="text-align: center; width: 101px;">${purchaseList.purchaseQuantity}</td>
 			<td style="text-align: right; width: 101px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>

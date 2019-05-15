@@ -54,3 +54,7 @@ function searchFnc() {
 function goHideListFnc() {
 	location.href = "/jsphomme/product/hideList.do";
 }
+function memberPurchaseListFnc(){
+	
+	location.href = "/jsphomme/purchase/allList.do";
+}

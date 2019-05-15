@@ -94,4 +94,21 @@ public class PurchaseListServiceImpl implements PurchaseListService {
 		return purchaseListDao.purchaseView();
 	}
 
+	@Override
+	public int purchaseListCount() {
+		// TODO Auto-generated method stub
+		return purchaseListDao.purchaseListCount();
+	}
+
+	@Override
+	public List<PurchaseListVo> allPurchaseListView(int start, int end) {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<PurchaseListVo> purchaseList = purchaseListDao.allPurchaseListView(map);
+		return purchaseList;
+	}
+
 }

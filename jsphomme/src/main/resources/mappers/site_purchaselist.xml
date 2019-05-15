@@ -5,7 +5,8 @@
 	<resultMap type="purchaseListVo" id="purchaseListResultMap">
 		<id column="PURCHASE_LIST_NO" property="purchaseListNo"/>
 		<id column="PRODUCT_NO" property="productNo"/>
-		<id column="NAME" property="productName"/>
+		<id column="PRODUCT_NAME" property="productName"/>
+		<id column="NAME" property="memberName"/>
 		<id column="RECIPIENT" property="recipient"/>
 		<id column="PRICE" property="productPrice"/>
 		<id column="PRODUCT_SIZE" property="productSize"/>
@@ -61,6 +62,53 @@
 			WHERE RNUM BETWEEN #{start} AND #{end}
 			
 	</select>
+	<select id="allPurchaseListView" resultMap="purchaseListResultMap">
+	
+		SELECT PURCHASE_LIST_NO,
+			PRODUCT_NO,
+			PRODUCT_NAME,
+            NAME,
+			PRICE,
+			PRODUCT_SIZE,
+			ADDRESS,
+			PURCHASE_DATE,
+			REQUESTS,
+			PURCHASE_LIST_QUANTITY,
+			RECIPIENT
+			FROM(
+				SELECT ROWNUM RNUM,
+				PURCHASE_LIST_NO,
+				P.PRODUCT_NO,
+                P.PRODUCT_NAME,
+				P.NAME,
+				P.PRICE,
+				P.PRODUCT_SIZE,
+				P.ADDRESS,
+				P.PURCHASE_DATE,
+				P.REQUESTS,
+				P.PURCHASE_LIST_QUANTITY,
+				P.RECIPIENT
+				FROM(
+					SELECT PURCHASE_LIST_NO,
+					P.PRODUCT_NO,
+					P.NAME as PRODUCT_NAME,
+                    M.NAME,
+					P.PRICE,
+					PL.PRODUCT_SIZE,
+					PL.ADDRESS,
+					PL.PURCHASE_DATE,
+					REQUESTS,
+					PURCHASE_LIST_QUANTITY,
+					RECIPIENT
+					FROM PURCHASE_LIST PL, MEMBER M, PRODUCT P
+					WHERE M.MEMBER_NO = PL.MEMBER_NO
+					AND P.PRODUCT_NO = PL.PRODUCT_NO
+					ORDER BY PURCHASE_DATE DESC
+					) P
+			) PURCHASE_LIST
+			WHERE RNUM BETWEEN #{start} AND #{end}
+			
+	</select>
 	
 	<select id="purchaseListCount" resultType="int">
 		
@@ -69,6 +117,15 @@
 		WHERE M.MEMBER_NO = PL.MEMBER_NO
 		AND P.PRODUCT_NO = PL.PRODUCT_NO
 		AND M.MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="purchaseListAllCount" resultType="int">
+		
+		SELECT COUNT(*)
+		FROM PURCHASE_LIST PL, MEMBER M, PRODUCT P
+		WHERE M.MEMBER_NO = PL.MEMBER_NO
+		AND P.PRODUCT_NO = PL.PRODUCT_NO
+		
 	</select>
 	
 	
