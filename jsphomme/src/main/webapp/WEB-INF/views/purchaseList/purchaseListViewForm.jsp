@@ -46,8 +46,6 @@
 	}
 	.productName > a:hover {
 		color: red;
-		
-		
 	}
 	
 

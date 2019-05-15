@@ -182,7 +182,7 @@
 					</c:if>
 						<tr>
 							<td class="tableBt" style="">
-								<img style="width: 300px;"
+								<img style="width: 300px; height: 399.89px;"
 								alt="${purchaseListVo.storedFileName}"
 								src="<c:url value='/img/${purchaseListVo.storedFileName}'/>"></td>
 							<td class="tableBt" style="font-weight: bold; width: 300px;">${purchaseListVo.productName}</td>

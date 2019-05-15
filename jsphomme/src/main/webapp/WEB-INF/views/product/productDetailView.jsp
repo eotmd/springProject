@@ -125,7 +125,7 @@ function goUnhideFnc() {
 	
 	img {
 		width: 500px;
-/* 		height: 660px; */
+ 		height: 666.5px;
 		float: left;
 	}
 	

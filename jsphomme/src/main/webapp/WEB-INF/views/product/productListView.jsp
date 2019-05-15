@@ -54,7 +54,7 @@
 	
 	.productList img{
 		width: 450px;
-/* 		height: 450px; */
+ 		height: 577.83px;
 		border-radius: 10px;
 	}
 	

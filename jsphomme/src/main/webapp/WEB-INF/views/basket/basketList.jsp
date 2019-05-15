@@ -15,7 +15,7 @@
 	
 	img{
 		width: 300px; 
-/* 		height: 300px; */
+ 		height: 399.89px;
 	}
 	
 	#tableCon{
