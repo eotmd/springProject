@@ -92,6 +92,11 @@
 		</tr>
 		</c:forEach>
 	</table>
+	<c:if test="${empty purchaseList}">
+			<div style="margin: auto; text-align: center; margin-top: 100px; margin-bottom: 80px;">
+				결제 내역이 존재하지 않습니다.
+			</div>
+		</c:if>
 	</div>
 	
 	<jsp:include page="/WEB-INF/views/common/paging.jsp">

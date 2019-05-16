@@ -38,7 +38,11 @@
 						<when test="searchOption == 'userAuthority'">
 							WHERE AUTHORITY LIKE '%'||#{keyword}||'%'
 						</when>
+						<when test="searchOption == 'userNo'">
+							WHERE MEMBER_NO = #{keyword}
+						</when>
 					</choose>
+					AND AUTHORITY != '0'
 					ORDER BY MEMBER_NO DESC) M
 		) MEMBER
 		WHERE RNUM BETWEEN #{start} AND #{end}
@@ -132,6 +136,9 @@
 			</when>
 			<when test="searchOption == 'userAuthority'">
 				WHERE AUTHORITY LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="searchOption == 'userNo'">
+				WHERE MEMBER_NO = #{keyword}
 			</when>
 		</choose>
 	

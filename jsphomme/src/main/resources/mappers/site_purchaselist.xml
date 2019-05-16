@@ -6,6 +6,7 @@
 		<id column="PURCHASE_LIST_NO" property="purchaseListNo"/>
 		<id column="PRODUCT_NO" property="productNo"/>
 		<id column="PRODUCT_NAME" property="productName"/>
+		<id column="MEMBER_NO" property="memberNo"/>
 		<id column="NAME" property="memberName"/>
 		<id column="RECIPIENT" property="recipient"/>
 		<id column="PRICE" property="productPrice"/>
@@ -67,6 +68,7 @@
 		SELECT PURCHASE_LIST_NO,
 			PRODUCT_NO,
 			PRODUCT_NAME,
+			MEMBER_NO,
             NAME,
 			PRICE,
 			PRODUCT_SIZE,
@@ -80,6 +82,7 @@
 				PURCHASE_LIST_NO,
 				P.PRODUCT_NO,
                 P.PRODUCT_NAME,
+                P.MEMBER_NO,
 				P.NAME,
 				P.PRICE,
 				P.PRODUCT_SIZE,
@@ -92,6 +95,7 @@
 					SELECT PURCHASE_LIST_NO,
 					P.PRODUCT_NO,
 					P.NAME as PRODUCT_NAME,
+					M.MEMBER_NO,
                     M.NAME,
 					P.PRICE,
 					PL.PRODUCT_SIZE,

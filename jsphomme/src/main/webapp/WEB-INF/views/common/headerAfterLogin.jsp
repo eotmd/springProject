@@ -5,8 +5,8 @@
 
 
 
-<link rel = "stylesheet" type = "text/css" href = "/jsphomme/resources/css/headerStyle.css">
-<script type="text/javascript" src="/jsphomme/resources/js/Header.js">
+<link rel="stylesheet" type="text/css" href="/jsphomme/resources/css/headerStyle.css?ver=1">
+<script type="text/javascript" src="/jsphomme/resources/js/Header.js?ver=1">
 
 
 

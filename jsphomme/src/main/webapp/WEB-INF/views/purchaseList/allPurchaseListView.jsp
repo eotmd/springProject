@@ -84,7 +84,8 @@
 		<tr>
 			<td style="text-align: center; width: 100px;">${purchaseList.productNo}</td>
 			<td class="productName" style="text-align: left; width: 242px;"><a href="/jsphomme/product/detail.do?productNo=${purchaseList.productNo}">${purchaseList.productName}</a></td>
-			<td style="text-align: center; width: 100px;">${purchaseList.memberName}</td>
+			<td style="text-align: center; width: 100px;">${purchaseList.memberName}
+			<p style="margin-top: 0px; margin-bottom: 0px;">(${purchaseList.memberNo})</p></td>
 			<td style="text-align: center; width: 101px;">${purchaseList.productSize}</td>
 			<td style="text-align: center; width: 101px;">${purchaseList.purchaseQuantity}</td>
 			<td style="text-align: right; width: 101px;"><fmt:formatNumber value="${purchaseList.productPrice}" pattern="#,###"/></td>
@@ -96,6 +97,11 @@
 		</tr>
 		</c:forEach>
 	</table>
+	<c:if test="${empty purchaseList}">
+			<div style="margin: auto; text-align: center; margin-top: 100px; margin-bottom: 80px;">
+				결제 내역이 존재하지 않습니다
+			</div>
+		</c:if>
 	</div>
 	
 	<jsp:include page="/WEB-INF/views/common/paging.jsp">

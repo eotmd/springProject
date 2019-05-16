@@ -169,6 +169,10 @@
       border: 0px;
       vertical-align: bottom;
    }
+   .search::placeholder {
+      color: #c5c4c4;
+      
+   }
 	
 	html > body{
 		overflow-x: hidden;

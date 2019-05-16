@@ -40,12 +40,13 @@ h1{
 	font-size: 15px;
 	font-weight: bold;
 	background-color: #DBDBDB;
+	height: 32px;
 }
 
 
 
 #kickId:hover{
-	font-size: 15px;
+	font-size: 13px;
 }
 
 </style>
@@ -73,14 +74,15 @@ function deleteMemberFnc(no) {
 
 	<h1 style="float: left; margin-right: 100px;">회원목록</h1>
 	
-	<form id="form1" action="/jsphomme/member/list.do" method="get" >
+	<form id="form1" action="/jsphomme/member/list.do" method="get" style="padding-top:50px; padding-right:130px; float: right;">
 		<select name="searchOption">
 			<option value="userId" <c:if test="${searchOption == 'userId'}">selected</c:if>>아이디</option>				<!-- 이메일  -->
 			<option value="userName"<c:if test="${searchOption == 'userName'}">selected</c:if>>이름</option>					<!-- 이름  -->
 			<option value="userAuthority"<c:if test="${searchOption == 'userAuthority'}">selected</c:if>>권한</option>					<!-- 이름  -->
+			<option value="userNo"<c:if test="${searchOption == 'userNo'}">selected</c:if>>회원번호</option>					<!-- 이름  -->
 							
 		</select>
-		<input type="text" name="keyword" value="${keyword}">			
+		<input type="text" name="keyword" value="${keyword}" style="clear: both;">			
 		<input type="submit" value="검색">					
 	</form>
 	
@@ -114,11 +116,13 @@ function deleteMemberFnc(no) {
 					<input id="kickId" type="button" value="[삭제]" onclick="deleteMemberFnc(${memberVo.memberNo});" style="border: 0px; background-color: #ffffff; color: red; font-weight: bold;">
 				</td>		
 			</tr>
-				
-		
 		</c:forEach>
-	
 	</table>
+		<c:if test="${empty memberList}">
+			<div style="margin: auto; text-align: center; margin-top: 100px; margin-bottom: 80px;">
+				회원정보가 없습니다.
+			</div>
+		</c:if>
 
 <jsp:include page="/WEB-INF/views/common/paging.jsp">
 		<jsp:param value="${pagingMap}" name="pagingMap" />
