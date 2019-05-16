@@ -5,12 +5,8 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="/jsphomme/resources/css/headerStyle.css?ver=1">
-<script type="text/javascript" src="/jsphomme/resources/js/Header.js?ver=1">
-
-
-
-</script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/headerStyle.css?ver=1">
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/Header.js?ver=1"></script>
 
 
 <div id="headerContainer" >   
