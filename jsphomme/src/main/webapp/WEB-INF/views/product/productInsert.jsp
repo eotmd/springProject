@@ -50,6 +50,8 @@ function goBack() {
 
 </script>
 
+
+<link rel = "stylesheet" type = "text/css" href = "/jsphomme/resources/css/buttonCss.css">
 <style type="text/css">
 	
 	.detailView {
@@ -96,7 +98,6 @@ function goBack() {
 
 	<jsp:include page="/WEB-INF/views/common/headerAfterLogin.jsp"></jsp:include>
 	
-	<h1>상품 등록</h1>
 	<div class="detailView">
 		<form action="./insert.do" id="formTag" method="post" enctype="multipart/form-data">
 			<table class="explanation">
@@ -116,12 +117,12 @@ function goBack() {
 					<td><input type="number" id="quantity" name="quantity"></td>
 				</tr>
 				<tr>
-					<td><input type="reset" value="취소"></td>
-					<td><input type="button" value="등록" onclick="goInsert();"></td>
+					<td><input type="reset" value="리셋" class="goUpdateBtn"></td>
+					<td><input type="button" value="등록" onclick="goInsert();" class="goBuyBtn"></td>
 				</tr>
 			</table>
 			<div style="clear: both;">			
-			<input type="button" value="뒤로가기" onclick="goBack();">
+			<input type="button" value="뒤로가기" onclick="goBack();" class="goBackBtn">
 				<textarea name="detail"></textarea>
 			</div>
 		</form>
