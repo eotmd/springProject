@@ -187,12 +187,12 @@
 								src="<c:url value='/img/${purchaseListVo.storedFileName}'/>"></td>
 							<td class="tableBt" style="font-weight: bold; width: 300px;">${purchaseListVo.productName}</td>
 							<td class="tableBt" style="width: 223px;"><fmt:formatNumber
-									value="${purchaseListVo.productPrice}" pattern="#,###" /></td>
+									value="${purchaseListVo.productPrice}" pattern="₩ #,###" /></td>
 							<td class="tableBt" style="width: 223px;">${purchaseListVo.productSize}</td>
 							<td class="tableBt" style="width: 222px;">${purchaseListVo.purchaseQuantity}</td>
 							<td class="tableBt" style="width: 222px;"><fmt:formatNumber
 									value="${purchaseListVo.productPrice * purchaseListVo.purchaseQuantity}"
-									pattern="#,###" /></td>
+									pattern="₩ #,###" /></td>
 						</tr>
 						
 					</c:forEach>
