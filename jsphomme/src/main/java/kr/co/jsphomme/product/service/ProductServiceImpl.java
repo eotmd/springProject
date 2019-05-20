@@ -85,14 +85,14 @@ public class ProductServiceImpl implements ProductService{
 		List<MultipartFile> tempFileList = fileUtils.getFile(multipartHttpServletRequest);
 		Iterator<MultipartFile> iterator = tempFileList.iterator();
 		
-		while (iterator.hasNext()) {
-			if (iterator.next().getSize() != productVo.getFileSize()) {
-				fileUtils.parseUpdateFileInfo(productVo);
-			}
-		}
-		
-		
 		try {
+
+			while (iterator.hasNext()) {
+				if (iterator.next().getSize() != productVo.getFileSize()) {
+					fileUtils.parseUpdateFileInfo(productVo);
+				}
+			}
+		
 			fileUtils.parseInsertFileInfo(productVo, multipartHttpServletRequest);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
